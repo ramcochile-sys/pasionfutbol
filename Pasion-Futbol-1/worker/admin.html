@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Administrar productos · Pasión Fútbol</title>
+<style>
+:root{color-scheme:dark;font:16px system-ui,sans-serif;background:#090e18;color:#f5f8ff}
+*{box-sizing:border-box}
+body{margin:0}
+main,header div{width:min(92%,790px);margin:auto}
+header{border-bottom:1px solid #344765;padding:16px 0}
+header div,.title,.row,.actions,.pair{display:flex;justify-content:space-between;align-items:center;gap:12px}
+header a{color:#b9c6da}
+header form{margin:0}
+header strong{font-style:italic;color:#16A34A}
+main{padding:24px 0}
+h1,h2,p{margin:0}
+h1{font-size:clamp(24px,5vw,35px)}
+h2{font-size:23px}
+button,input,textarea{font:inherit}
+button,input,textarea{padding:9px 12px;border:1px solid #425575;border-radius:8px;background:#101a2b;color:inherit;min-height:44px}
+button{cursor:pointer;font-weight:650}
+.primary{background:#16a34a;color:#06130a;border-color:transparent}
+button:disabled{opacity:.55;cursor:wait}
+:focus-visible{outline:2px solid #51baff;outline-offset:2px}
+#query{width:100%;margin:18px 0 10px}
+#items{list-style:none;margin:0;padding:0}
+.row{padding:10px 0;border-bottom:1px solid #344765}
+.row img,#preview{width:54px;height:54px;border-radius:6px;object-fit:contain;background:#172438}
+.row-info{flex:1;min-width:0;overflow-wrap:anywhere}
+small{color:#c1cce0;display:block}
+#notice:not(:empty){margin:12px 0}
+dialog{width:min(94vw,560px);max-height:90dvh;border:1px solid #425575;background:#101a2b;color:inherit;border-radius:14px;padding:16px}
+dialog::backdrop{background:#000a}
+form{display:grid;gap:13px;margin-top:14px}
+label{display:grid;gap:5px;font-size:14px;font-weight:650}
+input,textarea{width:100%;min-width:0}
+textarea{resize:vertical}
+.pair>*{flex:1;min-width:0}
+fieldset{border:1px solid #425575;border-radius:8px;display:flex;gap:10px;flex-wrap:wrap}
+fieldset label{display:flex;align-items:center;gap:4px}
+fieldset input{width:19px;min-height:24px;accent-color:#16a34a}
+#preview{width:94px;height:94px}
+.actions{justify-content:flex-end}
+#error{color:#ffc1c1}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header><div><strong>PASIÓN FÚTBOL</strong><a href="/">Ver tienda</a><a href="/admin/pedidos">Pedidos y envíos</a><form method="post" action="/admin/logout"><button type="submit">Cerrar sesión</button></form></div></header>
+<main>
+  <div class="title"><h1>Productos</h1><button class="primary" id="add" disabled>+ Nuevo producto</button></div>
+  <input id="query" type="search" placeholder="Buscar nombre o categoría" aria-label="Buscar nombre o categoría">
+  <p id="notice" role="status">Cargando productos…</p>
+  <ul id="items"></ul>
+</main>
+<dialog id="editor" aria-labelledby="editor-title">
+  <h2 id="editor-title">Nuevo producto</h2>
+  <form id="product-form">
+    <label>Nombre <input name="name" maxlength="100" required></label>
+    <div class="pair">
+      <label>Precio en pesos <input name="price" type="number" inputmode="numeric" min="1" max="99999999" required></label>
+      <label>Orden <input name="position" type="number" inputmode="numeric" min="1" max="999999" aria-describedby="order-hint" required></label>
+    </div>
+    <small id="order-hint">Los números más bajos aparecen primero en la tienda.</small>
+    <label>Categorías <input name="categories" list="categories" maxlength="327" placeholder="Ej. Adultos, Poleras" required>
+      <small>Separa las categorías con comas. Usa Adultos o Niños para elegir la sección de la tienda.</small>
+    </label>
+    <datalist id="categories"></datalist>
+    <label>Foto <input name="photo" type="file" accept="image/jpeg,image/png,image/webp"><small>JPG, PNG o WebP, hasta 4 MB.</small></label>
+    <img id="preview" alt="Vista previa del producto" hidden>
+    <label>Descripción <textarea name="description" rows="2" maxlength="500"></textarea></label>
+    <fieldset><legend>Tallas</legend>
+      <label><input type="checkbox" name="sizes" value="XS"> XS</label>
+      <label><input type="checkbox" name="sizes" value="S"> S</label>
+      <label><input type="checkbox" name="sizes" value="M"> M</label>
+      <label><input type="checkbox" name="sizes" value="L"> L</label>
+      <label><input type="checkbox" name="sizes" value="XL"> XL</label>
+      <label><input type="checkbox" name="sizes" value="XXL"> XXL</label>
+      <label><input type="checkbox" name="sizes" value="4"> 4 (niños)</label>
+      <label><input type="checkbox" name="sizes" value="6"> 6 (niños)</label>
+      <label><input type="checkbox" name="sizes" value="8"> 8 (niños)</label>
+      <label><input type="checkbox" name="sizes" value="10"> 10 (niños)</label>
+      <label><input type="checkbox" name="sizes" value="12"> 12 (niños)</label>
+      <label><input type="checkbox" name="sizes" value="14"> 14 (niños)</label>
+      <label><input type="checkbox" name="sizes" value="16"> 16 (niños)</label>
+    </fieldset>
+    <p id="error" role="alert" hidden></p>
+    <div class="actions"><button type="button" id="cancel">Cancelar</button><button class="primary" id="save" type="submit">Guardar producto</button></div>
+  </form>
+</dialog>
+<script>
+const get = id => document.getElementById(id);
+const form = get("product-form");
+const editor = get("editor");
+const preview = get("preview");
+const photo = form.elements.namedItem("photo");
+const money = new Intl.NumberFormat("es-CL", {style:"currency", currency:"CLP"});
+let products = [];
+let selected;
+let previewUrl;
+
+function render() {
+  const query = get("query").value.trim().toLocaleLowerCase("es");
+  const items = get("items");
+  items.replaceChildren();
+  for (const product of products.filter(p => [p.name,...p.categories].join(" ").toLocaleLowerCase("es").includes(query))) {
+    const row = document.createElement("li");
+    row.className = "row";
+    const image = new Image();
+    image.src = product.image;
+    image.alt = "";
+    image.loading = "lazy";
+    const info = document.createElement("div");
+    info.className = "row-info";
+    const title = document.createElement("strong");
+    title.textContent = product.name;
+    const meta = document.createElement("small");
+    meta.textContent = `${money.format(product.price)} · ${product.categories.join(", ")} · Orden ${product.position}`;
+    info.append(title,meta);
+    const edit = document.createElement("button");
+    edit.textContent = "Editar";
+    edit.setAttribute("aria-label","Editar " + product.name);
+    edit.addEventListener("click", () => openEditor(product));
+    row.append(image,info,edit);
+    items.append(row);
+  }
+  if (!items.childElementCount) {
+    const row = document.createElement("li");
+    row.textContent = "No encontramos productos.";
+    items.append(row);
+  }
+}
+
+async function loadProducts() {
+  const response = await fetch("/api/admin/products");
+  if (!response.ok) throw new Error("No se pudo cargar el catálogo. Recarga la página para reintentar.");
+  products = await response.json();
+  get("add").disabled = false;
+  get("categories").replaceChildren(...[...new Set(["Adultos", "Niños", ...products.flatMap(p => p.categories)])].map(category => new Option(category)));
+  render();
+}
+
+function showPreview(url) {
+  preview.hidden = !url;
+  if (url) preview.src = url;
+  else preview.removeAttribute("src");
+}
+
+function openEditor(product) {
+  selected = product;
+  form.reset();
+  get("error").hidden = true;
+  get("editor-title").textContent = product ? "Editar producto" : "Nuevo producto";
+  photo.required = !product;
+  form.elements.namedItem("position").value = product?.position ?? Math.max(0,...products.map(p => p.position)) + 10;
+  for (const name of ["name","price","description"]) form.elements.namedItem(name).value = product?.[name] ?? "";
+  form.elements.namedItem("categories").value = product?.categories.join(", ") ?? "";
+  for (const input of form.querySelectorAll('[name="sizes"]')) {
+    input.checked = (product?.sizes ?? ["S","M","L","XL"]).includes(input.value);
+  }
+  showPreview(product?.image);
+  editor.showModal();
+}
+
+photo.addEventListener("change", () => {
+  if (previewUrl) URL.revokeObjectURL(previewUrl);
+  previewUrl = photo.files[0] ? URL.createObjectURL(photo.files[0]) : undefined;
+  showPreview(previewUrl || selected?.image);
+});
+editor.addEventListener("close", () => {
+  if (previewUrl) URL.revokeObjectURL(previewUrl);
+  previewUrl = undefined;
+});
+editor.addEventListener("cancel", event => { if (get("save").disabled) event.preventDefault(); });
+get("cancel").addEventListener("click", () => editor.close());
+get("add").addEventListener("click", () => openEditor());
+get("query").addEventListener("input", render);
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+  const error = get("error");
+  error.hidden = true;
+  get("save").disabled = get("cancel").disabled = true;
+  try {
+    const data = new FormData(form);
+    if (!data.getAll("sizes").length) throw new Error("Selecciona al menos una talla.");
+    const response = await fetch("/api/admin/products" + (selected ? "/" + selected.id : ""), {method:"POST",body:data});
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error);
+    editor.close();
+    get("notice").textContent = "Producto guardado. Ya está visible en la tienda.";
+    try { await loadProducts(); }
+    catch { get("notice").textContent = "Producto guardado. Recarga para actualizar esta lista."; }
+  } catch (reason) {
+    error.textContent = reason.message || "No se pudo guardar el producto.";
+    error.hidden = false;
+  } finally {
+    get("save").disabled = get("cancel").disabled = false;
+  }
+});
+loadProducts().then(() => get("notice").textContent = "").catch(error => get("notice").textContent = error.message);
+</script>
+</body>
+</html>
