@@ -1,0 +1,1309 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pasión Fútbol</title>
+<link rel="icon" type="image/png" sizes="64x64" href="/pelota-corona.png">
+<meta name="description" content="Camisetas y ropa de entrenamiento para la cancha y la tribuna.">
+<style>
+:root{--page:#090e18;--ink:#f5f8ff;--muted:#b9c6da;--line:#344765;--hero:#050910;--surface:#101a2b;--photo:#18263a;--accent:#ffcb32;--accent-ink:#171100;--green-text:#82e9a7;--blue:#76c8ff;font-family:"DM Sans",sans-serif;color:var(--ink);background:var(--page);color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;padding-bottom:calc(92px + env(safe-area-inset-bottom))}
+button,input,select{font:inherit}
+a{color:inherit;text-decoration:none}
+button,select{cursor:pointer}
+:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+.wrap{width:min(91%,1370px);margin:auto}
+header{position:sticky;top:0;z-index:5;background:var(--hero);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:80px}
+.wordmark{display:inline-flex;align-items:center;gap:10px;white-space:nowrap;font-family:Helvetica, Arial, sans-serif;font-size:clamp(22px,4vw,36px);font-weight:900;font-style:italic;line-height:1;letter-spacing:-.02em;text-transform:uppercase}
+.wordmark strong{font-weight:inherit;color:var(--accent)}
+.brand-ball{position:relative;display:block;flex:none;width:clamp(34px,8vw,52px);aspect-ratio:1;overflow:hidden;border-radius:50%;box-shadow:0 0 12px #007dff60}
+.brand-ball img{position:absolute;width:286%;max-width:none;height:auto;top:-168%;left:-78%}
+nav{display:flex;gap:30px;font-size:14px}
+nav a:hover{text-decoration:underline}
+button,.button,select,input{min-height:44px;border:1px solid var(--line);border-radius:3px;padding:0 14px;background:var(--page);color:var(--ink)}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:18px;background:var(--accent);color:var(--accent-ink);border-color:transparent;font-weight:800}
+.button:hover{box-shadow:inset 0 0 0 2px currentColor}
+h1,h2{font-family:Helvetica, Arial, sans-serif;margin:0;line-height:.95}
+.catalog{scroll-margin-top:84px}
+section.catalog{padding:24px 0 68px}
+.audience-sections{display:flex;gap:12px;margin-bottom:20px}
+.audience-sections button{flex:1;min-height:60px;font-weight:800;font-size:20px}
+.audience-sections button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.catalog-search{position:relative;display:block;width:min(100%,420px);margin:0 0 18px}
+.catalog-search input{width:100%;padding-inline-start:42px}
+.search-icon{position:absolute;top:14px;left:15px;width:13px;height:13px;border:2px solid var(--muted);border-radius:50%;pointer-events:none}
+.search-icon::after{content:"";position:absolute;top:9px;left:9px;width:7px;height:2px;background:var(--muted);transform:rotate(45deg);transform-origin:left}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:18px}
+article{min-width:0;aspect-ratio:1;display:grid;grid-template-rows:minmax(0,1fr) auto;border:1px solid var(--line);background:var(--surface)}
+.product-photo{width:100%;min-height:0;display:block;padding:0;border:0;background:var(--surface)}
+.product-photo img{width:100%;height:100%;object-fit:contain;display:block}
+.detail-image{display:block;inline-size:100%;block-size:auto;aspect-ratio:1;object-fit:contain}
+.product-actions{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.plus{width:44px;padding:0;font-size:25px;flex:none}
+.product-copy{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:5px;align-items:center;padding:7px 8px}
+.product-copy h3{margin:0;font-size:15px;line-height:1.15;overflow-wrap:anywhere}
+.product-copy .product-actions{display:contents}
+.product-copy strong{grid-column:1;font-size:14px}
+.product-copy .plus{grid-column:2;grid-row:1 / span 2}
+.muted{color:var(--muted)}
+.buy,.shipping-form{display:grid;gap:12px;margin-top:16px}
+.buy{grid-template-columns:1fr 1fr;align-items:end}
+.buy-actions{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.buy-actions button{padding:12px 8px;line-height:1.25}
+.buy label,.shipping-form label{display:grid;gap:5px;min-width:0}
+.buy input,.buy select,.shipping-form input{width:100%;min-width:0}
+.shipping-form .button,#pay{width:100%;margin-top:4px}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+footer{background:var(--hero);border-top:1px solid var(--line);padding:28px 0}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px}
+footer p{font-size:13px;color:var(--muted)}
+dialog{background:var(--page);color:var(--ink);border:1px solid var(--line);border-radius:4px;width:min(92vw,560px);max-height:90dvh;padding:22px}
+dialog::backdrop{background:#0009}
+.dialog-top,.total,.order-row{display:flex;justify-content:space-between;align-items:center;gap:14px}
+.dialog-top{margin-bottom:15px}
+dialog h2{font-size:39px}
+.close{min-width:44px;padding:0;font-size:24px}
+.order-row{border-bottom:1px solid var(--line);padding:10px 0}
+.order-row small{display:block;color:var(--muted);margin:4px 0}
+.order-row button{flex:none}
+.total{padding:14px 0}
+
+.cart-dock{position:fixed;z-index:6;inset:auto 0 calc(12px + env(safe-area-inset-bottom));width:min(94%,560px);margin-inline:auto}
+#cart{display:flex;align-items:center;gap:10px;width:100%;min-height:66px;padding:8px 13px;border-radius:21px;background:var(--surface);text-align:left;box-shadow:0 8px 28px #0009}
+.cart-icon,#count{display:grid;place-items:center;flex:none;width:38px;height:38px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-weight:800}
+.cart-icon svg{width:21px;height:21px}
+.cart-summary{flex:1;min-width:0}
+.cart-summary strong,.cart-summary small{display:block}
+.cart-summary small{color:var(--muted);font-size:12px}
+#cart-thumbs{display:flex;gap:4px}
+#cart-thumbs img,.order-thumb{object-fit:contain;background:var(--photo)}
+#cart-thumbs img{width:28px;height:28px;border-radius:50%}
+#order{position:fixed;inset:auto 0 0;margin:0 auto;padding:0;width:min(95vw,600px);max-height:85dvh;border-radius:24px 24px 0 0;background:var(--surface);overflow:hidden;opacity:0;translate:0 100%;transition:translate .27s ease,opacity .27s ease,display .27s allow-discrete,overlay .27s allow-discrete}
+#order[open]{display:flex;flex-direction:column;opacity:1;translate:0 0}
+@starting-style{#order[open]{opacity:0;translate:0 100%}}
+#order::backdrop{background:#0009;backdrop-filter:blur(3px)}
+.sheet-grip{display:grid;place-items:center;min-height:26px;touch-action:none;cursor:grab}
+.sheet-grip::after{content:"";width:44px;height:4px;border-radius:4px;background:var(--muted)}
+#order .dialog-top,#order-lines,.order-footer{padding-inline:16px}
+#order .dialog-top{margin-bottom:0;padding-bottom:12px;border-bottom:1px solid var(--line)}
+#order-lines{overflow:auto;overscroll-behavior:contain}
+.order-row{gap:9px;align-items:start}
+.order-thumb{width:46px;height:46px;border-radius:.5rem;flex:none}
+.order-copy{flex:1;min-width:0}
+.quantity-stepper{display:grid;grid-template-columns:44px minmax(2ch,1fr) 44px;align-items:center;gap:.25rem}
+.quantity-stepper button{min-width:44px;padding:0;font-size:1.25rem}
+.quantity-stepper button[aria-disabled="true"]{opacity:.45;cursor:not-allowed}
+.quantity-stepper output,.quantity-stepper .quantity-value{text-align:center;font-weight:800;font-variant-numeric:tabular-nums}
+.order-footer{border-top:1px solid var(--line);padding-bottom:calc(14px + env(safe-area-inset-bottom))}
+.order-actions{display:flex;gap:8px}
+.order-actions #pay{margin:0}
+@media(max-width:360px){#cart-thumbs img:nth-child(2){display:none}.order-thumb{width:34px;height:34px}}
+@media(prefers-reduced-motion:reduce){#order{transition:none}}
+[hidden]{display:none!important}
+@media(max-width:640px){
+  header .wrap{min-height:66px;gap:8px}
+  .wordmark{gap:7px}
+  nav{display:none}
+  section.catalog{padding:16px 0 38px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .product-copy h3{font-size:13px}
+  .product-actions{gap:4px}
+  .product-actions strong{font-size:13px}
+  footer .wrap{align-items:flex-start;flex-direction:column;gap:0}
+}
+@font-face{font-family:"DM Sans";src:url("/dm-sans-latin-wght-normal.woff2") format("woff2");font-weight:100 1000;font-display:swap}
+@font-face{font-family:"Barlow Condensed";src:url("/barlow-condensed-latin-800-normal.woff2") format("woff2");font-weight:800;font-display:swap}
+body{background:var(--page)}
+header{box-shadow:0 1px 22px #0005}
+.wordmark,h1,h2,.product-copy h3,.audience-sections button{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:800;letter-spacing:.02em}
+.wordmark{text-shadow:0 0 24px #176b3b20}
+button,.button,select,input{border-radius:10px}
+.button,.cart-icon,#count{background:var(--accent);color:var(--accent-ink)}
+.audience-sections button{font-size:1.65rem;text-transform:uppercase}
+.audience-sections button[aria-pressed="true"]{box-shadow:0 0 24px #ffcb321a}
+article{aspect-ratio:auto;grid-template-rows:auto 1fr;border-radius:17px;background:var(--surface);transition:border-color .18s,box-shadow .18s}
+article:hover,article:focus-within{border-color:#8fa9c8;box-shadow:0 0 20px #142b481a}
+.product-photo{aspect-ratio:1.18;border-radius:16px 16px 0 0;background:radial-gradient(ellipse at 50% 46%,var(--photo),var(--surface) 80%)}
+.product-copy{padding:10px 12px;border-top:1px solid var(--line)}
+.product-copy h3{font-size:clamp(1.08rem,2vw,1.35rem);line-height:1.05;text-transform:uppercase}
+.product-copy strong{color:var(--ink);font-size:.875rem}
+.product-copy .plus{margin-left:4px}
+#cart{background:var(--surface);border-color:var(--line);box-shadow:0 0 24px #142b4815,0 8px 28px #0009}
+dialog{background:var(--surface);border-radius:18px;border-color:var(--line);box-shadow:0 0 42px #142b482b}
+.gallery{display:flex;align-items:center;justify-content:center;gap:.5rem}
+.gallery > [aria-live]{flex:0 1 min(76%,35dvh);min-inline-size:0}
+.gallery-view{overflow:hidden;border-radius:.875rem;background:radial-gradient(ellipse,var(--photo) 0%,var(--hero) 78%)}
+.gallery-note{display:block;padding:.25rem .5rem;color:var(--muted);font-size:.75rem;text-align:center}
+.gallery-controls{display:grid;flex:0 0 clamp(2.75rem,12%,3.25rem);gap:.25rem}
+.gallery-controls button{inline-size:100%;min-block-size:2.75rem;aspect-ratio:1;padding:0;overflow:hidden}
+.gallery-controls img{display:block;inline-size:100%;block-size:100%;object-fit:contain}
+.gallery-controls button[aria-pressed="true"]{border-color:var(--blue);box-shadow:0 0 12px #24589725}
+.studio-photo{overflow:hidden}
+.studio-photo img{width:100%;object-fit:cover;object-position:center}
+#detail{width:94%;max-width:36rem;max-height:92dvh;padding:clamp(.625rem,2.5vw,1rem)}
+#detail .dialog-top{gap:.5rem;margin-bottom:.5rem}
+#detail-title{font-size:clamp(1.5rem,4vw,2.125rem);line-height:1.05;overflow-wrap:anywhere}
+#detail .close{min-inline-size:2.75rem;min-block-size:2.75rem;flex:none}
+#detail-body > p{margin:.5rem 0 .25rem;line-height:1.35}
+#detail .buy{gap:.5rem;margin-top:.5rem}
+#detail .buy label{gap:.1875rem}
+#detail .buy-actions{gap:.5rem}
+#detail .buy-actions button{padding:.375rem .5rem}
+#detail .buy-actions button:first-child:not(.button){border-color:var(--blue);color:var(--blue);font-weight:750}
+@media(max-width:40rem){
+  #detail-body > p,#detail .buy label,#detail .buy-actions button{font-size:.875rem}
+}
+@media(orientation:landscape) and (max-height:30rem) and (min-width:32rem){
+  #detail-body{display:grid;grid-template-columns:44% minmax(0,1fr);column-gap:3%;align-items:start}
+  #detail .dialog-top{grid-column:1 / -1}
+  #detail .gallery{grid-row:2 / span 3}
+  #detail-body > p,#detail-body > strong,#detail .buy{grid-column:2}
+}
+.store-policies .wrap{display:block}
+.store-policies .policy-nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.65rem;margin:1rem 0}
+.policy-nav a{display:flex;flex-direction:column;align-items:flex-start;gap:.5rem;min-height:68px;padding:.7rem;border:1px solid var(--line);border-radius:10px;background:var(--surface);font-weight:700}
+.policy-nav svg{width:1.25rem;height:1.25rem;flex:none}
+.store-policies section:not(:target){display:none}
+.store-policies section:target{scroll-margin-top:10rem}
+.store-policies section a{color:var(--blue);text-decoration:underline;overflow-wrap:anywhere}
+@media(max-width:52rem){.store-policies .policy-nav{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:35rem){.store-policies .policy-nav{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.policy-nav a,.delivery-link{color:var(--blue);text-decoration:underline;text-underline-offset:.2em}
+.store-policies section{max-width:48rem;padding:1.125rem 0;border-top:1px solid var(--line);scroll-margin-top:6rem}
+.store-policies h2{font-size:1.6rem;line-height:1.1}
+.store-policies h3{margin:.85rem 0 .25rem;font-size:1rem}
+.store-policies p{font-size:1rem;line-height:1.5}
+.store-policies p{margin:.45rem 0 0}
+.shipping-note{font-size:.875rem;line-height:1.45;color:var(--muted)}
+.promo-bar{display:flex;align-items:center;gap:.5rem;padding:0 max(.5rem,calc((100% - 1370px)/2));background:var(--photo);border-top:1px solid var(--line);font-size:.875rem}
+.promo-bar > a{display:grid;place-items:center;flex:none;min-width:44px;min-height:44px;color:var(--blue)}
+.promo-bar svg{width:1.4rem;height:1.4rem}
+.promo-window{flex:1;min-width:0;overflow:hidden}
+.promo-track{display:flex;width:max-content}
+.promo-group{display:flex;align-items:center;gap:1.75rem;margin:0;padding:0 1.75rem 0 0;list-style:none;white-space:nowrap}
+.promo-group li{padding:.5rem 0}
+.promo-group li+li::before{content:"";display:inline-block;width:.3rem;height:.3rem;margin:0 .6rem .15rem 0;border-radius:50%;background:var(--blue)}
+.promo-group strong,.promo-discount{color:var(--green-text)}
+.promo-discount[hidden]{display:none}
+.promo-bar.is-moving .promo-track{animation:promo-scroll 29s linear infinite}
+.promo-bar.is-moving .promo-window:hover .promo-track{animation-play-state:paused}
+@keyframes promo-scroll{to{transform:translateX(-50%)}}
+.promo-bar:not(.is-moving) .promo-track{width:auto}
+.promo-bar:not(.is-moving) .promo-group{flex-wrap:wrap;gap:0 1rem;white-space:normal;padding:0}
+.promo-bar:not(.is-moving) [aria-hidden="true"].promo-group{display:none}
+@media(prefers-reduced-motion:reduce){
+  .promo-bar.is-moving .promo-track{animation:none;width:auto}
+  .promo-bar.is-moving .promo-group{flex-wrap:wrap;gap:0 1rem;white-space:normal;padding:0}
+  .promo-bar.is-moving [aria-hidden="true"].promo-group{display:none}
+}
+.catalog{scroll-margin-top:8rem}
+.catalog-search{width:min(100%,460px)}
+.catalog-search input{min-height:52px;padding-inline-start:52px;border-color:var(--line)}
+.catalog-search input::placeholder{color:var(--muted)}
+.search-icon{top:50%;left:16px;width:24px;height:24px;transform:translateY(-50%);border:0;color:var(--blue)}
+.search-icon::after{content:none}
+.audience-sections button:disabled{opacity:.52;cursor:not-allowed}
+#detail .add-to-cart{display:flex;align-items:center;justify-content:center;gap:.4rem}
+.add-to-cart svg{width:1.15rem;height:1.15rem;flex:none}
+@media(prefers-reduced-motion:no-preference){
+  #products article.is-entering{animation:product-appear .78s cubic-bezier(.2,.75,.25,1) var(--product-delay,0ms) backwards}
+  #products article:focus-within{animation:none}
+  .product-photo img{transition:transform .24s ease-out}
+  .product-photo:hover img,.product-photo:focus-visible img{transform:scale(1.04)}
+}
+@keyframes product-appear{
+  from{opacity:.12;transform:translateY(32px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.header-contact{display:flex;gap:clamp(.15rem,1vw,.75rem)}
+.header-contact a{display:grid;place-items:center;width:44px;height:44px;color:var(--blue)}
+.header-contact a:first-child{color:var(--green-text)}
+.header-contact svg{width:1.45rem;height:1.45rem}
+.store-banner{position:relative;isolation:isolate;overflow:hidden;border-radius:0 0 15px 15px;background:#0c203a}
+.hero-slide{position:relative;margin:0;min-height:236px;height:clamp(236px,34vw,500px);overflow:hidden}
+.hero-slide .hero-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-slide-chile{background:linear-gradient(90deg,#050e20 0%,#111d32a0 45%,#111d32a0 55%,#050e20 100%),url('/chile-campeon-2015-640.webp') center 37%/cover}
+.hero-slide-chile .hero-photo{width:auto;max-width:100%;margin-inline:auto}
+@media(min-width:44rem){
+  .hero-slide-chile .hero-photo{mask-image:linear-gradient(to right,transparent,#000 10%,#000 90%,transparent)}
+}
+.hero-slide .hero-logo{position:absolute;right:clamp(.5rem,2vw,1.5rem);bottom:.65rem;width:clamp(46px,6vw,76px);height:auto;border-radius:.5rem;box-shadow:0 2px 10px #0005}
+.hero-credits{font-size:.875rem;color:var(--muted)}
+.hero-credits a{text-decoration:underline}
+.hero-controls{position:absolute;bottom:0;left:50%;display:flex;transform:translateX(-50%);background:#101a2bee;border-radius:16px}
+.hero-controls button{display:grid;place-items:center;min-height:44px;min-width:44px;padding:0;background:none;border:0}
+.hero-controls button::after{content:"";width:8px;height:8px;background:#8ca0b8;border-radius:999px}
+.hero-controls button[aria-pressed="true"]::after{width:21px;background:var(--accent)}
+@media(max-width:40rem){
+  .header-contact a{width:40px}
+}
+@media(prefers-reduced-motion:no-preference){
+  .hero-slide:not([hidden]) .hero-photo{animation:slide-in .48s ease-out}
+}
+@keyframes slide-in{from{opacity:.55}to{opacity:1}}
+.stadium-footer{margin:0 auto 1.75rem;overflow:hidden;border-radius:1rem}
+.stadium-footer img{width:100%;height:auto;aspect-ratio:3/1;display:block;object-fit:cover}
+
+#shipping{width:min(96vw,49rem);max-height:96dvh;padding:0;background:var(--page);overscroll-behavior:contain}
+#shipping [hidden]{display:none}
+.checkout-banner,.checkout-footer{
+  color:#fff;background:linear-gradient(90deg,#06291dec,#124530d9),url('/estadio-champions.webp') center/cover;
+}
+.checkout-banner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:.75rem;min-height:9rem;padding:1rem 3.25rem 1rem 1rem;overflow:hidden}
+.checkout-brand{position:relative;z-index:1;min-width:0}
+.checkout-brand img{display:block;width:2.65rem;height:2.65rem;margin-bottom:.2rem}
+.checkout-brand h2{font-size:clamp(1.75rem,5vw,3rem);line-height:.95;text-transform:uppercase}
+.checkout-brand p{margin:.35rem 0 0;color:#b9ffd2;font-size:.875rem;font-weight:800}
+.checkout-shirts{display:flex;align-items:center;justify-content:flex-end;gap:.35rem;min-width:0;flex:0 1 58%}
+.checkout-shirts img{width:min(22%,5rem);height:auto;aspect-ratio:1;object-fit:contain;border-radius:.5rem;background:var(--surface);filter:drop-shadow(0 .25rem .4rem #0008)}
+.checkout-shirts span{flex:none;font-size:.875rem;font-weight:800}
+.checkout-banner .close{position:absolute;right:.5rem;top:.5rem;z-index:2;background:var(--hero);color:var(--accent);border-color:var(--accent)}
+.checkout-content{padding:0 clamp(.75rem,2.8vw,1.25rem) .9rem}
+.checkout-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:0;margin:.85rem 0;list-style:none;text-align:center;color:var(--ink);font-size:.875rem;font-weight:700}
+.checkout-steps li{position:relative;isolation:isolate}
+.checkout-steps li+li::before{content:"";position:absolute;top:.875rem;inset-inline:calc(-50% + 1.3rem) calc(50% + 1.3rem);height:2px;background:#64778f}
+.checkout-steps span{display:grid;place-items:center;width:1.85rem;height:1.85rem;margin:0 auto .3rem;border-radius:50%;background:var(--photo);color:var(--ink);font-weight:800}
+.checkout-steps .is-complete span,.checkout-steps [aria-current="step"] span{background:var(--accent);color:var(--accent-ink)}
+#order .checkout-steps{padding-inline:1rem}
+#order .order-footer .total:last-of-type{background:var(--photo);border-radius:.65rem;padding:.75rem}
+
+.checkout-form{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(0,1fr);gap:.8rem;margin:0;align-items:start}
+.checkout-main,.checkout-stage,.checkout-assurance{display:grid;gap:.75rem;min-width:0}
+.checkout-card{border:1px solid var(--line);border-radius:.65rem;background:var(--surface);min-width:0;overflow:hidden}
+.checkout-section-title{display:flex;align-items:center;gap:.6rem;margin:0;padding:.7rem .8rem;background:var(--photo);color:var(--ink);font-size:1rem}
+.checkout-summary .checkout-section-title{background:var(--surface);color:var(--ink);border-bottom:1px solid var(--line)}
+.checkout-icon{width:1.45rem;height:1.45rem;flex:none}
+.checkout-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;min-width:0;margin:0;padding:.8rem;border:1px solid var(--line);border-radius:.65rem;background:var(--surface)}
+.checkout-fields legend{font-weight:800;padding:0 .35rem}
+.checkout-fields select{width:100%;min-width:0}
+.checkout-wide{grid-column:1/-1}
+#checkout-items,.checkout-breakdown{padding:0 .8rem}
+.checkout-review-row{display:grid;grid-template-columns:3rem minmax(0,1fr) auto;align-items:center;gap:.65rem;padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.875rem;overflow-wrap:anywhere}
+.checkout-review-row img{width:100%;height:auto;aspect-ratio:1;object-fit:contain;border-radius:.35rem;background:var(--photo)}
+.checkout-review-row small{display:block;color:var(--muted);font-size:.8125rem}
+.checkout-review-row > strong,.checkout-breakdown dd{white-space:nowrap}
+.checkout-breakdown dl{display:grid;gap:.4rem;margin:.65rem 0}
+.checkout-breakdown dl div{display:flex;justify-content:space-between;gap:.5rem}
+.checkout-breakdown dd{margin:0;text-align:right;font-weight:750}
+.checkout-breakdown dl div:last-child{padding:.5rem .55rem;background:var(--photo);border-radius:.4rem;color:var(--ink);font-size:1.1rem;font-weight:850}
+.checkout-breakdown p,.checkout-top-note,.checkout-test,.checkout-secure{color:var(--muted);font-size:.875rem}
+.checkout-top-note,.checkout-test,.checkout-secure{margin:0}
+.checkout-method{display:flex;align-items:center;gap:.65rem;padding:.7rem .8rem;min-width:0;background:var(--surface)}
+.checkout-method > div{min-width:0;overflow-wrap:anywhere}
+.checkout-method span,.checkout-method a{display:block;font-size:.875rem}
+.checkout-method span{margin-top:.16rem}
+.checkout-assurance .checkout-method + .checkout-method{border-top:1px solid var(--line)}
+.checkout-protection{border-color:#176b3b}
+.checkout-protection .checkout-method{background:#102f26;color:#d6ffe3;padding:.85rem}
+.checkout-protection strong{display:block;font-size:1.1rem;font-weight:900;line-height:1.15}
+.checkout-protection .checkout-icon{width:2.25rem;height:2.25rem;padding:.4rem;border-radius:.5rem;background:#176b3b;color:#fff}
+.checkout-method .checkout-support{display:inline-flex;gap:.35rem;width:fit-content;align-items:center;min-height:38px;margin-top:.35rem;padding:.25rem .65rem;border-radius:.4rem;background:#087239;color:#fff;font-weight:750}
+.checkout-club{display:flex;align-items:center;gap:.65rem;padding:.75rem;background:var(--hero) url('/estadio-champions.webp') center/cover;color:#fff;border-radius:.65rem}
+.checkout-club img{width:2.75rem;height:2.75rem}
+.checkout-club strong{font-style:italic;text-shadow:0 1px 4px #000}
+.checkout-payment-choice{background:#1a263d}
+.checkout-payment-mark{width:1rem;height:1rem;border:2px solid var(--accent);border-radius:50%;background:var(--accent);box-shadow:inset 0 0 0 2px #1a263d;flex:none}
+.checkout-actions{display:grid;gap:.45rem;grid-column:1/-1}
+#shipping .button{min-height:48px;margin:0}
+#shipping button[type="submit"]{background:var(--accent);color:var(--accent-ink);font-size:1.2rem;font-weight:900}
+#shipping button[type="submit"]:disabled{opacity:.55;cursor:not-allowed}
+.checkout-secure{display:flex;justify-content:center;align-items:center;gap:.35rem}
+.checkout-secure .checkout-icon{width:1rem;height:1rem}
+.button-outline{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;border-color:var(--accent);color:var(--accent);background:transparent;font-weight:800}
+.button-outline:hover{background:#ffcb3215}
+#checkout-edit{justify-self:center}
+#order .close{border-color:var(--accent);color:var(--accent)}
+#order .order-actions button{white-space:normal}
+.checkout-footer{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65rem;padding:1rem 1rem 2rem}
+.checkout-footer a,.checkout-footer span{display:flex;align-items:center;justify-content:center;gap:.45rem;font-size:.875rem;font-weight:750}
+.checkout-footer > * + *{border-left:1px solid #ffffff85;padding-left:.55rem}
+.checkout-footer .checkout-icon{color:#b9ffd2}
+.checkout-support .checkout-icon{width:1rem;height:1rem}
+#shipping .button,#order .button{font-weight:850;gap:.55rem}
+#order .dialog-top h2,#order .close,#shipping .close,#back-to-cart,#checkout-edit{display:flex;align-items:center;gap:.45rem}
+#order .close,#shipping .close,#back-to-cart{justify-content:center}
+#order .dialog-top h2{font-size:clamp(1.55rem,5vw,2.45rem)}
+#receipt{margin:.6rem 0;padding:.6rem .75rem;border:1px solid var(--line);border-radius:.5rem}
+@media(max-width:37rem){
+  .checkout-form{grid-template-columns:minmax(0,1fr)}
+  .checkout-form .checkout-main{order:0}
+  .checkout-test{order:3}
+  .checkout-actions{order:1}
+  .checkout-assurance{order:2}
+  .checkout-banner{min-height:6.75rem}
+  .checkout-shirts{max-width:55%}
+  .checkout-footer{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .checkout-footer > :nth-child(3){border-left:0}
+}
+@media(max-width:26rem){
+  .checkout-fields{grid-template-columns:minmax(0,1fr)}
+  .checkout-review-row{grid-template-columns:2.6rem minmax(0,1fr) auto;gap:.4rem}
+  .checkout-banner{gap:.25rem;padding-right:3rem}
+  .checkout-shirts{max-width:54%;gap:.2rem}
+  .checkout-brand p{font-size:.75rem}
+}
+
+/* Storefront accents and cover-aware carousel */
+:root{--store-green:#16a34a}
+.wordmark strong{color:#36cf72}
+.header-contact a[href^="mailto:"]{color:#ff554b}
+.audience-sections button[data-audience="Adultos"]{background:#ffcb32;color:#171100;border-color:#ffcb32}
+.audience-sections button[data-audience="Niños"]{background:var(--store-green);color:#03150a;border-color:var(--store-green)}
+.audience-sections button[aria-pressed="true"]{box-shadow:0 0 0 2px #fff;outline-offset:4px;text-decoration:underline;text-underline-offset:.25em}
+.cart-icon{background:#102f24;color:#45dd81}
+#count{background:var(--store-green);color:#04170b}
+.add-to-cart svg,.product-card .plus,#products .plus{color:#087633}
+.hero-slide:not([hidden]) .hero-photo{animation:none}
+.hero-slide .hero-logo{box-shadow:none}
+body>footer{border:0;min-height:clamp(13rem,29vw,27rem);box-sizing:border-box;display:flex;align-items:end;background:linear-gradient(to bottom,var(--page),#090e1866 50%,#050c1af5 97%),url('/estadio-champions.webp') center/cover no-repeat}
+body>footer p{color:#edf4ff}
+
+#order,#shipping{
+  --page:#fbfcfe;--ink:#071735;--muted:#36435a;--line:#d9dfeb;--surface:#fff;--photo:#ebeff8;
+  --accent:#ffcc00;--accent-ink:#111000;--hero:#031636;--green:#087f3e;
+  --summary-size:clamp(.875rem,2.45vw,1rem);
+  box-sizing:border-box;color:var(--ink);background:var(--page);border:0;overflow:auto;overscroll-behavior:contain;
+}
+#order{width:min(96vw,600px);max-height:92dvh}
+#order[open]{display:block}
+#shipping{width:min(96vw,49rem);border-radius:1rem}
+#order [hidden],#shipping [hidden]{display:none!important}
+.checkout-banner{
+  display:flex;align-items:center;justify-content:space-between;gap:.4rem;
+  padding:clamp(.65rem,2vw,1rem) clamp(2.5rem,7vw,3.25rem) 1.2rem clamp(.65rem,6vw,3.25rem);
+  min-height:clamp(5rem,14vw,7rem);box-sizing:border-box;color:#fff;
+  background:linear-gradient(90deg,#04163980,#03143045),url('/estadio-champions.webp') center 21%/cover;
+}
+.checkout-banner::after,.checkout-footer::before{
+  position:absolute;content:"";background:var(--page);pointer-events:none;
+}
+.checkout-banner::after{bottom:-.65rem;left:-3%;width:106%;height:1.15rem;border-radius:48% 58% 0 0}
+.checkout-brand,.checkout-banner-security{display:flex;align-items:center;gap:clamp(.22rem,1vw,.65rem)}
+.checkout-brand img{width:clamp(2rem,9vw,4.25rem);height:auto;margin:0;flex:none}
+.checkout-brand strong{display:block;font:900 italic clamp(1.05rem,4vw,2.3rem)/1 Helvetica,Arial,sans-serif;text-transform:uppercase}
+.checkout-brand em{display:block;color:#ffce00}
+.checkout-brand p{margin-top:.15rem;font-size:clamp(.65rem,2vw,.95rem);color:#fff;text-transform:uppercase}
+.checkout-banner-security{white-space:nowrap;font-size:clamp(.65rem,2vw,1rem);font-weight:750;line-height:1.12}
+.checkout-banner-security svg{width:clamp(1.65rem,5vw,2.85rem);height:clamp(1.65rem,5vw,2.85rem)}
+#order .checkout-banner .close,#shipping .checkout-banner .close{background:transparent;color:#56ee91;border:0;top:.15rem;right:.15rem}
+.sheet-grip{min-height:16px}
+.sheet-grip::after{height:3px;background:#c6cede}
+#order .dialog-top{margin:0 1rem;padding:.2rem 0 .65rem;border-bottom:2px solid var(--accent)}
+#order .dialog-top h2{font-size:clamp(1.08rem,4vw,1.75rem);line-height:1.1}
+.checkout-steps{margin:.65rem 0 .9rem}
+.checkout-steps span{background:#626f87;color:white}
+.checkout-steps .is-complete span{background:var(--hero);color:#fff}
+.checkout-steps li.is-complete+li::before{background:var(--hero)}
+#order-lines{overflow:visible}
+#order .order-row{
+  display:grid;grid-template-columns:clamp(3.5rem,16vw,8rem) minmax(0,1fr) auto;grid-template-rows:auto auto;
+  gap:.35rem .65rem;padding:.55rem 0 .75rem;align-items:start;
+}
+#order .order-thumb{grid-row:1/3;width:100%;height:auto;aspect-ratio:1;background:var(--photo)}
+.order-copy{font-size:clamp(.875rem,3vw,1.15rem);overflow-wrap:anywhere}
+.order-copy small{font-size:.82rem}
+#order .cart-line-price{white-space:nowrap;font-size:clamp(.875rem,3.5vw,1.25rem)}
+.cart-line-price small,.checkout-review-row .currency{display:inline;font-size:.68em;color:inherit}
+.cart-remove{grid-column:3;justify-self:end;display:grid;place-items:center;width:44px;padding:0;border:0;background:transparent;color:#071735;border-radius:.5rem}
+.cart-remove:hover{background:#e8eefb}
+#order .order-footer{border:0;padding-bottom:.4rem}
+.cart-delivery,.order-totals,.shipping-review{background:var(--photo);border-radius:.7rem;padding:.65rem .75rem;margin-top:.5rem}
+.cart-delivery,.shipping-review{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:.55rem;align-items:center}
+#cart-delivery-price{background:#d6f1dd;color:#075b24;border-radius:.55rem;padding:.4rem;text-align:right;font-size:var(--summary-size)}
+#order .shipping-note,#order .total{font-size:var(--summary-size);color:var(--ink)}
+#order .shipping-note{margin:.3rem 0;line-height:1.35}
+#order .total{padding:.22rem 0}
+#order .total strong,.shipping-review strong{text-align:right;flex:none}
+#order .order-footer .order-grand:last-of-type{border-top:1px solid #8b97b0;margin-top:.32rem;padding:.35rem 0 0;font-size:clamp(1.2rem,5vw,1.8rem);font-weight:900}
+#order-total{background:var(--hero);color:#fff;padding:.25rem .55rem;border-radius:.55rem}
+.order-actions{display:grid;gap:.15rem;margin-top:.75rem}
+#order #pay,#shipping .button{border-radius:.8rem;min-height:49px;color:#111000;font-size:clamp(1rem,4vw,1.35rem)}
+#order .button-outline,#shipping .button-outline{color:var(--ink);border:0;background:transparent}
+.checkout-trust{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.25rem;margin:0 1rem .55rem;padding:.55rem .3rem;background:#eef2fa;border-radius:.65rem}
+.checkout-trust>span{display:flex;justify-content:center;align-items:center;gap:.3rem;padding:.1rem .25rem;text-align:left;font-size:clamp(.68rem,1.8vw,.9rem);font-weight:750;line-height:1.15}
+.checkout-trust>span+span{border-left:1px solid #9da7bc}
+.checkout-trust svg{width:clamp(1rem,4vw,1.55rem);height:clamp(1rem,4vw,1.55rem)}
+.checkout-footer{
+  position:relative;display:flex;justify-content:center;align-items:center;gap:.5rem;padding:1.35rem .5rem .85rem;overflow:hidden;color:white;
+  background:linear-gradient(90deg,#001333a8,#001333ee,#001333a8),url('/estadio-champions.webp') center 42%/cover;
+}
+.checkout-footer::before{width:110%;height:1.1rem;top:-.8rem;left:-5%;border-radius:0 0 42% 51%;transform:rotate(-1.5deg)}
+.checkout-footer span,.checkout-footer>span+span{border:0;padding:0;text-align:center}
+.checkout-footer .checkout-icon{color:#fff}
+.checkout-footer .footer-crown{color:#ffcc00;font-size:1.35rem}
+#shipping:not(.is-payment) .checkout-form{grid-template-columns:minmax(0,1fr)}
+#shipping:not(.is-payment) .checkout-assurance{display:none}
+.checkout-section-title{color:#fff;background:var(--hero);font-size:clamp(1.05rem,3vw,1.35rem)}
+#shipping-items{background:#f8f9fc;padding-inline:.65rem}
+.checkout-review-row{grid-template-columns:clamp(3rem,15vw,6rem) minmax(0,1fr) auto;line-height:1.2}
+.checkout-review-row:last-child{border-bottom:0}
+.checkout-fields{border:0;padding:.65rem;grid-template-columns:repeat(2,minmax(0,1fr))}
+.checkout-fields label{position:relative;display:block;min-width:0;margin:0;color:var(--ink)}
+.checkout-fields label>.checkout-icon{position:absolute;left:.55rem;top:50%;transform:translateY(-50%);pointer-events:none;width:1.15rem}
+#shipping .checkout-fields :is(input,select){box-sizing:border-box;width:100%;min-width:0;padding:.4rem .5rem .4rem 2.05rem;background:#fff;color:var(--ink);border:1px solid #c7d0e0;border-radius:.65rem;font-size:.9rem}
+.checkout-fields input::placeholder{color:#45536a;opacity:1}
+.delivery-choice,.checkout-payment-choice{background:#edf3ff}
+.delivery-choice>strong{margin-left:auto;text-align:right;font-size:var(--summary-size)}
+.provider-logo{display:block;object-fit:contain;width:clamp(3rem,12vw,5rem);height:2.45rem;flex:none}
+.cart-delivery{background:#65a9ff;color:#080808;font-weight:750;border:1px solid #1760dd}
+#order .cart-delivery .shipping-note{color:inherit}
+.cart-delivery .provider-logo{background:#fff;border-radius:.4rem}
+.payment-logos{display:grid;justify-items:center;gap:.3rem;margin-left:auto;flex:none}
+.payment-logos .provider-logo{height:1.25rem}
+.delivery-unavailable{color:var(--muted);border-top:1px solid var(--line)}
+.checkout-payment-mark{margin:0!important;background:#1354d4;border-color:#1354d4;box-shadow:inset 0 0 0 2px #fff}
+.shipping-review strong{font-size:clamp(.875rem,3vw,1.25rem)}
+.checkout-breakdown dl{font-size:var(--summary-size)}
+.checkout-protection{border-color:#e4ecf8}
+.checkout-protection .checkout-method{color:var(--ink);background:#eaf2fe}
+#order .delivery-link,#shipping .delivery-link{color:#174494}
+.checkout-test{padding:.35rem .55rem;background:#fff5ce;border-radius:.4rem}
+#shipping:not(.is-payment) .checkout-test{display:none}
+@media(max-width:37rem){
+  #order,#shipping{max-width:calc(100% - .75rem)}
+  #order .checkout-steps{padding-inline:.4rem}
+  .cart-delivery>div{display:contents}
+  .cart-delivery .shipping-note{grid-row:2;grid-column:1/-1;margin:0}
+  .checkout-trust>span{flex-direction:column;text-align:center}
+  .checkout-assurance{order:2}
+  .delivery-choice{gap:.4rem;padding-inline:.45rem}
+  .delivery-choice .checkout-payment-mark{width:.75rem;height:.75rem}
+}
+
+/* ===== Vitrina del home: camisetas colgadas (fotos reales) ===== */
+/* ===== Vitrina de camisetas colgadas (fotos reales) ===== */
+.vitrina{min-height:236px;height:clamp(236px,34vw,500px);background:#040406}
+.v-cab{position:absolute;inset:3% 2% 4.5% 2%;border:clamp(4px,.9vw,12px) solid #0d0d10;border-radius:5px;
+  background:radial-gradient(ellipse 70% 60% at 50% 0%,#3a3a44 0%,#1b1b21 45%,#09090c 100%);
+  box-shadow:inset 0 0 60px #000,0 0 0 1px #2b2b30;overflow:hidden}
+.v-cab::before{content:"";position:absolute;left:4%;right:4%;top:0;height:5px;background:#fff;border-radius:4px;box-shadow:0 0 28px 12px #ffffff80,0 30px 90px 30px #ffffff22}
+.v-cab::after{content:"";position:absolute;left:0;right:0;bottom:0;height:12%;background:linear-gradient(transparent,#000)}
+.v-glass{position:absolute;inset:3% 2% 4.5% 2%;z-index:40;pointer-events:none;border-radius:5px;
+  background:linear-gradient(112deg,transparent 22%,#ffffff12 30%,transparent 38%,transparent 60%,#ffffff0c 66%,transparent 72%)}
+.v-rail{position:absolute;left:3.2%;right:3.2%;top:11%;height:6px;border-radius:3px;
+  background:linear-gradient(#f1f3f8,#9aa1b4 35%,#5a6177 65%,#2c303c);box-shadow:0 5px 9px #000b;z-index:1}
+.vitrina-stage{position:absolute;inset:0;perspective:1500px;perspective-origin:50% 25%}
+.vitrina .hero-logo{position:absolute;right:clamp(1rem,3vw,2.2rem);bottom:clamp(.7rem,1.6vw,1.2rem);width:clamp(40px,5vw,64px);height:auto;border-radius:.5rem;z-index:45;pointer-events:none;opacity:.95}
+.v-card{position:absolute;top:11%;left:0;padding:0;margin:0;border:0;background:none;cursor:pointer;transform-origin:50% 0;will-change:transform,filter;outline:none;display:block;--sx:50%}
+.v-card:focus-visible .v-j{outline:2px solid var(--accent);outline-offset:4px;border-radius:6px}
+.v-j{display:block;position:relative;width:100%;aspect-ratio:220/310;filter:drop-shadow(-12px 10px 12px #000d)}
+/* percha: gancho cromado + cuello oscuro detrás de la polera */
+.v-hk{position:absolute;top:-1.2%;width:20%;height:22%;overflow:visible}
+.v-bk{position:absolute;border-radius:50% 50% 46% 46%;background:radial-gradient(ellipse at 50% 20%,#2a2a30,#050507 80%)}
+/* foto de la polera + capas de luz recortadas a su silueta */
+.v-ph{position:absolute;left:3%;width:94%;background:var(--p) center/100% 100% no-repeat}
+.v-ph::before,.v-ph::after{content:"";position:absolute;inset:0;-webkit-mask:var(--p) center/100% 100% no-repeat;mask:var(--p) center/100% 100% no-repeat;pointer-events:none}
+.v-ph::before{background:
+  linear-gradient(90deg,#000a 0%,#0003 9%,transparent 24%,transparent 70%,#0004 92%,#000b 100%),
+  linear-gradient(180deg,#fff2 0%,transparent 22%,transparent 62%,#0007 100%)}
+.v-ph::after{mix-blend-mode:soft-light;
+  background:linear-gradient(100deg,transparent calc(var(--sx) - 26%),#ffffffd0 var(--sx),transparent calc(var(--sx) + 26%))}
+.v-caption{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);z-index:46;max-width:80%;text-align:center;font-weight:800;font-size:clamp(.6rem,1.05vw,.85rem);text-transform:uppercase;text-shadow:0 2px 6px #000;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}
+.v-caption b{color:var(--accent);margin-left:.5em}
+.vitrina.active .v-caption{opacity:1}
+.v-note{position:absolute;display:flex;align-items:center;opacity:0;pointer-events:none;white-space:nowrap;transition:opacity .25s,transform .25s;margin-top:-6px;transform:translateX(-8px);z-index:5}
+.v-note.l{flex-direction:row-reverse;translate:-100% 0;transform:translateX(8px)}
+.v-note i{width:12px;height:12px;border-radius:50%;background:#ff2d3d;box-shadow:0 0 0 4px #ff2d3d55,0 0 12px #ff2d3d;flex:none}
+.v-note u{height:2px;width:clamp(26px,4.5vw,64px);background:#ff2d3d;flex:none;text-decoration:none}
+.v-note span{font-size:clamp(.6rem,.95vw,.8rem);font-weight:700;background:#000d;border:1px solid #ff2d3d;padding:4px 8px;border-radius:6px;color:#fff}
+.v-card.flip .v-note.r{flex-direction:row-reverse;translate:-100% 0;transform:translateX(8px)}
+.v-card.flipr .v-note.l{flex-direction:row;translate:0 0;transform:translateX(-8px)}
+.vitrina.active .v-card.focus .v-note{opacity:1;transform:none}
+.vitrina.active .v-card.focus .v-note:nth-of-type(2){transition-delay:.08s}
+.vitrina.active .v-card.focus .v-note:nth-of-type(3){transition-delay:.16s}
+@media(max-width:40rem){.v-note{display:none}}
+@media(prefers-reduced-motion:reduce){.v-note,.v-caption{transition:none}}
+</style>
+</head>
+<body>
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute"><symbol id="checkout-icon-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c3 2 6 3 9 4v5c0 5-3 8-9 11-6-3-9-6-9-11V6c3-1 6-2 9-4Z"/><rect x="9" y="10" width="6" height="5" rx="1"/><path d="M10 10V8a2 2 0 0 1 4 0v2"/></g></symbol><symbol id="checkout-icon-heart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21S2 15 2 8a5 5 0 0 1 10-2 5 5 0 0 1 10 2c0 7-10 13-10 13Z"/></g></symbol><symbol id="checkout-icon-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 6 0 0 1 16 0v2Z"/></g></symbol><symbol id="checkout-icon-email" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 8L22 6"/></g></symbol><symbol id="checkout-icon-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 3 5-2 2a13 13 0 0 0 5 5l2-2 5 3v3c0 2-3 3-6 2A19 19 0 0 1 3 9c-1-3 0-6 2-6Z"/></g></symbol><symbol id="checkout-icon-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9c0 5-7 12-7 12S5 14 5 9a7 7 0 1 1 14 0Z"/><circle cx="12" cy="9" r="2"/></g></symbol><symbol id="checkout-icon-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 5v10l-9 5-9-5V7Zm0 20V12m-9-5 9 5 9-5M7 4l10 6"/></g></symbol><symbol id="checkout-icon-trash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/></g></symbol><symbol id="checkout-icon-cart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h3l3 12h11l3-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></g></symbol>
+<symbol id="checkout-icon-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 4v3"/></g></symbol>
+<symbol id="checkout-icon-truck" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h13v11H2zM15 9h4l3 4v3h-7"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></g></symbol>
+<symbol id="checkout-icon-return" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-4 4 4 4M4 10h11a4 4 0 1 1 0 8h-4"/></g></symbol>
+<symbol id="checkout-icon-card" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18M7 15h4"/></g></symbol>
+<symbol id="checkout-icon-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v12H9l-5 4zM8 9h8m-8 4h5"/></g></symbol>
+<symbol id="checkout-icon-close" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></g></symbol>
+<symbol id="checkout-icon-next" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></g></symbol>
+<symbol id="checkout-icon-back" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m10 5-7 7 7 7M3 12h18"/></g></symbol>
+<symbol id="checkout-icon-pencil" viewBox="0 0 24 24"><path d="M4 20l4.3-1 11-11a2.3 2.3 0 0 0-3.3-3.3l-11 11L4 20Zm10-13 3 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="checkout-icon-whatsapp" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 0-7.7 13.7L3 21l4.4-1.2A9 9 0 1 0 12 3Z"/><path d="M9 8c-1 1-.4 3.1 1.1 4.8s3.7 2.5 4.8 1.5l.5-1-2-1-1 1a6 6 0 0 1-2.5-2.7l.8-.8-1-2Z"/></g></symbol></svg>
+<header>
+  <div class="wrap">
+    <a class="wordmark" href="#"><span class="brand-ball" aria-hidden="true"><img src="./pasion-futbol.jpg" alt="" width="828" height="1792"></span><span>Pasión <strong>Fútbol</strong></span></a>
+    <nav class="header-contact" aria-label="Contacto">
+      <a href="https://wa.me/56934974132" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.4-.2-2.7.7.7-2.6-.2-.4A8 8 0 1 1 12 20Zm4.5-5.8c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.2l-.7.8c-.1.2-.3.2-.5.1a6.2 6.2 0 0 1-3-2.6c-.2-.3 0-.4.2-.6l.4-.6c.1-.2 0-.3 0-.4l-.8-1.8c-.2-.4-.3-.4-.5-.4h-.4c-.2 0-.4.1-.6.3-.2.2-.8.7-.8 1.8s.8 2.2.9 2.4c.1.1 1.6 2.4 4 3.4 1.5.6 2.1.6 2.8.5.4-.1 1.2-.5 1.4-1 .2-.6.2-1.1.1-1.2l-.2-.1Z"/></svg>
+      </a>
+      <a href="mailto:ramcochile@gmail.com" aria-label="Correo electrónico">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5l8 6 8-6v14"/></svg>
+      </a>
+    </nav>
+  </div>
+  <div class="promo-bar" id="promo-bar" aria-label="Envíos y promociones">
+    <a href="#envios" aria-label="Ver métodos de envío">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5h13v11H2zM15 9h4l3 4v3h-7"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+    </a>
+    <div class="promo-window">
+      <div class="promo-track" id="promo-track">
+        <ul class="promo-group">
+          <li><strong>Envío gratis al llevar 2 camisetas o más</strong></li>
+          <li><strong>Envíos a todo Chile</strong></li>
+          <li>Santiago: 1 a 2 días hábiles vía Blue Express</li>
+          <li>Regiones: 1 a 7 días hábiles vía Blue Express</li>
+          <li><strong>20% de descuento</strong> al llevar 2 camisetas</li>
+          <li><strong>25% de descuento</strong> al llevar 3 camisetas o más</li>
+          <li><strong>Ebook oficial de Pasión Fútbol</strong> de regalo al completar tu compra</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<main>
+  <h1 class="visually-hidden">Pasión Fútbol</h1>
+  <section class="store-banner wrap vitrina" id="vitrina" aria-label="Poleras destacadas"><div class="v-cab"></div><div class="v-rail"></div><div class="vitrina-stage" id="vitrina-stage"></div><div class="v-caption" id="v-caption" aria-hidden="true"></div><div class="v-glass"></div><img class="hero-logo" src="/hero-logo.png" width="168" height="152" alt="Pasión Fútbol"></section>
+  <section class="catalog wrap" id="catalogo" aria-labelledby="catalog-title">
+    <h2 class="visually-hidden" id="catalog-title">Colección de fútbol</h2>
+    <label class="catalog-search">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
+      <input id="search" type="search" aria-label="Busca tu próxima camiseta" placeholder="Busca tu próxima camiseta">
+    </label>
+    <div class="audience-sections" role="group" aria-label="Secciones del catálogo">
+      <button type="button" data-audience="Adultos" aria-pressed="true" aria-controls="products">Adultos</button>
+      <button type="button" data-audience="Niños" aria-pressed="false" aria-controls="products">Niños</button>
+    </div>
+    <div class="grid" id="products"></div>
+    <p id="empty" role="status" hidden>No encontramos camisetas con esa búsqueda.</p>
+  </section>
+</main>
+<footer class="store-policies">
+
+  <div class="wrap">
+    <a class="wordmark" href="#"><span>Pasión <strong>Fútbol</strong></span></a>
+    <nav class="policy-nav" aria-label="Información de la tienda">
+      <a href="#envios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5h13v11H2zM15 9h4l3 4v3h-7M8 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm12 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"/></svg>Métodos de envío</a>
+      <a href="#terminos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6m-6 4h6"/></svg>Términos y condiciones</a>
+      <a href="#cambios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-4 4 4 4M4 10h11a4 4 0 1 1 0 8h-4"/></svg>Cambios y devoluciones</a>
+      <a href="#privacidad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-4 7-11V6l-7-3-7 3v5c0 7 7 11 7 11Zm-3-10 2 2 4-4"/></svg>Privacidad</a>
+      <a href="#contacto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v12H9l-5 4zM8 9h8m-8 4h5"/></svg>Contacto</a>
+    </nav>
+
+    <section id="envios" aria-labelledby="envios-title">
+      <h2 id="envios-title">Métodos de envío</h2>
+      <h3>Santiago</h3>
+      <p>Envío vía Blue Express en 1 a 2 días hábiles.</p>
+      <h3>Regiones</h3>
+      <p>Envío vía Blue Express en 1 a 7 días hábiles, según el destino.</p>
+      <p>El envío a domicilio es gratis al llevar dos camisetas o más en pedidos con despacho disponible en línea. Para las demás compras, la tarifa depende de la comuna y del tamaño del paquete y se muestra antes de pagar.</p>
+    </section>
+
+    <section id="terminos" aria-labelledby="terminos-title">
+      <h2 id="terminos-title">Términos y condiciones</h2>
+      <p>Los precios se indican en pesos chilenos (CLP). Revisa la talla, la cantidad y los datos de entrega antes de continuar.</p>
+      <p>El descuento se aplica automáticamente al subtotal de camisetas: 20% al llevar dos o 25% al llevar tres o más. Se aplica un solo tramo de descuento y se excluye el envío. Cada pedido con pago aprobado incluye el ebook de noviembre en la pantalla de confirmación.</p>
+    </section>
+
+    <section id="cambios" aria-labelledby="cambios-title">
+      <h2 id="cambios-title">Cambios y devoluciones</h2>
+      <h3>Garantía legal de seis meses</h3>
+      <p>Si una prenda nueva presenta una falla cubierta por la garantía legal, puedes elegir el cambio, la reparación gratuita o la devolución de lo pagado dentro de los seis meses desde su recepción.</p>
+      <h3>Derecho a retracto</h3>
+      <p>En las compras en línea, puedes ejercer el retracto dentro de los 10 días siguientes a la recepción del producto, siempre que no haya sido utilizado y se cumplan los requisitos legales. Si el proveedor omite la confirmación escrita del contrato, el plazo se extiende a 90 días.</p>
+    </section>
+
+    <section id="privacidad" aria-labelledby="privacidad-title">
+      <h2 id="privacidad-title">Política de privacidad</h2>
+      <p>El navegador guarda la selección del carrito para que puedas retomarla. Al iniciar una transacción de prueba, el sitio registra los datos de contacto y envío ingresados junto con el pedido para procesar la prueba.</p>
+      <p>Los datos de tarjeta se ingresan directamente en Webpay de Transbank. Usa datos ficticios en el formulario de envío.</p>
+    </section>
+
+    <section id="contacto" aria-labelledby="contacto-title">
+      <h2 id="contacto-title">Contacto</h2>
+      <p>Para consultas sobre pedidos, despachos y devoluciones, escríbenos por <a href="https://wa.me/56934974132">WhatsApp +56 9 3497 4132</a> o al correo <a href="mailto:ramcochile@gmail.com">ramcochile@gmail.com</a>.</p>
+    </section>
+    <details class="hero-credits">
+      <summary>Créditos fotográficos</summary>
+      <p>Chile: <a href="https://www.t13.cl/noticia/deportes13/copa-america/plantel-seleccion-chilena-recibe-pago-premios-ganar-copa-america-2015">Agencia Uno / T13</a> · Argentina: <a href="https://www.fourfourtwo.com/features/the-most-iconic-goal-celebrations">Getty Images / FourFourTwo</a> · España: <a href="https://commons.wikimedia.org/wiki/File:SPA-ITA_Euro_2012_Spain_NT.JPG">Arvedui89</a> · Inglaterra: <a href="https://commons.wikimedia.org/wiki/File:FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Photo_014.jpg">Oleg Bkhambri</a>.</p>
+      <p>Fotos recortadas. Chile y España bajo <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a> e Inglaterra bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
+    </details>
+  </div>
+</footer>
+<div class="cart-dock">
+  <button id="cart" type="button" aria-haspopup="dialog" aria-controls="order">
+    <span class="cart-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h3l3 12h11l3-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg></span>
+    <span class="cart-summary"><strong>Carrito</strong><small id="cart-summary">Sin productos</small></span>
+    <span id="cart-thumbs" aria-hidden="true"></span>
+    <span id="count" aria-hidden="true">0</span><span aria-hidden="true">›</span>
+  </button>
+</div>
+<dialog id="detail" aria-labelledby="detail-title"><div id="detail-body"></div></dialog>
+<dialog id="order" aria-labelledby="order-title">
+    <div class="checkout-banner">
+    <div class="checkout-brand">
+      <img src="/pelota-corona.png" width="64" height="64" alt="">
+      <div><strong>Pasión <em>Fútbol</em></strong><p>Vive el fútbol</p></div>
+    </div>
+    <div class="checkout-banner-security"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-shield"/></svg><span>Compra<br>100% segura</span></div>
+    <button class="close" type="button" data-close aria-label="Cerrar carrito"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-close"/></svg></button>
+  </div>
+  <div class="sheet-grip" aria-hidden="true"></div>
+  <div class="dialog-top"><h2 id="order-title"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-cart"/></svg>Tu carrito de compras</h2></div>
+  <ol class="checkout-steps" aria-label="Pasos de compra">
+    <li aria-current="step"><span>1</span>Carrito</li><li><span>2</span>Datos de envío</li><li><span>3</span>Pago</li>
+  </ol>
+  <div id="order-lines"></div>
+  <div class="order-footer">
+    <div class="cart-delivery">
+      <img class="provider-logo" src="/blue-express.svg" alt="">
+      <div><strong>Envío vía Blue Express</strong><p class="shipping-note">Santiago: 1 a 2 días hábiles · Regiones: 1 a 7 días hábiles</p></div>
+      <strong id="cart-delivery-price">Por calcular</strong>
+    </div>
+    <div class="order-totals">
+      <div class="total"><span>Subtotal</span><strong id="subtotal"></strong></div>
+      <div class="total promo-discount" id="discount-row" hidden><span id="discount-label"></span><strong id="discount-value"></strong></div>
+      <div class="total"><span>Envío</span><strong id="cart-shipping">Por calcular</strong></div>
+      <div class="total order-grand"><span>Total</span><strong id="order-total"></strong></div>
+    </div>
+    <p class="shipping-note">Ebook oficial de Pasión Fútbol de regalo al completar tu compra.</p>
+    <p class="shipping-note">Envío gratis desde 2 camisetas con despacho disponible en línea. <a class="delivery-link" href="#envios" id="cart-delivery-link">Ver condiciones</a></p>
+    <div class="order-actions">
+      <button class="button" id="pay" type="button"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-cart"/></svg>Finalizar compra<svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-next"/></svg></button>
+      <button class="button-outline" type="button" data-close><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-back"/></svg>Seguir comprando</button>
+    </div>
+  </div>
+  <div class="checkout-trust" aria-label="Servicios de la tienda">
+    <span><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-shield"/></svg>Compra segura</span>
+    <span><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-card"/></svg>Pagos confiables</span>
+    <span><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-truck"/></svg>Envíos a todo Chile</span>
+    <span><span aria-hidden="true">🇨🇱</span> Chile</span>
+  </div>
+  <div class="checkout-footer">
+    <svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-heart"/></svg><span>Gracias por confiar en Pasión Fútbol</span><span class="footer-crown" aria-hidden="true">♛</span>
+  </div>
+</dialog>
+<dialog id="shipping" aria-labelledby="shipping-title">
+  <div class="checkout-banner">
+    <div class="checkout-brand">
+      <img src="/pelota-corona.png" width="64" height="64" alt="">
+      <div><strong id="shipping-title">Pasión <em>Fútbol</em></strong><p>Vive el fútbol</p></div>
+    </div>
+    <div class="checkout-banner-security"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-shield"/></svg><span>Compra<br>100% segura</span></div>
+    <button class="close" type="button" data-close aria-label="Cerrar checkout"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-close"/></svg></button>
+  </div>
+  <div class="checkout-content">
+  <ol class="checkout-steps" aria-label="Pasos de compra">
+    <li><span>1</span>Carrito</li><li aria-current="step"><span>2</span>Datos de envío</li><li><span>3</span>Pago</li>
+  </ol>
+    <form class="shipping-form checkout-form" id="shipping-form">
+      <div class="checkout-main">
+        <div class="checkout-stage" id="checkout-data">
+          <div class="checkout-card" id="shipping-items" aria-label="Productos del pedido"></div>
+          <section class="checkout-card" aria-labelledby="shipping-data-title">
+            <h3 class="checkout-section-title" id="shipping-data-title"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-truck"/></svg>Datos de envío</h3>
+            <fieldset class="checkout-fields" aria-label="Contacto y dirección">
+              <label class=checkout-wide><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-user"/></svg><span class="visually-hidden">Nombre completo</span><input name="name" autocomplete="shipping name" placeholder="Nombre completo *" required></label>
+              <label class=checkout-wide><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-email"/></svg><span class="visually-hidden">Correo electrónico</span><input name="email" type="email" autocomplete="shipping email" placeholder="Correo electrónico *" required></label>
+              <label class=checkout-wide><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-phone"/></svg><span class="visually-hidden">Teléfono de contacto</span><input name="phone" type="tel" autocomplete="shipping tel" placeholder="Teléfono de contacto *" required></label>
+              <label class=checkout-wide><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-pin"/></svg><span class="visually-hidden">Dirección y número</span><input name="address" autocomplete="shipping address-line1" placeholder="Dirección y número *" required></label>
+              <label class=checkout-wide><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-pin"/></svg><span class="visually-hidden">Depto. o referencia</span><input name="address-extra" autocomplete="shipping address-line2" placeholder="Depto. o referencia (opcional)"></label>
+              <label><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-pin"/></svg><span class="visually-hidden">Comuna</span><select name="commune" required disabled><option value="">Comuna *</option></select></label>
+              <label><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-pin"/></svg><span class="visually-hidden">Región</span><select name="region" required><option value="">Región *</option></select></label>
+            </fieldset>
+          </section>
+          <p id="checkout-quote-help" hidden>Para este destino o tamaño de pedido, <a class="delivery-link" href="https://wa.me/56934974132">cotiza el envío por WhatsApp</a>.</p>
+          <section class="checkout-card" aria-labelledby="checkout-delivery-title">
+            <h3 class="checkout-section-title" id="checkout-delivery-title"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-truck"/></svg>Método de envío</h3>
+            <div class="checkout-method delivery-choice"><span class="checkout-payment-mark" aria-hidden="true"></span><img class="provider-logo" src="/blue-express.svg" alt=""><div><strong>Envío vía Blue Express</strong><span>Santiago: 1 a 2 días hábiles · Regiones: 1 a 7 días hábiles</span></div><strong id="delivery-price">Por calcular</strong></div>
+            <div class="checkout-method delivery-unavailable"><img class="provider-logo" src="/starken.webp" alt="Starken"><span>Sin despacho en línea</span></div>
+          </section>
+          <div class="shipping-review" aria-live="polite"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-box"/></svg><span>Resumen de tu compra</span><strong>Total <span id="checkout-delivery-preview"></span></strong></div>
+          <button class="button" type="button" id="checkout-continue"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-next"/></svg>Continuar al pago</button>
+          <button class="button-outline" type="button" id="back-to-cart"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-back"/></svg>Volver al carrito</button>
+        </div>
+        <div class="checkout-stage" id="checkout-payment" hidden>
+          <section class="checkout-card checkout-summary" aria-labelledby="checkout-payment-title">
+            <h3 id="checkout-payment-title" class="checkout-section-title" tabindex="-1"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-cart"/></svg>Resumen de tu compra</h3>
+            <div id="checkout-items" aria-label="Productos del pedido"></div>
+            <div class="checkout-breakdown" aria-live="polite">
+              <dl>
+                <div><dt>Subtotal</dt><dd id="checkout-products"></dd></div>
+                <div id="checkout-discount-row" hidden><dt id="checkout-discount-label"></dt><dd id="checkout-discount"></dd></div>
+                <div><dt>Envío</dt><dd id="checkout-delivery">Por calcular</dd></div>
+                <div><dt>Total</dt><dd id="shipping-total">Por calcular</dd></div>
+              </dl>
+              <p id="checkout-destination-note">Selecciona región y comuna para calcular el envío.</p>
+            </div>
+          </section>
+          <section class="checkout-card" aria-labelledby="checkout-method-title">
+            <h3 class="checkout-section-title" id="checkout-method-title"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-card"/></svg>Método de pago</h3>
+            <div class="checkout-method checkout-payment-choice">
+              <span class="checkout-payment-mark" aria-hidden="true"></span>
+              <div><strong>Webpay Plus</strong><span>Tarjetas de crédito y débito · Transbank</span></div>
+              <div class="payment-logos" aria-hidden="true"><img class="provider-logo" src="/webpay.svg" alt=""><img class="provider-logo" src="/transbank.svg" alt=""></div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <aside class="checkout-assurance" aria-label="Información de la compra">
+        <div class="checkout-card checkout-protection">
+          <div class="checkout-method"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-lock"/></svg><div><strong>Tu compra está protegida</strong><span>Transbank procesa el pago y protege los datos de tu tarjeta.</span></div></div>
+        </div>
+        <div class="checkout-card">
+          <div class="checkout-method"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-truck"/></svg><div><strong>Envíos a todo Chile</strong><span>Blue Express · Santiago: 1 a 2 días hábiles. Regiones: 1 a 7 días hábiles.</span></div></div>
+          <div class="checkout-method"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-return"/></svg><div><strong>Cambios y devoluciones</strong><a class="delivery-link" href="#cambios">Ver condiciones</a></div></div>
+          <div class="checkout-method"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-chat"/></svg><div><strong>Atención personalizada</strong><a class="checkout-support" href="https://wa.me/56934974132"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-whatsapp"/></svg>WhatsApp</a></div></div>
+        </div>
+        <div class="checkout-club"><img src="/pelota-corona.png" width="64" height="64" alt=""><strong>Vive la pasión del fútbol</strong></div>
+      </aside>
+      <div class="checkout-actions" id="checkout-actions" hidden>
+        <button class="button" type="submit" disabled><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-lock"/></svg><span id="checkout-submit-label">Confirmar pedido</span><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-next"/></svg></button>
+        <p class="checkout-secure"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-lock"/></svg>Pago procesado en Webpay</p>
+        <button class="button-outline" type="button" id="checkout-edit"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-pencil"/></svg>Editar tus datos</button>
+      </div>
+      <p class="checkout-test checkout-wide">Webpay en modo de pruebas. Usa datos ficticios. No se realizará un cobro real.</p>
+    </form>
+    <p id="receipt" role="status" tabindex="-1" hidden></p>
+  </div>
+  <div class="checkout-trust" aria-label="Servicios de la tienda">
+    <span><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-shield"/></svg>Compra segura</span>
+    <span><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-card"/></svg>Tus datos protegidos</span>
+    <span><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-truck"/></svg>Envíos a todo Chile</span>
+    <span><span aria-hidden="true">🇨🇱</span> Chile</span>
+  </div>
+  <div class="checkout-footer">
+    <svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-heart"/></svg><span>Gracias por confiar en Pasión Fútbol</span><span class="footer-crown" aria-hidden="true">♛</span>
+  </div>
+</dialog>
+<div class="visually-hidden" id="cart-status" role="status"></div>
+<script>
+const products = /* CATALOG_DATA */ [];
+/* ORDER_PRICING */
+const escapeHtml = value => value.replace(/[&<>"']/g, char =>
+  ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[char]);
+const storageKey = "pasionfutbol.lat:bag:v1";
+const money = new Intl.NumberFormat("es-CL", {style:"currency", currency:"CLP"});
+const byId = id => document.getElementById(id);
+const detail = byId("detail");
+const order = byId("order");
+const shipping = byId("shipping");
+let selection = restoreSelection();
+const audienceButtons = [...document.querySelectorAll("[data-audience]")];
+let audience = "Adultos";
+let searchAudience = null;
+
+function restoreSelection() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
+    return Array.isArray(saved) ? saved.filter(line => {
+      const item = products.find(product => product.id === line?.id);
+      return item?.sizes.includes(line.size) && Number.isInteger(line.quantity) && line.quantity > 0;
+    }) : [];
+  } catch {
+    return [];
+  }
+}
+
+function selectionPricing() {
+  return orderPricing(selection.map(line => ({
+    ...products.find(item => item.id === line.id), quantity: line.quantity
+  })));
+}
+
+function cartPhoto(item) {
+  return escapeHtml(item.cartImage || item.image);
+}
+
+function saveSelection() {
+  try { localStorage.setItem(storageKey, JSON.stringify(selection)); } catch {}
+  const count = selection.reduce((sum, line) => sum + line.quantity, 0);
+  const {amount} = selectionPricing();
+  byId("count").textContent = count;
+  byId("cart-summary").textContent = count
+    ? `${count} ${count === 1 ? "prenda" : "prendas"} · ${money.format(amount)}`
+    : "Sin productos";
+  const productIds = new Set(selection.map(line => line.id));
+  byId("cart-thumbs").innerHTML = [...productIds].slice(-2).map(id =>
+    `<img src="${cartPhoto(products.find(item => item.id === id))}" alt="" width="28" height="28">`
+  ).join("");
+}
+
+function buyForm(item) {
+  if (!item.sizes.length) {
+    return '<p class="muted">Disponibilidad de tallas pendiente</p>';
+  }
+  const sizes = item.sizes.map(size => `<option value="${size}">${size}</option>`).join("");
+  return `<form class="buy" data-buy="${item.id}">
+    <label>Talla <select name="size" required><option value="">Elegir</option>${sizes}</select></label>
+    <div class="quantity-field">
+      <span id="detail-quantity-label">Cantidad</span>
+      <div class="quantity-stepper" role="group" aria-labelledby="detail-quantity-label">
+        <button type="button" data-detail-step="-1" aria-label="Restar una unidad" aria-disabled="true">−</button>
+        <output name="quantity" aria-label="Cantidad seleccionada">1</output>
+        <button type="button" data-detail-step="1" aria-label="Sumar una unidad">+</button>
+      </div>
+    </div>
+    <div class="buy-actions"><button class="button add-to-cart" type="submit" name="action" value="add-to-cart"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h3l3 12h11l3-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg><span>Agregar al carrito</span></button><button class="button" type="submit" name="action" value="buy-now">Comprar ahora</button></div>
+  </form>`;
+}
+
+const productObserver = "IntersectionObserver" in window
+  ? new IntersectionObserver((entries, observer) => {
+      entries.filter(entry => entry.isIntersecting).forEach(({target}, index) => {
+        observer.unobserve(target);
+        target.style.setProperty("--product-delay", `${Math.min(index, 4) * 95}ms`);
+        target.classList.add("is-entering");
+      });
+    }, {threshold:.06})
+  : null;
+
+function renderCatalog() {
+  const query = byId("search").value.trim().toLocaleLowerCase("es-CL");
+  const normalizeSearch = value => value.toLocaleLowerCase("es-CL").replace(/\b(?:camisetas?|poleras?)\b/g, "camiseta");
+  const searchTerm = normalizeSearch(query);
+  const results = products.filter(item => normalizeSearch(`${item.name} ${item.categories.join(" ")}`).includes(searchTerm));
+  const sections = {Adultos:[], Niños:[]};
+  for (const item of results) {
+    const categories = item.categories.map(category => category.trim().toLocaleLowerCase("es-CL"));
+    if (categories.includes("niños")) sections.Niños.push(item);
+    if (categories.includes("adultos") || !categories.includes("niños")) sections.Adultos.push(item);
+  }
+  if (!query && !sections[audience].length) {
+    audience = Object.keys(sections).find(section => sections[section].length) ?? audience;
+  }
+  const active = query ? searchAudience : audience;
+  const rank = item => item.id.startsWith("seleccion-chile-") ? 0
+    : item.id.startsWith("seleccion-") || item.id === "jamaica-marley-negra" ? 1 : 2;
+  const matches = [...(active ? sections[active] : results)].sort((a,b) => rank(a) - rank(b));
+  byId("catalog-title").textContent = active ?? "Resultados en Adultos y Niños";
+  for (const button of audienceButtons) {
+    const section = button.dataset.audience;
+    button.disabled = !sections[section].length;
+    button.setAttribute("aria-pressed", String(section === active && !button.disabled));
+  }
+  byId("empty").hidden = matches.length > 0;
+  byId("empty").textContent = query ? "No encontramos camisetas con esa búsqueda." : "Próximamente: más productos.";
+  productObserver?.disconnect();
+  const grid = byId("products");
+  grid.innerHTML = matches.map(item => `<article>
+    <button class="product-photo${item.studioGallery ? " studio-photo" : ""}" type="button" data-detail="${item.id}" aria-label="Ver ${escapeHtml(item.name)}">
+      <img src="${item.image}" alt="" loading="lazy" width="512" height="512">
+    </button>
+    <div class="product-copy"><h3>${escapeHtml(item.name)}</h3>
+      <div class="product-actions"><strong>${money.format(item.price)}</strong>
+        <button class="button plus" type="button" data-detail="${item.id}" aria-label="Agregar ${escapeHtml(item.name)}">+</button></div></div>
+  </article>`).join("");
+  for (const card of grid.children) productObserver?.observe(card);
+}
+
+const galleryLabels = ["Vista completa", "Detalle del pecho", "Detalle de la manga"];
+
+function updateGallery(gallery, index) {
+  const slides = [...gallery.querySelectorAll("[data-slide]")];
+  const activeIndex = (index + slides.length) % slides.length;
+  slides.forEach((slide, i) => {
+    gallery.querySelectorAll(".gallery-view")[i].hidden = i !== activeIndex;
+    slide.setAttribute("aria-pressed", String(i === activeIndex));
+  });
+}
+
+function openDetail(item) {
+  const images = item.gallery || [item.image];
+  const labels = item.galleryLabels || galleryLabels;
+  byId("detail-body").innerHTML = `<div class="dialog-top"><h2 id="detail-title">${escapeHtml(item.name)}</h2>
+    <button class="close" data-close aria-label="Cerrar">×</button></div>
+    <div class="gallery" role="group" aria-label="Imágenes de la camiseta">
+      <div aria-live="polite">${images.map((image, i) => `<div class="gallery-view" ${i ? "hidden" : ""}>
+        <img class="detail-image" src="${escapeHtml(image)}" alt="${escapeHtml(item.name)} · ${labels[i]}" width="480" height="480">
+        ${item.illustratedSlides?.includes(i) ? '<small class="gallery-note">Imagen ilustrativa generada con IA</small>' : ""}
+      </div>`).join("")}</div>
+      ${images.length > 1 ? `<div class="gallery-controls">${images.map((image, i) =>
+        `<button type="button" data-slide="${i}" aria-label="${labels[i]}" aria-pressed="${i === 0}">
+          <img src="${escapeHtml(image)}" alt="" width="48" height="48">
+        </button>`).join("")}</div>` : ""}
+    </div>
+    <p>${escapeHtml(item.description)}</p><strong>${money.format(item.price)}</strong>${buyForm(item)}`;
+  detail.showModal();
+}
+
+function renderOrder() {
+  const {subtotal, percent, discount, amount} = selectionPricing();
+  byId("order-lines").innerHTML = selection.map((line, index) => {
+    const item = products.find(product => product.id === line.id);
+    return `<div class="order-row"><img class="order-thumb" src="${cartPhoto(item)}" alt="" width="42" height="42"><div class="order-copy"><strong>${escapeHtml(item.name)}</strong>
+      <small>Talla: ${escapeHtml(line.size)} · Cantidad: ${line.quantity}</small></div>
+      <strong class="cart-line-price">${money.format(item.price * line.quantity)} <small>CLP</small></strong>
+      <button class="cart-remove" type="button" data-remove-line="${index}" aria-label="Eliminar ${escapeHtml(item.name)}, talla ${escapeHtml(line.size)}"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-trash"/></svg></button></div>`;
+  }).join("") || "<p>Tu bolsa está vacía.</p>";
+  byId("subtotal").textContent = money.format(subtotal);
+  byId("discount-row").hidden = !percent;
+  byId("discount-label").textContent = `Descuento en camisetas (${percent}%)`;
+  byId("discount-value").textContent = "−" + money.format(discount);
+  const quote = selectedShippingQuote();
+  const delivery = quote ? (quote.price === 0 ? "Gratis" : money.format(quote.price)) : "Por calcular";
+  byId("cart-shipping").textContent = delivery;
+  byId("cart-delivery-price").textContent = delivery;
+  byId("order-total").textContent = money.format(amount + (quote?.price ?? 0)) + " CLP";
+  byId("pay").hidden = selection.length === 0;
+}
+
+function showOrder() {
+  renderOrder();
+  order.showModal();
+}
+
+document.addEventListener("click", event => {
+  const button = event.target.closest("button");
+  if (!button) return;
+  if (button.hasAttribute("data-close")) button.closest("dialog").close();
+  if (button.dataset.detail) openDetail(products.find(item => item.id === button.dataset.detail));
+  if (button.hasAttribute("data-slide")) updateGallery(button.closest(".gallery"), Number(button.dataset.slide));
+  if (button.hasAttribute("data-detail-step")) {
+    const form = button.form;
+    const quantity = form.elements.quantity;
+    const value = Number(quantity.value) + Number(button.dataset.detailStep);
+    if (value < 1 || value > 99) return;
+    quantity.value = String(value);
+    form.querySelector('[data-detail-step="-1"]').setAttribute("aria-disabled", String(value === 1));
+    form.querySelector('[data-detail-step="1"]').setAttribute("aria-disabled", String(value === 99));
+  }
+  if (button.hasAttribute("data-remove-line")) {
+    const index = Number(button.dataset.removeLine);
+    const [removed] = selection.splice(index, 1);
+    saveSelection();
+    renderOrder();
+    const item = products.find(product => product.id === removed.id);
+    byId("cart-status").textContent = `${item.name}, talla ${removed.size}, eliminada del carrito.`;
+    const remainingButtons = byId("order-lines").querySelectorAll(".cart-remove");
+    (remainingButtons[index] || remainingButtons[index - 1] || order.querySelector(".close")).focus();
+  }
+});
+
+detail.addEventListener("keydown", event => {
+  const slide = event.target.closest("[data-slide]");
+  if (!slide || !["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+  event.preventDefault();
+  const gallery = slide.closest(".gallery");
+  updateGallery(gallery, Number(slide.dataset.slide) + (event.key === "ArrowRight" ? 1 : -1));
+  gallery.querySelector('[aria-pressed="true"]').focus();
+});
+
+document.addEventListener("submit", event => {
+  const form = event.target;
+  if (!form.matches("[data-buy]")) return;
+  event.preventDefault();
+  const item = products.find(product => product.id === form.dataset.buy);
+  const size = form.elements.size.value;
+  if (!item.sizes.includes(size)) return;
+  const quantity = Number(form.elements.quantity.value);
+  if (!Number.isInteger(quantity) || quantity < 1 || quantity > 99) return;
+  const existing = selection.find(line => line.id === item.id && line.size === size);
+  if (existing) existing.quantity += quantity;
+  else selection.push({id:item.id, size, quantity});
+  saveSelection();
+  detail.close();
+  if (event.submitter?.value === "buy-now") {
+    showOrder();
+    byId("pay").click();
+  }
+  byId("cart-status").textContent = `${quantity} × ${escapeHtml(item.name)}, talla ${size}, en el carrito. Total de prendas: ${byId("count").textContent}.`;
+});
+
+byId("cart-delivery-link").addEventListener("click", () => order.close());
+
+const shippingForm = byId("shipping-form");
+const regionSelect = shippingForm.elements.region;
+const communeSelect = shippingForm.elements.commune;
+for (const [code, region] of Object.entries(chileCommunes).sort(([, a], [, b]) => a.name.localeCompare(b.name, "es-CL"))) {
+  regionSelect.add(new Option(region.name, code));
+}
+
+function selectedShippingQuote() {
+  return shippingQuote(selection.map(line => ({
+    quantity:line.quantity,
+    categories:products.find(item => item.id === line.id).categories
+  })), regionSelect.value, communeSelect.value);
+}
+
+function updateShippingTotal() {
+  const {subtotal, percent, discount, amount: productsTotal} = selectionPricing();
+  const quote = selectedShippingQuote();
+  const hasDestination = Boolean(regionSelect.value && communeSelect.value);
+  byId("checkout-quote-help").hidden = !hasDestination || Boolean(quote);
+  byId("checkout-products").textContent = money.format(subtotal);
+  byId("checkout-discount-row").hidden = !percent;
+  byId("checkout-discount-label").textContent = `Descuento (${percent}%)`;
+  byId("checkout-discount").textContent = "−" + money.format(discount);
+  byId("checkout-delivery").textContent = quote ? (quote.price === 0 ? "Gratis" : money.format(quote.price)) : "Por calcular";
+  byId("shipping-total").textContent = quote ? money.format(productsTotal + quote.price) : "Por calcular";
+  const note = byId("checkout-destination-note");
+  note.hidden = hasDestination;
+  byId("delivery-price").textContent = byId("checkout-delivery").textContent;
+  byId("checkout-delivery-preview").textContent = byId("shipping-total").textContent;
+  shippingForm.querySelector('[type="submit"]').disabled = !quote || shippingForm.dataset.submitting === "true";
+}
+
+let loadedRegion;
+function syncCommunes() {
+  if (loadedRegion !== regionSelect.value) {
+    loadedRegion = regionSelect.value;
+    const previousCommune = communeSelect.value;
+    const region = chileCommunes[loadedRegion];
+    communeSelect.replaceChildren(new Option("Comuna *", ""));
+    for (const [code, name] of Object.entries(region?.communes ?? {})) communeSelect.add(new Option(name, code));
+    if (region && Object.hasOwn(region.communes, previousCommune)) communeSelect.value = previousCommune;
+    communeSelect.disabled = !region;
+  }
+  updateShippingTotal();
+}
+regionSelect.addEventListener("input", syncCommunes);
+regionSelect.addEventListener("change", syncCommunes);
+shippingForm.addEventListener("focusin", syncCommunes);
+shipping.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener("click", () => shipping.close());
+});
+communeSelect.addEventListener("change", updateShippingTotal);
+
+function showCheckoutStep(step) {
+  const isPayment = step === 2;
+  byId("checkout-data").hidden = isPayment;
+  byId("checkout-payment").hidden = !isPayment;
+  byId("checkout-actions").hidden = !isPayment;
+  shipping.querySelectorAll(".checkout-steps li").forEach((item, index) => {
+    item.classList.toggle("is-complete", index < step);
+    if (index === step) item.setAttribute("aria-current", "step");
+    else item.removeAttribute("aria-current");
+  });
+  shipping.classList.toggle("is-payment", isPayment);
+  const items = selection.map(line => {
+    const item = products.find(product => product.id === line.id);
+    return `<div class="checkout-review-row"><img src="${cartPhoto(item)}" alt="" width="96" height="96"><div><strong>${escapeHtml(item.name)}</strong><small>Talla: ${escapeHtml(line.size)} · Cantidad: ${line.quantity}</small></div><strong>${money.format(item.price * line.quantity)} <small class="currency">CLP</small></strong></div>`;
+  }).join("");
+  byId(isPayment ? "checkout-items" : "shipping-items").innerHTML = items;
+  shipping.scrollTop = 0;
+  if (isPayment) byId("checkout-payment-title").focus({preventScroll:true});
+}
+byId("checkout-continue").addEventListener("click", () => {
+  syncCommunes();
+  if (!shippingForm.reportValidity() || !selectedShippingQuote()) return;
+  showCheckoutStep(2);
+});
+byId("checkout-edit").addEventListener("click", () => {
+  showCheckoutStep(1);
+  shippingForm.elements.name.focus();
+});
+
+byId("pay").addEventListener("click", () => {
+  order.close();
+  byId("shipping-form").hidden = false;
+  byId("receipt").hidden = true;
+  showCheckoutStep(1);
+  shipping.showModal();
+  syncCommunes();
+  requestAnimationFrame(syncCommunes);
+});
+
+byId("back-to-cart").addEventListener("click", () => {
+  shipping.close();
+  showOrder();
+});
+
+byId("shipping-form").addEventListener("submit", async event => {
+  event.preventDefault();
+  if (!selection.length) return;
+  if (byId("checkout-payment").hidden) {
+    byId("checkout-continue").click();
+    return;
+  }
+  const form = event.currentTarget;
+  const button = form.querySelector('[type="submit"]');
+  const quote = selectedShippingQuote();
+  if (button.disabled || !quote) return;
+  form.dataset.submitting = "true";
+  button.disabled = true;
+  byId("checkout-submit-label").textContent = "Conectando con Webpay…";
+  const receipt = byId("receipt");
+  receipt.hidden = true;
+  try {
+    const response = await fetch("/api/webpay/create", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({items:selection,shipping:Object.fromEntries(new FormData(form)),quotedTotal:selectionPricing().amount + quote.price})
+    });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || "No pudimos iniciar el pago. Intenta nuevamente.");
+    const destination = new URL(result.url);
+    if (destination.protocol !== "https:" || destination.hostname !== "webpay3gint.transbank.cl") throw new Error("No pudimos validar el destino de pago.");
+    const redirect = document.createElement("form");
+    redirect.method = "POST";
+    redirect.action = destination.href;
+    const token = document.createElement("input");
+    token.type = "hidden";
+    token.name = "token_ws";
+    token.value = result.token;
+    redirect.append(token);
+    document.body.append(redirect);
+    redirect.submit();
+  } catch (error) {
+    receipt.textContent = error.message || "No pudimos conectar con Webpay. Intenta nuevamente.";
+    receipt.hidden = false;
+    receipt.focus();
+    delete form.dataset.submitting;
+    updateShippingTotal();
+    byId("checkout-submit-label").textContent = "Confirmar pedido";
+  }
+});
+
+for (const button of audienceButtons) {
+  button.addEventListener("click", () => {
+    if (byId("search").value.trim()) searchAudience = button.dataset.audience;
+    else audience = button.dataset.audience;
+    renderCatalog();
+  });
+}
+byId("search").addEventListener("input", () => {
+  searchAudience = null;
+  renderCatalog();
+});
+
+const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+const vitrina = byId("vitrina");
+const vStage = byId("vitrina-stage");
+const vCaption = byId("v-caption");
+/* Fotos reales de cada camiseta, recortadas con fondo transparente (archivos /<id>-colgada.webp).
+   ar = alto/ancho de la foto, cx = centro del cuello, ny = borde superior.
+   Para una camiseta nueva: recorta su foto frontal con fondo transparente, súbela como <id>-colgada.webp y agrégala aquí. */
+const PHOTO = {"arsenal-odegaard-roja":{"src":"/arsenal-odegaard-roja-colgada.webp","ar":1.1864,"cx":0.51,"ny":0.0268},"arsenal-saka-azul":{"src":"/arsenal-saka-azul-colgada.webp","ar":1.2,"cx":0.5023,"ny":0.0265},"barcelona-pedri-cruz":{"src":"/barcelona-pedri-cruz-colgada.webp","ar":1.2432,"cx":0.5057,"ny":0.0274},"barcelona-pedri-turquesa":{"src":"/barcelona-pedri-turquesa-colgada.webp","ar":1.2136,"cx":0.5091,"ny":0.0262},"barcelona-retro-cuello":{"src":"/barcelona-retro-cuello-colgada.webp","ar":1.3068,"cx":0.5114,"ny":0.0278},"barcelona-rodrigo-azul":{"src":"/barcelona-rodrigo-azul-colgada.webp","ar":1.2386,"cx":0.508,"ny":0.0257},"bayern-kane-blanca":{"src":"/bayern-kane-blanca-colgada.webp","ar":1.2,"cx":0.5057,"ny":0.0265},"boca-paredes-rayas":{"src":"/boca-paredes-rayas-colgada.webp","ar":1.2341,"cx":0.5091,"ny":0.0258},"chelsea-caicedo-azul":{"src":"/chelsea-caicedo-azul-colgada.webp","ar":1.2273,"cx":0.5091,"ny":0.0259},"chelsea-palmer-negra":{"src":"/chelsea-palmer-negra-colgada.webp","ar":1.2364,"cx":0.5011,"ny":0.0276},"city-haaland-celeste-bordada":{"src":"/city-haaland-celeste-bordada-colgada.webp","ar":1.2091,"cx":0.5045,"ny":0.0282},"city-haaland-celeste-g5":{"src":"/city-haaland-celeste-g5-colgada.webp","ar":1.1773,"cx":0.5034,"ny":0.027},"city-haaland-negra":{"src":"/city-haaland-negra-colgada.webp","ar":1.2523,"cx":0.5045,"ny":0.0272},"inter-miami-messi-gris":{"src":"/inter-miami-messi-gris-colgada.webp","ar":1.2159,"cx":0.5068,"ny":0.0262},"jamaica-marley-negra":{"src":"/jamaica-marley-negra-colgada.webp","ar":1.25,"cx":0.5,"ny":0.0291}};
+
+function jerseyHtml(item) {
+  const p = PHOTO[item.id];
+  const top = 14.5;                                   /* % del alto de la tarjeta donde empieza la foto */
+  const phH = p.ar * 94 * 220 / 310;                  /* alto de la foto en % del alto de la tarjeta */
+  const nx = 3 + p.cx * 94;                           /* centro del cuello en % del ancho */
+  const ny = top + p.ny * phH;                        /* borde superior del cuello en % del alto */
+  return `<span class="v-j">
+    <svg class="v-hk" style="left:${nx - 10}%" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M50 96 L50 50 C50 14 82 14 82 38" fill="none" stroke="#3b3f4c" stroke-width="9" stroke-linecap="round"/>
+      <path d="M50 96 L50 50 C50 14 82 14 82 38" fill="none" stroke="#c9cfdd" stroke-width="5" stroke-linecap="round"/>
+      <path d="M48.5 90 L48.5 50 C48.5 18 79 17 80 38" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+    <i class="v-bk" style="left:${nx - 12}%;top:${ny - 1.2}%;width:24%;height:${phH * .1}%"></i>
+    <i class="v-ph" style="top:${top}%;height:${phH}%;--p:url(${p.src})"></i>
+  </span>`;
+}
+const vItems = products.filter(item => PHOTO[item.id] && !item.categories?.includes("Niños"));
+const vCards = vItems.map((item, i) => {
+  const parts = item.name.split("·").map(t => t.trim());
+  const player = parts.length > 1 ? parts.at(-1) : null;
+  const notes = [
+    [item.description.replace(/\.$/, ""), 14, 30, "l"],
+    ...(player ? [[`Dorsal ${player}`, 52, 46, "r"]] : []),
+    [`Tallas ${item.sizes[0]} a ${item.sizes.at(-1)} · ${money.format(item.price)}`, 66, 72, "r"]
+  ];
+  const card = document.createElement("button");
+  card.type = "button";
+  card.className = "v-card";
+  card.dataset.detail = item.id;
+  card.setAttribute("aria-label", `Ver ${item.name}`);
+  card.innerHTML = jerseyHtml(item) +
+    notes.map(([text, x, y, side]) => `<span class="v-note ${side}" style="left:${x}%;top:${y}%"><i></i><u></u><span>${escapeHtml(text)}</span></span>`).join("");
+  vStage.append(card);
+  return {card, off: 0, ang: -62, sc: 1, br: .65};
+});
+let vLast = -2, vW = 0, vJw = 0, vStep = 0, vX0 = 0, vShown = 0, vFocus = null;
+const V_REST = -62;
+function layoutVitrina() {
+  vW = vitrina.clientWidth;
+  const H = vitrina.clientHeight;
+  vJw = H * .69 * 220 / 310;
+  const c0 = vW * .07 + vJw * .12, c1 = vW * .93 - vJw * .6, span = c1 - c0;
+  vShown = Math.max(1, Math.min(vCards.length, Math.floor(span / Math.max(46, vW * .045)) + 1));
+  vStep = vShown > 1 ? span / (vShown - 1) : 0;
+  vX0 = c0 - vJw / 2;
+  vCards.forEach((o, i) => { o.card.hidden = i >= vShown; o.card.style.width = vJw + "px"; });
+}
+layoutVitrina();
+addEventListener("resize", layoutVitrina);
+function pointVitrina(x) {
+  const r = vitrina.getBoundingClientRect();
+  vFocus = Math.min(vShown - 1, Math.max(0, (x - r.left - vX0 - vJw / 2) / vStep));
+  vitrina.classList.add("active");
+}
+vitrina.addEventListener("pointermove", e => pointVitrina(e.clientX));
+vitrina.addEventListener("pointerleave", () => { vFocus = null; vitrina.classList.remove("active"); });
+vitrina.addEventListener("click", e => { /* táctil: primer toque la muestra, segundo la abre */
+  const card = e.target.closest(".v-card");
+  if (card && e.pointerType === "touch" && Math.round(vFocus ?? -1) !== vCards.findIndex(o => o.card === card)) e.stopPropagation();
+}, true);
+vCards.forEach((o, i) => o.card.addEventListener("focus", () => { vFocus = i; vitrina.classList.add("active"); }));
+vitrina.addEventListener("focusout", () => vitrina.classList.remove("active"));
+let vRun = true, vLoop = false;
+(function frameVitrina(t) {
+  vLoop = true;
+  const fi = vFocus == null ? -1 : Math.round(vFocus);
+  vCards.forEach((o, i) => {
+    if (i >= vShown) return;
+    const d = vFocus == null ? 99 : i - vFocus, ad = Math.abs(d), foc = i === fi;
+    const tOff = vFocus == null ? 0 : vJw * .5 * Math.tanh(d * 1.3) * Math.exp(-ad / 3);
+    const sway = vFocus == null && !reducedMotion.matches ? Math.sin(t / 1400 + i * .8) * 2.5 : 0;
+    const tAng = (vFocus == null ? V_REST : V_REST * (1 - Math.exp(-ad * 1.15))) + sway;
+    o.off += (tOff - o.off) * .13; o.ang += (tAng - o.ang) * .13;
+    o.sc += ((foc ? 1.1 : 1) - o.sc) * .14; o.br += ((vFocus == null ? .75 : foc ? 1 : .55 + .2 * Math.exp(-ad)) - o.br) * .14;
+    o.card.style.transform = `translate3d(${vX0 + i * vStep + o.off}px,0,${foc ? 60 : 0}px) rotateY(${o.ang}deg) scale(${o.sc})`;
+    o.card.style.filter = `brightness(${o.br})`;
+    o.card.style.setProperty("--sx", (50 - (o.ang + 62) * .85 + (foc ? 0 : 6)) + "%");
+    o.card.style.zIndex = foc ? 100 : i + 1;
+    o.card.classList.toggle("focus", foc);
+    const cx = vX0 + i * vStep + o.off + vJw / 2;
+    o.card.classList.toggle("flip", cx > vW * .6);
+    o.card.classList.toggle("flipr", cx < vW * .3);
+  });
+  if (fi !== vLast) {
+    vLast = fi;
+    const it = vItems[fi];
+    vCaption.innerHTML = it ? `${escapeHtml(it.name)} <b>${money.format(it.price)}</b>` : "";
+  }
+  if (vRun) requestAnimationFrame(frameVitrina); else vLoop = false;
+})(0);
+new IntersectionObserver(([e]) => { vRun = e.isIntersecting; if (vRun && !vLoop) requestAnimationFrame(frameVitrina); }).observe(vitrina);
+
+
+
+const promoTrack = byId("promo-track");
+const promoCopy = promoTrack.firstElementChild.cloneNode(true);
+promoCopy.setAttribute("aria-hidden", "true");
+promoTrack.append(promoCopy);
+byId("promo-bar").classList.add("is-moving");
+
+byId("cart").addEventListener("click", showOrder);
+
+const sheetGrip = order.querySelector(".sheet-grip");
+let dragStart;
+sheetGrip.addEventListener("pointerdown", event => {
+  if (event.button !== 0) return;
+  dragStart = event.clientY;
+  sheetGrip.setPointerCapture(event.pointerId);
+  order.style.transition = "none";
+});
+sheetGrip.addEventListener("pointermove", event => {
+  if (dragStart === undefined) return;
+  order.style.translate = `0 ${Math.max(0, event.clientY - dragStart)}px`;
+});
+sheetGrip.addEventListener("pointerup", event => {
+  if (dragStart === undefined) return;
+  const shouldClose = event.clientY - dragStart > 64;
+  dragStart = undefined;
+  order.style.transition = "";
+  order.style.translate = "";
+  if (shouldClose) order.close();
+});
+sheetGrip.addEventListener("lostpointercapture", () => {
+  dragStart = undefined;
+  order.style.transition = "";
+  order.style.translate = "";
+});
+saveSelection();
+renderCatalog();
+</script>
+</body>
+</html>
