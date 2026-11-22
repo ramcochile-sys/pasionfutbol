@@ -1,8 +1,16 @@
+
 {
-  "buildCommand": "node scripts/build.mjs && mkdir -p public",
-  "outputDirectory": "public",
-  "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
+  "buildCommand": "node scripts/build.mjs",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/api"
+    }
+  ],
   "functions": {
-    "api/index.js": { "includeFiles": "dist/**", "maxDuration": 30 }
+    "api/index.js": {
+      "includeFiles": "dist/**",
+      "maxDuration": 30
+    }
   }
 }
