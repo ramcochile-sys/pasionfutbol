@@ -12,5 +12,9 @@
   },
   "engines": {
     "node": "22.x"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.18.0",
+    "@vercel/blob": "^2.9.0"
   }
 }
