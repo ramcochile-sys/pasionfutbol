@@ -175,6 +175,8 @@ const env = {
   CATALOG_ADMIN_HASH: process.env.CATALOG_ADMIN_HASH || "",
   CATALOG_ADMIN_SALT: process.env.CATALOG_ADMIN_SALT || "",
   CATALOG_ADMIN_USERS: process.env.CATALOG_ADMIN_USERS || "",
+  CATALOG_SETUP_CODE: process.env.CATALOG_SETUP_CODE || "",
+  ADMIN_COOKIE_EMBEDDED: process.env.ADMIN_COOKIE_EMBEDDED || "",
   TBK_API_KEY_ID: process.env.TBK_API_KEY_ID || "",
   TBK_API_KEY_SECRET: process.env.TBK_API_KEY_SECRET || "",
   GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY || process.env.VITE_GOOGLE_MAPS_API_KEY || process.env.MAPS_API_KEY || ""
