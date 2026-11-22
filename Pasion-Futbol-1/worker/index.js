@@ -331,40 +331,47 @@ async function webpayRequest(env, path = "", method = "GET", body) {
   if (!response.ok) throw new Error("Webpay no disponible");
   return response.json();
 }
-async function createWebpay(request, env, url) {
-  if (request.method !== "POST") return json({error:"Método no permitido."},405);
-  if (request.headers.get("Origin") !== url.origin) return json({error:"Origen inválido."},403);
-  if (!env.TBK_API_KEY_ID || !env.TBK_API_KEY_SECRET) return json({error:"Webpay no está configurado."},503);
+// Valida el pedido (productos, tallas, envío y total). La usan Webpay y Flow.
+async function prepareOrder(request, env, url) {
+  if (request.method !== "POST") return {response:json({error:"Método no permitido."},405)};
+  if (request.headers.get("Origin") !== url.origin) return {response:json({error:"Origen inválido."},403)};
   const raw = await request.text();
-  if (raw.length > 16000) return json({error:"Pedido demasiado grande."},413);
+  if (raw.length > 16000) return {response:json({error:"Pedido demasiado grande."},413)};
   let body;
-  try { body = JSON.parse(raw); } catch { return json({error:"Pedido inválido."},400); }
-  if (!Array.isArray(body.items) || !body.items.length || body.items.length > 100) return json({error:"Revisa tu carrito."},400);
+  try { body = JSON.parse(raw); } catch { return {response:json({error:"Pedido inválido."},400)}; }
+  if (!Array.isArray(body.items) || !body.items.length || body.items.length > 100) return {response:json({error:"Revisa tu carrito."},400)};
   const available = (await catalog(env)).filter(productWithPhoto);
   const items = [];
   for (const line of body.items) {
     const product = available.find(item => item.id === line.id);
-    if (!product || !product.sizes.includes(line.size) || !Number.isInteger(line.quantity) || line.quantity < 1 || line.quantity > 99) return json({error:"Revisa las tallas y cantidades de tu carrito."},400);
+    if (!product || !product.sizes.includes(line.size) || !Number.isInteger(line.quantity) || line.quantity < 1 || line.quantity > 99) return {response:json({error:"Revisa las tallas y cantidades de tu carrito."},400)};
     items.push({id:product.id,name:product.name,size:line.size,quantity:line.quantity,price:product.price,categories:product.categories});
   }
   const shipping = body.shipping;
   const required = ["name","email","phone","address","commune","region"];
-  if (!shipping || required.some(key => typeof shipping[key] !== "string" || !shipping[key].trim() || shipping[key].length > 250)) return json({error:"Completa los datos de envío."},400);
+  if (!shipping || required.some(key => typeof shipping[key] !== "string" || !shipping[key].trim() || shipping[key].length > 250)) return {response:json({error:"Completa los datos de envío."},400)};
   const cleanShipping = Object.fromEntries(required.map(key => [key,shipping[key].trim()]));
   const carrierId = typeof shipping.carrier === "string" && shipping.carrier.trim()
     ? shipping.carrier.trim()
     : "blue-express";
-  if (!Object.hasOwn(shippingCarriers, carrierId)) return json({error:"Selecciona una empresa de envío válida."},400);
+  if (!Object.hasOwn(shippingCarriers, carrierId)) return {response:json({error:"Selecciona una empresa de envío válida."},400)};
   const quote = shippingQuote(items, cleanShipping.region, cleanShipping.commune, carrierId);
-  if (!quote) return json({error:"Este envío requiere cotización por WhatsApp."},400);
+  if (!quote) return {response:json({error:"Este envío requiere cotización por WhatsApp."},400)};
   const reference = typeof shipping["address-extra"] === "string" ? shipping["address-extra"].trim().slice(0,250) : "";
   const verifiedAddress = typeof shipping.verifiedAddress === "string" ? shipping.verifiedAddress.trim().slice(0,250) : "";
   Object.assign(cleanShipping, quote, {reference, ...(verifiedAddress ? {verifiedAddress} : {})});
   const pricing = orderPricing(items);
   const {subtotal, discount} = pricing;
   const amount = pricing.amount + quote.price;
-  if (body.quotedTotal !== amount) return json({error:"El total cambió. Recarga el catálogo antes de volver a pagar."},409);
-  if (!Number.isSafeInteger(amount) || amount < 1 || amount > 99999999) return json({error:"Total inválido."},400);
+  if (body.quotedTotal !== amount) return {response:json({error:"El total cambió. Recarga el catálogo antes de volver a pagar."},409)};
+  if (!Number.isSafeInteger(amount) || amount < 1 || amount > 99999999) return {response:json({error:"Total inválido."},400)};
+  return {items, cleanShipping, subtotal, discount, amount};
+}
+async function createWebpay(request, env, url) {
+  if (!env.TBK_API_KEY_ID || !env.TBK_API_KEY_SECRET) return json({error:"Webpay no está configurado."},503);
+  const order = await prepareOrder(request, env, url);
+  if (order.response) return order.response;
+  const {items, cleanShipping, subtotal, discount, amount} = order;
   const buy_order = "PF" + crypto.randomUUID().replaceAll("-", "").slice(0,24);
   const session_id = crypto.randomUUID();
   const result = await webpayRequest(env,"","POST",{buy_order,session_id,amount,return_url:url.origin + "/webpay/return"});
@@ -374,8 +381,8 @@ async function createWebpay(request, env, url) {
   await env.BUCKET.put("webpay-orders/" + await hash(result.token),JSON.stringify(record),{httpMetadata:{contentType:"application/json"}});
   return json({url:result.url,token:result.token});
 }
-function paymentPage(title, message, status = 200, giftId = "") {
-  return html(`<!doctype html><html lang="es-CL"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} · Pasión Fútbol</title><style>body{font-family:Helvetica,Arial,sans-serif;background:#090e18;color:#f5f8ff;margin:0;padding:48px 24px}main{max-width:600px;margin:auto}h1{color:#f5f8ff}a{display:inline-block;padding:14px 20px;background:#ffcb32;color:#171100;text-decoration:none;font-weight:bold;margin-top:20px}p{line-height:1.6}</style><main><strong>Pasión Fútbol · Compra segura</strong><ol aria-label="Pasos de compra" style="display:flex;flex-wrap:wrap;gap:1.5rem;padding-left:1.3rem"><li>Carrito</li><li>Datos de envío</li><li aria-current="step" style="color:#ffcb32;font-weight:bold">Pago</li></ol><p>WEBPAY · MODO DE PRUEBAS</p><h1>${title}</h1><p>${message}</p>${giftId ? `<p><a href="/regalo/${giftId}" download>Descargar mi revista oficial de fútbol</a></p>` : ""}<a href="/">Volver a la tienda</a></main></html>`,status);
+function paymentPage(title, message, status = 200, giftId = "", label = "WEBPAY · MODO DE PRUEBAS") {
+  return html(`<!doctype html><html lang="es-CL"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} · Pasión Fútbol</title><style>body{font-family:Helvetica,Arial,sans-serif;background:#090e18;color:#f5f8ff;margin:0;padding:48px 24px}main{max-width:600px;margin:auto}h1{color:#f5f8ff}a{display:inline-block;padding:14px 20px;background:#ffcb32;color:#171100;text-decoration:none;font-weight:bold;margin-top:20px}p{line-height:1.6}</style><main><strong>Pasión Fútbol · Compra segura</strong><ol aria-label="Pasos de compra" style="display:flex;flex-wrap:wrap;gap:1.5rem;padding-left:1.3rem"><li>Carrito</li><li>Datos de envío</li><li aria-current="step" style="color:#ffcb32;font-weight:bold">Pago</li></ol><p>${label}</p><h1>${title}</h1><p>${message}</p>${giftId ? `<p><a href="/regalo/${giftId}" download>Descargar mi revista oficial de fútbol</a></p>` : ""}<a href="/">Volver a la tienda</a></main></html>`,status);
 }
 async function returnWebpay(request, env, url) {
   const params = request.method === "POST" ? new URLSearchParams(await request.text()) : url.searchParams;
@@ -403,12 +410,105 @@ async function returnWebpay(request, env, url) {
   return approved ? confirmation() : paymentPage("Pago no aprobado","Transbank no confirmó el pago de prueba. Tu carrito sigue disponible para volver a intentarlo.");
 }
 
+// ---------- Flow (https://www.flow.cl) ----------
+// Variables de entorno: FLOW_API_KEY, FLOW_SECRET_KEY. FLOW_SANDBOX=1 usa el ambiente de pruebas de Flow.
+const flowHosts = ["www.flow.cl", "sandbox.flow.cl"];
+function flowBase(env) {
+  if (env.FLOW_API_URL) return env.FLOW_API_URL;
+  return env.FLOW_SANDBOX === "1" || env.FLOW_SANDBOX === "true" ? "https://sandbox.flow.cl/api" : "https://www.flow.cl/api";
+}
+async function flowSign(params, secret) {
+  const text = Object.keys(params).sort().map(key => key + params[key]).join("");
+  const encoder = new TextEncoder();
+  const key = await crypto.subtle.importKey("raw", encoder.encode(secret), {name:"HMAC", hash:"SHA-256"}, false, ["sign"]);
+  return hex(new Uint8Array(await crypto.subtle.sign("HMAC", key, encoder.encode(text))));
+}
+async function flowRequest(env, path, params, method = "GET") {
+  const signed = {...params, apiKey:env.FLOW_API_KEY};
+  signed.s = await flowSign(signed, env.FLOW_SECRET_KEY);
+  const query = new URLSearchParams(signed);
+  const response = method === "GET"
+    ? await fetch(flowBase(env) + path + "?" + query, {signal:AbortSignal.timeout(20000)})
+    : await fetch(flowBase(env) + path, {method, headers:{"Content-Type":"application/x-www-form-urlencoded"}, body:query, signal:AbortSignal.timeout(20000)});
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    console.error("Flow respondió", response.status, JSON.stringify(data).slice(0,300));
+    throw new Error("Flow no disponible");
+  }
+  return data;
+}
+async function createFlow(request, env, url) {
+  if (!env.FLOW_API_KEY || !env.FLOW_SECRET_KEY) return json({error:"Flow no está configurado."},503);
+  const order = await prepareOrder(request, env, url);
+  if (order.response) return order.response;
+  const {items, cleanShipping, subtotal, discount, amount} = order;
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanShipping.email)) return json({error:"Revisa tu correo electrónico."},400);
+  const buy_order = "PF" + crypto.randomUUID().replaceAll("-", "").slice(0,24);
+  const result = await flowRequest(env,"/payment/create",{
+    commerceOrder:buy_order, subject:"Pedido Pasión Fútbol " + buy_order, currency:"CLP", amount:String(amount),
+    email:cleanShipping.email, urlConfirmation:url.origin + "/flow/confirm", urlReturn:url.origin + "/flow/return"
+  },"POST");
+  let destination;
+  try { destination = new URL(result.url); } catch { throw new Error("Respuesta Flow inválida"); }
+  if (destination.protocol !== "https:" || !flowHosts.includes(destination.hostname) || typeof result.token !== "string" || !/^[A-Za-z0-9_-]{10,256}$/.test(result.token)) throw new Error("Respuesta Flow inválida");
+  const record = {provider:"flow",buy_order,session_id:buy_order,amount,subtotal,discount,items,shipping:cleanShipping,status:"pending",createdAt:Date.now()};
+  await env.BUCKET.put("webpay-orders/" + await hash(result.token),JSON.stringify(record),{httpMetadata:{contentType:"application/json"}});
+  return json({url:result.url + "?token=" + encodeURIComponent(result.token),token:result.token,provider:"flow"});
+}
+// Consulta a Flow el estado real del pago y lo guarda. Flow: 1 pendiente, 2 pagada, 3 rechazada, 4 anulada.
+async function settleFlow(env, token) {
+  const giftId = await hash(token);
+  const key = "webpay-orders/" + giftId;
+  const stored = await env.BUCKET.get(key);
+  if (!stored) return {notFound:true};
+  const record = await stored.json();
+  if (record.provider !== "flow") return {notFound:true};
+  if (record.status === "paid") return {record, giftId, approved:true};
+  const result = await flowRequest(env,"/payment/getStatus",{token});
+  const approved = Number(result.status) === 2 && Number(result.amount) === record.amount && result.commerceOrder === record.buy_order;
+  const pending = Number(result.status) === 1;
+  if (!pending) {
+    record.status = approved ? "paid" : "not_approved";
+    record.checkedAt = Date.now();
+    await env.BUCKET.put(key,JSON.stringify(record),{httpMetadata:{contentType:"application/json"}});
+  }
+  return {record, giftId, approved, pending};
+}
+async function flowToken(request, url) {
+  const params = request.method === "POST" ? new URLSearchParams(await request.text()) : url.searchParams;
+  const token = params.get("token") || "";
+  return /^[a-zA-Z0-9_-]{10,256}$/.test(token) ? token : "";
+}
+// Flow avisa aquí (servidor a servidor) cuando un pago cambia de estado.
+async function confirmFlow(request, env, url) {
+  if (request.method !== "POST") return json({error:"Método no permitido."},405);
+  if (!env.FLOW_API_KEY || !env.FLOW_SECRET_KEY) return json({error:"Flow no está configurado."},503);
+  const token = await flowToken(request, url);
+  if (!token) return json({error:"Token inválido."},400);
+  const result = await settleFlow(env, token);
+  if (result.notFound) return json({error:"Pago no encontrado."},404);
+  return new Response("OK",{status:200,headers:{"Cache-Control":"no-store"}});
+}
+async function returnFlow(request, env, url) {
+  const token = await flowToken(request, url);
+  if (!token) return paymentPage("Pago cancelado o expirado","El pago no se completó. Tu carrito sigue disponible para volver a intentarlo.",200,"","FLOW");
+  if (!env.FLOW_API_KEY || !env.FLOW_SECRET_KEY) return paymentPage("Flow no está configurado","No se pudo verificar este pago.",503,"","FLOW");
+  let result;
+  try { result = await settleFlow(env, token); }
+  catch { return paymentPage("No pudimos verificar el pago","Recarga esta página para consultar el resultado antes de volver a pagar. Tu pedido no se marcará como pagado hasta recibir la confirmación de Flow.",200,"","FLOW"); }
+  if (result.notFound) return paymentPage("Pago no encontrado","No se pudo verificar este pago.",404,"","FLOW");
+  const {record, giftId} = result;
+  if (result.approved) return paymentPage("Pago aprobado",`Pedido ${record.buy_order}. Total: $${record.amount.toLocaleString("es-CL")}. Gracias por tu compra, te contactaremos para coordinar el envío.`,200,giftId,"FLOW");
+  if (result.pending) return paymentPage("Pago pendiente","Flow aún no confirma tu pago. Si ya pagaste, recarga esta página en unos minutos.",200,"","FLOW");
+  return paymentPage("Pago no aprobado","Flow no confirmó el pago. Tu carrito sigue disponible para volver a intentarlo.",200,"","FLOW");
+}
+
 async function downloadGift(request, env, pathname) {
   if (request.method !== "GET") return json({error:"Método no permitido."},405);
   const giftId = pathname.slice("/regalo/".length);
   if (!/^[a-f0-9]{64}$/.test(giftId)) return json({error:"Regalo no disponible."},404);
   const stored = await env.BUCKET.get("webpay-orders/" + giftId);
-  if (!stored || (await stored.json()).status !== "paid_test") return json({error:"Regalo no disponible."},404);
+  if (!stored || !["paid_test","paid"].includes((await stored.json()).status)) return json({error:"Regalo no disponible."},404);
   return new Response(Uint8Array.from(atob(ebook), byte => byte.charCodeAt(0)), {headers:{
     "Content-Type":"application/pdf",
     "Content-Disposition":'attachment; filename="Revista_Oficial_Pasion_Futbol.pdf"',
@@ -426,12 +526,12 @@ async function orderDispatchPage(env, url) {
   const escape = value => String(value ?? "").replace(/[&<>"']/g, char => ({
     "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
   })[char]);
-  const paid = records.filter(record => record?.status === "paid_test").sort((a,b) => b.createdAt-a.createdAt);
+  const paid = records.filter(record => ["paid_test","paid"].includes(record?.status)).sort((a,b) => b.createdAt-a.createdAt);
   const cards = paid.map(record => {
     const data = record.shipping;
     const contents = record.items.map(item => `${item.quantity} × ${escape(item.name)} (talla ${escape(item.size)})`).join("<br>");
     return `<article><h2>${escape(record.buy_order)}</h2>
-      <p><strong>Pago de prueba aprobado</strong> · ${new Date(record.createdAt).toLocaleDateString("es-CL",{timeZone:"America/Santiago"})}</p>
+      <p><strong>${record.status === "paid" ? "Pago aprobado (Flow)" : "Pago de prueba aprobado"}</strong> · ${new Date(record.createdAt).toLocaleDateString("es-CL",{timeZone:"America/Santiago"})}</p>
       <p>${contents}</p>
       <p>${escape(data.name)} · ${escape(data.phone)} · ${escape(data.email)}<br>${escape(data.address)}${data.reference ? ", "+escape(data.reference) : ""}<br>${escape(data.commune)}, ${escape(data.region)}</p>
       <p>${data.carrier ? `${escape(data.carrier)} a domicilio · Talla ${escape(data.size)} · Envío: $${escape(data.price?.toLocaleString("es-CL"))}` : "Pedido anterior sin tarifa de envío registrada"}</p></article>`;
@@ -486,7 +586,9 @@ async function handleAddressAutocomplete(request, env, url) {
     query += `, ${regionName}`;
   }
 
-  const upstream = await fetch("https://places.googleapis.com/v1/places:autocomplete", {
+  let upstream;
+  try {
+  upstream = await fetch("https://places.googleapis.com/v1/places:autocomplete", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -504,12 +606,17 @@ async function handleAddressAutocomplete(request, env, url) {
     }),
     signal: AbortSignal.timeout(10000)
   });
+  } catch (error) {
+    console.error("Autocompletar direcciones falló:", error);
+    return json({error:"No pudimos buscar direcciones en este momento."},502);
+  }
 
   const data = await upstream.json().catch(() => ({}));
   if (isMapsQuotaError(upstream.status, data)) {
     return json({error:"Cuota de Google Maps alcanzada.", code:"RESOURCE_EXHAUSTED"},429);
   }
   if (!upstream.ok) {
+    console.error("Google Maps autocompletar respondió", upstream.status, JSON.stringify(data).slice(0,300));
     return json({error:"No pudimos buscar direcciones en este momento."},502);
   }
   const suggestions = (Array.isArray(data?.suggestions) ? data.suggestions : [])
@@ -772,6 +879,9 @@ export default {
       if (pathname === "/api/address/verify") return await handleAddressVerify(request,env,url);
       if (pathname === "/api/webpay/create") return await createWebpay(request,env,url);
       if (pathname === "/webpay/return") return await returnWebpay(request,env,url);
+      if (pathname === "/api/flow/create") return await createFlow(request,env,url);
+      if (pathname === "/flow/confirm") return await confirmFlow(request,env,url);
+      if (pathname === "/flow/return") return await returnFlow(request,env,url);
       if (pathname === "/") {
         let products;
         try { products = await catalog(env); }
