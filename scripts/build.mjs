@@ -26,7 +26,9 @@ const shipping =
   "const chileCommunes = " +
   JSON.stringify(JSON.parse(await read("Pasion-Futbol-1/shared/chile-communes.json"))) +
   ";\n" +
-  (await read("Pasion-Futbol-1/shared/shipping.js"));
+  (await read("Pasion-Futbol-1/shared/shipping.js")) +
+  "\n" +
+  (await read("Pasion-Futbol-1/shared/checkout-validation.js"));
 
 const constants = {
   ebook: await readFile("Pasion-Futbol-1/worker/Pasion_Futbol_Noviembre_2026.pdf", "base64"),

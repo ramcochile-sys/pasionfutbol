@@ -341,7 +341,10 @@ async function prepareOrder(request, env, url) {
   const shipping = body.shipping;
   const required = ["name","email","phone","address","commune","region"];
   if (!shipping || required.some(key => typeof shipping[key] !== "string" || !shipping[key].trim() || shipping[key].length > 250)) return {response:json({error:"Completa los datos de envío."},400)};
-  const cleanShipping = Object.fromEntries(required.map(key => [key,shipping[key].trim()]));
+  const contact = checkShippingContact(shipping);
+  const [firstField] = Object.keys(contact.errors);
+  if (firstField) return {response:json({error:contact.errors[firstField], field:firstField, fields:contact.errors},400)};
+  const cleanShipping = {...Object.fromEntries(required.map(key => [key,shipping[key].trim()])), ...contact.clean};
   const carrierId = typeof shipping.carrier === "string" && shipping.carrier.trim()
     ? shipping.carrier.trim()
     : "blue-express";
@@ -395,7 +398,6 @@ async function createFlow(request, env, url) {
   const order = await prepareOrder(request, env, url);
   if (order.response) return order.response;
   const {items, cleanShipping, subtotal, discount, amount} = order;
-  if (cleanShipping.email.length > 254 || !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/.test(cleanShipping.email)) return json({error:"Revisa tu correo electrónico: usa solo letras, números, puntos, guiones y el signo +."},400);
   const buy_order = "PF" + crypto.randomUUID().replaceAll("-", "").slice(0,24);
   let result;
   try {
@@ -405,7 +407,7 @@ async function createFlow(request, env, url) {
     },"POST");
   } catch (error) {
     // 1620: Flow rechaza correos que no existen o no reciben mensajes (ej. cuentas Gmail inventadas).
-    if (error?.flowCode === 1620) return json({error:"Flow no aceptó ese correo electrónico. Usa un correo real que revises: ahí te llegará el comprobante de pago."},400);
+    if (error?.flowCode === 1620) return json({error:"Flow no aceptó ese correo electrónico. Usa un correo real que revises: ahí te llegará el comprobante de pago.", field:"email"},400);
     if (error?.flowCode !== undefined) return json({error:`No pudimos iniciar el pago con Flow (código ${error.flowCode}). Intenta de nuevo o escríbenos por WhatsApp.`},502);
     throw error;
   }
@@ -669,7 +671,12 @@ export default {
             : {...item, name};
         });
         const serialized = JSON.stringify(storefrontProducts).replaceAll("<", "\\u003c");
-        return html(storefront.replace("/* CATALOG_DATA */ []", () => serialized));
+        const page = html(storefront.replace("/* CATALOG_DATA */ []", () => serialized));
+        // La tienda es igual para todos: la CDN de Vercel la guarda 60 s y la renueva en segundo plano,
+        // así casi ninguna visita espera a la base de datos. Los cambios del admin se ven en ~1 minuto.
+        page.headers.set("Cache-Control", "public, max-age=0, must-revalidate");
+        page.headers.set("Vercel-CDN-Cache-Control", "max-age=60, stale-while-revalidate=86400");
+        return page;
       }
       if (pathname === "/admin/setup") {
         return await setupAdmins(request, env, url);

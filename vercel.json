@@ -6,6 +6,17 @@
       "destination": "/api"
     }
   ],
+  "headers": [
+    {
+      "source": "/(.*)\\.(webp|png|jpg|svg|woff2)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
+    }
+  ],
   "functions": {
     "api/index.js": {
       "includeFiles": "dist/**",
@@ -13,4 +24,3 @@
     }
   }
 }
- 

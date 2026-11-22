@@ -1,5 +1,6 @@
 import { createServer } from "node:http";
 import { existsSync } from "node:fs";
+import { readFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 import { resolve } from "node:path";
 
@@ -178,6 +179,10 @@ const env = {
   CATALOG_SETUP_CODE: process.env.CATALOG_SETUP_CODE || "",
   ADMIN_COOKIE_EMBEDDED: process.env.ADMIN_COOKIE_EMBEDDED || "",
   TBK_API_KEY_ID: process.env.TBK_API_KEY_ID || "",
+  FLOW_API_KEY: process.env.FLOW_API_KEY || "",
+  FLOW_SECRET_KEY: process.env.FLOW_SECRET_KEY || "",
+  FLOW_SANDBOX: process.env.FLOW_SANDBOX || "",
+  GEOAPIFY_API_KEY: process.env.GEOAPIFY_API_KEY || "",
   TBK_API_KEY_SECRET: process.env.TBK_API_KEY_SECRET || "",
   GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY || process.env.VITE_GOOGLE_MAPS_API_KEY || process.env.MAPS_API_KEY || ""
 };
@@ -203,8 +208,26 @@ function readRequestBody(req) {
   });
 }
 
+// En Vercel, public/ lo sirve la CDN antes de llegar a la función. En local se imita aquí.
+const staticTypes = { svg: "image/svg+xml", jpg: "image/jpeg", webp: "image/webp", png: "image/png", woff2: "font/woff2" };
+async function serveStatic(req, res) {
+  if (req.method !== "GET" && req.method !== "HEAD") return false;
+  const pathname = decodeURIComponent((req.url || "/").split("?")[0]);
+  const ext = pathname.split(".").at(-1);
+  if (!/^\/[\w.-]+$/.test(pathname) || !staticTypes[ext]) return false;
+  try {
+    const data = await readFile(resolve("public", pathname.slice(1)));
+    res.setHeader("Content-Type", staticTypes[ext]);
+    res.end(req.method === "HEAD" ? undefined : data);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 const server = createServer(async (req, res) => {
   try {
+    if (await serveStatic(req, res)) return;
     const forwardedHost = req.headers["x-forwarded-host"];
     const host =
       (typeof forwardedHost === "string" ? forwardedHost.split(",")[0].trim() : "") ||
