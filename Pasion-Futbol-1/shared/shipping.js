@@ -37,15 +37,11 @@ function shippingQuote(items, region, commune, carrierId = "blue-express") {
   const carrier = Object.hasOwn(shippingCarriers, carrierId) ? shippingCarriers[carrierId] : null;
   if (!carrier) return null;
 
-  // Provisional packed volume: 2,000 cm³ per shirt, 4,000 cm³ per other garment.
+  // Peso del pedido: cada prenda (según su tipo) más la bolsa de cartón de 60 g.
   let packedGrams = 0;
-  let shirts = 0;
-  for (const item of items) {
-    const shirt = isShirt(item);
-    packedGrams += item.quantity * (shirt ? 500 : 1000);
-    if (shirt) shirts += item.quantity;
-  }
-  const size = [500, 3000, 6000, 20000].findIndex(max => packedGrams <= max);
+  for (const item of items) packedGrams += item.quantity * itemWeightGrams(item);
+  if (packedGrams) packedGrams += PACKAGING_GRAMS;
+  const size = [1000, 3000, 6000, 20000].findIndex(max => packedGrams <= max);
   if (!packedGrams || size < 0 || ["05104", "05201", "10402"].includes(commune)) return null;
   const zone = region === "13" ? "metropolitan"
     : ["01", "02", "11", "12", "15"].includes(region) ? "extreme" : "center";
@@ -54,7 +50,9 @@ function shippingQuote(items, region, commune, carrierId = "blue-express") {
     carrier: carrier.name,
     eta: carrier.eta,
     size: ["XS", "S", "M", "L"][size],
-    price: 0,
+    // Región Metropolitana: envío gratis. Resto del país: tarifa de la empresa según zona y tramo de peso.
+    price: region === "13" ? 0 : carrier.rates[zone][size],
+    weightGrams: packedGrams,
     commune: area.communes[commune],
     region: area.name
   };

@@ -557,7 +557,7 @@ body>footer p{color:#edf4ff}
 
 /* ===== Vitrina del home: camisetas colgadas (fotos reales) ===== */
 /* ===== Vitrina de camisetas colgadas (fotos reales) ===== */
-.vitrina{min-height:260px;height:clamp(260px,36vw,520px);background:var(--page);--spot-x:50%}
+.vitrina{min-height:260px;height:clamp(260px,36vw,520px);background:var(--page);--spot-x:50%;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .v-cab{position:absolute;inset:3% 2% 4.5% 2%;border:clamp(4px,.9vw,12px) solid #0d1626;border-radius:5px;
   background:radial-gradient(ellipse 75% 65% at 50% 0%,#1d304c 0%,var(--surface) 48%,var(--page) 100%);
   box-shadow:inset 0 0 60px #040812,0 0 0 1px var(--line);overflow:hidden}
@@ -620,6 +620,45 @@ body>footer p{color:#edf4ff}
 .vitrina.active .v-card.focus .v-note:nth-of-type(3){transition-delay:.16s}
 @media(max-width:40rem){.v-note{display:none}.v-crest{bottom:12%}.v-crest.focus{padding:3px 9px 3px 4px}}
 @media(prefers-reduced-motion:reduce){.v-note,.v-caption,.v-spot,.v-crest,.v-crest-name,.v-j{transition:none}}
+
+/* ===== Carrito y pago: pasos azules, solo los botones de pago son amarillos ===== */
+.checkout-steps span,.checkout-steps li.is-complete span{background:#1354d4;color:#fff}
+.checkout-steps [aria-current="step"] span{background:#2f7bff;color:#fff;box-shadow:0 0 0 3px #2f7bff55}
+.checkout-steps li.is-complete+li::before{background:#1354d4}
+.wizard-step-btn:hover span{box-shadow:0 0 0 3px #2f7bff55}
+.carrier-price{display:block;flex:none;font-size:.78rem;font-weight:800;color:#0f3a96;white-space:nowrap}
+.carrier-option{flex-wrap:wrap}
+@media (max-width:520px){.carrier-option{flex-direction:column;gap:.15rem}.carrier-price{font-size:.74rem}}
+#order .button,#shipping .button{background:#26364f;color:#fff;border:1px solid #3b4f72;box-shadow:none}
+#order .button-outline,#shipping .button-outline{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:700}
+#order #pay,#shipping #checkout-continue,#shipping button[type="submit"]{
+  background:linear-gradient(180deg,#ffe94d,#ffc400);color:#171100;border:2px solid #fff3a0;
+  min-height:56px;font-size:clamp(1.1rem,4.4vw,1.45rem);font-weight:900;letter-spacing:.01em;
+  box-shadow:0 0 0 3px #ffd60055,0 .6rem 1.4rem #ffc40066}
+#order #pay:hover,#shipping #checkout-continue:hover,#shipping button[type="submit"]:hover{filter:brightness(1.06);transform:translateY(-1px)}
+#order #pay:active,#shipping #checkout-continue:active,#shipping button[type="submit"]:active{transform:translateY(1px)}
+#order #pay:focus-visible,#shipping #checkout-continue:focus-visible,#shipping button[type="submit"]:focus-visible{outline:3px solid #fff;outline-offset:3px}
+#shipping button[type="submit"]:disabled{opacity:.5;box-shadow:none}
+.order-actions #pay{width:100%}
+.checkout-breakdown dl div:last-child{background:#12306b;color:#fff}
+@media (prefers-reduced-motion:reduce){#order #pay,#shipping #checkout-continue,#shipping button[type="submit"]{transition:none}}
+
+/* ===== Vitrina: polera elegida grande, botones Frente / Espalda y Ver tallas ===== */
+@media (hover:none) and (pointer:coarse),(max-width:40rem){.vitrina{min-height:470px;height:clamp(470px,135vw,600px)}.v-caption{font-size:.8rem}}
+.v-caption{bottom:calc(.7rem + 54px)}
+.v-actions{position:absolute;left:50%;bottom:.7rem;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:.5rem;opacity:0;pointer-events:none;transition:opacity .26s;white-space:nowrap}
+.vitrina.active .v-actions{opacity:1;pointer-events:auto}
+.v-side{display:flex;border:1px solid #ffffff59;border-radius:999px;background:#0a1220eb;overflow:hidden}
+.v-side button{min-height:44px;padding:0 .95rem;border:0;background:transparent;color:#d7e3f7;font:800 .9rem "DM Sans",sans-serif}
+.v-side button[aria-pressed="true"]{background:#2f7bff;color:#fff}
+.v-sizes{min-height:44px;padding:0 1.15rem;border:0;border-radius:999px;background:#fff;color:#0a1220;font:900 .95rem "DM Sans",sans-serif;box-shadow:0 .35rem 1rem #0009}
+.v-back{display:none;position:absolute;left:3%;width:94%;aspect-ratio:1;border-radius:10px;background:var(--b) center/cover no-repeat,#1a2233;box-shadow:0 .4rem 1rem #000a}
+.v-card.is-back .v-ph{display:none}
+.v-card.is-back .v-back{display:block;animation:vflip .38s ease}
+@keyframes vflip{from{transform:rotateY(90deg)}to{transform:none}}
+@media (prefers-reduced-motion:reduce){.v-card.is-back .v-back{animation:none}.v-actions{transition:none}}
+@media (hover:none) and (pointer:coarse),(max-width:40rem){.v-crests,.vitrina .hero-logo{display:none}.v-caption{width:90%;max-width:90%;line-height:1.2;bottom:calc(.7rem + 54px)}}
+.v-back{background-size:132%;background-position:50% 38%}
 </style>
 </head>
 <body>
@@ -657,8 +696,8 @@ body>footer p{color:#edf4ff}
     <div class="promo-window">
       <div class="promo-track" id="promo-track">
         <ul class="promo-group">
-          <li><strong>Envío gratis a todo Chile</strong></li>
-          <li>Santiago: 1 a 2 días hábiles · Regiones: 1 a 7 días hábiles</li>
+          <li><strong>Envío gratis en la Región Metropolitana</strong></li>
+          <li>Regiones: el costo se calcula según el peso de tu pedido y la comuna</li>
           <li><strong>20% de descuento</strong> al llevar 2 camisetas</li>
           <li><strong>25% de descuento</strong> al llevar 3 camisetas o más</li>
           <li>Junto a tu compra llevas de regalo nuestra <strong>revista oficial</strong> con toda la información actual del fútbol que tanto amamos</li>
@@ -669,7 +708,7 @@ body>footer p{color:#edf4ff}
 </header>
 <main>
   <h1 class="visually-hidden">Pasión Fútbol</h1>
-  <section class="store-banner wrap vitrina" id="vitrina" aria-label="Poleras destacadas"><div class="v-cab"></div><div class="v-spot" id="v-spot" aria-hidden="true"></div><div class="v-rail"></div><div class="vitrina-stage" id="vitrina-stage"></div><div class="v-crests" id="v-crests"></div><div class="v-caption" id="v-caption" aria-hidden="true"></div><div class="v-glass"></div><img class="hero-logo" src="/hero-logo.png" width="168" height="152" alt="Pasión Fútbol"></section>
+  <section class="store-banner wrap vitrina" id="vitrina" aria-label="Poleras destacadas"><div class="v-cab"></div><div class="v-spot" id="v-spot" aria-hidden="true"></div><div class="v-rail"></div><div class="vitrina-stage" id="vitrina-stage"></div><div class="v-crests" id="v-crests"></div><div class="v-caption" id="v-caption" aria-hidden="true"></div><div class="v-actions" id="v-actions"><div class="v-side" role="group" aria-label="Vista de la polera"><button type="button" id="v-front" aria-pressed="true">Frente</button><button type="button" id="v-rear" aria-pressed="false">Espalda</button></div><button type="button" class="v-sizes" id="v-sizes">Ver tallas</button></div><div class="v-glass"></div><img class="hero-logo" src="/hero-logo.png" width="168" height="152" alt="Pasión Fútbol"></section>
   <section class="catalog wrap" id="catalogo" aria-labelledby="catalog-title">
     <h2 class="visually-hidden" id="catalog-title">Colección de fútbol</h2>
     <div class="catalog-search-box" id="catalog-search-box">
@@ -742,7 +781,7 @@ body>footer p{color:#edf4ff}
       <p>Envío vía Blue Express, Starken o Correos de Chile en 1 a 3 días hábiles.</p>
       <h3>Regiones</h3>
       <p>Envío vía Blue Express, Starken o Correos de Chile en 1 a 8 días hábiles, según destino y empresa seleccionada.</p>
-      <p>El envío a domicilio es gratis en todos los pedidos con despacho disponible en línea vía Blue Express, Starken o Correos de Chile.</p>
+      <p>El envío es gratis en toda la Región Metropolitana. Para el resto del país, el costo se calcula automáticamente según el peso de tu pedido (cada camiseta más una bolsa de cartón de 60 g) y la comuna de destino, y lo ves antes de pagar.</p>
     </section>
 
     <section id="terminos" aria-labelledby="terminos-title">
@@ -807,8 +846,6 @@ body>footer p{color:#edf4ff}
     <div class="order-totals">
       <div class="total order-grand"><span id="subtotal-label">Subtotal</span><strong id="subtotal"></strong></div>
     </div>
-    <p class="shipping-note">Junto a tu compra llevas de regalo nuestra revista oficial con toda la información actual del fútbol que tanto amamos.</p>
-    <p class="shipping-note">Envío gratis a todo Chile con despacho disponible en línea. <a class="delivery-link" href="#envios" id="cart-delivery-link">Ver condiciones</a></p>
     <div class="order-actions">
       <button class="button" id="pay" type="button"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-cart"/></svg>Finalizar compra<svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-next"/></svg></button>
       <button class="button-outline" type="button" data-close><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-back"/></svg>Seguir comprando</button>
@@ -857,7 +894,6 @@ body>footer p{color:#edf4ff}
               <div class="checkout-wide address-lookup">
                 <div class="address-input-row">
                   <label><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-pin"/></svg><span class="visually-hidden">Dirección y número</span><input name="address" autocomplete="off" placeholder="Busca tu calle y número *" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="address-suggestions" required></label>
-                  <button type="button" class="address-verify-btn" id="address-verify-btn">Verificar</button>
                 </div>
                 <ul id="address-suggestions" class="address-suggestions" role="listbox" aria-label="Sugerencias de direcciones" hidden></ul>
                 <p id="address-status" class="address-status" role="status" aria-live="polite" hidden></p>
@@ -867,29 +903,32 @@ body>footer p{color:#edf4ff}
           </section>
           <p id="checkout-quote-help" hidden>Para este destino o tamaño de pedido, <a class="delivery-link" href="https://wa.me/56934974132">cotiza el envío por WhatsApp</a>.</p>
           <fieldset class="checkout-card shipping-carriers" aria-labelledby="checkout-delivery-title">
-            <legend id="checkout-delivery-title"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-truck"/></svg><span>Elige empresa de envío <small class="carrier-eta-note">(regiones de 1 a 7 días hábiles)</small></span></legend>
+            <legend id="checkout-delivery-title"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-truck"/></svg><span>Elige empresa de envío <small class="carrier-eta-note">(gratis en la Región Metropolitana)</small></span></legend>
             <div class="carrier-options">
               <label class="carrier-option" title="Blue Express">
                 <input type="radio" name="carrier" value="blue-express" checked>
                 <span class="carrier-radio-mark" aria-hidden="true"></span>
                 <img class="provider-logo" src="/blue-express.svg" alt="Blue Express">
                 <span class="visually-hidden">Blue Express</span>
+                <small class="carrier-price" data-carrier-price="blue-express"></small>
               </label>
               <label class="carrier-option" title="Starken">
                 <input type="radio" name="carrier" value="starken">
                 <span class="carrier-radio-mark" aria-hidden="true"></span>
                 <img class="provider-logo" src="/starken.webp" alt="Starken">
                 <span class="visually-hidden">Starken</span>
+                <small class="carrier-price" data-carrier-price="starken"></small>
               </label>
               <label class="carrier-option" title="Correos de Chile">
                 <input type="radio" name="carrier" value="correos-chile">
                 <span class="carrier-radio-mark" aria-hidden="true"></span>
                 <img class="provider-logo" src="/correos-chile.svg" alt="Correos de Chile">
                 <span class="visually-hidden">Correos de Chile</span>
+                <small class="carrier-price" data-carrier-price="correos-chile"></small>
               </label>
             </div>
           </fieldset>
-          <div class="shipping-review" aria-live="polite"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-box"/></svg><span id="shipping-review-label">Envío gratis a todo Chile</span><strong>Subtotal <span id="checkout-delivery-preview"></span></strong></div>
+          <div class="shipping-review" aria-live="polite"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-box"/></svg><span id="shipping-review-label">Elige región y comuna para ver el envío</span><strong><span id="checkout-delivery-label">Subtotal</span> <span id="checkout-delivery-preview"></span></strong></div>
           <button class="button" type="button" id="checkout-continue"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-next"/></svg>Continuar al pago</button>
           <button class="button-outline" type="button" id="back-to-cart"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-back"/></svg>Volver al carrito</button>
         </div>
@@ -900,6 +939,8 @@ body>footer p{color:#edf4ff}
             <div class="checkout-breakdown" aria-live="polite">
               <dl>
                 <div><dt id="checkout-subtotal-label">Subtotal</dt><dd id="checkout-products"></dd></div>
+                <div><dt>Envío</dt><dd id="checkout-shipping"></dd></div>
+                <div><dt>Total a pagar</dt><dd id="checkout-total"></dd></div>
               </dl>
             </div>
           </section>
@@ -1193,15 +1234,55 @@ function renderCatalog() {
   byId("empty").textContent = hasSearchOrFilters ? "No encontramos camisetas con esos filtros." : "Próximamente: más productos.";
   productObserver?.disconnect();
   const grid = byId("products");
-  grid.innerHTML = matches.map(item => `<article>
+  catalogMatches = matches;
+  catalogShown = 0;
+  grid.innerHTML = "";
+  appendCatalogBatch();
+}
+
+/* Las camisetas se agregan por tandas: al llegar al final de la lista se dibujan las siguientes. */
+const CATALOG_BATCH = 12;
+let catalogMatches = [], catalogShown = 0;
+const catalogMore = document.createElement("div");
+catalogMore.id = "catalog-more";
+catalogMore.setAttribute("aria-hidden", "true");
+catalogMore.style.cssText = "height:1px;width:100%";
+byId("products").after(catalogMore);
+const catalogMoreObserver = "IntersectionObserver" in window
+  ? new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting) && catalogShown < catalogMatches.length) appendCatalogBatch();
+    }, {rootMargin: "700px 0px"})
+  : null;
+catalogMoreObserver?.observe(catalogMore);
+
+function appendCatalogBatch() {
+  const grid = byId("products");
+  const batch = catalogMatches.slice(catalogShown, catalogShown + CATALOG_BATCH);
+  const first = catalogShown;
+  catalogShown += batch.length;
+  if (!catalogMoreObserver) { /* navegador antiguo: se muestran todas */
+    batch.push(...catalogMatches.slice(catalogShown));
+    catalogShown = catalogMatches.length;
+  }
+  const before = grid.children.length;
+  grid.insertAdjacentHTML("beforeend", batch.map((item, n) => productCardHtml(item, first + n)).join(""));
+  for (const card of [...grid.children].slice(before)) productObserver?.observe(card);
+  /* si la pantalla todavía no se llena, el observador vuelve a avisar al terminar de dibujar */
+  if (catalogShown < catalogMatches.length && catalogMoreObserver) {
+    catalogMoreObserver.unobserve(catalogMore);
+    requestAnimationFrame(() => catalogMoreObserver.observe(catalogMore));
+  }
+}
+
+function productCardHtml(item, index) {
+  return `<article>
     <button class="product-photo${item.studioGallery ? " studio-photo" : ""}" type="button" data-detail="${item.id}" aria-label="Ver ${escapeHtml(item.name)}">
-      <img src="${item.image}" alt="" loading="lazy" width="512" height="512">
+      <img src="${item.image}" alt=""${index < 4 ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async" width="512" height="512">
     </button>
     <div class="product-copy"><h3>${escapeHtml(item.name)}</h3>
       <div class="product-actions"><strong>${money.format(item.price)}</strong>
         <button class="button plus" type="button" data-detail="${item.id}" aria-label="Agregar ${escapeHtml(item.name)}"><span class="plus-glyph" aria-hidden="true">+</span><span class="plus-hover-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h3l3 12h11l3-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>+</span></button></div></div>
-  </article>`).join("");
-  for (const card of grid.children) productObserver?.observe(card);
+  </article>`;
 }
 
 const galleryLabels = ["Vista completa", "Detalle del pecho", "Detalle de la manga"];
@@ -1224,12 +1305,12 @@ function openDetail(item) {
     ${team ? `<div class="detail-team">${team.svg}<span>${escapeHtml(team.name)}</span></div>` : ""}
     <div class="gallery" role="group" aria-label="Imágenes de la camiseta">
       <div aria-live="polite">${images.map((image, i) => `<div class="gallery-view" ${i ? "hidden" : ""}>
-        <img class="detail-image" src="${escapeHtml(image)}" alt="${escapeHtml(item.name)} · ${labels[i]}" width="480" height="480">
+        <img class="detail-image" src="${escapeHtml(image)}" alt="${escapeHtml(item.name)} · ${labels[i]}"${i ? ' loading="lazy"' : ""} decoding="async" width="480" height="480">
         ${item.illustratedSlides?.includes(i) ? '<small class="gallery-note">Imagen ilustrativa generada con IA</small>' : ""}
       </div>`).join("")}</div>
       ${images.length > 1 ? `<div class="gallery-controls">${images.map((image, i) =>
         `<button type="button" data-slide="${i}" aria-label="${labels[i]}" aria-pressed="${i === 0}">
-          <img src="${escapeHtml(image)}" alt="" width="48" height="48">
+          <img src="${escapeHtml(image)}" alt="" loading="lazy" decoding="async" width="48" height="48">
         </button>`).join("")}</div>` : ""}
     </div>
     <p>${escapeHtml(item.description)}</p><strong>${money.format(item.price)}</strong>${buyForm(item)}`;
@@ -1350,7 +1431,6 @@ document.addEventListener("submit", event => {
   byId("cart-status").textContent = `${quantity} × ${escapeHtml(item.name)}, talla ${size}, en el carrito. Total de prendas: ${byId("count").textContent}.`;
 });
 
-byId("cart-delivery-link").addEventListener("click", () => order.close());
 
 const gmpOrigError = console.error;
 window.gm_authFailure = () => window.dispatchEvent(new CustomEvent("gmp-quota-exceeded"));
@@ -1374,7 +1454,6 @@ const communeSelect = shippingForm.elements.commune;
 const addressInput = shippingForm.elements.address;
 const addressSuggestions = byId("address-suggestions");
 const addressStatus = byId("address-status");
-const addressVerifyBtn = byId("address-verify-btn");
 for (const [code, region] of Object.entries(chileCommunes).sort(([, a], [, b]) => a.name.localeCompare(b.name, "es-CL"))) {
   regionSelect.add(new Option(region.name, code));
 }
@@ -1386,10 +1465,12 @@ function selectedCarrierId() {
 function selectedShippingQuote(carrierId = selectedCarrierId()) {
   return shippingQuote(selection.map(line => ({
     quantity:line.quantity,
+    name:products.find(item => item.id === line.id).name,
     categories:products.find(item => item.id === line.id).categories
   })), regionSelect.value, communeSelect.value, carrierId);
 }
 
+const shippingPrice = quote => quote.price ? money.format(quote.price) + " CLP" : "Gratis";
 function updateShippingTotal() {
   const {percent, amount: productsTotal} = selectionPricing();
   const carrierId = selectedCarrierId();
@@ -1398,15 +1479,22 @@ function updateShippingTotal() {
   byId("checkout-quote-help").hidden = !hasDestination || Boolean(quote);
   byId("checkout-subtotal-label").textContent = percent ? `Subtotal (${percent}% dcto. incluido)` : "Subtotal";
   byId("checkout-products").textContent = money.format(productsTotal) + " CLP";
+  for (const id of Object.keys(shippingCarriers)) {
+    const slot = shippingForm.querySelector(`[data-carrier-price="${id}"]`);
+    const other = selectedShippingQuote(id);
+    if (slot) slot.textContent = other ? shippingPrice(other) : "";
+  }
   if (byId("checkout-assurance-eta") && quote) {
-    byId("checkout-assurance-eta").textContent = `${quote.carrier} · ${quote.eta} · Envío gratis`;
+    byId("checkout-assurance-eta").textContent = `${quote.carrier} · ${quote.eta}`;
   }
-  if (byId("shipping-review-label")) {
-    byId("shipping-review-label").textContent = quote
-      ? `Envío gratis · ${quote.carrier}`
-      : "Envío gratis a todo Chile";
-  }
-  byId("checkout-delivery-preview").textContent = money.format(productsTotal) + " CLP";
+  byId("shipping-review-label").textContent = quote
+    ? (quote.price ? `Envío ${quote.carrier}` : "Envío gratis · Región Metropolitana")
+    : "Elige región y comuna para ver el envío";
+  byId("checkout-delivery-label").textContent = quote ? "Total" : "Subtotal";
+  const total = productsTotal + (quote ? quote.price : 0);
+  byId("checkout-delivery-preview").textContent = money.format(total) + " CLP";
+  byId("checkout-shipping").textContent = quote ? shippingPrice(quote) : "Por calcular";
+  byId("checkout-total").textContent = money.format(total) + " CLP";
   shippingForm.querySelector('[type="submit"]').disabled = !quote || shippingForm.dataset.submitting === "true";
 }
 
@@ -1468,9 +1556,11 @@ function findChileRegionCommune(regionText, communeText) {
 
 let addressSessionToken = null;
 let addressDebounce = null;
+let addressAutoTimer = null;
 let currentSuggestions = [];
 let activeSuggestionIndex = -1;
 let verifiedAddressState = {status: "idle", input: "", formattedAddress: "", placeId: ""};
+let addressVerifying = false;
 
 function setAddressStatus(kind, messageHtml = "") {
   addressStatus.className = "address-status" + (kind ? ` is-${kind}` : "");
@@ -1562,7 +1652,7 @@ async function verifyCurrentAddress({placeId = "", inputOverride = ""} = {}) {
   const communeName = chileCommunes[regionSelect.value]?.communes?.[communeSelect.value] || "";
   const tokenToSend = addressSessionToken || "";
   addressSessionToken = null;
-  addressVerifyBtn.disabled = true;
+  addressVerifying = true;
   setAddressStatus("checking", "Verificando dirección en Chile…");
   try {
     const res = await fetch("/api/address/verify", {
@@ -1627,7 +1717,7 @@ async function verifyCurrentAddress({placeId = "", inputOverride = ""} = {}) {
     setAddressStatus("warn", "No pudimos verificar la dirección en este momento.");
     return true;
   } finally {
-    addressVerifyBtn.disabled = false;
+    addressVerifying = false;
   }
 }
 
@@ -1690,9 +1780,21 @@ addressStatus.addEventListener("click", event => {
   }
 });
 
-addressVerifyBtn.addEventListener("click", () => {
+/* La dirección se verifica sola: al elegir una sugerencia, al dejar de escribir o al salir del campo. */
+function autoVerifyAddress() {
+  const value = addressInput.value.trim();
+  if (addressVerifying || value.length < 5 || !/\d/.test(value)) return;
+  if (verifiedAddressState.input === value && verifiedAddressState.status !== "idle") return;
   hideSuggestions();
   verifyCurrentAddress();
+}
+addressInput.addEventListener("input", () => {
+  clearTimeout(addressAutoTimer);
+  addressAutoTimer = setTimeout(autoVerifyAddress, 1400);
+});
+addressInput.addEventListener("blur", () => {
+  clearTimeout(addressAutoTimer);
+  setTimeout(autoVerifyAddress, 350); /* da tiempo a que un toque en una sugerencia se procese primero */
 });
 
 document.addEventListener("click", event => {
@@ -2067,7 +2169,8 @@ function jerseyHtml(item) {
       <path d="M48.5 90 L48.5 50 C48.5 18 79 17 80 38" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="1.6" stroke-linecap="round"/>
     </svg>
     <i class="v-bk" style="left:${nx - 12}%;top:${ny - 1.2}%;width:24%;height:${phH * .1}%"></i>
-    <i class="v-ph" style="top:${top}%;height:${phH}%;--p:url(${p.src})"></i>
+    <i class="v-ph" style="top:${top}%;height:${phH}%" data-p="${p.src}"></i>
+    <i class="v-back" style="top:${top}%" data-b="${p.src.replace("-colgada.webp", "-espalda.webp")}"></i>
   </span>`;
 }
 const vItems = products.filter(item => PHOTO[item.id] && !item.categories?.includes("Niños"));
@@ -2097,9 +2200,11 @@ const vCards = vItems.map((item, i) => {
   crest.innerHTML = team ? `${team.svg}<span class="v-crest-name">${escapeHtml(team.name)}</span>` : "";
   vCrests.append(crest);
 
-  return {card, crest, off: 0, ang: -62, sc: 1, br: .7};
+  return {card, crest, off: 0, ang: -62, sc: 1, br: .7, loaded: false};
 });
 let vLast = -2, vW = 0, vJw = 0, vStep = 0, vX0 = 0, vShown = 0, vFocus = null, vSpotX = null;
+let vScroll = 0, vScrollTarget = 0, vMax = 0, vDrag = null, vSuppressClick = false, vBack = false;
+let vTouch = matchMedia("(hover: none) and (pointer: coarse)").matches; /* celular: se explora con el dedo */
 const V_REST = -62;
 function layoutVitrina() {
   vW = vitrina.clientWidth;
@@ -2109,11 +2214,10 @@ function layoutVitrina() {
   vShown = Math.max(1, Math.min(vCards.length, Math.floor(span / Math.max(46, vW * .045)) + 1));
   vStep = vShown > 1 ? span / (vShown - 1) : 0;
   vX0 = c0 - vJw / 2;
-  vCards.forEach((o, i) => {
-    o.card.hidden = i >= vShown;
-    o.crest.hidden = i >= vShown;
-    o.card.style.width = vJw + "px";
-  });
+  vMax = Math.max(0, vCards.length - vShown);
+  vScroll = Math.min(vScroll, vMax);
+  vScrollTarget = Math.min(vScrollTarget, vMax);
+  vCards.forEach(o => { o.card.style.width = vJw + "px"; });
 }
 layoutVitrina();
 addEventListener("resize", layoutVitrina);
@@ -2122,14 +2226,48 @@ function pointVitrina(x) {
   vFocus = Math.min(vShown - 1, Math.max(0, (x - r.left - vX0 - vJw / 2) / vStep));
   vitrina.classList.add("active");
 }
-vitrina.addEventListener("pointermove", e => pointVitrina(e.clientX));
-vitrina.addEventListener("pointerleave", () => { vFocus = null; vitrina.classList.remove("active"); });
-vitrina.addEventListener("click", e => { /* táctil: primer toque la muestra, segundo la abre */
-  const target = e.target.closest(".v-card, .v-crest");
-  if (target && e.pointerType === "touch" && Math.round(vFocus ?? -1) !== vCards.findIndex(o => o.card === target || o.crest === target)) {
-    pointVitrina(e.clientX);
-    e.stopPropagation();
+vitrina.addEventListener("pointermove", e => {
+  if (e.pointerType !== "touch") { if (e.target.closest?.(".v-actions")) return; vTouch = false; pointVitrina(e.clientX); return; }
+  if (!vDrag || e.pointerId !== vDrag.id) return;
+  const dx = e.clientX - vDrag.x;
+  if (!vDrag.moved && Math.abs(dx) > 10) {
+    vDrag.moved = true;
+    try { vitrina.setPointerCapture(e.pointerId); } catch {}
   }
+  if (vDrag.moved) {
+    const now = performance.now();
+    vDrag.v = (e.clientX - vDrag.lx) / Math.max(1, now - vDrag.lt);
+    vDrag.lx = e.clientX;
+    vDrag.lt = now;
+    vScroll = Math.min(vMax, Math.max(0, vDrag.s - dx / Math.max(1, vStep)));
+    vScrollTarget = vScroll;
+  }
+});
+vitrina.addEventListener("pointerleave", e => {
+  if (e.pointerType === "touch" || vTouch) return;
+  vFocus = null;
+  vitrina.classList.remove("active");
+});
+vitrina.addEventListener("pointerdown", e => {
+  if (e.pointerType !== "touch") return;
+  vTouch = true;
+  vDrag = {id: e.pointerId, x: e.clientX, s: vScroll, moved: false, lx: e.clientX, lt: performance.now(), v: 0};
+});
+function endVitrinaDrag(e) {
+  if (e.pointerType !== "touch" || !vDrag || e.pointerId !== vDrag.id) return;
+  if (vDrag.moved) {
+    vSuppressClick = true;
+    setTimeout(() => { vSuppressClick = false; }, 350);
+    if (performance.now() - vDrag.lt > 100) vDrag.v = 0;
+    const fling = Math.max(-2, Math.min(2, -vDrag.v * 180 / Math.max(1, vStep)));
+    vScrollTarget = Math.min(vMax, Math.max(0, Math.round(vScroll + fling)));
+  }
+  vDrag = null;
+}
+vitrina.addEventListener("pointerup", endVitrinaDrag);
+vitrina.addEventListener("pointercancel", endVitrinaDrag);
+vitrina.addEventListener("click", e => { /* si fue un arrastre no se abre; un toque directo abre la polera */
+  if (vSuppressClick) { e.stopPropagation(); e.preventDefault(); }
 }, true);
 vCards.forEach((o, i) => {
   o.card.addEventListener("focus", () => { vFocus = i; vitrina.classList.add("active"); });
@@ -2138,22 +2276,50 @@ vCards.forEach((o, i) => {
 vitrina.addEventListener("focusout", e => {
   if (!vitrina.contains(e.relatedTarget)) vitrina.classList.remove("active");
 });
+function setVBack(on) {
+  vBack = on;
+  const fi = Math.round(vFocus ?? -1);
+  vCards.forEach((o, i) => o.card.classList.toggle("is-back", on && i === fi));
+  const o = vCards[fi];
+  const back = o?.card.querySelector(".v-back");
+  if (on && back && !back.style.getPropertyValue("--b")) back.style.setProperty("--b", `url(${back.dataset.b})`);
+  byId("v-front").setAttribute("aria-pressed", String(!on));
+  byId("v-rear").setAttribute("aria-pressed", String(on));
+}
+byId("v-front").addEventListener("click", () => setVBack(false));
+byId("v-rear").addEventListener("click", () => setVBack(true));
 let vRun = true, vLoop = false;
 (function frameVitrina(t) {
   vLoop = true;
+  if (vTouch) {
+    if (!vDrag) vScroll += (vScrollTarget - vScroll) * .18;
+    vFocus = vScroll + (vShown - 1) / 2;
+    vitrina.classList.add("active");
+  }
   const fi = vFocus == null ? -1 : Math.round(vFocus);
   vCards.forEach((o, i) => {
-    if (i >= vShown) return;
+    const rel = i - vScroll;
+    const visible = rel > -1 && rel < vShown;
+    if (!o.loaded && rel > -3 && rel < vShown + 2) { /* carga la foto cuando está cerca */
+      const ph = o.card.querySelector(".v-ph");
+      if (ph) ph.style.setProperty("--p", `url(${ph.dataset.p})`);
+      o.loaded = true;
+    }
+    if (o.card.hidden === visible) { o.card.hidden = !visible; o.crest.hidden = !visible; }
+    if (!visible) return;
+    o.card.style.opacity = rel < 0 ? 1 + rel : rel > vShown - 1 ? vShown - rel : 1;
     const d = vFocus == null ? 99 : i - vFocus, ad = Math.abs(d), foc = i === fi;
     const tOff = vFocus == null ? 0 : vJw * .5 * Math.tanh(d * 1.3) * Math.exp(-ad / 3);
     const sway = vFocus == null && !reducedMotion.matches ? Math.sin(t / 1400 + i * .8) * 2.5 : 0;
     const tAng = (vFocus == null ? V_REST : V_REST * (1 - Math.exp(-ad * 1.15))) + sway;
     o.off += (tOff - o.off) * .13; o.ang += (tAng - o.ang) * .13;
-    o.sc += ((foc ? 1.1 : 1) - o.sc) * .14;
+    const vFocusScale = vTouch || vW < 640 ? 1.3 : 1.12;
+    o.sc += ((foc ? vFocusScale : vFocus == null ? 1 : .94) - o.sc) * .14;
     o.br += ((vFocus == null ? .78 : foc ? 1.22 : .44 + .16 * Math.exp(-ad)) - o.br) * .14;
-    const xPos = vX0 + i * vStep + o.off;
-    o.card.style.transform = `translate3d(${xPos}px,0,${foc ? 60 : 0}px) rotateY(${o.ang}deg) scale(${o.sc})`;
-    o.card.style.filter = `brightness(${o.br})`;
+    const xPos = vX0 + rel * vStep + o.off;
+    o.card.style.transform = `translate3d(${xPos}px,0,${foc ? 80 : vFocus == null ? 0 : -50}px) rotateY(${o.ang}deg) scale(${o.sc})`;
+    const blur = vFocus == null || foc ? 0 : Math.min(2.6, .9 + ad * .5);
+    o.card.style.filter = blur ? `brightness(${o.br}) blur(${blur.toFixed(1)}px)` : `brightness(${o.br})`;
     o.card.style.setProperty("--sx", (50 - (o.ang + 62) * .85 + (foc ? 0 : 6)) + "%");
     o.card.style.zIndex = foc ? 100 : i + 1;
     o.card.classList.toggle("focus", foc);
@@ -2165,14 +2331,16 @@ let vRun = true, vLoop = false;
     o.card.classList.toggle("flip", cx > vW * .6);
     o.card.classList.toggle("flipr", cx < vW * .3);
   });
-  if (fi >= 0 && fi < vShown) {
-    const targetSpot = vX0 + fi * vStep + vCards[fi].off + vJw / 2;
+  if (fi >= 0 && fi < vCards.length) {
+    const targetSpot = vX0 + (fi - vScroll) * vStep + vCards[fi].off + vJw / 2;
     vSpotX = vSpotX == null ? targetSpot : vSpotX + (targetSpot - vSpotX) * .2;
     vitrina.style.setProperty("--spot-x", vSpotX + "px");
   }
   if (fi !== vLast) {
     vLast = fi;
     const it = vItems[fi];
+    setVBack(false);
+    byId("v-sizes").dataset.detail = it ? it.id : "";
     vCaption.innerHTML = it ? `${escapeHtml(it.name)} <b>${money.format(it.price)}</b>` : "";
   }
   if (vRun) requestAnimationFrame(frameVitrina); else vLoop = false;
