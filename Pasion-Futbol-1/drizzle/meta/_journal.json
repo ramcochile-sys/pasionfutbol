@@ -36,6 +36,13 @@
       "when": 1795071600002,
       "tag": "0004_default_adult_shirt_sizes",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1795071660002,
+      "tag": "0005_admin_users",
+      "breakpoints": true
     }
   ]
 }

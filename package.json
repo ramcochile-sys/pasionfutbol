@@ -7,6 +7,10 @@
     "build": "node scripts/build.mjs",
     "dev": "node server.js",
     "start": "node server.js",
-    "lint": "node --check server.js && node --check scripts/build.mjs"
+    "lint": "node --check server.js && node --check scripts/build.mjs",
+    "db:migrate": "node scripts/migrate-turso.mjs"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }
