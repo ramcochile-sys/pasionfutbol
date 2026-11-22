@@ -322,16 +322,7 @@ async function saveProduct(request, env, id) {
   return json({id});
 }
 
-const webpayBase = "https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.2/transactions";
-async function webpayRequest(env, path = "", method = "GET", body) {
-  const response = await fetch(webpayBase + path, {
-    method, headers: {"Tbk-Api-Key-Id":env.TBK_API_KEY_ID, "Tbk-Api-Key-Secret":env.TBK_API_KEY_SECRET, "Content-Type":"application/json"},
-    ...(body ? {body:JSON.stringify(body)} : {}), signal:AbortSignal.timeout(20000)
-  });
-  if (!response.ok) throw new Error("Webpay no disponible");
-  return response.json();
-}
-// Valida el pedido (productos, tallas, envío y total). La usan Webpay y Flow.
+// Valida el pedido (productos, tallas, envío y total). La usa Flow.
 async function prepareOrder(request, env, url) {
   if (request.method !== "POST") return {response:json({error:"Método no permitido."},405)};
   if (request.headers.get("Origin") !== url.origin) return {response:json({error:"Origen inválido."},403)};
@@ -367,49 +358,9 @@ async function prepareOrder(request, env, url) {
   if (!Number.isSafeInteger(amount) || amount < 1 || amount > 99999999) return {response:json({error:"Total inválido."},400)};
   return {items, cleanShipping, subtotal, discount, amount};
 }
-async function createWebpay(request, env, url) {
-  if (!env.TBK_API_KEY_ID || !env.TBK_API_KEY_SECRET) return json({error:"Webpay no está configurado."},503);
-  const order = await prepareOrder(request, env, url);
-  if (order.response) return order.response;
-  const {items, cleanShipping, subtotal, discount, amount} = order;
-  const buy_order = "PF" + crypto.randomUUID().replaceAll("-", "").slice(0,24);
-  const session_id = crypto.randomUUID();
-  const result = await webpayRequest(env,"","POST",{buy_order,session_id,amount,return_url:url.origin + "/webpay/return"});
-  const destination = new URL(result.url);
-  if (destination.protocol !== "https:" || destination.hostname !== "webpay3gint.transbank.cl" || typeof result.token !== "string") throw new Error("Respuesta Webpay inválida");
-  const record = {buy_order,session_id,amount,subtotal,discount,items,shipping:cleanShipping,status:"pending",createdAt:Date.now()};
-  await env.BUCKET.put("webpay-orders/" + await hash(result.token),JSON.stringify(record),{httpMetadata:{contentType:"application/json"}});
-  return json({url:result.url,token:result.token});
-}
-function paymentPage(title, message, status = 200, giftId = "", label = "WEBPAY · MODO DE PRUEBAS") {
+function paymentPage(title, message, status = 200, giftId = "", label = "FLOW") {
   return html(`<!doctype html><html lang="es-CL"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} · Pasión Fútbol</title><style>body{font-family:Helvetica,Arial,sans-serif;background:#090e18;color:#f5f8ff;margin:0;padding:48px 24px}main{max-width:600px;margin:auto}h1{color:#f5f8ff}a{display:inline-block;padding:14px 20px;background:#ffcb32;color:#171100;text-decoration:none;font-weight:bold;margin-top:20px}p{line-height:1.6}</style><main><strong>Pasión Fútbol · Compra segura</strong><ol aria-label="Pasos de compra" style="display:flex;flex-wrap:wrap;gap:1.5rem;padding-left:1.3rem"><li>Carrito</li><li>Datos de envío</li><li aria-current="step" style="color:#ffcb32;font-weight:bold">Pago</li></ol><p>${label}</p><h1>${title}</h1><p>${message}</p>${giftId ? `<p><a href="/regalo/${giftId}" download>Descargar mi revista oficial de fútbol</a></p>` : ""}<a href="/">Volver a la tienda</a></main></html>`,status);
 }
-async function returnWebpay(request, env, url) {
-  const params = request.method === "POST" ? new URLSearchParams(await request.text()) : url.searchParams;
-  const token = params.get("token_ws");
-  if (!token) return paymentPage("Pago cancelado o expirado","El pago de prueba no se completó. Tu carrito sigue disponible para volver a intentarlo.");
-  if (!/^[a-zA-Z0-9_-]{10,256}$/.test(token)) return paymentPage("Pago no encontrado","No se pudo verificar este pago.",400);
-  const giftId = await hash(token);
-  const key = "webpay-orders/" + giftId;
-  const stored = await env.BUCKET.get(key);
-  if (!stored) return paymentPage("Pago no encontrado","No se pudo verificar este pago.",404);
-  const record = await stored.json();
-  const confirmation = () => paymentPage("Pago de prueba aprobado",`Pedido ${record.buy_order}. Total: $${record.amount.toLocaleString("es-CL")}. Esta operación corresponde al ambiente de pruebas y no realiza un cobro real.`,200,giftId);
-  if (record.status === "paid_test") return confirmation();
-  let result;
-  try {
-    result = await webpayRequest(env,"/" + encodeURIComponent(token));
-    if (result.status === "INITIALIZED" && Date.now() - record.createdAt < 24*60*60*1000) result = await webpayRequest(env,"/" + encodeURIComponent(token),"PUT");
-  } catch {
-    return paymentPage("No pudimos verificar el pago","Recarga esta página para consultar el resultado antes de volver a pagar. Tu pedido no se marcará como pagado hasta recibir la confirmación de Transbank.",503);
-  }
-  const approved = result.status === "AUTHORIZED" && result.response_code === 0 && result.amount === record.amount && result.buy_order === record.buy_order && result.session_id === record.session_id;
-  record.status = approved ? "paid_test" : "not_approved";
-  record.checkedAt = Date.now();
-  await env.BUCKET.put(key,JSON.stringify(record),{httpMetadata:{contentType:"application/json"}});
-  return approved ? confirmation() : paymentPage("Pago no aprobado","Transbank no confirmó el pago de prueba. Tu carrito sigue disponible para volver a intentarlo.");
-}
-
 // ---------- Flow (https://www.flow.cl) ----------
 // Variables de entorno: FLOW_API_KEY, FLOW_SECRET_KEY. FLOW_SANDBOX=1 usa el ambiente de pruebas de Flow.
 const flowHosts = ["www.flow.cl", "sandbox.flow.cl"];
@@ -537,335 +488,130 @@ async function orderDispatchPage(env, url) {
       <p>${data.carrier ? `${escape(data.carrier)} a domicilio · Talla ${escape(data.size)} · Envío: $${escape(data.price?.toLocaleString("es-CL"))}` : "Pedido anterior sin tarifa de envío registrada"}</p></article>`;
   }).join("");
   const next = page.truncated ? `<p><a href="?cursor=${encodeURIComponent(page.cursor)}">Siguiente página</a></p>` : "";
-  return html(`<!doctype html><html lang="es-CL"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pedidos · Pasión Fútbol</title><style>body{background:#100b1f;color:#f5f2fa;font:16px/1.5 system-ui;margin:auto;padding:24px;max-width:900px}a{color:#9af7ff}article{border:1px solid #4c4165;border-radius:12px;padding:12px 18px;margin:14px 0;overflow-wrap:anywhere}h2{font-size:1.2rem}</style><main><a href="/admin">Volver a productos</a><h1>Pedidos y envíos</h1><p>Los pedidos actuales corresponden a Webpay de prueba. Usa los datos solo para practicar la generación manual de etiquetas.</p>${cards || "<p>No hay pagos aprobados en esta página.</p>"}${next}</main></html>`);
+  return html(`<!doctype html><html lang="es-CL"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pedidos · Pasión Fútbol</title><style>body{background:#100b1f;color:#f5f2fa;font:16px/1.5 system-ui;margin:auto;padding:24px;max-width:900px}a{color:#9af7ff}article{border:1px solid #4c4165;border-radius:12px;padding:12px 18px;margin:14px 0;overflow-wrap:anywhere}h2{font-size:1.2rem}</style><main><a href="/admin">Volver a productos</a><h1>Pedidos y envíos</h1><p>Pagos aprobados con Flow. Los pedidos anteriores marcados como prueba vienen del Webpay de pruebas.</p>${cards || "<p>No hay pagos aprobados en esta página.</p>"}${next}</main></html>`);
 }
 
-function isMapsQuotaError(status, payload) {
-  return status === 429 || payload?.error?.status === "RESOURCE_EXHAUSTED";
+const geoapifyBase = "https://api.geoapify.com/v1/geocode";
+
+function isMapsQuotaError(status) {
+  return status === 429;
 }
 
-function getComponent(components, ...types) {
-  if (!Array.isArray(components)) return "";
-  for (const type of types) {
-    const found = components.find(c => Array.isArray(c?.types) && c.types.includes(type));
-    if (found) return String(found.longText || found.shortText || "").trim();
-  }
-  return "";
+const normText = s => String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+// Número escrito al final de la calle ("Av. Providencia 1234"). Geoapify no tiene todos los números de Chile.
+function typedStreetNumber(text) {
+  const first = String(text || "").split(",")[0].trim();
+  const m = first.match(/(?:^|\s)(\d{1,6}[A-Za-z]?)\s*$/);
+  return m ? m[1] : "";
 }
 
-function getShortComponent(components, ...types) {
-  if (!Array.isArray(components)) return "";
-  for (const type of types) {
-    const found = components.find(c => Array.isArray(c?.types) && c.types.includes(type));
-    if (found) return String(found.shortText || found.longText || "").trim();
-  }
-  return "";
+function geoCommune(p) {
+  return String(p.city || p.town || p.village || p.municipality || p.suburb || "").trim();
+}
+
+async function geoapifyRequest(env, endpoint, params) {
+  const target = new URL(`${geoapifyBase}/${endpoint}`);
+  for (const [key, value] of Object.entries(params)) target.searchParams.set(key, value);
+  target.searchParams.set("apiKey", env.GEOAPIFY_API_KEY);
+  const response = await fetch(target.href, {signal: AbortSignal.timeout(8000)});
+  const data = await response.json().catch(() => ({}));
+  return {status: response.status, ok: response.ok, data};
+}
+
+function geoFeatures(data) {
+  return (Array.isArray(data?.features) ? data.features : [])
+    .map(f => f?.properties)
+    .filter(p => p && String(p.country_code || "").toLowerCase() === "cl" && p.street && typeof p.place_id === "string");
 }
 
 async function handleAddressAutocomplete(request, env, url) {
   if (request.method !== "POST") return json({error:"Método no permitido."},405);
   if (request.headers.get("Origin") !== url.origin) return json({error:"Origen inválido."},403);
-  if (!env.GOOGLE_MAPS_API_KEY) return json({error:"Búsqueda de direcciones no configurada.", code:"MAPS_NOT_CONFIGURED"},503);
+  if (!env.GEOAPIFY_API_KEY) return json({error:"Búsqueda de direcciones no configurada.", code:"MAPS_NOT_CONFIGURED"},503);
   const raw = await request.text();
   if (raw.length > 2048) return json({error:"Solicitud demasiado grande."},413);
   let body;
   try { body = JSON.parse(raw); } catch { return json({error:"Solicitud inválida."},400); }
   const input = typeof body?.input === "string" ? body.input.trim() : "";
   const communeName = typeof body?.communeName === "string" ? body.communeName.trim().slice(0,80) : "";
-  const regionName = typeof body?.regionName === "string" ? body.regionName.trim().slice(0,80) : "";
-  const sessionToken = typeof body?.sessionToken === "string" && /^[A-Za-z0-9_-]{8,64}$/.test(body.sessionToken)
-    ? body.sessionToken : "";
-  if (input.length < 2 || input.length > 180) return json({suggestions:[]});
+  if (input.length < 3 || input.length > 180) return json({suggestions:[]});
 
-  const norm = s => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const typed = typedStreetNumber(input);
   let query = input;
-  if (communeName && !norm(input).includes(norm(communeName))) {
-    query += `, ${communeName}`;
-  }
-  if (regionName && !norm(query).includes(norm(regionName.replace(/^Región (?:de |del )?/i, "")))) {
-    query += `, ${regionName}`;
-  }
+  if (communeName && !normText(input).includes(normText(communeName))) query += `, ${communeName}`;
 
-  let upstream;
+  let result;
   try {
-  upstream = await fetch("https://places.googleapis.com/v1/places:autocomplete", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Goog-Api-Key": env.GOOGLE_MAPS_API_KEY,
-      "X-Goog-FieldMask": "suggestions.placePrediction.placeId,suggestions.placePrediction.text.text,suggestions.placePrediction.structuredFormat,suggestions.placePrediction.types",
-      "X-Goog-Maps-Solution-ID": "gmp_mcp_codeassist_v1_aistudio"
-    },
-    body: JSON.stringify({
-      input: query,
-      includedRegionCodes: ["cl"],
-      regionCode: "cl",
-      languageCode: "es",
-      includedPrimaryTypes: ["street_address", "route", "premise", "subpremise"],
-      ...(sessionToken ? { sessionToken } : {})
-    }),
-    signal: AbortSignal.timeout(10000)
-  });
+    result = await geoapifyRequest(env, "autocomplete", {text: query, lang: "es", limit: "6", format: "geojson", filter: "countrycode:cl"});
   } catch (error) {
-    console.error("Autocompletar direcciones falló:", error);
+    console.error("Autocompletar direcciones falló:", error?.message || error);
     return json({error:"No pudimos buscar direcciones en este momento."},502);
   }
-
-  const data = await upstream.json().catch(() => ({}));
-  if (isMapsQuotaError(upstream.status, data)) {
-    return json({error:"Cuota de Google Maps alcanzada.", code:"RESOURCE_EXHAUSTED"},429);
-  }
-  if (!upstream.ok) {
-    console.error("Google Maps autocompletar respondió", upstream.status, JSON.stringify(data).slice(0,300));
+  if (isMapsQuotaError(result.status)) return json({error:"Límite de búsqueda alcanzado.", code:"RESOURCE_EXHAUSTED"},429);
+  if (!result.ok) {
+    console.error("Geoapify autocompletar respondió", result.status, JSON.stringify(result.data).slice(0,300));
     return json({error:"No pudimos buscar direcciones en este momento."},502);
   }
-  const suggestions = (Array.isArray(data?.suggestions) ? data.suggestions : [])
-    .map(item => item?.placePrediction)
-    .filter(p => p && typeof p.placeId === "string")
-    .map(p => ({
-      placeId: p.placeId,
-      text: p.text?.text || "",
-      mainText: p.structuredFormat?.mainText?.text || p.text?.text || "",
-      secondaryText: p.structuredFormat?.secondaryText?.text || "",
-      types: Array.isArray(p.types) ? p.types : []
-    }));
+  const seen = new Set();
+  const suggestions = [];
+  for (const p of geoFeatures(result.data)) {
+    const number = p.housenumber || typed;
+    const mainText = number ? `${p.street} ${number}` : p.street;
+    const place = [geoCommune(p), p.state].filter(Boolean).join(", ");
+    const text = place ? `${mainText}, ${place}` : mainText;
+    if (seen.has(text)) continue;
+    seen.add(text);
+    suggestions.push({placeId:p.place_id, text, mainText, secondaryText:place, types:[p.result_type || "street"]});
+  }
   return json({suggestions});
 }
 
 async function handleAddressVerify(request, env, url) {
   if (request.method !== "POST") return json({error:"Método no permitido."},405);
   if (request.headers.get("Origin") !== url.origin) return json({error:"Origen inválido."},403);
-  if (!env.GOOGLE_MAPS_API_KEY) return json({error:"Verificación de direcciones no configurada.", code:"MAPS_NOT_CONFIGURED"},503);
+  if (!env.GEOAPIFY_API_KEY) return json({error:"Verificación de direcciones no configurada.", code:"MAPS_NOT_CONFIGURED"},503);
   const raw = await request.text();
   if (raw.length > 4096) return json({error:"Solicitud demasiado grande."},413);
   let body;
   try { body = JSON.parse(raw); } catch { return json({error:"Solicitud inválida."},400); }
-
   const input = typeof body?.input === "string" ? body.input.trim().slice(0,200) : "";
   const communeName = typeof body?.communeName === "string" ? body.communeName.trim().slice(0,80) : "";
-  const regionName = typeof body?.regionName === "string" ? body.regionName.trim().slice(0,80) : "";
-  const placeId = typeof body?.placeId === "string" && /^[A-Za-z0-9_-]{10,200}$/.test(body.placeId)
-    ? body.placeId : "";
-  const sessionToken = typeof body?.sessionToken === "string" && /^[A-Za-z0-9_-]{8,64}$/.test(body.sessionToken)
-    ? body.sessionToken : "";
-  if (!placeId && input.length < 3) {
-    return json({status:"not_found", exists:false, message:"Ingresa una calle y número válidos en Chile."});
-  }
+  const placeId = typeof body?.placeId === "string" && /^[A-Za-z0-9_=-]{10,200}$/.test(body.placeId) ? body.placeId : "";
+  if (input.length < 3) return json({status:"not_found", exists:false, message:"Ingresa una calle y número válidos en Chile."});
 
-  let tokenConsumed = false;
-  const inputHasNumber = /\d+/.test(input);
-
-  // 1. If a Place ID was chosen from autocomplete, inspect Place Details (New) first.
-  if (placeId) {
-    const detailsUrl = new URL(`https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}`);
-    detailsUrl.searchParams.set("languageCode", "es");
-    detailsUrl.searchParams.set("regionCode", "cl");
-    if (sessionToken) detailsUrl.searchParams.set("sessionToken", sessionToken);
-
-    const detailsRes = await fetch(detailsUrl.href, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Goog-Api-Key": env.GOOGLE_MAPS_API_KEY,
-        "X-Goog-FieldMask": "id,formattedAddress,shortFormattedAddress,addressComponents,types",
-        "X-Goog-Maps-Solution-ID": "gmp_mcp_codeassist_v1_aistudio"
-      },
-      signal: AbortSignal.timeout(10000)
-    });
-    tokenConsumed = Boolean(sessionToken);
-    const detailsData = await detailsRes.json().catch(() => ({}));
-    if (isMapsQuotaError(detailsRes.status, detailsData)) {
-      return json({error:"Cuota de Google Maps alcanzada.", code:"RESOURCE_EXHAUSTED"},429);
-    }
-    if (detailsRes.ok && detailsData?.id) {
-      const comps = detailsData.addressComponents;
-      const country = getShortComponent(comps, "country");
-      const route = getComponent(comps, "route");
-      const streetNumber = getComponent(comps, "street_number");
-      const commune = getComponent(comps, "locality", "administrative_area_level_3", "sublocality_level_1");
-      const region = getComponent(comps, "administrative_area_level_1");
-      const types = Array.isArray(detailsData.types) ? detailsData.types : [];
-
-      if (country === "CL" && route && streetNumber) {
-        return json({
-          status: "verified",
-          exists: true,
-          hasStreetNumber: true,
-          placeId: detailsData.id,
-          streetLine: `${route} ${streetNumber}`,
-          formattedAddress: detailsData.formattedAddress || detailsData.shortFormattedAddress || `${route} ${streetNumber}`,
-          commune,
-          region,
-          types
-        });
-      }
-      // If prediction was only a street (route) and user didn't type a number, tell user to add number.
-      if (country === "CL" && route && !streetNumber && !inputHasNumber) {
-        return json({
-          status: "route_only",
-          exists: true,
-          hasStreetNumber: false,
-          placeId: detailsData.id,
-          streetLine: route,
-          formattedAddress: detailsData.formattedAddress || route,
-          commune,
-          region,
-          types
-        });
-      }
-    }
-  }
-
-  // 2. Validate full street + number via Address Validation API (supports Chile).
-  const streetQuery = input || "";
-  if (streetQuery.length >= 3) {
-    const valRes = await fetch(`https://addressvalidation.googleapis.com/v1:validateAddress?key=${encodeURIComponent(env.GOOGLE_MAPS_API_KEY)}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Goog-Maps-Solution-ID": "gmp_mcp_codeassist_v1_aistudio"
-      },
-      body: JSON.stringify({
-        address: {
-          regionCode: "CL",
-          ...(regionName ? { administrativeArea: regionName } : {}),
-          ...(communeName ? { locality: communeName } : {}),
-          addressLines: [streetQuery]
-        },
-        ...(!tokenConsumed && sessionToken ? { sessionToken } : {})
-      }),
-      signal: AbortSignal.timeout(10000)
-    });
-    const valData = await valRes.json().catch(() => ({}));
-    if (isMapsQuotaError(valRes.status, valData)) {
-      return json({error:"Cuota de Google Maps alcanzada.", code:"RESOURCE_EXHAUSTED"},429);
-    }
-    if (valRes.ok && valData?.result) {
-      const result = valData.result;
-      const verdict = result.verdict || {};
-      const addr = result.address || {};
-      const postal = addr.postalAddress || {};
-      const comps = Array.isArray(addr.addressComponents) ? addr.addressComponents : [];
-      const comp = type => comps.find(c => c?.componentType === type);
-      const routeComp = comp("route");
-      const numComp = comp("street_number");
-      const communeComp = comp("locality") || comp("administrative_area_level_3") || comp("sublocality_level_1");
-      const regionComp = comp("administrative_area_level_1");
-      const routeText = routeComp?.componentName?.text || "";
-      const numText = numComp?.componentName?.text || "";
-      const gran = verdict.validationGranularity || "";
-      const routeOk = Boolean(routeComp && routeComp.confirmationLevel !== "UNCONFIRMED_AND_SUSPICIOUS");
-      const numOk = Boolean(numComp && numComp.confirmationLevel !== "UNCONFIRMED_AND_SUSPICIOUS");
-
-      if (postal.regionCode === "CL" && routeOk && numOk && ["PREMISE", "SUB_PREMISE", "PREMISE_PROXIMITY", "ROUTE"].includes(gran)) {
-        return json({
-          status: "verified",
-          exists: true,
-          hasStreetNumber: true,
-          placeId: result.geocode?.placeId || "",
-          streetLine: `${routeText} ${numText}`.trim() || postal.addressLines?.[0] || streetQuery,
-          formattedAddress: addr.formattedAddress || streetQuery,
-          commune: communeComp?.componentName?.text || postal.locality || "",
-          region: regionComp?.componentName?.text || postal.administrativeArea || "",
-          granularity: gran
-        });
-      }
-      if (postal.regionCode === "CL" && routeOk && !numText) {
-        return json({
-          status: "route_only",
-          exists: true,
-          hasStreetNumber: false,
-          placeId: result.geocode?.placeId || "",
-          streetLine: routeText || streetQuery,
-          formattedAddress: addr.formattedAddress || routeText,
-          commune: communeComp?.componentName?.text || postal.locality || "",
-          region: regionComp?.componentName?.text || postal.administrativeArea || "",
-          granularity: gran
-        });
-      }
-      if (postal.regionCode === "CL" && routeOk && inputHasNumber && !numOk) {
-        return json({
-          status: "unconfirmed_number",
-          exists: false,
-          hasStreetNumber: false,
-          streetLine: routeText || streetQuery,
-          formattedAddress: addr.formattedAddress || "",
-          commune: communeComp?.componentName?.text || postal.locality || "",
-          region: regionComp?.componentName?.text || postal.administrativeArea || ""
-        });
-      }
-      return json({
-        status: "not_found",
-        exists: false,
-        hasStreetNumber: false
-      });
-    }
-  }
-
-  // 3. Fallback to Geocoding API v4 if Address Validation API is not enabled on the key.
-  const fullQuery = [streetQuery, communeName, regionName, "Chile"].filter(Boolean).join(", ");
-  const geoUrl = new URL(`https://geocode.googleapis.com/v4/geocode/address/${encodeURIComponent(fullQuery)}`);
-  geoUrl.searchParams.set("regionCode", "cl");
-  geoUrl.searchParams.set("languageCode", "es");
-  const geoRes = await fetch(geoUrl.href, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Goog-Api-Key": env.GOOGLE_MAPS_API_KEY,
-      "X-Goog-FieldMask": "results.placeId,results.formattedAddress,results.addressComponents,results.postalAddress,results.granularity,results.types",
-      "X-Goog-Maps-Solution-ID": "gmp_mcp_codeassist_v1_aistudio"
-    },
-    signal: AbortSignal.timeout(10000)
-  });
-  const geoData = await geoRes.json().catch(() => ({}));
-  if (isMapsQuotaError(geoRes.status, geoData)) {
-    return json({error:"Cuota de Google Maps alcanzada.", code:"RESOURCE_EXHAUSTED"},429);
-  }
-  if (!geoRes.ok) {
+  let text = input;
+  if (communeName && !normText(input).includes(normText(communeName))) text += `, ${communeName}`;
+  let result;
+  try {
+    result = await geoapifyRequest(env, "search", {text, lang: "es", limit: "5", format: "geojson", filter: "countrycode:cl"});
+  } catch (error) {
+    console.error("Verificar dirección falló:", error?.message || error);
     return json({error:"No pudimos verificar la dirección en este momento."},502);
   }
-  const top = Array.isArray(geoData?.results) ? geoData.results[0] : null;
-  if (!top) {
-    return json({status:"not_found", exists:false, hasStreetNumber:false});
+  if (isMapsQuotaError(result.status)) return json({error:"Límite de búsqueda alcanzado.", code:"RESOURCE_EXHAUSTED"},429);
+  if (!result.ok) {
+    console.error("Geoapify verificar respondió", result.status, JSON.stringify(result.data).slice(0,300));
+    return json({error:"No pudimos verificar la dirección en este momento."},502);
   }
-  const comps = top.addressComponents;
-  const country = getShortComponent(comps, "country") || top.postalAddress?.regionCode || "";
-  const route = getComponent(comps, "route");
-  const streetNumber = getComponent(comps, "street_number");
-  const commune = getComponent(comps, "locality", "administrative_area_level_3", "sublocality_level_1") || top.postalAddress?.locality || "";
-  const region = getComponent(comps, "administrative_area_level_1") || top.postalAddress?.administrativeArea || "";
-  const types = Array.isArray(top.types) ? top.types : [];
-  const gran = top.granularity || "";
-  const precise = gran === "ROOFTOP" || gran === "RANGE_INTERPOLATED" || types.some(t => ["street_address","premise","subpremise"].includes(t));
+  const found = geoFeatures(result.data);
+  const p = found.find(item => placeId && item.place_id === placeId) || found[0];
+  if (!p) return json({status:"not_found", exists:false, hasStreetNumber:false});
 
-  if (country === "CL" && route && streetNumber && precise) {
-    return json({
-      status: "verified",
-      exists: true,
-      hasStreetNumber: true,
-      placeId: top.placeId || "",
-      streetLine: `${route} ${streetNumber}`,
-      formattedAddress: top.formattedAddress || `${route} ${streetNumber}`,
-      commune,
-      region,
-      granularity: gran,
-      types
-    });
+  const typed = typedStreetNumber(input);
+  const number = p.housenumber || typed;
+  const commune = geoCommune(p);
+  const region = String(p.state || "").trim();
+  const base = {placeId: p.place_id, commune, region, types: [p.result_type || "street"]};
+  if (!number) {
+    return json({...base, status:"route_only", exists:true, hasStreetNumber:false, streetLine:p.street,
+      formattedAddress: [p.street, commune, region].filter(Boolean).join(", ")});
   }
-  if (country === "CL" && route && !streetNumber) {
-    return json({
-      status: inputHasNumber ? "unconfirmed_number" : "route_only",
-      exists: !inputHasNumber,
-      hasStreetNumber: false,
-      placeId: top.placeId || "",
-      streetLine: route,
-      formattedAddress: top.formattedAddress || route,
-      commune,
-      region,
-      granularity: gran
-    });
-  }
-  return json({status:"not_found", exists:false, hasStreetNumber:false});
+  const streetLine = `${p.street} ${number}`;
+  return json({...base, status:"verified", exists:true, hasStreetNumber:true,
+    // Si el número no figura en el mapa, se acepta el que escribió el cliente y la calle sí se confirma.
+    numberConfirmed: Boolean(p.housenumber),
+    streetLine, formattedAddress: [streetLine, commune, region].filter(Boolean).join(", ")});
 }
 
 export default {
@@ -877,8 +623,6 @@ export default {
       if (pathname.startsWith("/regalo/")) return await downloadGift(request,env,pathname);
       if (pathname === "/api/address/autocomplete") return await handleAddressAutocomplete(request,env,url);
       if (pathname === "/api/address/verify") return await handleAddressVerify(request,env,url);
-      if (pathname === "/api/webpay/create") return await createWebpay(request,env,url);
-      if (pathname === "/webpay/return") return await returnWebpay(request,env,url);
       if (pathname === "/api/flow/create") return await createFlow(request,env,url);
       if (pathname === "/flow/confirm") return await confirmFlow(request,env,url);
       if (pathname === "/flow/return") return await returnFlow(request,env,url);

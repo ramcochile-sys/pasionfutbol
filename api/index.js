@@ -8,7 +8,7 @@ import { createHandler } from "../lib/vercel-handler.js";
 const passthrough = [
   "CATALOG_SETUP_CODE", "ADMIN_COOKIE_EMBEDDED",
   "CATALOG_ADMIN_USER", "CATALOG_ADMIN_HASH", "CATALOG_ADMIN_SALT", "CATALOG_ADMIN_USERS",
-  "TBK_API_KEY_ID", "TBK_API_KEY_SECRET", "GOOGLE_MAPS_API_KEY"
+  "FLOW_API_KEY", "FLOW_SECRET_KEY", "FLOW_SANDBOX", "GEOAPIFY_API_KEY"
 ];
 
 let cached;

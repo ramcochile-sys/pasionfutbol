@@ -197,7 +197,7 @@ dialog{background:var(--surface);border-radius:18px;border-color:var(--line);box
 .sf-col a:hover span,.sf-secure a:hover strong{text-decoration:underline;text-underline-offset:.2em}
 .sf-chev{width:1rem;height:1rem;flex:none;color:#fff}
 .sf-pay{margin-top:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #ffffff3d}
-.sf-logos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.75rem}
+.sf-logos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.75rem}
 .sf-logos li{display:flex;align-items:center;justify-content:center;height:3.4rem;padding:.3rem .5rem;border-radius:.6rem;background:#fff}
 .sf-logos img,.sf-logos svg{display:block;width:100%;max-width:7.5rem;height:100%;object-fit:contain}
 .sf-secure{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1.5rem;align-items:center}
@@ -212,7 +212,7 @@ dialog{background:var(--surface);border-radius:18px;border-color:var(--line);box
 .site-footer .hero-credits{margin-top:1rem;color:#c9d4e6;font-size:.8rem}
 .site-footer .hero-credits a{color:#9fdcff}
 @media(max-width:46rem){.sf-secure{grid-template-columns:1fr}.sf-secure-item + .sf-secure-item{padding-left:0;border-left:0;padding-top:.75rem;border-top:1px solid #ffffff3d}}
-@media(max-width:30rem){.sf-logos{grid-template-columns:repeat(2,minmax(0,1fr))}.sf-col + .sf-col{padding-left:.9rem}.sf-cols{grid-template-columns:1fr 1fr}}
+@media(max-width:30rem){.sf-logos{grid-template-columns:repeat(3,minmax(0,1fr))}.sf-col + .sf-col{padding-left:.9rem}.sf-cols{grid-template-columns:1fr 1fr}}
 .shipping-note{font-size:.875rem;line-height:1.45;color:var(--muted)}
 .promo-bar{display:flex;align-items:center;gap:.5rem;padding:0 max(.5rem,calc((100% - 1370px)/2));background:var(--photo);border-top:1px solid var(--line);font-size:.875rem}
 .promo-bar > a{display:grid;place-items:center;flex:none;min-width:44px;min-height:44px;color:var(--blue)}
@@ -345,6 +345,8 @@ dialog{background:var(--surface);border-radius:18px;border-color:var(--line);box
 .checkout-payment-choice{background:#1a263d}
 .checkout-payment-mark{width:1rem;height:1rem;border:2px solid var(--accent);border-radius:50%;background:var(--accent);box-shadow:inset 0 0 0 2px #1a263d;flex:none}
 .checkout-payment-choice{cursor:pointer}
+.flow-methods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;padding:.75rem 0 .25rem}
+.flow-method{display:block;width:100%;height:2.4rem;object-fit:contain;background:#fff;border-radius:.4rem;padding:.25rem .4rem;box-sizing:border-box}
 .checkout-payment-choice + .checkout-payment-choice{border-top:1px solid var(--line)}
 .checkout-payment-choice input:not(:checked) ~ .checkout-payment-mark{background:transparent!important}
 .checkout-payment-choice:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:-2px}
@@ -681,7 +683,7 @@ body>footer p{color:#edf4ff}
 </head>
 <body>
 <div id="gmp-quota-banner" class="gmp-quota-banner" role="alert" hidden>
-  <span>Google Maps Platform quota reached. If you are the app owner, visit <a href="https://developers.google.com/maps/ai/ai-studio?utm_campaign=gmp_mcp_codeassist_v1_aistudio#quota_exceeded_errors" target="_blank" rel="noopener noreferrer">maps developer site</a> for instructions to update your account.</span>
+  <span>La búsqueda de direcciones alcanzó su límite temporal. Escribe tu calle, número y comuna manualmente.</span>
 </div>
   <svg width="0" height="0" aria-hidden="true" style="position:absolute"><symbol id="checkout-icon-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c3 2 6 3 9 4v5c0 5-3 8-9 11-6-3-9-6-9-11V6c3-1 6-2 9-4Z"/><rect x="9" y="10" width="6" height="5" rx="1"/><path d="M10 10V8a2 2 0 0 1 4 0v2"/></g></symbol><symbol id="checkout-icon-heart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21S2 15 2 8a5 5 0 0 1 10-2 5 5 0 0 1 10 2c0 7-10 13-10 13Z"/></g></symbol><symbol id="checkout-icon-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 6 0 0 1 16 0v2Z"/></g></symbol><symbol id="checkout-icon-email" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 8L22 6"/></g></symbol><symbol id="checkout-icon-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 3 5-2 2a13 13 0 0 0 5 5l2-2 5 3v3c0 2-3 3-6 2A19 19 0 0 1 3 9c-1-3 0-6 2-6Z"/></g></symbol><symbol id="checkout-icon-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9c0 5-7 12-7 12S5 14 5 9a7 7 0 1 1 14 0Z"/><circle cx="12" cy="9" r="2"/></g></symbol><symbol id="checkout-icon-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 5v10l-9 5-9-5V7Zm0 20V12m-9-5 9 5 9-5M7 4l10 6"/></g></symbol><symbol id="checkout-icon-trash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/></g></symbol><symbol id="checkout-icon-cart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h3l3 12h11l3-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></g></symbol>
 <symbol id="checkout-icon-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 4v3"/></g></symbol>
@@ -793,9 +795,9 @@ body>footer p{color:#edf4ff}
 
     <section id="privacidad" aria-labelledby="privacidad-title">
       <h2 id="privacidad-title">Política de privacidad</h2>
-      <p>El navegador guarda la selección del carrito para que puedas retomarla. Al iniciar una transacción de prueba, el sitio registra los datos de contacto y envío ingresados junto con el pedido para procesar la prueba.</p>
-      <p>La búsqueda y verificación de direcciones utiliza Google Maps Platform, sujeto a las <a href="https://maps.google.com/help/terms_maps/?utm_campaign=gmp_mcp_codeassist_v1_aistudio" target="_blank" rel="noopener noreferrer">Condiciones de Servicio de Google Maps</a> y la <a href="https://policies.google.com/privacy?utm_campaign=gmp_mcp_codeassist_v1_aistudio" target="_blank" rel="noopener noreferrer">Política de Privacidad de Google</a>.</p>
-      <p>Los datos de pago se ingresan directamente en Webpay de Transbank o en Flow, según el método que elijas. Usa datos ficticios en el formulario de envío.</p>
+      <p>El navegador guarda la selección del carrito para que puedas retomarla. Al iniciar un pago, el sitio registra los datos de contacto y envío ingresados junto con el pedido para procesar el pedido.</p>
+      <p>La búsqueda y verificación de direcciones se hace con el servicio Geoapify, que recibe solo el texto de la dirección que escribes, sin tu nombre ni otros datos.</p>
+      <p>Los datos de pago se ingresan directamente en Flow, nunca en nuestra tienda.</p>
     </section>
 
     <section id="contacto" aria-labelledby="contacto-title">
@@ -810,13 +812,13 @@ body>footer p{color:#edf4ff}
       <h3>¿Cuánto cuesta el envío?</h3>
       <p>Es gratis en toda la Región Metropolitana. Para el resto del país el costo se calcula según el peso del pedido y la comuna de destino, y lo ves antes de pagar.</p>
       <h3>¿Qué medios de pago aceptan?</h3>
-      <p>Puedes pagar con Webpay Plus (tarjetas de crédito y débito, Transbank) o con Flow. Los datos de pago se ingresan directamente en la plataforma que elijas, nunca en nuestra tienda.</p>
+      <p>Pagas con Flow y puedes usar Webpay (crédito y débito, también en 3, 6 y 12 cuotas), Khipu, ETPay, Banca.me, Onepay y Mach. Los datos de pago se ingresan directamente en Flow, nunca en nuestra tienda.</p>
       <h3>¿Hay descuentos por cantidad?</h3>
       <p>Sí: 20% al llevar dos camisetas y 25% al llevar tres o más. Se aplica automáticamente al subtotal de camisetas, sin incluir el envío.</p>
       <h3>¿Puedo cambiar o devolver mi compra?</h3>
       <p>Sí. Tienes garantía legal y derecho a retracto en compras en línea. Revisa las condiciones en <a href="#cambios">Cambios y devoluciones</a>.</p>
       <h3>¿Mi compra es segura?</h3>
-      <p>Sí. El sitio usa conexión cifrada SSL (https) y el pago se procesa en Webpay o Flow.</p>
+      <p>Sí. El sitio usa conexión cifrada SSL (https) y el pago se procesa en Flow.</p>
       <h3>¿Cómo consulto por mi pedido?</h3>
       <p>Escríbenos por <a href="https://wa.me/56934974132">WhatsApp</a> o a <a href="mailto:ramcochile@gmail.com">ramcochile@gmail.com</a>.</p>
     </section>
@@ -848,12 +850,7 @@ body>footer p{color:#edf4ff}
       </div>
       <div class="sf-pay">
         <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20M6 15h3"/></svg>Medios de pago</h2>
-        <ul class="sf-logos" aria-label="Medios de pago aceptados">
-          <li><img src="/webpay.svg" alt="Webpay Plus" width="120" height="40"></li>
-          <li><svg viewBox="0 0 120 40" role="img" aria-label="Visa"><text x="60" y="29" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="30" font-weight="900" font-style="italic" fill="#1a1f71" letter-spacing="-1">VISA</text></svg></li>
-          <li><svg viewBox="0 0 120 40" role="img" aria-label="Mastercard"><circle cx="49" cy="16" r="12" fill="#eb001b"/><circle cx="71" cy="16" r="12" fill="#f79e1b"/><path d="M60 6.4a12 12 0 0 1 0 19.2 12 12 0 0 1 0-19.2Z" fill="#ff5f00"/><text x="60" y="37" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="7.5" fill="#222">mastercard</text></svg></li>
-          <li><svg viewBox="0 0 120 40" role="img" aria-label="Flow"><text x="60" y="29" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="28" font-weight="800" fill="#0b3b8f" letter-spacing="-1">flow</text></svg></li>
-        </ul>
+        <ul class="sf-logos" aria-label="Medios de pago aceptados con Flow"><li><img src="/pay-webpay.png" alt="Webpay" loading="lazy"></li><li><img src="/pay-webpay-3c.png" alt="Webpay 3 cuotas" loading="lazy"></li><li><img src="/pay-webpay-6c.png" alt="Webpay 6 cuotas" loading="lazy"></li><li><img src="/pay-webpay-12c.png" alt="Webpay 12 cuotas" loading="lazy"></li><li><img src="/pay-khipu.png" alt="Khipu" loading="lazy"></li><li><img src="/pay-etpay.png" alt="ETPay" loading="lazy"></li><li><img src="/pay-bancame.png" alt="Banca.me" loading="lazy"></li><li><img src="/pay-onepay.png" alt="Onepay" loading="lazy"></li><li><img src="/pay-mach.png" alt="Mach" loading="lazy"></li></ul>
       </div>
       <div class="sf-secure">
         <a class="sf-secure-item" href="#privacidad">
@@ -925,7 +922,7 @@ body>footer p{color:#edf4ff}
 </dialog>
 <dialog id="shipping" aria-labelledby="shipping-title">
   <div id="gmp-quota-banner-shipping" class="gmp-quota-banner" role="alert" hidden>
-    <span>Google Maps Platform quota reached. If you are the app owner, visit <a href="https://developers.google.com/maps/ai/ai-studio?utm_campaign=gmp_mcp_codeassist_v1_aistudio#quota_exceeded_errors" target="_blank" rel="noopener noreferrer">maps developer site</a> for instructions to update your account.</span>
+    <span>La búsqueda de direcciones alcanzó su límite temporal. Escribe tu calle, número y comuna manualmente.</span>
   </div>
   <div class="checkout-banner">
     <div class="checkout-brand">
@@ -1009,22 +1006,17 @@ body>footer p{color:#edf4ff}
           <section class="checkout-card" aria-labelledby="checkout-method-title">
             <h3 class="checkout-section-title" id="checkout-method-title"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-card"/></svg>Método de pago</h3>
             <label class="checkout-method checkout-payment-choice">
-              <input class="visually-hidden" type="radio" name="payment" value="webpay" checked>
+              <input class="visually-hidden" type="radio" name="payment" value="flow" checked>
               <span class="checkout-payment-mark" aria-hidden="true"></span>
-              <div><strong>Webpay Plus</strong><span>Tarjetas de crédito y débito · Transbank</span></div>
-              <div class="payment-logos" aria-hidden="true"><img class="provider-logo" src="/webpay.svg" alt=""><img class="provider-logo" src="/transbank.svg" alt=""></div>
+              <div><strong>Flow</strong><span>Paga con Webpay, Khipu, ETPay, Banca.me, Onepay o Mach</span></div>
             </label>
-            <label class="checkout-method checkout-payment-choice">
-              <input class="visually-hidden" type="radio" name="payment" value="flow">
-              <span class="checkout-payment-mark" aria-hidden="true"></span>
-              <div><strong>Flow</strong><span>Tarjetas, transferencia y otros medios · Flow.cl</span></div>
-            </label>
+            <div class="flow-methods" aria-label="Medios de pago disponibles en Flow"><img class="flow-method" src="/pay-webpay.png" alt="Webpay" loading="lazy"><img class="flow-method" src="/pay-webpay-3c.png" alt="Webpay 3 cuotas" loading="lazy"><img class="flow-method" src="/pay-webpay-6c.png" alt="Webpay 6 cuotas" loading="lazy"><img class="flow-method" src="/pay-webpay-12c.png" alt="Webpay 12 cuotas" loading="lazy"><img class="flow-method" src="/pay-khipu.png" alt="Khipu" loading="lazy"><img class="flow-method" src="/pay-etpay.png" alt="ETPay" loading="lazy"><img class="flow-method" src="/pay-bancame.png" alt="Banca.me" loading="lazy"><img class="flow-method" src="/pay-onepay.png" alt="Onepay" loading="lazy"><img class="flow-method" src="/pay-mach.png" alt="Mach" loading="lazy"></div>
           </section>
         </div>
       </div>
       <aside class="checkout-assurance" aria-label="Información de la compra">
         <div class="checkout-card checkout-protection">
-          <div class="checkout-method"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-lock"/></svg><div><strong>Tu compra está protegida</strong><span>Transbank procesa el pago y protege los datos de tu tarjeta.</span></div></div>
+          <div class="checkout-method"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-lock"/></svg><div><strong>Tu compra está protegida</strong><span>Flow procesa el pago y protege tus datos.</span></div></div>
         </div>
         <div class="checkout-card">
           <div class="checkout-method"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-truck"/></svg><div><strong>Envíos a todo Chile</strong><span id="checkout-assurance-eta">Plazo de entrega: 1 a 8 días hábiles según destino.</span></div></div>
@@ -1035,10 +1027,9 @@ body>footer p{color:#edf4ff}
       </aside>
       <div class="checkout-actions" id="checkout-actions" hidden>
         <button class="button" type="submit" disabled><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-lock"/></svg><span id="checkout-submit-label">Confirmar pedido</span><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-next"/></svg></button>
-        <p class="checkout-secure"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-lock"/></svg><span id="checkout-secure-text">Pago procesado en Webpay</span></p>
+        <p class="checkout-secure"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-lock"/></svg><span id="checkout-secure-text">Pago procesado en Flow</span></p>
         <button class="button-outline" type="button" id="checkout-edit"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-pencil"/></svg>Editar tus datos</button>
       </div>
-      <p class="checkout-test checkout-wide" id="checkout-test-note">Webpay en modo de pruebas. Usa datos ficticios. No se realizará un cobro real.</p>
     </form>
     <p id="receipt" role="status" tabindex="-1" hidden></p>
   </div>
@@ -1766,7 +1757,7 @@ async function verifyCurrentAddress({placeId = "", inputOverride = ""} = {}) {
     if (res.status === 429 || data?.code === "RESOURCE_EXHAUSTED") {
       window.dispatchEvent(new CustomEvent("gmp-quota-exceeded"));
       verifiedAddressState = {status: "unavailable", input: rawInput, formattedAddress: "", placeId: ""};
-      setAddressStatus("warn", "No pudimos consultar Google Maps por límite temporal de cuota. Revisa tu dirección manualmente.");
+      setAddressStatus("warn", "No pudimos consultar el buscador de direcciones por un límite temporal. Revisa tu dirección manualmente.");
       return true;
     }
     if (res.status === 503 && data?.code === "MAPS_NOT_CONFIGURED") {
@@ -1796,7 +1787,9 @@ async function verifyCurrentAddress({placeId = "", inputOverride = ""} = {}) {
         );
         return false;
       }
-      setAddressStatus("verified", `Dirección verificada: ${escapeHtml(data.formattedAddress)}`);
+      setAddressStatus(data.numberConfirmed === false ? "warn" : "verified", data.numberConfirmed === false
+        ? `Calle encontrada: ${escapeHtml(data.formattedAddress)}. Revisa que el número sea correcto.`
+        : `Dirección verificada: ${escapeHtml(data.formattedAddress)}`);
       return true;
     }
     if (data.status === "route_only") {
@@ -1967,13 +1960,6 @@ byId("back-to-cart").addEventListener("click", () => {
   showOrder();
 });
 
-byId("shipping-form").addEventListener("change", event => {
-  if (event.target.name !== "payment") return;
-  const flow = event.target.value === "flow";
-  byId("checkout-secure-text").textContent = flow ? "Pago procesado en Flow" : "Pago procesado en Webpay";
-  byId("checkout-test-note").hidden = flow;
-});
-
 byId("shipping-form").addEventListener("submit", async event => {
   event.preventDefault();
   if (!selection.length) return;
@@ -1987,9 +1973,7 @@ byId("shipping-form").addEventListener("submit", async event => {
   if (button.disabled || !quote) return;
   form.dataset.submitting = "true";
   button.disabled = true;
-  const method = form.querySelector('input[name="payment"]:checked')?.value === "flow" ? "flow" : "webpay";
-  const gateway = method === "flow" ? "Flow" : "Webpay";
-  byId("checkout-submit-label").textContent = "Conectando con " + gateway + "…";
+  byId("checkout-submit-label").textContent = "Conectando con Flow…";
   const receipt = byId("receipt");
   receipt.hidden = true;
   try {
@@ -1997,32 +1981,20 @@ byId("shipping-form").addEventListener("submit", async event => {
     if (verifiedAddressState.status === "verified" && verifiedAddressState.formattedAddress) {
       shippingData.verifiedAddress = verifiedAddressState.formattedAddress;
     }
-    const response = await fetch(method === "flow" ? "/api/flow/create" : "/api/webpay/create", {
+    const response = await fetch("/api/flow/create", {
       method:"POST", headers:{"Content-Type":"application/json"},
       body:JSON.stringify({items:selection,shipping:shippingData,quotedTotal:selectionPricing().amount + quote.price})
     });
     const result = await response.json();
     if (!response.ok) throw new Error(result.error || "No pudimos iniciar el pago. Intenta nuevamente.");
     const destination = new URL(result.url);
-    const allowedHosts = method === "flow" ? ["www.flow.cl", "sandbox.flow.cl"] : ["webpay3gint.transbank.cl"];
+    const allowedHosts = ["www.flow.cl", "sandbox.flow.cl"];
     if (destination.protocol !== "https:" || !allowedHosts.includes(destination.hostname)) throw new Error("No pudimos validar el destino de pago.");
-    if (method === "flow") {
-      // Flow ya devuelve la URL con ?token=…; se redirige con GET.
-      location.assign(destination.href);
-      return;
-    }
-    const redirect = document.createElement("form");
-    redirect.method = "POST";
-    redirect.action = destination.href;
-    const token = document.createElement("input");
-    token.type = "hidden";
-    token.name = "token_ws";
-    token.value = result.token;
-    redirect.append(token);
-    document.body.append(redirect);
-    redirect.submit();
+    // Flow devuelve la URL con ?token=…; se redirige con GET.
+    location.assign(destination.href);
+    return;
   } catch (error) {
-    receipt.textContent = error.message || "No pudimos conectar con " + gateway + ". Intenta nuevamente.";
+    receipt.textContent = error.message || "No pudimos conectar con Flow. Intenta nuevamente.";
     receipt.hidden = false;
     receipt.focus();
     delete form.dataset.submitting;
