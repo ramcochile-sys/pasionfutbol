@@ -1,18 +1,22 @@
-import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 
+const types = {
+  svg: "image/svg+xml",
+  jpg: "image/jpeg",
+  webp: "image/webp",
+  png: "image/png",
+  woff2: "font/woff2"
+};
+
+// Las imágenes y fuentes se publican como archivos estáticos en public/
+// (las sirve la CDN de Vercel, rápido y con caché). El servidor solo
+// recuerda su nombre y tipo, sin cargar el contenido en memoria.
+await mkdir("public", { recursive: true });
 const files = {};
 for (const name of await readdir("storefront")) {
   if (/\.(webp|jpg|svg|png|woff2)$/.test(name)) {
-    files["/" + name] = {
-      type: {
-        svg: "image/svg+xml",
-        jpg: "image/jpeg",
-        webp: "image/webp",
-        png: "image/png",
-        woff2: "font/woff2"
-      }[name.split(".").at(-1)],
-      data: await readFile("storefront/" + name, "base64")
-    };
+    files["/" + name] = { type: types[name.split(".").at(-1)], data: "" };
+    await copyFile("storefront/" + name, "public/" + name);
   }
 }
 
