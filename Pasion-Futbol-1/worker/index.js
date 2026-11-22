@@ -404,6 +404,8 @@ async function createFlow(request, env, url) {
       email:cleanShipping.email, urlConfirmation:url.origin + "/flow/confirm", urlReturn:url.origin + "/flow/return"
     },"POST");
   } catch (error) {
+    // 1620: Flow rechaza correos que no existen o no reciben mensajes (ej. cuentas Gmail inventadas).
+    if (error?.flowCode === 1620) return json({error:"Flow no aceptó ese correo electrónico. Usa un correo real que revises: ahí te llegará el comprobante de pago."},400);
     if (error?.flowCode !== undefined) return json({error:`No pudimos iniciar el pago con Flow (código ${error.flowCode}). Intenta de nuevo o escríbenos por WhatsApp.`},502);
     throw error;
   }
