@@ -384,7 +384,9 @@ async function flowRequest(env, path, params, method = "GET") {
   const data = await response.json().catch(() => ({}));
   if (!response.ok) {
     console.error("Flow respondió", response.status, JSON.stringify(data).slice(0,300));
-    throw new Error("Flow no disponible");
+    const failure = new Error("Flow no disponible");
+    failure.flowCode = Number.isInteger(data?.code) ? data.code : response.status;
+    throw failure;
   }
   return data;
 }
@@ -393,12 +395,18 @@ async function createFlow(request, env, url) {
   const order = await prepareOrder(request, env, url);
   if (order.response) return order.response;
   const {items, cleanShipping, subtotal, discount, amount} = order;
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanShipping.email)) return json({error:"Revisa tu correo electrónico."},400);
+  if (cleanShipping.email.length > 254 || !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/.test(cleanShipping.email)) return json({error:"Revisa tu correo electrónico: usa solo letras, números, puntos, guiones y el signo +."},400);
   const buy_order = "PF" + crypto.randomUUID().replaceAll("-", "").slice(0,24);
-  const result = await flowRequest(env,"/payment/create",{
-    commerceOrder:buy_order, subject:"Pedido Pasión Fútbol " + buy_order, currency:"CLP", amount:String(amount),
-    email:cleanShipping.email, urlConfirmation:url.origin + "/flow/confirm", urlReturn:url.origin + "/flow/return"
-  },"POST");
+  let result;
+  try {
+    result = await flowRequest(env,"/payment/create",{
+      commerceOrder:buy_order, subject:"Pedido Pasión Fútbol " + buy_order, currency:"CLP", amount:String(amount),
+      email:cleanShipping.email, urlConfirmation:url.origin + "/flow/confirm", urlReturn:url.origin + "/flow/return"
+    },"POST");
+  } catch (error) {
+    if (error?.flowCode !== undefined) return json({error:`No pudimos iniciar el pago con Flow (código ${error.flowCode}). Intenta de nuevo o escríbenos por WhatsApp.`},502);
+    throw error;
+  }
   let destination;
   try { destination = new URL(result.url); } catch { throw new Error("Respuesta Flow inválida"); }
   if (destination.protocol !== "https:" || !flowHosts.includes(destination.hostname) || typeof result.token !== "string" || !/^[A-Za-z0-9_-]{10,256}$/.test(result.token)) throw new Error("Respuesta Flow inválida");
@@ -535,7 +543,7 @@ async function handleAddressAutocomplete(request, env, url) {
   try { body = JSON.parse(raw); } catch { return json({error:"Solicitud inválida."},400); }
   const input = typeof body?.input === "string" ? body.input.trim() : "";
   const communeName = typeof body?.communeName === "string" ? body.communeName.trim().slice(0,80) : "";
-  if (input.length < 3 || input.length > 180) return json({suggestions:[]});
+  if (input.length < 5 || input.length > 180) return json({suggestions:[]});
 
   const typed = typedStreetNumber(input);
   let query = input;

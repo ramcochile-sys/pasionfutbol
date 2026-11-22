@@ -946,7 +946,7 @@ body>footer p{color:#edf4ff}
             <h3 class="checkout-section-title" id="shipping-data-title"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-truck"/></svg>Datos de envío</h3>
             <fieldset class="checkout-fields" aria-label="Contacto y dirección">
               <label class="checkout-wide"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-user"/></svg><span class="visually-hidden">Nombre completo</span><input name="name" autocomplete="shipping name" placeholder="Nombre completo *" required></label>
-              <label class="checkout-wide"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-email"/></svg><span class="visually-hidden">Correo electrónico</span><input name="email" type="email" autocomplete="shipping email" placeholder="Correo electrónico *" required></label>
+              <label class="checkout-wide"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-email"/></svg><span class="visually-hidden">Correo electrónico</span><input name="email" type="email" autocomplete="shipping email" placeholder="Correo electrónico *" pattern="[A-Za-z0-9._%+\-]+@[A-Za-z0-9\-]+(\.[A-Za-z0-9\-]+)*\.[A-Za-z]{2,}" title="Usa solo letras, números, puntos, guiones y el signo +. Ejemplo: nombre@gmail.com" maxlength="254" required></label>
               <label class="checkout-wide"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-phone"/></svg><span class="visually-hidden">Teléfono de contacto</span><input name="phone" type="tel" autocomplete="shipping tel" placeholder="Teléfono de contacto *" required></label>
               <label><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-pin"/></svg><span class="visually-hidden">Región</span><select name="region" required><option value="">Región *</option></select></label>
               <label><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-pin"/></svg><span class="visually-hidden">Comuna</span><select name="commune" required disabled><option value="">Comuna *</option></select></label>
@@ -1679,7 +1679,7 @@ function renderSuggestions(list) {
   lockSuggestions();
 }
 
-/* La lista se muestra desde las primeras letras, pero solo se puede elegir una dirección desde los 4 caracteres. */
+/* Las sugerencias se piden desde el 5.º carácter. */
 function lockSuggestions() {
   const locked = addressInput.value.trim().length < 4;
   addressSuggestions.classList.toggle("is-locked", locked);
@@ -1820,12 +1820,11 @@ addressInput.addEventListener("input", () => {
   invalidateAddressVerification();
   clearTimeout(addressDebounce);
   const q = addressInput.value.trim();
-  if (q.length < 2) {
+  if (q.length < 5) {
     hideSuggestions();
     return;
   }
-  lockSuggestions();
-  addressDebounce = setTimeout(() => fetchAddressSuggestions(q), 260);
+  addressDebounce = setTimeout(() => fetchAddressSuggestions(q), 350);
 });
 
 addressInput.addEventListener("keydown", event => {
