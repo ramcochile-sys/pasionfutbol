@@ -35,9 +35,15 @@ async function isAdmin(request, env) {
     .bind(await hash(token), Math.floor(Date.now() / 1000)).first());
 }
 
-function redirectAdmin(token, maxAge) {
+// SameSite=Strict por defecto (protege contra CSRF). Solo si el panel se muestra
+// dentro de un iframe (p. ej. una vista previa) define ADMIN_COOKIE_EMBEDDED=1.
+function sessionCookieSameSite(env) {
+  return env?.ADMIN_COOKIE_EMBEDDED === "1" ? "SameSite=None; Partitioned" : "SameSite=Strict";
+}
+
+function redirectAdmin(token, maxAge, env) {
   return new Response(null, {status:303, headers:{...noStore, Location:"/admin",
-    "Set-Cookie":`${sessionCookie}=${token}; Path=/; Max-Age=${maxAge}; Secure; HttpOnly; SameSite=None; Partitioned`}});
+    "Set-Cookie":`${sessionCookie}=${token}; Path=/; Max-Age=${maxAge}; Secure; HttpOnly; ${sessionCookieSameSite(env)}`}});
 }
 
 function loginError(message, status) {
@@ -50,7 +56,7 @@ function escapeAttr(value) {
   })[char]);
 }
 
-function setupPage(errorMessage = "", status = 200) {
+function setupPage(errorMessage = "", status = 200, showForm = true) {
   const alert = errorMessage ? `<p role="alert">${escapeAttr(errorMessage)}</p>` : "";
   return html(`<!doctype html>
 <html lang="es-CL">
@@ -82,7 +88,8 @@ a{color:#b9c6da}
 <h1>Configurar acceso admin</h1>
 <p>Crea hasta 2 cuentas de administrador para comenzar. Una vez guardadas, esta pantalla se bloqueará.</p>
 ${alert}
-<form method="post" action="/admin/setup">
+${showForm ? `<form method="post" action="/admin/setup">
+<label>Código de configuración <input type="password" name="setup_code" autocomplete="off" maxlength="256" required></label>
 <fieldset>
 <legend>Administrador 1</legend>
 <label>Usuario <input name="username1" autocomplete="off" autocapitalize="none" maxlength="100" required></label>
@@ -94,7 +101,7 @@ ${alert}
 <label>Contraseña <input type="password" name="password2" autocomplete="new-password" maxlength="256"></label>
 </fieldset>
 <button type="submit">Guardar administradores y entrar</button>
-</form>
+</form>` : ""}
 <p style="margin-top:14px"><a href="/">Volver a la tienda</a></p>
 </main>
 </body>
@@ -153,13 +160,25 @@ function constantTimeHexMatch(a, b) {
   return mismatched === 0;
 }
 
+const setupDisabledMessage = "La configuración inicial está deshabilitada. Define el secreto CATALOG_SETUP_CODE (mínimo 12 caracteres) o las variables CATALOG_ADMIN_USER, CATALOG_ADMIN_HASH y CATALOG_ADMIN_SALT.";
+
+function setupEnabled(env) {
+  return typeof env.CATALOG_SETUP_CODE === "string" && env.CATALOG_SETUP_CODE.length >= 12;
+}
+
 async function setupAdmins(request, env, url) {
   if (request.method !== "POST") return new Response(null, {status:303, headers:{Location:"/admin"}});
   if (request.headers.get("Origin") !== url.origin) return json({error:"Origen inválido."}, 403);
   if (getEnvAdmins(env).length || (await getConfiguredAdmins(env)).length) {
     return json({error:"La configuración inicial ya fue completada."}, 403);
   }
+  if (!setupEnabled(env)) return setupPage(setupDisabledMessage, 503, false);
+  if (Number(request.headers.get("Content-Length")) > 4096) return setupPage("Solicitud inválida.", 413);
   const form = await request.formData();
+  const providedCode = typeof form.get("setup_code") === "string" ? form.get("setup_code") : "";
+  if (!constantTimeHexMatch(await hash(providedCode), await hash(env.CATALOG_SETUP_CODE))) {
+    return setupPage("Código de configuración incorrecto.", 403);
+  }
   const u1 = typeof form.get("username1") === "string" ? form.get("username1").trim() : "";
   const p1 = typeof form.get("password1") === "string" ? form.get("password1") : "";
   const u2 = typeof form.get("username2") === "string" ? form.get("username2").trim() : "";
@@ -188,7 +207,7 @@ async function setupAdmins(request, env, url) {
   const token = hex(crypto.getRandomValues(new Uint8Array(32)));
   stmts.push(env.DB.prepare("INSERT INTO catalog_admin_sessions (token_hash, expires_at) VALUES (?,?)").bind(await hash(token), now + sessionDuration));
   await env.DB.batch(stmts);
-  return redirectAdmin(token, sessionDuration);
+  return redirectAdmin(token, sessionDuration, env);
 }
 
 async function authenticate(request, env) {
@@ -225,7 +244,7 @@ async function authenticate(request, env) {
     env.DB.prepare("DELETE FROM catalog_admin_sessions WHERE expires_at <= ?").bind(now),
     env.DB.prepare("INSERT INTO catalog_admin_sessions (token_hash, expires_at) VALUES (?,?)").bind(await hash(token),now + sessionDuration)
   ]);
-  return redirectAdmin(token,sessionDuration);
+  return redirectAdmin(token,sessionDuration,env);
 }
 
 async function catalog(env) {
@@ -800,7 +819,7 @@ export default {
         }
         const token = sessionToken(request);
         if (token) await env.DB.prepare("DELETE FROM catalog_admin_sessions WHERE token_hash = ?").bind(await hash(token)).run();
-        return redirectAdmin("",0);
+        return redirectAdmin("",0,env);
       }
       if (pathname === "/admin/pedidos") {
         if (request.method !== "GET") return json({error:"Método no permitido."},405);
@@ -810,7 +829,8 @@ export default {
       if (pathname === "/admin" || pathname === "/admin/") {
         if (await isAdmin(request,env)) return html(admin);
         const admins = await getConfiguredAdmins(env);
-        return admins.length ? html(login) : setupPage();
+        if (admins.length) return html(login);
+        return setupEnabled(env) ? setupPage() : setupPage(setupDisabledMessage, 503, false);
       }
       if (match) {
         if (!await isAdmin(request,env)) return json({error:"Acceso restringido."},403);
