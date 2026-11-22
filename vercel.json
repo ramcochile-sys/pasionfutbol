@@ -1,5 +1,5 @@
 {
-  "buildCommand": "node scripts/build.mjs",
+  "buildCommand": "node scripts/build.mjs && mkdir -p public && touch public/.keep",
   "rewrites": [
     {
       "source": "/(.*)",
