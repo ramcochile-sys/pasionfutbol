@@ -183,6 +183,7 @@ const env = {
   FLOW_SECRET_KEY: process.env.FLOW_SECRET_KEY || "",
   FLOW_SANDBOX: process.env.FLOW_SANDBOX || "",
   GEOAPIFY_API_KEY: process.env.GEOAPIFY_API_KEY || "",
+  META_PIXEL_ID: process.env.META_PIXEL_ID || "",
   TBK_API_KEY_SECRET: process.env.TBK_API_KEY_SECRET || "",
   GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY || process.env.VITE_GOOGLE_MAPS_API_KEY || process.env.MAPS_API_KEY || ""
 };

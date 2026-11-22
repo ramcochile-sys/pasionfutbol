@@ -1085,6 +1085,19 @@ body>footer p{color:#edf4ff}
 <script>
 const products = /* CATALOG_DATA */ [];
 const productById = new Map(products.map(item => [item.id, item]));
+/* Meta Pixel: si el pixel no está cargado (bloqueador, sin ID), no pasa nada. */
+function track(event, data) {
+  try { window.fbq?.("track", event, {currency: "CLP", content_type: "product", ...data}); } catch {}
+}
+function cartTrackingData() {
+  const lines = selection.map(line => ({line, item: productById.get(line.id)})).filter(entry => entry.item);
+  return {
+    value: selectionPricing().amount,
+    content_ids: [...new Set(lines.map(({item}) => item.id))],
+    contents: lines.map(({line, item}) => ({id: item.id, quantity: line.quantity, item_price: item.price})),
+    num_items: lines.reduce((sum, {line}) => sum + line.quantity, 0)
+  };
+}
 /* ORDER_PRICING */
 const escapeHtml = value => value.replace(/[&<>"']/g, char =>
   ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[char]);
@@ -1422,6 +1435,7 @@ function updateGallery(gallery, index) {
 }
 
 function openDetail(item) {
+  track("ViewContent", {content_ids: [item.id], content_name: item.name, value: item.price});
   const images = item.gallery || [item.image];
   const labels = item.galleryLabels || galleryLabels;
   const team = teamForProduct(item);
@@ -1582,6 +1596,7 @@ document.addEventListener("submit", event => {
   if (existing) existing.quantity += quantity;
   else selection.push({id:item.id, size, quantity});
   saveSelection();
+  track("AddToCart", {content_ids: [item.id], content_name: item.name, contents: [{id: item.id, quantity, item_price: item.price}], value: item.price * quantity});
   detail.close();
   if (event.submitter?.value === "buy-now") {
     showOrder();
@@ -2106,6 +2121,7 @@ byId("checkout-edit").addEventListener("click", () => {
 });
 
 byId("pay").addEventListener("click", () => {
+  track("InitiateCheckout", cartTrackingData());
   order.close();
   byId("shipping-form").hidden = false;
   byId("receipt").hidden = true;
@@ -2150,8 +2166,9 @@ byId("shipping-form").addEventListener("submit", async event => {
     const destination = new URL(result.url);
     const allowedHosts = ["www.flow.cl", "sandbox.flow.cl"];
     if (destination.protocol !== "https:" || !allowedHosts.includes(destination.hostname)) throw new Error("No pudimos validar el destino de pago.");
-    // Flow devuelve la URL con ?token=…; se redirige con GET.
-    location.assign(destination.href);
+    track("AddPaymentInfo", {...cartTrackingData(), value: selectionPricing().amount + quote.price});
+    // Flow devuelve la URL con ?token=…; se redirige con GET. Pausa breve para que el pixel alcance a enviar.
+    setTimeout(() => location.assign(destination.href), window.fbq ? 300 : 0);
     return;
   } catch (error) {
     const message = error.message || "No pudimos conectar con Flow. Intenta nuevamente.";

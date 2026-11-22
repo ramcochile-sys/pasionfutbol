@@ -8,6 +8,18 @@ const productRoute = /^\/api\/admin\/products(?:\/([a-z0-9-]+))?$/;
 const maxPhotoSize = 4 * 1024 * 1024;
 const sizeOptions = ["4", "6", "8", "10", "12", "14", "16", "XS", "S", "M", "L", "XL", "XXL"];
 
+// ---------- Meta Pixel ----------
+// El ID viene de la variable de entorno META_PIXEL_ID (Vercel). Sin ella, no se carga el pixel.
+let metaPixelId = "";
+function metaPixelSnippet() {
+  if (!/^\d{8,20}$/.test(metaPixelId)) return "";
+  return `<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${metaPixelId}');fbq('track','PageView');</script><noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=${metaPixelId}&ev=PageView&noscript=1"></noscript>`;
+}
+function withMetaPixel(page) {
+  const snippet = metaPixelSnippet();
+  return snippet ? page.replace("</head>", () => snippet + "</head>") : page;
+}
+
 function html(body, status = 200) {
   return new Response(body, {status, headers:{...noStore, "Content-Type":"text/html; charset=utf-8"}});
 }
@@ -361,8 +373,20 @@ async function prepareOrder(request, env, url) {
   if (!Number.isSafeInteger(amount) || amount < 1 || amount > 99999999) return {response:json({error:"Total inválido."},400)};
   return {items, cleanShipping, subtotal, discount, amount};
 }
-function paymentPage(title, message, status = 200, giftId = "", label = "FLOW") {
-  return html(`<!doctype html><html lang="es-CL"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} · Pasión Fútbol</title><style>body{font-family:Helvetica,Arial,sans-serif;background:#090e18;color:#f5f8ff;margin:0;padding:48px 24px}main{max-width:600px;margin:auto}h1{color:#f5f8ff}a{display:inline-block;padding:14px 20px;background:#ffcb32;color:#171100;text-decoration:none;font-weight:bold;margin-top:20px}p{line-height:1.6}</style><main><strong>Pasión Fútbol · Compra segura</strong><ol aria-label="Pasos de compra" style="display:flex;flex-wrap:wrap;gap:1.5rem;padding-left:1.3rem"><li>Carrito</li><li>Datos de envío</li><li aria-current="step" style="color:#ffcb32;font-weight:bold">Pago</li></ol><p>${label}</p><h1>${title}</h1><p>${message}</p>${giftId ? `<p><a href="/regalo/${giftId}" download>Descargar mi revista oficial de fútbol</a></p>` : ""}<a href="/">Volver a la tienda</a></main></html>`,status);
+function purchaseEvent(record) {
+  if (!metaPixelSnippet() || !record) return "";
+  const data = {
+    value: record.amount, currency: "CLP", content_type: "product",
+    content_ids: [...new Set(record.items.map(item => item.id))],
+    contents: record.items.map(item => ({id: item.id, quantity: item.quantity, item_price: item.price})),
+    num_items: record.items.reduce((sum, item) => sum + item.quantity, 0)
+  };
+  const order = String(record.buy_order);
+  // Se envía una sola vez por pedido, aunque el cliente recargue la página.
+  return `<script>try{var k="pf-purchase-"+${JSON.stringify(order).replaceAll("<", "\\u003c")};if(!localStorage.getItem(k)){fbq("track","Purchase",${JSON.stringify(data).replaceAll("<", "\\u003c")},{eventID:${JSON.stringify(order).replaceAll("<", "\\u003c")}});localStorage.setItem(k,"1")}}catch(e){}</script>`;
+}
+function paymentPage(title, message, status = 200, giftId = "", label = "FLOW", record = null) {
+  return html(`<!doctype html><html lang="es-CL"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">${metaPixelSnippet()}${purchaseEvent(record)}<title>${title} · Pasión Fútbol</title><style>body{font-family:Helvetica,Arial,sans-serif;background:#090e18;color:#f5f8ff;margin:0;padding:48px 24px}main{max-width:600px;margin:auto}h1{color:#f5f8ff}a{display:inline-block;padding:14px 20px;background:#ffcb32;color:#171100;text-decoration:none;font-weight:bold;margin-top:20px}p{line-height:1.6}</style><main><strong>Pasión Fútbol · Compra segura</strong><ol aria-label="Pasos de compra" style="display:flex;flex-wrap:wrap;gap:1.5rem;padding-left:1.3rem"><li>Carrito</li><li>Datos de envío</li><li aria-current="step" style="color:#ffcb32;font-weight:bold">Pago</li></ol><p>${label}</p><h1>${title}</h1><p>${message}</p>${giftId ? `<p><a href="/regalo/${giftId}" download>Descargar mi revista oficial de fútbol</a></p>` : ""}<a href="/">Volver a la tienda</a></main></html>`,status);
 }
 // ---------- Flow (https://www.flow.cl) ----------
 // Variables de entorno: FLOW_API_KEY, FLOW_SECRET_KEY. FLOW_SANDBOX=1 usa el ambiente de pruebas de Flow.
@@ -461,7 +485,7 @@ async function returnFlow(request, env, url) {
   catch { return paymentPage("No pudimos verificar el pago","Recarga esta página para consultar el resultado antes de volver a pagar. Tu pedido no se marcará como pagado hasta recibir la confirmación de Flow.",200,"","FLOW"); }
   if (result.notFound) return paymentPage("Pago no encontrado","No se pudo verificar este pago.",404,"","FLOW");
   const {record, giftId} = result;
-  if (result.approved) return paymentPage("Pago aprobado",`Pedido ${record.buy_order}. Total: $${record.amount.toLocaleString("es-CL")}. Gracias por tu compra, te contactaremos para coordinar el envío.`,200,giftId,"FLOW");
+  if (result.approved) return paymentPage("Pago aprobado",`Pedido ${record.buy_order}. Total: $${record.amount.toLocaleString("es-CL")}. Gracias por tu compra, te contactaremos para coordinar el envío.`,200,giftId,"FLOW",record);
   if (result.pending) return paymentPage("Pago pendiente","Flow aún no confirma tu pago. Si ya pagaste, recarga esta página en unos minutos.",200,"","FLOW");
   return paymentPage("Pago no aprobado","Flow no confirmó el pago. Tu carrito sigue disponible para volver a intentarlo.",200,"","FLOW");
 }
@@ -628,6 +652,7 @@ async function handleAddressVerify(request, env, url) {
 
 export default {
   async fetch(request, env) {
+    metaPixelId = String(env.META_PIXEL_ID || "").trim();
     const url = new URL(request.url);
     const {pathname} = url;
     const match = pathname.match(productRoute);
@@ -671,7 +696,7 @@ export default {
             : {...item, name};
         });
         const serialized = JSON.stringify(storefrontProducts).replaceAll("<", "\\u003c");
-        const page = html(storefront.replace("/* CATALOG_DATA */ []", () => serialized));
+        const page = html(withMetaPixel(storefront.replace("/* CATALOG_DATA */ []", () => serialized)));
         // La tienda es igual para todos: la CDN de Vercel la guarda 60 s y la renueva en segundo plano,
         // así casi ninguna visita espera a la base de datos. Los cambios del admin se ven en ~1 minuto.
         page.headers.set("Cache-Control", "public, max-age=0, must-revalidate");
