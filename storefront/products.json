@@ -1,0 +1,1477 @@
+[
+  {
+    "id": "real-madrid",
+    "name": "Polera Real Madrid · Mbappé 10",
+    "price": 22990,
+    "description": "Polera blanca del Real Madrid con insignia bordada y dorsal MBAPPÉ 10.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/mbappe-hd-frente.png",
+    "legacyImages": ["/mbappe-estudio-frente.png", "/mbappe-10-frente.png", "/real-madrid.webp", "/media/e03a29cc-2798-49cc-aad1-5280457ad62a"],
+    "position": 10,
+    "categories": [
+      "Poleras"
+    ]
+  },
+  {
+    "id": "real-madrid-mbappe-ninos",
+    "name": "Polera Real Madrid · Mbappé 10 · Niños",
+    "price": 22990,
+    "description": "Polera blanca del Real Madrid con insignia bordada y dorsal MBAPPÉ 10.",
+    "sizes": ["8"],
+    "image": "/mbappe-hd-frente.png",
+    "legacyImages": ["/mbappe-estudio-frente.png", "/mbappe-10-frente.png", "/mbappe-frente.png"],
+    "position": 10,
+    "categories": ["Niños", "Poleras"]
+  },
+  {
+    "id": "barcelona",
+    "name": "Camiseta Barcelona",
+    "price": 22990,
+    "description": "Camiseta azulgrana a rayas verticales, inspirada en Barcelona.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/barcelona.webp",
+    "position": 20,
+    "categories": [
+      "Poleras"
+    ]
+  },
+  {
+    "id": "villarreal",
+    "name": "Camiseta Villarreal",
+    "price": 22990,
+    "description": "Camiseta amarilla con cuello oscuro, inspirada en Villarreal.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/villarreal.webp",
+    "position": 30,
+    "categories": [
+      "Poleras"
+    ]
+  },
+  {
+    "id": "liverpool",
+    "name": "Polera Liverpool · Wirtz 7",
+    "price": 22990,
+    "description": "Polera roja de Liverpool con insignia bordada y dorsal WIRTZ 7.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/liverpool-hd-frente.png",
+    "legacyImages": ["/liverpool-estudio-frente.png", "/liverpool-wirtz-frente.png", "/liverpool.webp", "/media/b3a9040a-c0c3-4531-98aa-ffdbff35de86"],
+    "position": 40,
+    "categories": [
+      "Poleras"
+    ]
+  },
+  {
+    "id": "manchester-city",
+    "name": "Camiseta Manchester City",
+    "price": 22990,
+    "description": "Camiseta celeste con detalles blancos, inspirada en Manchester City.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/manchester-city.webp",
+    "position": 50,
+    "categories": [
+      "Poleras"
+    ]
+  },
+  {
+    "id": "arsenal",
+    "name": "Camiseta Arsenal",
+    "price": 22990,
+    "description": "Camiseta roja con mangas blancas, inspirada en Arsenal.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/arsenal.webp",
+    "position": 60,
+    "categories": [
+      "Poleras"
+    ]
+  },
+  {
+    "id": "juventus",
+    "name": "Camiseta Juventus",
+    "price": 22990,
+    "description": "Camiseta blanca y negra a rayas, inspirada en Juventus.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/juventus.webp",
+    "position": 70,
+    "categories": [
+      "Poleras"
+    ]
+  },
+  {
+    "id": "ac-milan",
+    "name": "Camiseta AC Milan",
+    "price": 22990,
+    "description": "Camiseta rojinegra a rayas, inspirada en AC Milan.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/ac-milan.webp",
+    "position": 80,
+    "categories": [
+      "Poleras"
+    ]
+  },
+  {
+    "id": "inter-milan",
+    "name": "Camiseta Inter de Milán",
+    "price": 22990,
+    "description": "Camiseta azul y negra a rayas, inspirada en Inter de Milán.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/inter-milan.webp",
+    "position": 90,
+    "categories": [
+      "Poleras"
+    ]
+  },
+  {
+    "id": "local",
+    "name": "Polera Local",
+    "price": 22990,
+    "description": "Polera verde con ribetes claros y corte deportivo.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/local.webp",
+    "position": 100,
+    "categories": [
+      "Poleras"
+    ]
+  },
+  {
+    "id": "entrada",
+    "name": "Chaqueta Prepartido",
+    "price": 44990,
+    "description": "Chaqueta marfil de entrenamiento con cuello verde.",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "image": "/entrada.webp",
+    "position": 110,
+    "categories": [
+      "Entrenamiento"
+    ]
+  },
+  {
+    "id": "seleccion-chile-adultos",
+    "name": "Camiseta Chile · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Chile, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-chile.svg",
+    "position": 120,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-chile-ninos",
+    "name": "Camiseta Chile · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Chile, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-chile.svg",
+    "position": 130,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-argentina-adultos",
+    "name": "Camiseta Argentina · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Argentina, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-argentina.svg",
+    "position": 140,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-argentina-ninos",
+    "name": "Camiseta Argentina · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Argentina, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-argentina.svg",
+    "position": 150,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-brasil-adultos",
+    "name": "Camiseta Brasil · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Brasil, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-brasil.svg",
+    "position": 160,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-brasil-ninos",
+    "name": "Camiseta Brasil · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Brasil, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-brasil.svg",
+    "position": 170,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-uruguay-adultos",
+    "name": "Camiseta Uruguay · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Uruguay, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-uruguay.svg",
+    "position": 180,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-uruguay-ninos",
+    "name": "Camiseta Uruguay · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Uruguay, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-uruguay.svg",
+    "position": 190,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-colombia-adultos",
+    "name": "Camiseta Colombia · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Colombia, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-colombia.svg",
+    "position": 200,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-colombia-ninos",
+    "name": "Camiseta Colombia · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Colombia, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-colombia.svg",
+    "position": 210,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-peru-adultos",
+    "name": "Camiseta Perú · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Perú, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-peru.svg",
+    "position": 220,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-peru-ninos",
+    "name": "Camiseta Perú · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Perú, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-peru.svg",
+    "position": 230,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-mexico-adultos",
+    "name": "Camiseta México · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de México, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-mexico.svg",
+    "position": 240,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-mexico-ninos",
+    "name": "Camiseta México · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de México, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-mexico.svg",
+    "position": 250,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-ecuador-adultos",
+    "name": "Camiseta Ecuador · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Ecuador, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-ecuador.svg",
+    "position": 260,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-ecuador-ninos",
+    "name": "Camiseta Ecuador · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Ecuador, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-ecuador.svg",
+    "position": 270,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-espana-adultos",
+    "name": "Camiseta España · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de España, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-espana.svg",
+    "position": 280,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-espana-ninos",
+    "name": "Camiseta España · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de España, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-espana.svg",
+    "position": 290,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-francia-adultos",
+    "name": "Camiseta Francia · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Francia, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-francia.svg",
+    "position": 300,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-francia-ninos",
+    "name": "Camiseta Francia · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Francia, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-francia.svg",
+    "position": 310,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-italia-adultos",
+    "name": "Camiseta Italia · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Italia, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-italia.svg",
+    "position": 320,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-italia-ninos",
+    "name": "Camiseta Italia · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Italia, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-italia.svg",
+    "position": 330,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-alemania-adultos",
+    "name": "Camiseta Alemania · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Alemania, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-alemania.svg",
+    "position": 340,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-alemania-ninos",
+    "name": "Camiseta Alemania · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Alemania, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-alemania.svg",
+    "position": 350,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-portugal-adultos",
+    "name": "Camiseta Portugal · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Portugal, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-portugal.svg",
+    "position": 360,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-portugal-ninos",
+    "name": "Camiseta Portugal · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Portugal, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-portugal.svg",
+    "position": 370,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-paises-bajos-adultos",
+    "name": "Camiseta Países Bajos · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Países Bajos, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-paises-bajos.svg",
+    "position": 380,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-paises-bajos-ninos",
+    "name": "Camiseta Países Bajos · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Países Bajos, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-paises-bajos.svg",
+    "position": 390,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-inglaterra-adultos",
+    "name": "Camiseta Inglaterra · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Inglaterra, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-inglaterra.svg",
+    "position": 400,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-inglaterra-ninos",
+    "name": "Camiseta Inglaterra · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Inglaterra, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-inglaterra.svg",
+    "position": 410,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-japon-adultos",
+    "name": "Camiseta Japón · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Japón, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-japon.svg",
+    "position": 420,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-japon-ninos",
+    "name": "Camiseta Japón · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Japón, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-japon.svg",
+    "position": 430,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-corea-del-sur-adultos",
+    "name": "Camiseta Corea del Sur · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Corea del Sur, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-corea-del-sur.svg",
+    "position": 440,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-corea-del-sur-ninos",
+    "name": "Camiseta Corea del Sur · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Corea del Sur, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-corea-del-sur.svg",
+    "position": 450,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-marruecos-adultos",
+    "name": "Camiseta Marruecos · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Marruecos, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-marruecos.svg",
+    "position": 460,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-marruecos-ninos",
+    "name": "Camiseta Marruecos · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Marruecos, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-marruecos.svg",
+    "position": 470,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-senegal-adultos",
+    "name": "Camiseta Senegal · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Senegal, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-senegal.svg",
+    "position": 480,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-senegal-ninos",
+    "name": "Camiseta Senegal · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Senegal, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-senegal.svg",
+    "position": 490,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-ghana-adultos",
+    "name": "Camiseta Ghana · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Ghana, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-ghana.svg",
+    "position": 500,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-ghana-ninos",
+    "name": "Camiseta Ghana · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Ghana, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-ghana.svg",
+    "position": 510,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-croacia-adultos",
+    "name": "Camiseta Croacia · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Croacia, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-croacia.svg",
+    "position": 520,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-croacia-ninos",
+    "name": "Camiseta Croacia · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Croacia, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-croacia.svg",
+    "position": 530,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-belgica-adultos",
+    "name": "Camiseta Bélgica · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Bélgica, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-belgica.svg",
+    "position": 540,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-belgica-ninos",
+    "name": "Camiseta Bélgica · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Bélgica, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-belgica.svg",
+    "position": 550,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-suiza-adultos",
+    "name": "Camiseta Suiza · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Suiza, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-suiza.svg",
+    "position": 560,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-suiza-ninos",
+    "name": "Camiseta Suiza · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Suiza, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-suiza.svg",
+    "position": 570,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-dinamarca-adultos",
+    "name": "Camiseta Dinamarca · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Dinamarca, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-dinamarca.svg",
+    "position": 580,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-dinamarca-ninos",
+    "name": "Camiseta Dinamarca · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Dinamarca, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-dinamarca.svg",
+    "position": 590,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-suecia-adultos",
+    "name": "Camiseta Suecia · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Suecia, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-suecia.svg",
+    "position": 600,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-suecia-ninos",
+    "name": "Camiseta Suecia · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Suecia, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-suecia.svg",
+    "position": 610,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-noruega-adultos",
+    "name": "Camiseta Noruega · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Noruega, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-noruega.svg",
+    "position": 620,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-noruega-ninos",
+    "name": "Camiseta Noruega · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Noruega, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-noruega.svg",
+    "position": 630,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-escocia-adultos",
+    "name": "Camiseta Escocia · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Escocia, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-escocia.svg",
+    "position": 640,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-escocia-ninos",
+    "name": "Camiseta Escocia · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Escocia, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-escocia.svg",
+    "position": 650,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-irlanda-adultos",
+    "name": "Camiseta Irlanda · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Irlanda, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-irlanda.svg",
+    "position": 660,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-irlanda-ninos",
+    "name": "Camiseta Irlanda · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Irlanda, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-irlanda.svg",
+    "position": 670,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-australia-adultos",
+    "name": "Camiseta Australia · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Australia, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-australia.svg",
+    "position": 680,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-australia-ninos",
+    "name": "Camiseta Australia · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Australia, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-australia.svg",
+    "position": 690,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-canada-adultos",
+    "name": "Camiseta Canadá · Adultos",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Canadá, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/seleccion-canada.svg",
+    "position": 700,
+    "categories": [
+      "Adultos",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {
+    "id": "seleccion-canada-ninos",
+    "name": "Camiseta Canadá · Niños",
+    "price": 22990,
+    "description": "Camiseta de demostración inspirada en los colores de Canadá, para niños. Imagen ilustrativa; precio y tallas referenciales.",
+    "sizes": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "image": "/seleccion-canada.svg",
+    "position": 710,
+    "categories": [
+      "Niños",
+      "Poleras",
+      "Selecciones"
+    ]
+  },
+  {"id": "boca-paredes-rayas", "name": "Camiseta Boca Juniors a rayas · Paredes 5", "price": 22990, "description": "Blanca con rayas azules.", "sizes": ["S", "M", "L", "XL"], "image": "/boca-paredes-rayas-frente.webp", "position": 11, "categories": ["Poleras", "Adultos"], "gallery": ["/boca-paredes-rayas-frente.webp", "/boca-paredes-rayas-espalda.webp", "/boca-paredes-rayas-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
+  {"id": "city-haaland-negra", "name": "Camiseta Manchester City negra · Haaland 9", "price": 22990, "description": "Negra con detalles amarillos.", "sizes": ["S", "M", "L", "XL"], "image": "/city-haaland-negra-frente.webp", "position": 12, "categories": ["Poleras", "Adultos"], "gallery": ["/city-haaland-negra-frente.webp", "/city-haaland-negra-espalda.webp", "/city-haaland-negra-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
+  {"id": "barcelona-retro-cuello", "name": "Camiseta Barcelona retro azulgrana", "price": 22990, "description": "Azulgrana con cuello blanco.", "sizes": ["S", "M", "L", "XL"], "image": "/barcelona-retro-cuello-frente.webp", "position": 13, "categories": ["Poleras", "Adultos"], "gallery": ["/barcelona-retro-cuello-frente.webp", "/barcelona-retro-cuello-espalda.webp", "/barcelona-retro-cuello-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
+  {"id": "inter-miami-messi-gris", "name": "Camiseta Inter Miami gris · Messi 10", "price": 22990, "description": "Gris con detalles rosados y turquesa.", "sizes": ["S", "M", "L", "XL"], "image": "/inter-miami-messi-gris-frente.webp", "position": 14, "categories": ["Poleras", "Adultos"], "gallery": ["/inter-miami-messi-gris-frente.webp", "/inter-miami-messi-gris-espalda.webp", "/inter-miami-messi-gris-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
+  {"id": "barcelona-pedri-turquesa", "name": "Camiseta Barcelona turquesa · Pedri 8", "price": 22990, "description": "Turquesa con cuello azul.", "sizes": ["S", "M", "L", "XL"], "image": "/barcelona-pedri-turquesa-frente.webp", "position": 15, "categories": ["Poleras", "Adultos"], "gallery": ["/barcelona-pedri-turquesa-frente.webp", "/barcelona-pedri-turquesa-espalda.webp", "/barcelona-pedri-turquesa-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
+  {"id": "barcelona-pedri-cruz", "name": "Camiseta Barcelona crema · Pedri 8", "price": 22990, "description": "Crema con cruz roja.", "sizes": ["S", "M", "L", "XL"], "image": "/barcelona-pedri-cruz-frente.webp", "position": 16, "categories": ["Poleras", "Adultos"], "gallery": ["/barcelona-pedri-cruz-frente.webp", "/barcelona-pedri-cruz-espalda.webp", "/barcelona-pedri-cruz-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
+  {"id": "jamaica-marley-negra", "name": "Camiseta Jamaica negra · Marley 10", "price": 22990, "description": "Negra con motivos rojos, verdes y amarillos.", "sizes": ["S", "M", "L", "XL"], "image": "/jamaica-marley-negra-frente.webp", "position": 17, "categories": ["Poleras", "Adultos"], "gallery": ["/jamaica-marley-negra-frente.webp", "/jamaica-marley-negra-espalda.webp", "/jamaica-marley-negra-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
+  {"id": "arsenal-odegaard-roja", "name": "Camiseta Arsenal roja · Ødegaard 8", "price": 22990, "description": "Roja con mangas blancas.", "sizes": ["S", "M", "L", "XL"], "image": "/arsenal-odegaard-roja-frente.webp", "position": 18, "categories": ["Poleras", "Adultos"], "gallery": ["/arsenal-odegaard-roja-frente.webp", "/arsenal-odegaard-roja-espalda.webp", "/arsenal-odegaard-roja-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
+  {"id": "barcelona-rodrigo-azul", "name": "Camiseta Barcelona azul oscuro · Rodrigo 16", "price": 22990, "description": "Azul oscuro con detalles amarillos.", "sizes": ["S", "M", "L", "XL"], "image": "/barcelona-rodrigo-azul-frente.webp", "position": 19, "categories": ["Poleras", "Adultos"], "gallery": ["/barcelona-rodrigo-azul-frente.webp", "/barcelona-rodrigo-azul-espalda.webp", "/barcelona-rodrigo-azul-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
+  {"id": "arsenal-saka-azul", "name": "Camiseta Arsenal azul · Saka 7", "price": 22990, "description": "Azul con detalles amarillos y rojos.", "sizes": ["S", "M", "L", "XL"], "image": "/arsenal-saka-azul-frente.webp", "position": 20, "categories": ["Poleras", "Adultos"], "gallery": ["/arsenal-saka-azul-frente.webp", "/arsenal-saka-azul-espalda.webp", "/arsenal-saka-azul-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
+  {"id": "chelsea-caicedo-azul", "name": "Camiseta Chelsea azul · Caicedo 25", "price": 22990, "description": "Azul con detalles amarillos.", "sizes": ["S", "M", "L", "XL"], "image": "/chelsea-caicedo-azul-frente.webp", "position": 21, "categories": ["Poleras", "Adultos"], "gallery": ["/chelsea-caicedo-azul-frente.webp", "/chelsea-caicedo-azul-espalda.webp", "/chelsea-caicedo-azul-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
+  {"id": "city-haaland-celeste-g5", "name": "Camiseta Manchester City celeste · Haaland 9", "price": 22990, "description": "Celeste con detalles blancos e insignia termosellada.", "sizes": ["S", "M", "L", "XL"], "image": "/city-haaland-celeste-g5-frente.webp", "position": 22, "categories": ["Poleras", "Adultos"], "gallery": ["/city-haaland-celeste-g5-frente.webp", "/city-haaland-celeste-g5-espalda.webp", "/city-haaland-celeste-g5-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
+  {"id": "bayern-kane-blanca", "name": "Camiseta Bayern Múnich blanca · Kane 9", "price": 22990, "description": "Blanca con cuello azul y vivos rojos.", "sizes": ["S", "M", "L", "XL"], "image": "/bayern-kane-blanca-frente.webp", "position": 23, "categories": ["Poleras", "Adultos"], "gallery": ["/bayern-kane-blanca-frente.webp", "/bayern-kane-blanca-espalda.webp", "/bayern-kane-blanca-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
+  {"id": "chelsea-palmer-negra", "name": "Camiseta Chelsea negra · Palmer 10", "price": 22990, "description": "Negra con detalles amarillos.", "sizes": ["S", "M", "L", "XL"], "image": "/chelsea-palmer-negra-frente.webp", "position": 24, "categories": ["Poleras", "Adultos"], "gallery": ["/chelsea-palmer-negra-frente.webp", "/chelsea-palmer-negra-espalda.webp", "/chelsea-palmer-negra-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
+  {"id": "arsenal-saka-ninos", "name": "Camiseta Arsenal roja · Saka 7 · Niños", "price": 22990, "description": "Roja con mangas blancas e insignia bordada.", "sizes": ["10", "12", "14"], "image": "/arsenal-saka-ninos-frente.webp", "position": 25, "categories": ["Poleras", "Niños"], "gallery": ["/arsenal-saka-ninos-frente.webp", "/arsenal-saka-ninos-espalda.webp", "/arsenal-saka-ninos-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [0, 1, 2]},
+  {"id": "city-haaland-celeste-bordada", "name": "Camiseta Manchester City celeste bordada · Haaland 9", "price": 22990, "description": "Celeste con detalles blancos e insignia bordada.", "sizes": ["S", "M"], "image": "/city-haaland-celeste-bordada-frente.webp", "position": 26, "categories": ["Poleras", "Adultos"], "gallery": ["/city-haaland-celeste-bordada-frente.webp", "/city-haaland-celeste-bordada-espalda.webp", "/city-haaland-celeste-bordada-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [0, 1, 2]}
+]

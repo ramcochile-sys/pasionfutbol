@@ -1,0 +1,22 @@
+# Dependencias
+node_modules/
+
+# Secretos (se versiona solo .env.example)
+.env
+.env.*
+!.env.example
+.dev.vars
+*.pem
+*.key
+
+# Build
+dist/
+
+# Temporales / comprimidos
+*.zip
+
+# Logs y sistema
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
