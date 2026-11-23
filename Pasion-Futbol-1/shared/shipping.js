@@ -45,13 +45,15 @@ function shippingQuote(items, region, commune, carrierId = "blue-express") {
   if (!packedGrams || size < 0 || ["05104", "05201", "10402"].includes(commune)) return null;
   const zone = region === "13" ? "metropolitan"
     : ["01", "02", "11", "12", "15"].includes(region) ? "extreme" : "center";
+  // El producto de prueba de pagos no se despacha: envío gratis en todo Chile.
+  const onlyTest = items.every(item => (item.categories || []).includes("prueba"));
   return {
     carrierId: carrier.id,
     carrier: carrier.name,
     eta: carrier.eta,
     size: ["XS", "S", "M", "L"][size],
     // Región Metropolitana: envío gratis. Resto del país: tarifa de la empresa según zona y tramo de peso.
-    price: region === "13" ? 0 : carrier.rates[zone][size],
+    price: region === "13" || onlyTest ? 0 : carrier.rates[zone][size],
     weightGrams: packedGrams,
     commune: area.communes[commune],
     region: area.name

@@ -1,0 +1,185 @@
+<style>
+@font-face{font-family:"PF Display";src:url("/barlow-condensed-latin-800-normal.woff2") format("woff2");font-weight:800;font-display:swap}
+@font-face{font-family:"PF Text";src:url("/dm-sans-latin-wght-normal.woff2") format("woff2");font-weight:100 1000;font-display:swap}
+.rv{--night:#06112a;--night-2:#0d1f45;--ink:#0b1b36;--soft:#5b6b86;--rule:#d9dfea;--paper:#ffffff;--tint:#eef3fb;--gold:#ffcb32;--home:#ffcb32;--draw:#c6cedb;--away:#2f7fd9;--grass:#1d8a55}
+.rv .page{position:relative;width:148mm;height:210mm;overflow:hidden;background:var(--paper);color:var(--ink);font:400 9.6pt/1.45 "PF Text",system-ui,sans-serif;box-sizing:border-box;padding:15mm 13mm 14mm}
+.rv .page *{box-sizing:border-box}
+.rv h1,.rv h2,.rv h3,.rv .display{font-family:"PF Display","Arial Narrow",sans-serif;font-weight:800;line-height:.92;margin:0;letter-spacing:.005em}
+.rv h2{font-size:34pt;text-transform:uppercase}
+.rv h3{font-size:14pt;text-transform:uppercase;margin:6mm 0 2.5mm}
+.rv p{margin:0 0 2.6mm}
+.rv .lede{font-size:11pt;line-height:1.4;color:var(--ink);margin:3mm 0 5mm;max-width:100mm}
+.rv .folio{position:absolute;left:13mm;right:13mm;bottom:7mm;display:flex;justify-content:space-between;font-size:7pt;color:var(--soft)}
+.rv .folio b{font-family:"PF Display",sans-serif;font-size:9pt;color:var(--ink)}
+.rv .section-mark{position:absolute;top:0;right:13mm;width:9mm;height:15mm;background:var(--gold)}
+/* Portada */
+.rv .cover{background:radial-gradient(120% 80% at 50% 18%,#173a7a 0%,var(--night-2) 38%,var(--night) 72%);color:#fff;padding:13mm}
+.rv .pitch{position:absolute;inset:0;pointer-events:none}
+.rv .cover .mast{position:relative;display:flex;align-items:center;gap:3mm}
+.rv .cover .mast img{width:13mm;height:13mm;border-radius:50%;object-fit:cover;object-position:50% 30%;box-shadow:0 0 0 1.2mm rgba(255,203,50,.25)}
+.rv .cover .mast span{font-family:"PF Display",sans-serif;font-size:19pt;font-style:italic;text-transform:uppercase;letter-spacing:.01em}
+.rv .cover .mast strong{color:var(--gold)}
+.rv .cover .issue{position:relative;margin-top:2.5mm;font-size:8pt;color:#b9c8e6}
+.rv .cover h1{position:relative;margin-top:34mm;font-size:50pt;text-transform:uppercase;line-height:.9}
+.rv .cover h1 span{display:block;color:var(--gold);font-size:150pt;line-height:.78;margin-left:-1.5mm}
+.rv .cover .kicker{position:relative;margin-top:5mm;font-size:11.5pt;line-height:1.35;max-width:92mm;color:#e6edfa}
+.rv .cover .teasers{position:absolute;left:13mm;right:13mm;bottom:13mm;display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;border-top:1px solid rgba(255,255,255,.25);padding-top:4mm}
+.rv .cover .teasers b{display:block;font-family:"PF Display",sans-serif;font-size:15pt;text-transform:uppercase;color:#fff;line-height:1}
+.rv .cover .teasers small{display:block;margin-top:1.2mm;font-size:7.4pt;color:#b9c8e6;line-height:1.35}
+/* Índice */
+.rv .toc{list-style:none;margin:8mm 0 0;padding:0}
+.rv .toc li{display:grid;grid-template-columns:12mm 1fr;gap:3mm;padding:3.2mm 0;border-top:1px solid var(--rule)}
+.rv .toc li b{font-family:"PF Display",sans-serif;font-size:20pt;line-height:1;color:var(--away)}
+.rv .toc li strong{display:block;font-family:"PF Display",sans-serif;font-size:14pt;text-transform:uppercase;line-height:1}
+.rv .toc li span{font-size:8.4pt;color:var(--soft)}
+.rv .note{margin-top:6mm;padding:4mm;background:var(--tint);border-left:1.2mm solid var(--gold);font-size:8.4pt}
+/* Chile */
+.rv .feature{background:var(--night);color:#fff}
+.rv .feature .lede,.rv .feature p{color:#dfe7f6}
+.rv .feature .big35{position:absolute;right:-6mm;bottom:22mm;font-family:"PF Display",sans-serif;font-size:250pt;line-height:.8;color:rgba(255,203,50,.13)}
+.rv .feature .agenda{position:absolute;left:13mm;right:13mm;bottom:17mm;border-top:1px solid rgba(255,255,255,.25);padding-top:3mm}
+.rv .feature .agenda div{display:flex;justify-content:space-between;gap:4mm;font-size:9pt}
+.rv .feature .agenda b{font-family:"PF Display",sans-serif;font-size:13pt;text-transform:uppercase}
+.rv .feature .folio,.rv .feature .folio b{color:#9fb0cf}
+/* Resultados */
+.rv table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.rv .results td{padding:.85mm 0;border-bottom:1px solid var(--rule);font-size:8.6pt;vertical-align:middle}
+.rv .results .day{width:12mm;color:var(--soft);font-size:7.4pt}
+.rv .results .home{text-align:right;padding-right:2.5mm}
+.rv .results .away{padding-left:2.5mm}
+.rv .results .score{width:15mm;text-align:center;font-family:"PF Display",sans-serif;font-size:11pt;background:var(--night);color:#fff}
+.rv .results .won{font-weight:700}
+.rv .league{display:flex;align-items:baseline;justify-content:space-between;margin:5mm 0 1.5mm;border-bottom:.6mm solid var(--ink);padding-bottom:1mm}
+.rv .league h3{margin:0}
+.rv .league small{font-size:7.4pt;color:var(--soft)}
+/* Probabilidades */
+.rv .odds{display:grid;gap:2.3mm;margin-top:2mm}
+.rv .odd{display:grid;grid-template-columns:1fr;gap:.8mm}
+.rv .odd .teams{display:grid;grid-template-columns:1fr auto 1fr;gap:2mm;align-items:baseline;font-size:8.6pt}
+.rv .odd .teams span:last-child{text-align:right}
+.rv .odd .teams em{font-style:normal;font-size:6.9pt;color:var(--soft);text-align:center}
+.rv .bar{display:flex;height:4.2mm;overflow:hidden;border-radius:.8mm;font-size:6.8pt;font-weight:700;line-height:4.2mm}
+.rv .bar i{font-style:normal;display:block;min-width:7mm;padding:0 1.2mm;white-space:nowrap}
+.rv .bar .h{background:var(--home);color:#241a00}
+.rv .bar .d{background:var(--draw);color:#27344b;text-align:center}
+.rv .bar .a{background:var(--away);color:#fff;text-align:right}
+.rv .fav{font-weight:700}
+.rv .legend{display:flex;gap:4mm;font-size:7.2pt;color:var(--soft);margin-top:1mm}
+.rv .legend i{display:inline-block;width:3mm;height:3mm;border-radius:.5mm;margin-right:1mm;vertical-align:-.4mm}
+.rv .compact .odds{gap:1.6mm}
+.rv .compact .odd .teams{font-size:8pt}
+.rv .compact .bar{height:3.6mm;line-height:3.6mm;font-size:6.4pt}
+/* Tabla */
+.rv .standings th{font-size:7pt;color:var(--soft);font-weight:500;text-align:right;padding:1mm 0;border-bottom:.6mm solid var(--ink)}
+.rv .standings th:nth-child(2){text-align:left}
+.rv .standings td{padding:1.05mm 0;border-bottom:1px solid var(--rule);text-align:right;font-size:8.8pt}
+.rv .standings td:nth-child(1){width:7mm;text-align:left;font-family:"PF Display",sans-serif;font-size:12pt}
+.rv .standings td:nth-child(2){text-align:left}
+.rv .standings td:last-child{font-family:"PF Display",sans-serif;font-size:12.5pt;width:10mm}
+.rv .standings tr.top td{background:var(--tint)}
+.rv .picks{display:grid;grid-template-columns:repeat(2,1fr);gap:3mm;margin-top:3mm}
+.rv .pick{background:var(--night);color:#fff;padding:2.8mm 3.2mm}
+.rv .pick b{display:block;font-family:"PF Display",sans-serif;font-size:25pt;line-height:.9;color:var(--gold)}
+.rv .pick span{display:block;font-size:8pt;line-height:1.35;margin-top:1mm}
+.rv .pick small{display:block;font-size:7pt;color:#9fb0cf;margin-top:1mm}
+/* Contraportada */
+.rv .back{background:var(--gold);color:#1a1300}
+.rv .back h2{font-size:58pt;line-height:.85;margin-top:22mm}
+.rv .back .offers{margin-top:10mm;display:grid;gap:3mm}
+.rv .back .offers div{display:flex;align-items:baseline;gap:4mm;border-top:.5mm solid #1a1300;padding-top:2.5mm}
+.rv .back .offers b{font-family:"PF Display",sans-serif;font-size:30pt;line-height:.9;min-width:26mm}
+.rv .back .offers span{font-size:10pt;line-height:1.3}
+.rv .back .contact{position:absolute;left:13mm;right:13mm;bottom:14mm;display:flex;justify-content:space-between;align-items:flex-end;font-size:9pt}
+.rv .back .contact b{display:block;font-family:"PF Display",sans-serif;font-size:22pt;text-transform:uppercase;line-height:1}
+.rv .back .folio,.rv .back .folio b{color:#4a3a00}
+</style>
+<div class="rv" id="revista">
+<section class="page cover"><svg class="pitch" viewBox="0 0 148 210" preserveAspectRatio="none" aria-hidden="true">
+<g fill="none" stroke="rgba(255,255,255,.09)" stroke-width=".35">
+<rect x="8" y="8" width="132" height="194"/><line x1="8" y1="105" x2="140" y2="105"/><circle cx="74" cy="105" r="22"/>
+<rect x="38" y="8" width="72" height="30"/><rect x="56" y="8" width="36" height="11"/><path d="M60 38a14 14 0 0 0 28 0"/>
+<rect x="38" y="172" width="72" height="30"/><rect x="56" y="191" width="36" height="11"/><path d="M60 172a14 14 0 0 1 28 0"/>
+</g><circle cx="74" cy="105" r=".9" fill="rgba(255,255,255,.2)"/></svg>
+<div class="mast"><img src="/pasion-futbol.jpg" alt=""><span>Pasión <strong>Fútbol</strong></span></div>
+<div class="issue">Revista oficial · Nov 2026 · N.º 2 · 23 de noviembre de 2026</div>
+<h1>La estrella<span>35</span></h1>
+<p class="kicker">Colo-Colo es campeón de Chile. Además: los 27 resultados de la semana en Europa y las probabilidades de cada partido que viene.</p>
+<div class="teasers">
+<div><b>Champions</b><small>La fecha del 24 y 25 de noviembre, con favoritos.</small></div>
+<div><b>85 goles</b><small>Lo que dejó el fin de semana en España, Inglaterra e Italia.</small></div>
+<div><b>LaLiga</b><small>Así va la tabla: Barcelona manda por tres puntos.</small></div>
+</div></section>
+<section class="page"><div class="section-mark"></div>
+<h2>En esta<br>edición</h2>
+<p class="lede">Gracias por tu compra. Esta revista acompaña tu pedido: la puedes hojear aquí o descargarla en PDF cuando quieras.</p>
+<ol class="toc">
+<li><b>3</b><div><strong>La estrella 35</strong><span>Colo-Colo, campeón de la Liga de Primera 2026.</span></div></li>
+<li><b>4</b><div><strong>Resultados de la semana</strong><span>LaLiga, Premier League y Serie A, del 20 al 22 de noviembre.</span></div></li>
+<li><b>6</b><div><strong>Lo que viene</strong><span>Champions League, LaLiga, Premier League y Serie A con probabilidades.</span></div></li>
+<li><b>10</b><div><strong>La tabla y los favoritos</strong><span>Los diez primeros de LaLiga y los cuatro pronósticos más claros.</span></div></li>
+<li><b>11</b><div><strong>Cuida tu camiseta</strong><span>Cómo lavarla para que dure.</span></div></li>
+</ol>
+<div class="note">Cómo leer las probabilidades: cada barra suma 100% y se reparte entre victoria local (amarillo), empate (gris) y victoria visitante (azul). En negrita, el favorito. Probabilidades de Sportradar al 23 de noviembre de 2026. Son estimaciones, no garantías.</div>
+<div class="folio"><span>Pasión Fútbol · 23 de noviembre de 2026</span><b>2</b></div></section>
+<section class="page feature"><svg class="pitch" viewBox="0 0 148 210" preserveAspectRatio="none" aria-hidden="true">
+<g fill="none" stroke="rgba(255,255,255,.09)" stroke-width=".35">
+<rect x="8" y="8" width="132" height="194"/><line x1="8" y1="105" x2="140" y2="105"/><circle cx="74" cy="105" r="22"/>
+<rect x="38" y="8" width="72" height="30"/><rect x="56" y="8" width="36" height="11"/><path d="M60 38a14 14 0 0 0 28 0"/>
+<rect x="38" y="172" width="72" height="30"/><rect x="56" y="191" width="36" height="11"/><path d="M60 172a14 14 0 0 1 28 0"/>
+</g><circle cx="74" cy="105" r=".9" fill="rgba(255,255,255,.2)"/></svg><div class="big35" aria-hidden="true">35</div>
+<h2 style="font-size:52pt;position:relative">La estrella 35</h2>
+<p class="lede" style="position:relative">Colo-Colo ganó 2-1 a Ñublense en Chillán el 8 de noviembre y se coronó campeón de la Liga de Primera 2026 con tres fechas de anticipación.</p>
+<div style="position:relative;max-width:96mm"><p>El Cacique llegó a la fecha 27 con diez puntos de ventaja sobre la U y doce sobre la UC. Le bastaba ganar en el Bicentenario Nelson Oyarzún, y lo hizo.</p><p>Es su título número 35 en Primera División: ningún club chileno tiene más.</p><p>La pelea que queda es por el Chile 2, el cupo directo a la Copa Libertadores 2027. Ahí la U y la UC se juegan el cierre de temporada.</p></div>
+<div class="agenda"><div style="margin-bottom:1.5mm;color:#9fb0cf;font-size:7.6pt"><span>Próximo partido del campeón</span></div><div><span><b>Colo-Colo vs. Deportes La Serena</b><br>Fecha 29 · Monumental</span><span>dom 29 nov</span></div></div>
+<div class="folio"><span>Fútbol chileno</span><b>3</b></div></section>
+<section class="page"><div class="section-mark"></div>
+<h2>Resultados</h2><p class="lede" style="margin-bottom:2mm">Del 20 al 22 de noviembre. En negrita, el ganador.</p>
+<div class="league"><h3>LaLiga</h3><small>9 partidos</small></div><table class="results"><tr><td class="day">vie 20</td><td class="home">Athletic Club</td><td class="score">0 – 1</td><td class="away won">Espanyol</td></tr><tr><td class="day">sáb 21</td><td class="home won">Alavés</td><td class="score">3 – 1</td><td class="away">Deportivo</td></tr><tr><td class="day">sáb 21</td><td class="home">Rayo Vallecano</td><td class="score">0 – 1</td><td class="away won">Valencia</td></tr><tr><td class="day">sáb 21</td><td class="home">Sevilla</td><td class="score">1 – 1</td><td class="away">Real Betis</td></tr><tr><td class="day">sáb 21</td><td class="home won">Real Madrid</td><td class="score">2 – 1</td><td class="away">Celta</td></tr><tr><td class="day">dom 22</td><td class="home won">Barcelona</td><td class="score">3 – 2</td><td class="away">Villarreal</td></tr><tr><td class="day">dom 22</td><td class="home won">Racing Santander</td><td class="score">3 – 2</td><td class="away">Real Sociedad</td></tr><tr><td class="day">dom 22</td><td class="home won">Osasuna</td><td class="score">1 – 0</td><td class="away">Málaga</td></tr><tr><td class="day">dom 22</td><td class="home">Getafe</td><td class="score">0 – 3</td><td class="away won">Atlético de Madrid</td></tr></table>
+<div class="league"><h3>Serie A</h3><small>9 partidos</small></div><table class="results"><tr><td class="day">sáb 21</td><td class="home won">Como</td><td class="score">2 – 0</td><td class="away">Cagliari</td></tr><tr><td class="day">sáb 21</td><td class="home won">Lazio</td><td class="score">3 – 0</td><td class="away">Lecce</td></tr><tr><td class="day">sáb 21</td><td class="home">Parma</td><td class="score">1 – 5</td><td class="away won">Roma</td></tr><tr><td class="day">sáb 21</td><td class="home won">Napoli</td><td class="score">1 – 0</td><td class="away">Torino</td></tr><tr><td class="day">dom 22</td><td class="home won">Juventus</td><td class="score">4 – 0</td><td class="away">Venezia</td></tr><tr><td class="day">dom 22</td><td class="home">Bologna</td><td class="score">1 – 1</td><td class="away">Udinese</td></tr><tr><td class="day">dom 22</td><td class="home">Sassuolo</td><td class="score">0 – 2</td><td class="away won">Genoa</td></tr><tr><td class="day">dom 22</td><td class="home won">AC Milan</td><td class="score">5 – 1</td><td class="away">Frosinone</td></tr><tr><td class="day">dom 22</td><td class="home">Atalanta</td><td class="score">4 – 4</td><td class="away">Inter</td></tr></table>
+<div class="folio"><span>Resultados de la semana</span><b>4</b></div></section>
+<section class="page"><div class="section-mark"></div>
+<div class="league"><h3>Premier League</h3><small>9 partidos</small></div><table class="results"><tr><td class="day">sáb 21</td><td class="home">Manchester City</td><td class="score">1 – 1</td><td class="away">Fulham</td></tr><tr><td class="day">sáb 21</td><td class="home">Aston Villa</td><td class="score">0 – 0</td><td class="away">Sunderland</td></tr><tr><td class="day">sáb 21</td><td class="home won">Bournemouth</td><td class="score">2 – 0</td><td class="away">Nottingham Forest</td></tr><tr><td class="day">sáb 21</td><td class="home">Chelsea</td><td class="score">1 – 4</td><td class="away won">Leeds United</td></tr><tr><td class="day">sáb 21</td><td class="home won">Coventry City</td><td class="score">3 – 2</td><td class="away">Crystal Palace</td></tr><tr><td class="day">sáb 21</td><td class="home won">Tottenham</td><td class="score">2 – 0</td><td class="away">Ipswich Town</td></tr><tr><td class="day">sáb 21</td><td class="home">Newcastle</td><td class="score">2 – 2</td><td class="away">Arsenal</td></tr><tr><td class="day">dom 22</td><td class="home won">Hull City</td><td class="score">2 – 0</td><td class="away">Brighton</td></tr><tr><td class="day">dom 22</td><td class="home won">Liverpool</td><td class="score">4 – 0</td><td class="away">Manchester United</td></tr></table>
+<div class="note" style="margin-top:7mm"><b>El dato.</b> Leeds United ganó 4-1 en la cancha de Chelsea y Liverpool goleó 4-0 a Manchester United. En Italia, Atalanta e Inter empataron 4-4 en el partido con más goles de la semana.</div>
+<div class="folio"><span>Resultados de la semana</span><b>5</b></div></section>
+<section class="page"><div class="section-mark"></div>
+<h2>Lo que viene</h2><p class="lede" style="margin-bottom:2mm">Hora de Chile continental (UTC−3).</p><div class="legend"><span><i style="background:var(--home)"></i>Gana el local</span><span><i style="background:var(--draw)"></i>Empate</span><span><i style="background:var(--away)"></i>Gana la visita</span></div>
+<div class="league"><h3>Champions League</h3><small>Fecha de la fase de liga, martes 24 y miércoles 25.</small></div><div class="odds"><div class="odd"><div class="teams"><span class="fav">Bodø/Glimt</span><em>mar 24 · 14:45</em><span>LASK Linz</span></div><div class="bar" role="img" aria-label="Bodø/Glimt 63%, empate 19%, LASK Linz 18%"><i class="h" style="flex:62.8">63%</i><i class="d" style="flex:18.8">19%</i><i class="a" style="flex:18.4">18%</i></div></div><div class="odd"><div class="teams"><span>Galatasaray</span><em>mar 24 · 14:45</em><span class="fav">Aston Villa</span></div><div class="bar" role="img" aria-label="Galatasaray 34%, empate 24%, Aston Villa 41%"><i class="h" style="flex:34.5">34%</i><i class="d" style="flex:24.2">24%</i><i class="a" style="flex:41.3">41%</i></div></div><div class="odd"><div class="teams"><span class="fav">Arsenal</span><em>mar 24 · 17:00</em><span>Borussia Dortmund</span></div><div class="bar" role="img" aria-label="Arsenal 69%, empate 18%, Borussia Dortmund 12%"><i class="h" style="flex:69.3">69%</i><i class="d" style="flex:18.4">18%</i><i class="a" style="flex:12.3">12%</i></div></div><div class="odd"><div class="teams"><span class="fav">Como</span><em>mar 24 · 17:00</em><span>AEK Atenas</span></div><div class="bar" role="img" aria-label="Como 77%, empate 14%, AEK Atenas 10%"><i class="h" style="flex:76.6">77%</i><i class="d" style="flex:13.9">14%</i><i class="a" style="flex:9.5">10%</i></div></div><div class="odd"><div class="teams"><span>Feyenoord</span><em>mar 24 · 17:00</em><span class="fav">Porto</span></div><div class="bar" role="img" aria-label="Feyenoord 34%, empate 26%, Porto 40%"><i class="h" style="flex:34.4">34%</i><i class="d" style="flex:25.7">26%</i><i class="a" style="flex:39.9">40%</i></div></div><div class="odd"><div class="teams"><span class="fav">Manchester City</span><em>mar 24 · 17:00</em><span>Napoli</span></div><div class="bar" role="img" aria-label="Manchester City 76%, empate 14%, Napoli 10%"><i class="h" style="flex:76.4">76%</i><i class="d" style="flex:13.9">14%</i><i class="a" style="flex:9.7">10%</i></div></div><div class="odd"><div class="teams"><span class="fav">RB Leipzig</span><em>mar 24 · 17:00</em><span>Lens</span></div><div class="bar" role="img" aria-label="RB Leipzig 70%, empate 16%, Lens 14%"><i class="h" style="flex:70.4">70%</i><i class="d" style="flex:16.1">16%</i><i class="a" style="flex:13.5">14%</i></div></div><div class="odd"><div class="teams"><span class="fav">Real Madrid</span><em>mar 24 · 17:00</em><span>PSV</span></div><div class="bar" role="img" aria-label="Real Madrid 83%, empate 10%, PSV 7%"><i class="h" style="flex:82.6">83%</i><i class="d" style="flex:10.1">10%</i><i class="a" style="flex:7.3">7%</i></div></div><div class="odd"><div class="teams"><span>Slovan Bratislava</span><em>mar 24 · 17:00</em><span class="fav">Real Betis</span></div><div class="bar" role="img" aria-label="Slovan Bratislava 9%, empate 13%, Real Betis 78%"><i class="h" style="flex:8.6">9%</i><i class="d" style="flex:13.4">13%</i><i class="a" style="flex:78.0">78%</i></div></div><div class="odd"><div class="teams"><span>Sabah</span><em>mié 25 · 14:45</em><span class="fav">Barcelona</span></div><div class="bar" role="img" aria-label="Sabah 4%, empate 7%, Barcelona 89%"><i class="h" style="flex:4.5">4%</i><i class="d" style="flex:6.9">7%</i><i class="a" style="flex:88.6">89%</i></div></div></div>
+<div class="folio"><span>Lo que viene · Champions League</span><b>6</b></div></section>
+<section class="page"><div class="section-mark"></div>
+<div class="league"><h3>LaLiga</h3><small>Lunes 23 y fecha del fin de semana.</small></div><div class="odds"><div class="odd"><div class="teams"><span class="fav">Levante</span><em>lun 23 · 17:00</em><span>Elche</span></div><div class="bar" role="img" aria-label="Levante 44%, empate 26%, Elche 30%"><i class="h" style="flex:43.8">44%</i><i class="d" style="flex:26.3">26%</i><i class="a" style="flex:29.9">30%</i></div></div><div class="odd"><div class="teams"><span class="fav">Levante</span><em>vie 27 · 17:00</em><span>Racing Santander</span></div><div class="bar" role="img" aria-label="Levante 46%, empate 25%, Racing Santander 30%"><i class="h" style="flex:45.6">46%</i><i class="d" style="flex:24.8">25%</i><i class="a" style="flex:29.6">30%</i></div></div><div class="odd"><div class="teams"><span class="fav">Real Betis</span><em>sáb 28 · 10:00</em><span>Rayo Vallecano</span></div><div class="bar" role="img" aria-label="Real Betis 62%, empate 21%, Rayo Vallecano 17%"><i class="h" style="flex:61.6">62%</i><i class="d" style="flex:21.0">21%</i><i class="a" style="flex:17.4">17%</i></div></div><div class="odd"><div class="teams"><span>Málaga</span><em>sáb 28 · 12:15</em><span class="fav">Athletic Club</span></div><div class="bar" role="img" aria-label="Málaga 21%, empate 25%, Athletic Club 54%"><i class="h" style="flex:21.0">21%</i><i class="d" style="flex:25.4">25%</i><i class="a" style="flex:53.6">54%</i></div></div><div class="odd"><div class="teams"><span>Elche</span><em>sáb 28 · 14:30</em><span class="fav">Atlético de Madrid</span></div><div class="bar" role="img" aria-label="Elche 17%, empate 21%, Atlético de Madrid 62%"><i class="h" style="flex:17.1">17%</i><i class="d" style="flex:21.0">21%</i><i class="a" style="flex:61.9">62%</i></div></div><div class="odd"><div class="teams"><span class="fav">Real Madrid</span><em>sáb 28 · 17:00</em><span>Alavés</span></div><div class="bar" role="img" aria-label="Real Madrid 84%, empate 10%, Alavés 6%"><i class="h" style="flex:84.0">84%</i><i class="d" style="flex:10.2">10%</i><i class="a" style="flex:5.8">6%</i></div></div><div class="odd"><div class="teams"><span class="fav">Valencia</span><em>dom 29 · 10:00</em><span>Osasuna</span></div><div class="bar" role="img" aria-label="Valencia 44%, empate 28%, Osasuna 27%"><i class="h" style="flex:44.5">44%</i><i class="d" style="flex:28.1">28%</i><i class="a" style="flex:27.4">27%</i></div></div><div class="odd"><div class="teams"><span>Deportivo</span><em>dom 29 · 12:15</em><span class="fav">Barcelona</span></div><div class="bar" role="img" aria-label="Deportivo 10%, empate 13%, Barcelona 77%"><i class="h" style="flex:10.1">10%</i><i class="d" style="flex:13.1">13%</i><i class="a" style="flex:76.8">77%</i></div></div><div class="odd"><div class="teams"><span>Celta</span><em>dom 29 · 14:30</em><span class="fav">Villarreal</span></div><div class="bar" role="img" aria-label="Celta 35%, empate 27%, Villarreal 37%"><i class="h" style="flex:35.4">35%</i><i class="d" style="flex:27.2">27%</i><i class="a" style="flex:37.4">37%</i></div></div><div class="odd"><div class="teams"><span class="fav">Real Sociedad</span><em>dom 29 · 17:00</em><span>Sevilla</span></div><div class="bar" role="img" aria-label="Real Sociedad 44%, empate 26%, Sevilla 29%"><i class="h" style="flex:44.3">44%</i><i class="d" style="flex:26.5">26%</i><i class="a" style="flex:29.2">29%</i></div></div></div>
+<div class="folio"><span>Lo que viene · LaLiga</span><b>7</b></div></section>
+<section class="page"><div class="section-mark"></div>
+<div class="league"><h3>Premier League</h3><small>Lunes 23 y jornada del fin de semana.</small></div><div class="odds"><div class="odd"><div class="teams"><span class="fav">Brentford</span><em>lun 23 · 17:00</em><span>Everton</span></div><div class="bar" role="img" aria-label="Brentford 42%, empate 27%, Everton 30%"><i class="h" style="flex:42.2">42%</i><i class="d" style="flex:27.3">27%</i><i class="a" style="flex:30.5">30%</i></div></div><div class="odd"><div class="teams"><span>Nottingham Forest</span><em>vie 27 · 17:00</em><span class="fav">Chelsea</span></div><div class="bar" role="img" aria-label="Nottingham Forest 34%, empate 27%, Chelsea 38%"><i class="h" style="flex:34.3">34%</i><i class="d" style="flex:27.2">27%</i><i class="a" style="flex:38.5">38%</i></div></div><div class="odd"><div class="teams"><span class="fav">Leeds United</span><em>sáb 28 · 12:00</em><span>Coventry City</span></div><div class="bar" role="img" aria-label="Leeds United 63%, empate 21%, Coventry City 16%"><i class="h" style="flex:62.9">63%</i><i class="d" style="flex:21.1">21%</i><i class="a" style="flex:16.0">16%</i></div></div><div class="odd"><div class="teams"><span class="fav">Manchester United</span><em>sáb 28 · 12:00</em><span>Brentford</span></div><div class="bar" role="img" aria-label="Manchester United 48%, empate 25%, Brentford 27%"><i class="h" style="flex:47.9">48%</i><i class="d" style="flex:24.9">25%</i><i class="a" style="flex:27.2">27%</i></div></div><div class="odd"><div class="teams"><span>Ipswich Town</span><em>sáb 28 · 14:30</em><span class="fav">Aston Villa</span></div><div class="bar" role="img" aria-label="Ipswich Town 28%, empate 24%, Aston Villa 48%"><i class="h" style="flex:27.6">28%</i><i class="d" style="flex:24.5">24%</i><i class="a" style="flex:47.9">48%</i></div></div><div class="odd"><div class="teams"><span>Everton</span><em>dom 29 · 09:00</em><span class="fav">Liverpool</span></div><div class="bar" role="img" aria-label="Everton 27%, empate 26%, Liverpool 47%"><i class="h" style="flex:27.3">27%</i><i class="d" style="flex:25.9">26%</i><i class="a" style="flex:46.8">47%</i></div></div><div class="odd"><div class="teams"><span class="fav">Brighton</span><em>dom 29 · 11:05</em><span>Newcastle</span></div><div class="bar" role="img" aria-label="Brighton 61%, empate 21%, Newcastle 18%"><i class="h" style="flex:61.1">61%</i><i class="d" style="flex:21.1">21%</i><i class="a" style="flex:17.8">18%</i></div></div><div class="odd"><div class="teams"><span class="fav">Crystal Palace</span><em>dom 29 · 11:05</em><span>Hull City</span></div><div class="bar" role="img" aria-label="Crystal Palace 52%, empate 25%, Hull City 24%"><i class="h" style="flex:51.7">52%</i><i class="d" style="flex:24.8">25%</i><i class="a" style="flex:23.5">24%</i></div></div><div class="odd"><div class="teams"><span>Fulham</span><em>dom 29 · 11:05</em><span class="fav">Bournemouth</span></div><div class="bar" role="img" aria-label="Fulham 36%, empate 27%, Bournemouth 37%"><i class="h" style="flex:36.0">36%</i><i class="d" style="flex:27.0">27%</i><i class="a" style="flex:37.0">37%</i></div></div><div class="odd"><div class="teams"><span>Sunderland</span><em>dom 29 · 11:05</em><span class="fav">Tottenham</span></div><div class="bar" role="img" aria-label="Sunderland 28%, empate 28%, Tottenham 44%"><i class="h" style="flex:28.2">28%</i><i class="d" style="flex:28.0">28%</i><i class="a" style="flex:43.8">44%</i></div></div></div>
+<div class="folio"><span>Lo que viene · Premier League</span><b>8</b></div></section>
+<section class="page"><div class="section-mark"></div>
+<div class="league"><h3>Serie A</h3><small>Lunes 23 y jornada del fin de semana.</small></div><div class="odds"><div class="odd"><div class="teams"><span>Monza</span><em>lun 23 · 16:45</em><span class="fav">Fiorentina</span></div><div class="bar" role="img" aria-label="Monza 26%, empate 25%, Fiorentina 48%"><i class="h" style="flex:26.5">26%</i><i class="d" style="flex:25.0">25%</i><i class="a" style="flex:48.5">48%</i></div></div><div class="odd"><div class="teams"><span>Venezia</span><em>vie 27 · 16:45</em><span class="fav">Bologna</span></div><div class="bar" role="img" aria-label="Venezia 28%, empate 28%, Bologna 45%"><i class="h" style="flex:27.6">28%</i><i class="d" style="flex:27.8">28%</i><i class="a" style="flex:44.6">45%</i></div></div><div class="odd"><div class="teams"><span class="fav">Frosinone</span><em>sáb 28 · 11:00</em><span>Parma</span></div><div class="bar" role="img" aria-label="Frosinone 64%, empate 19%, Parma 17%"><i class="h" style="flex:64.1">64%</i><i class="d" style="flex:19.1">19%</i><i class="a" style="flex:16.8">17%</i></div></div><div class="odd"><div class="teams"><span>Torino</span><em>sáb 28 · 14:00</em><span class="fav">Lazio</span></div><div class="bar" role="img" aria-label="Torino 28%, empate 27%, Lazio 45%"><i class="h" style="flex:27.5">28%</i><i class="d" style="flex:27.2">27%</i><i class="a" style="flex:45.3">45%</i></div></div><div class="odd"><div class="teams"><span class="fav">Inter</span><em>sáb 28 · 16:45</em><span>Genoa</span></div><div class="bar" role="img" aria-label="Inter 73%, empate 16%, Genoa 10%"><i class="h" style="flex:73.2">73%</i><i class="d" style="flex:16.4">16%</i><i class="a" style="flex:10.4">10%</i></div></div><div class="odd"><div class="teams"><span>Udinese</span><em>dom 29 · 08:30</em><span class="fav">Fiorentina</span></div><div class="bar" role="img" aria-label="Udinese 30%, empate 26%, Fiorentina 44%"><i class="h" style="flex:29.8">30%</i><i class="d" style="flex:26.5">26%</i><i class="a" style="flex:43.7">44%</i></div></div><div class="odd"><div class="teams"><span>Sassuolo</span><em>dom 29 · 11:00</em><span class="fav">Napoli</span></div><div class="bar" role="img" aria-label="Sassuolo 20%, empate 22%, Napoli 57%"><i class="h" style="flex:20.3">20%</i><i class="d" style="flex:22.3">22%</i><i class="a" style="flex:57.4">57%</i></div></div><div class="odd"><div class="teams"><span class="fav">Roma</span><em>dom 29 · 14:00</em><span>Monza</span></div><div class="bar" role="img" aria-label="Roma 82%, empate 12%, Monza 7%"><i class="h" style="flex:81.5">82%</i><i class="d" style="flex:11.6">12%</i><i class="a" style="flex:6.9">7%</i></div></div><div class="odd"><div class="teams"><span class="fav">Como</span><em>dom 29 · 16:45</em><span>Juventus</span></div><div class="bar" role="img" aria-label="Como 45%, empate 27%, Juventus 28%"><i class="h" style="flex:45.3">45%</i><i class="d" style="flex:26.8">27%</i><i class="a" style="flex:27.9">28%</i></div></div><div class="odd"><div class="teams"><span>Lecce</span><em>lun 30 · 14:30</em><span class="fav">Atalanta</span></div><div class="bar" role="img" aria-label="Lecce 25%, empate 25%, Atalanta 50%"><i class="h" style="flex:25.4">25%</i><i class="d" style="flex:25.0">25%</i><i class="a" style="flex:49.6">50%</i></div></div></div>
+<div class="folio"><span>Lo que viene · Serie A</span><b>9</b></div></section>
+<section class="page"><div class="section-mark"></div>
+<h2>La tabla</h2>
+<div class="league"><h3>LaLiga · 10 primeros</h3><small>Fondo celeste: puestos de Champions</small></div>
+<table class="standings"><thead><tr><th>#</th><th>Equipo</th><th>PJ</th><th>G</th><th>E</th><th>P</th><th>Pts</th></tr></thead><tbody><tr class="top"><td>1</td><td>Barcelona</td><td>13</td><td>12</td><td>0</td><td>1</td><td>36</td></tr><tr class="top"><td>2</td><td>Real Madrid</td><td>13</td><td>11</td><td>0</td><td>2</td><td>33</td></tr><tr class="top"><td>3</td><td>Atlético de Madrid</td><td>13</td><td>10</td><td>1</td><td>2</td><td>31</td></tr><tr class="top"><td>4</td><td>Real Betis</td><td>13</td><td>8</td><td>3</td><td>2</td><td>27</td></tr><tr class=""><td>5</td><td>Real Sociedad</td><td>13</td><td>7</td><td>1</td><td>5</td><td>22</td></tr><tr class=""><td>6</td><td>Sevilla</td><td>13</td><td>5</td><td>4</td><td>4</td><td>19</td></tr><tr class=""><td>7</td><td>Racing Santander</td><td>13</td><td>5</td><td>2</td><td>6</td><td>17</td></tr><tr class=""><td>8</td><td>Athletic Club</td><td>12</td><td>4</td><td>4</td><td>4</td><td>16</td></tr><tr class=""><td>9</td><td>Alavés</td><td>13</td><td>4</td><td>4</td><td>5</td><td>16</td></tr><tr class=""><td>10</td><td>Villarreal</td><td>13</td><td>4</td><td>3</td><td>6</td><td>15</td></tr></tbody></table>
+<h3 style="margin-top:7mm">Los favoritos más claros</h3>
+<div class="picks"><div class="pick"><b>89%</b><span>Barcelona ante Sabah</span><small>Champions League · mié 25 · 14:45</small></div><div class="pick"><b>84%</b><span>Real Madrid ante Alavés</span><small>LaLiga · sáb 28 · 17:00</small></div><div class="pick"><b>83%</b><span>Real Madrid ante PSV</span><small>Champions League · mar 24 · 17:00</small></div><div class="pick"><b>82%</b><span>Roma ante Monza</span><small>Serie A · dom 29 · 14:00</small></div></div>
+<div class="folio"><span>La tabla y los favoritos</span><b>10</b></div></section>
+<section class="page"><div class="section-mark"></div>
+<h2>Cuida tu<br>camiseta</h2>
+<p class="lede">Cuatro hábitos para que el estampado y los colores duren temporadas.</p>
+<ol class="toc care">
+<li><b>1</b><div><strong>Lávala al revés</strong><span>Así el roce del lavado no toca el estampado ni el bordado.</span></div></li>
+<li><b>2</b><div><strong>Agua fría y ciclo suave</strong><span>Máximo 30 °C, con detergente líquido y sin cloro ni suavizante.</span></div></li>
+<li><b>3</b><div><strong>Sécala a la sombra</strong><span>Nada de secadora: el calor encoge la tela y agrieta el número.</span></div></li>
+<li><b>4</b><div><strong>Plancha solo por dentro</strong><span>A temperatura baja y nunca directo sobre el estampado.</span></div></li>
+</ol>
+<div class="note">¿Un problema con tu pedido o la talla? Escríbenos por WhatsApp al +56 9 3497 4132 y lo resolvemos contigo.</div>
+<div class="folio"><span>Pasión Fútbol</span><b>11</b></div></section>
+<section class="page back">
+<div class="mast" style="display:flex;align-items:center;gap:3mm"><img src="/pasion-futbol.jpg" alt="" style="width:12mm;height:12mm;border-radius:50%;object-fit:cover;object-position:50% 30%"><span class="display" style="font-size:17pt;font-style:italic;text-transform:uppercase">Pasión Fútbol</span></div>
+<h2>Tu próxima camiseta te espera</h2>
+<div class="offers">
+<div><b>20%</b><span>de descuento llevando 2 camisetas.</span></div>
+<div><b>25%</b><span>de descuento llevando 3 o más.</span></div>
+<div><b>Gratis</b><span>el envío en la Región Metropolitana. Despachamos a todo Chile.</span></div>
+</div>
+<div class="contact"><div><b>pasionfutbol.lat</b>Camisetas de selecciones y clubes</div><div style="text-align:right"><b>WhatsApp</b>+56 9 3497 4132</div></div>
+<div class="folio"><span>Pasión Fútbol</span><b>12</b></div></section>
+</div>

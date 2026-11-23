@@ -1090,6 +1090,8 @@ body>footer p{color:#edf4ff}
 <div class="visually-hidden" id="cart-status" role="status"></div>
 <script>
 const products = /* CATALOG_DATA */ [];
+/* Producto de prueba de pagos: oculto; aparece al tocar 5 veces seguidas la pelota del logo. */
+let testProductUnlocked = false;
 const productById = new Map(products.map(item => [item.id, item]));
 /* Meta Pixel: si el pixel no está cargado (bloqueador, sin ID), no pasa nada. */
 function track(event, data) {
@@ -1342,6 +1344,7 @@ function renderCatalog() {
   const normalizeSearch = value => value.toLocaleLowerCase("es-CL").replace(/\b(?:camisetas?|poleras?)\b/g, "camiseta");
   const searchTerm = normalizeSearch(query);
   const results = products.filter(item => {
+    if (item.hidden && !testProductUnlocked) return false;
     const meta = getProductMeta(item);
     meta.haystack ??= normalizeSearch(`${item.name} ${item.description || ""} ${item.categories.join(" ")} ${meta.team} ${meta.country} ${meta.league} ${meta.colors.join(" ")}`);
     const haystack = meta.haystack;
@@ -1827,6 +1830,24 @@ byId("clear-saved-data").addEventListener("click", () => {
   shippingForm.elements.email.focus();
 });
 try { restoreCustomerData(); } catch (error) { console.error(error); }
+
+let logoTaps = [];
+document.querySelector("header .brand-ball")?.addEventListener("click", event => {
+  const now = Date.now();
+  logoTaps = [...logoTaps.filter(time => now - time < 2500), now];
+  if (logoTaps.length < 5) return;
+  event.preventDefault();
+  logoTaps = [];
+  testProductUnlocked = true;
+  renderCatalog();
+  const test = products.find(item => item.hidden);
+  if (test) openDetail(test);
+});
+/* Al volver de un pago rechazado (/#carrito) se abre el carrito guardado. */
+if (location.hash === "#carrito" && selection.length) {
+  history.replaceState(null, "", location.pathname);
+  requestAnimationFrame(() => showOrder());
+}
 
 const normGeo = s => String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
   .replace(/^region\s+(?:de(?:l)?\s+)?(?:la\s+|los\s+|las\s+)?/i, "")
@@ -2321,6 +2342,7 @@ function initCatalogFilters() {
   const allTeams = new Set();
   const allCountries = new Set();
   for (const item of products) {
+    if (item.hidden) continue;
     item.sizes.forEach(s => allSizes.add(s));
     const meta = getProductMeta(item);
     meta.colors.forEach(c => allColors.add(c));

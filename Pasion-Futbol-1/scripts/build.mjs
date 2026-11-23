@@ -27,7 +27,8 @@ const shipping =
   (await read("Pasion-Futbol-1/shared/checkout-validation.js"));
 
 const constants = {
-  ebook: await readFile("Pasion-Futbol-1/worker/Pasion_Futbol_Noviembre_2026.pdf", "base64"),
+  ebook: await readFile("Pasion-Futbol-1/worker/Revista_Pasion_Futbol.pdf", "base64"),
+  revista: await read("Pasion-Futbol-1/worker/revista.html"),
   assets: files,
   initialProducts: JSON.parse(await read("storefront/products.json")),
   storefront: (await read("storefront/index.html")).replace(
@@ -45,5 +46,5 @@ const declarations = Object.entries(constants)
 
 await writeFile(
   "dist/server/index.js",
-  declarations + "\n" + pricing + "\n" + shipping + "\n" + (await read("Pasion-Futbol-1/worker/index.js"))
+  declarations + "\n" + pricing + "\n" + shipping + "\n" + (await read("Pasion-Futbol-1/worker/pages.js")) + "\n" + (await read("Pasion-Futbol-1/worker/index.js"))
 );
