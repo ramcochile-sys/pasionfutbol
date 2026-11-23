@@ -983,8 +983,9 @@ body>footer p{color:#edf4ff}
           <section class="checkout-card" aria-labelledby="shipping-data-title">
             <h3 class="checkout-section-title" id="shipping-data-title"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-truck"/></svg>Datos de envío</h3>
             <fieldset class="checkout-fields" aria-label="Contacto y dirección">
-              <label class="checkout-wide"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-user"/></svg><span class="visually-hidden">Nombre completo</span><input name="name" autocomplete="shipping name" autocapitalize="words" maxlength="80" placeholder="Nombre y apellido *" required></label>
+              <p class="checkout-wide saved-data-note" id="saved-data-note" style="margin:0;font-size:.85rem" hidden>Usamos los datos de tu última compra. <button type="button" class="delivery-link" id="clear-saved-data">¿No eres tú? Usar otros datos</button></p>
               <label class="checkout-wide"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-email"/></svg><span class="visually-hidden">Correo electrónico</span><input name="email" type="email" inputmode="email" autocomplete="shipping email" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Correo electrónico *" maxlength="254" required></label>
+              <label class="checkout-wide"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-user"/></svg><span class="visually-hidden">Nombre completo</span><input name="name" autocomplete="shipping name" autocapitalize="words" maxlength="80" placeholder="Nombre y apellido *" required></label>
               <label class="checkout-wide"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-phone"/></svg><span class="visually-hidden">Teléfono de contacto</span><input name="phone" type="tel" inputmode="tel" autocomplete="shipping tel" maxlength="20" placeholder="Celular * (ej: 9 1234 5678)" required></label>
               <label><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-pin"/></svg><span class="visually-hidden">Región</span><select name="region" required><option value="">Región *</option></select></label>
               <label><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-pin"/></svg><span class="visually-hidden">Comuna</span><select name="commune" required disabled><option value="">Comuna *</option></select></label>
@@ -1640,7 +1641,7 @@ const contactChecks = {
   region: value => value ? {} : {error: "Elige tu región."},
   commune: value => value ? {} : {error: "Elige tu comuna."}
 };
-const contactOrder = ["name", "email", "phone", "region", "commune", "address", "address-extra"];
+const contactOrder = ["email", "name", "phone", "region", "commune", "address", "address-extra"];
 const touchedFields = new Set();
 function fieldErrorEl(input) {
   const host = input.closest("label");
@@ -1784,6 +1785,48 @@ communeSelect.addEventListener("change", () => {
 shippingForm.addEventListener("change", event => {
   if (event.target?.name === "carrier") updateShippingTotal();
 });
+
+/* Datos del cliente: se guardan en este navegador al pasar al pago y se precargan en la próxima compra. */
+const customerDataKey = "pf-datos-cliente";
+const customerFields = ["email", "name", "phone", "region", "commune", "address", "address-extra", "carrier"];
+function saveCustomerData() {
+  try {
+    const data = Object.fromEntries(customerFields.map(name => [name, name === "carrier" ? selectedCarrierId() : shippingForm.elements[name].value.trim()]));
+    localStorage.setItem(customerDataKey, JSON.stringify(data));
+  } catch {}
+}
+function restoreCustomerData() {
+  let data;
+  try { data = JSON.parse(localStorage.getItem(customerDataKey) || "null"); } catch { return; }
+  if (!data || typeof data !== "object" || shippingForm.elements.email.value) return;
+  const value = name => typeof data[name] === "string" ? data[name].slice(0, 250) : "";
+  for (const name of ["email", "name", "phone", "address", "address-extra"]) shippingForm.elements[name].value = value(name);
+  if (Object.hasOwn(chileCommunes, value("region"))) {
+    regionSelect.value = value("region");
+    syncCommunes();
+    if (Object.hasOwn(chileCommunes[value("region")].communes, value("commune"))) communeSelect.value = value("commune");
+  }
+  const carrier = shippingForm.querySelector(`input[name="carrier"][value="${CSS.escape(value("carrier"))}"]`);
+  if (carrier) carrier.checked = true;
+  for (const name of contactOrder) if (shippingForm.elements[name].value) validateField(shippingForm.elements[name]);
+  byId("saved-data-note").hidden = !shippingForm.elements.email.value;
+  updateShippingTotal();
+}
+byId("clear-saved-data").addEventListener("click", () => {
+  try { localStorage.removeItem(customerDataKey); } catch {}
+  for (const name of contactOrder) {
+    const input = shippingForm.elements[name];
+    input.value = "";
+    showFieldError(input, "");
+    input.closest("label").classList.remove("is-valid");
+  }
+  touchedFields.clear();
+  syncCommunes();
+  invalidateAddressVerification();
+  byId("saved-data-note").hidden = true;
+  shippingForm.elements.email.focus();
+});
+try { restoreCustomerData(); } catch (error) { console.error(error); }
 
 const normGeo = s => String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
   .replace(/^region\s+(?:de(?:l)?\s+)?(?:la\s+|los\s+|las\s+)?/i, "")
@@ -2118,11 +2161,12 @@ byId("checkout-continue").addEventListener("click", async () => {
     }
   }
   if (!selectedShippingQuote()) return;
+  saveCustomerData();
   showCheckoutStep(2);
 });
 byId("checkout-edit").addEventListener("click", () => {
   showCheckoutStep(1);
-  shippingForm.elements.name.focus();
+  shippingForm.elements.email.focus();
 });
 
 byId("pay").addEventListener("click", () => {
