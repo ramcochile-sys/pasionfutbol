@@ -840,7 +840,7 @@ body>footer p{color:#edf4ff}
       <h2 id="privacidad-title">Política de privacidad</h2>
       <p>El navegador guarda la selección del carrito para que puedas retomarla. Al iniciar un pago, el sitio registra los datos de contacto y envío ingresados junto con el pedido para procesar el pedido.</p>
       <p>La búsqueda y verificación de direcciones se hace con el servicio Geoapify, que recibe solo el texto de la dirección que escribes, sin tu nombre ni otros datos.</p>
-      <p>Los datos de pago se ingresan directamente en Flow, nunca en nuestra tienda.</p>
+      <p>Los datos de pago se ingresan directamente en Flow o Mercado Pago, nunca en nuestra tienda.</p>
     </section>
 
     <section id="contacto" aria-labelledby="contacto-title">
@@ -855,13 +855,13 @@ body>footer p{color:#edf4ff}
       <h3>¿Cuánto cuesta el envío?</h3>
       <p>Es gratis en toda la Región Metropolitana. Para el resto del país el costo se calcula según el peso del pedido y la comuna de destino, y lo ves antes de pagar.</p>
       <h3>¿Qué medios de pago aceptan?</h3>
-      <p>Pagas con Flow y puedes usar Webpay (crédito y débito, también en 3, 6 y 12 cuotas), Khipu, ETPay, Banca.me, Onepay y Mach. Los datos de pago se ingresan directamente en Flow, nunca en nuestra tienda.</p>
+      <p>Pagas con Flow (Webpay con crédito y débito, también en 3, 6 y 12 cuotas, Khipu, ETPay, Banca.me, Onepay y Mach) o con Mercado Pago (dinero en cuenta y tarjetas). Los datos de pago se ingresan directamente en Flow o Mercado Pago, nunca en nuestra tienda.</p>
       <h3>¿Hay descuentos por cantidad?</h3>
       <p>Sí: 20% al llevar dos camisetas y 25% al llevar tres o más. Se aplica automáticamente al subtotal de camisetas, sin incluir el envío.</p>
       <h3>¿Puedo cambiar o devolver mi compra?</h3>
       <p>Sí. Tienes garantía legal y derecho a retracto en compras en línea. Revisa las condiciones en <a href="#cambios">Cambios y devoluciones</a>.</p>
       <h3>¿Mi compra es segura?</h3>
-      <p>Sí. El sitio usa conexión cifrada SSL (https) y el pago se procesa en Flow.</p>
+      <p>Sí. El sitio usa conexión cifrada SSL (https) y el pago se procesa en Flow o Mercado Pago.</p>
       <h3>¿Cómo consulto por mi pedido?</h3>
       <p>Escríbenos por <a href="https://wa.me/56934974132">WhatsApp</a> o a <a href="mailto:ramcochile@gmail.com">ramcochile@gmail.com</a>.</p>
     </section>
@@ -1049,12 +1049,17 @@ body>footer p{color:#edf4ff}
               <div><strong>Flow</strong><span>Paga con Webpay, Khipu, ETPay, Banca.me, Onepay o Mach</span></div>
             </label>
             <div class="flow-methods" aria-label="Medios de pago disponibles en Flow"><img class="flow-method" src="/pay-webpay.png" alt="Webpay" loading="lazy"><img class="flow-method" src="/pay-webpay-3c.png" alt="Webpay 3 cuotas" loading="lazy"><img class="flow-method" src="/pay-webpay-6c.png" alt="Webpay 6 cuotas" loading="lazy"><img class="flow-method" src="/pay-webpay-12c.png" alt="Webpay 12 cuotas" loading="lazy"><img class="flow-method" src="/pay-khipu.png" alt="Khipu" loading="lazy"><img class="flow-method" src="/pay-etpay.png" alt="ETPay" loading="lazy"><img class="flow-method" src="/pay-bancame.png" alt="Banca.me" loading="lazy"><img class="flow-method" src="/pay-onepay.png" alt="Onepay" loading="lazy"><img class="flow-method" src="/pay-mach.png" alt="Mach" loading="lazy"></div>
+            <label class="checkout-method checkout-payment-choice">
+              <input class="visually-hidden" type="radio" name="payment" value="mercadopago">
+              <span class="checkout-payment-mark" aria-hidden="true"></span>
+              <div><strong>Mercado Pago</strong><span>Paga con tu cuenta Mercado Pago, dinero en cuenta o tarjetas de crédito y débito</span></div>
+            </label>
           </section>
         </div>
       </div>
       <aside class="checkout-assurance" aria-label="Información de la compra">
         <div class="checkout-card checkout-protection">
-          <div class="checkout-method"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-lock"/></svg><div><strong>Tu compra está protegida</strong><span>Flow procesa el pago y protege tus datos.</span></div></div>
+          <div class="checkout-method"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-lock"/></svg><div><strong>Tu compra está protegida</strong><span id="checkout-protection-text">Flow procesa el pago y protege tus datos.</span></div></div>
         </div>
         <div class="checkout-card">
           <div class="checkout-method"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-truck"/></svg><div><strong>Envíos a todo Chile</strong><span id="checkout-assurance-eta">Plazo de entrega: 1 a 8 días hábiles según destino.</span></div></div>
@@ -2136,6 +2141,17 @@ byId("back-to-cart").addEventListener("click", () => {
   showOrder();
 });
 
+const paymentProviders = {
+  flow: {name:"Flow", endpoint:"/api/flow/create", hosts:["www.flow.cl", "sandbox.flow.cl"]},
+  mercadopago: {name:"Mercado Pago", endpoint:"/api/mercadopago/create", hosts:["www.mercadopago.cl", "mercadopago.cl", "sandbox.mercadopago.cl"]}
+};
+byId("shipping-form").addEventListener("change", event => {
+  if (event.target.name !== "payment") return;
+  const provider = paymentProviders[event.target.value] || paymentProviders.flow;
+  byId("checkout-secure-text").textContent = `Pago procesado en ${provider.name}`;
+  byId("checkout-protection-text").textContent = `${provider.name} procesa el pago y protege tus datos.`;
+});
+
 byId("shipping-form").addEventListener("submit", async event => {
   event.preventDefault();
   if (!selection.length) return;
@@ -2149,7 +2165,8 @@ byId("shipping-form").addEventListener("submit", async event => {
   if (button.disabled || !quote) return;
   form.dataset.submitting = "true";
   button.disabled = true;
-  byId("checkout-submit-label").textContent = "Conectando con Flow…";
+  const provider = paymentProviders[form.elements.payment.value] || paymentProviders.flow;
+  byId("checkout-submit-label").textContent = `Conectando con ${provider.name}…`;
   const receipt = byId("receipt");
   receipt.hidden = true;
   try {
@@ -2157,21 +2174,20 @@ byId("shipping-form").addEventListener("submit", async event => {
     if (verifiedAddressState.status === "verified" && verifiedAddressState.formattedAddress) {
       shippingData.verifiedAddress = verifiedAddressState.formattedAddress;
     }
-    const response = await fetch("/api/flow/create", {
+    const response = await fetch(provider.endpoint, {
       method:"POST", headers:{"Content-Type":"application/json"},
       body:JSON.stringify({items:selection,shipping:shippingData,quotedTotal:selectionPricing().amount + quote.price})
     });
     const result = await response.json().catch(() => ({}));
     if (!response.ok) throw Object.assign(new Error(result.error || "No pudimos iniciar el pago. Intenta nuevamente."), {field: result.field});
     const destination = new URL(result.url);
-    const allowedHosts = ["www.flow.cl", "sandbox.flow.cl"];
-    if (destination.protocol !== "https:" || !allowedHosts.includes(destination.hostname)) throw new Error("No pudimos validar el destino de pago.");
+    if (destination.protocol !== "https:" || !provider.hosts.includes(destination.hostname)) throw new Error("No pudimos validar el destino de pago.");
     track("AddPaymentInfo", {...cartTrackingData(), value: selectionPricing().amount + quote.price});
-    // Flow devuelve la URL con ?token=…; se redirige con GET. Pausa breve para que el pixel alcance a enviar.
+    // Flow y Mercado Pago devuelven la URL de pago; se redirige con GET. Pausa breve para que el pixel alcance a enviar.
     setTimeout(() => location.assign(destination.href), window.fbq ? 300 : 0);
     return;
   } catch (error) {
-    const message = error.message || "No pudimos conectar con Flow. Intenta nuevamente.";
+    const message = error.message || `No pudimos conectar con ${provider.name}. Intenta nuevamente.`;
     const field = error.field && shippingForm.elements[error.field];
     if (field && contactChecks[error.field]) {
       /* el dato se corrige en el paso de envío: se vuelve ahí y se marca el campo */

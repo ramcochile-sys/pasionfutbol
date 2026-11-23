@@ -334,7 +334,7 @@ async function saveProduct(request, env, id) {
   return json({id});
 }
 
-// Valida el pedido (productos, tallas, envío y total). La usa Flow.
+// Valida el pedido (productos, tallas, envío y total). La usan Flow y Mercado Pago.
 async function prepareOrder(request, env, url) {
   if (request.method !== "POST") return {response:json({error:"Método no permitido."},405)};
   if (request.headers.get("Origin") !== url.origin) return {response:json({error:"Origen inválido."},403)};
@@ -490,6 +490,130 @@ async function returnFlow(request, env, url) {
   return paymentPage("Pago no aprobado","Flow no confirmó el pago. Tu carrito sigue disponible para volver a intentarlo.",200,"","FLOW");
 }
 
+// ---------- Mercado Pago Checkout Pro (https://www.mercadopago.cl/developers) ----------
+// Variables de entorno: MP_ACCESS_TOKEN (credencial de producción o de prueba) y, opcional,
+// MP_WEBHOOK_SECRET (clave secreta de Webhooks del panel de Mercado Pago, para validar avisos).
+const mpApi = "https://api.mercadopago.com";
+const mpHosts = ["www.mercadopago.cl", "mercadopago.cl", "sandbox.mercadopago.cl"];
+const mpOrderKey = async buyOrder => "webpay-orders/" + await hash("mercadopago:" + buyOrder);
+async function mpRequest(env, path, body) {
+  const response = await fetch(mpApi + path, {
+    method: body ? "POST" : "GET",
+    headers: {
+      Authorization: "Bearer " + env.MP_ACCESS_TOKEN,
+      ...(body ? {"Content-Type":"application/json", "X-Idempotency-Key":crypto.randomUUID()} : {})
+    },
+    body: body ? JSON.stringify(body) : undefined,
+    signal: AbortSignal.timeout(20000)
+  });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    console.error("Mercado Pago respondió", response.status, JSON.stringify(data).slice(0,300));
+    const failure = new Error("Mercado Pago no disponible");
+    failure.mpStatus = response.status;
+    throw failure;
+  }
+  return data;
+}
+async function createMercadoPago(request, env, url) {
+  if (!env.MP_ACCESS_TOKEN) return json({error:"Mercado Pago no está configurado."},503);
+  const order = await prepareOrder(request, env, url);
+  if (order.response) return order.response;
+  const {items, cleanShipping, subtotal, discount, amount} = order;
+  const buy_order = "PF" + crypto.randomUUID().replaceAll("-", "").slice(0,24);
+  const [firstName, ...rest] = cleanShipping.name.split(/\s+/);
+  let result;
+  try {
+    result = await mpRequest(env, "/checkout/preferences", {
+      // Un solo ítem con el total ya calculado (productos, descuentos y envío) para que el monto calce exacto.
+      items:[{id:buy_order, title:"Pedido Pasión Fútbol " + buy_order, quantity:1, currency_id:"CLP", unit_price:amount}],
+      payer:{email:cleanShipping.email, name:firstName, surname:rest.join(" ")},
+      external_reference:buy_order,
+      statement_descriptor:"PASION FUTBOL",
+      back_urls:{success:url.origin + "/mercadopago/return", pending:url.origin + "/mercadopago/return", failure:url.origin + "/mercadopago/return"},
+      auto_return:"approved",
+      notification_url:url.origin + "/mercadopago/webhook?source_news=webhooks",
+      expires:true,
+      expiration_date_to:new Date(Date.now() + 24*60*60*1000).toISOString()
+    });
+  } catch (error) {
+    if (error?.mpStatus === 401 || error?.mpStatus === 403) return json({error:"Mercado Pago rechazó las credenciales de la tienda. Escríbenos por WhatsApp mientras lo solucionamos."},502);
+    if (error?.mpStatus !== undefined) return json({error:`No pudimos iniciar el pago con Mercado Pago (código ${error.mpStatus}). Intenta de nuevo o escríbenos por WhatsApp.`},502);
+    throw error;
+  }
+  let destination;
+  try { destination = new URL(result.init_point); } catch { throw new Error("Respuesta Mercado Pago inválida"); }
+  if (destination.protocol !== "https:" || !mpHosts.includes(destination.hostname)) throw new Error("Respuesta Mercado Pago inválida");
+  const record = {provider:"mercadopago",buy_order,session_id:result.id,amount,subtotal,discount,items,shipping:cleanShipping,status:"pending",createdAt:Date.now()};
+  await env.BUCKET.put(await mpOrderKey(buy_order),JSON.stringify(record),{httpMetadata:{contentType:"application/json"}});
+  return json({url:destination.href,provider:"mercadopago"});
+}
+// Consulta a Mercado Pago el pago real (nunca se confía en los parámetros de la URL) y lo guarda.
+async function settleMercadoPago(env, paymentId) {
+  const payment = await mpRequest(env, "/v1/payments/" + encodeURIComponent(paymentId));
+  const buyOrder = String(payment.external_reference || "");
+  if (!/^PF[a-f0-9]{24}$/.test(buyOrder)) return {notFound:true};
+  const key = await mpOrderKey(buyOrder);
+  const giftId = key.slice("webpay-orders/".length);
+  const stored = await env.BUCKET.get(key);
+  if (!stored) return {notFound:true};
+  const record = await stored.json();
+  if (record.provider !== "mercadopago") return {notFound:true};
+  if (record.status === "paid") return {record, giftId, approved:true};
+  const approved = payment.status === "approved" && payment.currency_id === "CLP" && Number(payment.transaction_amount) === record.amount;
+  const pending = ["pending","in_process","authorized"].includes(payment.status);
+  // Un rechazo no cierra el pedido: el cliente puede reintentar con otra tarjeta en la misma preferencia.
+  if (approved || ["rejected","cancelled","refunded","charged_back"].includes(payment.status)) {
+    if (approved) { record.status = "paid"; record.paymentId = String(payment.id); }
+    else record.lastPaymentStatus = payment.status;
+    record.checkedAt = Date.now();
+    await env.BUCKET.put(key,JSON.stringify(record),{httpMetadata:{contentType:"application/json"}});
+  }
+  return {record, giftId, approved, pending};
+}
+async function validMercadoPagoSignature(request, env, dataId) {
+  if (!env.MP_WEBHOOK_SECRET) return true;
+  const header = request.headers.get("x-signature") || "";
+  const parts = Object.fromEntries(header.split(",").map(part => part.trim().split("=",2)));
+  if (!parts.ts || !/^[a-f0-9]{64}$/.test(parts.v1 || "")) return false;
+  const requestId = request.headers.get("x-request-id");
+  const manifest = (dataId ? `id:${dataId.toLowerCase()};` : "") + (requestId ? `request-id:${requestId};` : "") + `ts:${parts.ts};`;
+  const encoder = new TextEncoder();
+  const key = await crypto.subtle.importKey("raw", encoder.encode(env.MP_WEBHOOK_SECRET), {name:"HMAC", hash:"SHA-256"}, false, ["sign"]);
+  const expected = hex(new Uint8Array(await crypto.subtle.sign("HMAC", key, encoder.encode(manifest))));
+  let diff = expected.length ^ parts.v1.length;
+  for (let i = 0; i < expected.length; i++) diff |= expected.charCodeAt(i) ^ parts.v1.charCodeAt(i);
+  return diff === 0;
+}
+// Mercado Pago avisa aquí (servidor a servidor) cuando un pago cambia de estado.
+async function webhookMercadoPago(request, env, url) {
+  if (request.method !== "POST") return json({error:"Método no permitido."},405);
+  if (!env.MP_ACCESS_TOKEN) return json({error:"Mercado Pago no está configurado."},503);
+  const body = await request.json().catch(() => ({}));
+  const type = url.searchParams.get("type") || body?.type || url.searchParams.get("topic");
+  const dataId = url.searchParams.get("data.id") || url.searchParams.get("id") || String(body?.data?.id || "");
+  if (!(await validMercadoPagoSignature(request, env, url.searchParams.get("data.id") || ""))) return json({error:"Firma inválida."},401);
+  // Solo interesan los pagos; los demás avisos se confirman para que Mercado Pago no los reintente.
+  if (type !== "payment" || !/^\d{1,20}$/.test(dataId)) return new Response("OK",{status:200,headers:{"Cache-Control":"no-store"}});
+  const result = await settleMercadoPago(env, dataId);
+  if (result.notFound) return json({error:"Pago no encontrado."},404);
+  return new Response("OK",{status:200,headers:{"Cache-Control":"no-store"}});
+}
+async function returnMercadoPago(request, env, url) {
+  const label = "MERCADO PAGO";
+  const paymentId = url.searchParams.get("payment_id") || url.searchParams.get("collection_id") || "";
+  if (!/^\d{1,20}$/.test(paymentId)) return paymentPage("Pago cancelado o expirado","El pago no se completó. Tu carrito sigue disponible para volver a intentarlo.",200,"",label);
+  if (!env.MP_ACCESS_TOKEN) return paymentPage("Mercado Pago no está configurado","No se pudo verificar este pago.",503,"",label);
+  let result;
+  try { result = await settleMercadoPago(env, paymentId); }
+  catch { return paymentPage("No pudimos verificar el pago","Recarga esta página para consultar el resultado antes de volver a pagar. Tu pedido no se marcará como pagado hasta recibir la confirmación de Mercado Pago.",200,"",label); }
+  if (result.notFound) return paymentPage("Pago no encontrado","No se pudo verificar este pago.",404,"",label);
+  const {record, giftId} = result;
+  if (result.approved) return paymentPage("Pago aprobado",`Pedido ${record.buy_order}. Total: $${record.amount.toLocaleString("es-CL")}. Gracias por tu compra, te contactaremos para coordinar el envío.`,200,giftId,label,record);
+  if (result.pending) return paymentPage("Pago pendiente","Mercado Pago aún no confirma tu pago. Si ya pagaste, recarga esta página en unos minutos.",200,"",label);
+  return paymentPage("Pago no aprobado","Mercado Pago no aprobó el pago. Tu carrito sigue disponible para volver a intentarlo.",200,"",label);
+}
+
 async function downloadGift(request, env, pathname) {
   if (request.method !== "GET") return json({error:"Método no permitido."},405);
   const giftId = pathname.slice("/regalo/".length);
@@ -518,13 +642,13 @@ async function orderDispatchPage(env, url) {
     const data = record.shipping;
     const contents = record.items.map(item => `${item.quantity} × ${escape(item.name)} (talla ${escape(item.size)})`).join("<br>");
     return `<article><h2>${escape(record.buy_order)}</h2>
-      <p><strong>${record.status === "paid" ? "Pago aprobado (Flow)" : "Pago de prueba aprobado"}</strong> · ${new Date(record.createdAt).toLocaleDateString("es-CL",{timeZone:"America/Santiago"})}</p>
+      <p><strong>${record.status === "paid" ? `Pago aprobado (${record.provider === "mercadopago" ? "Mercado Pago" : "Flow"})` : "Pago de prueba aprobado"}</strong> · ${new Date(record.createdAt).toLocaleDateString("es-CL",{timeZone:"America/Santiago"})}</p>
       <p>${contents}</p>
       <p>${escape(data.name)} · ${escape(data.phone)} · ${escape(data.email)}<br>${escape(data.address)}${data.reference ? ", "+escape(data.reference) : ""}<br>${escape(data.commune)}, ${escape(data.region)}</p>
       <p>${data.carrier ? `${escape(data.carrier)} a domicilio · Talla ${escape(data.size)} · Envío: $${escape(data.price?.toLocaleString("es-CL"))}` : "Pedido anterior sin tarifa de envío registrada"}</p></article>`;
   }).join("");
   const next = page.truncated ? `<p><a href="?cursor=${encodeURIComponent(page.cursor)}">Siguiente página</a></p>` : "";
-  return html(`<!doctype html><html lang="es-CL"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pedidos · Pasión Fútbol</title><style>body{background:#100b1f;color:#f5f2fa;font:16px/1.5 system-ui;margin:auto;padding:24px;max-width:900px}a{color:#9af7ff}article{border:1px solid #4c4165;border-radius:12px;padding:12px 18px;margin:14px 0;overflow-wrap:anywhere}h2{font-size:1.2rem}</style><main><a href="/admin">Volver a productos</a><h1>Pedidos y envíos</h1><p>Pagos aprobados con Flow. Los pedidos anteriores marcados como prueba vienen del Webpay de pruebas.</p>${cards || "<p>No hay pagos aprobados en esta página.</p>"}${next}</main></html>`);
+  return html(`<!doctype html><html lang="es-CL"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pedidos · Pasión Fútbol</title><style>body{background:#100b1f;color:#f5f2fa;font:16px/1.5 system-ui;margin:auto;padding:24px;max-width:900px}a{color:#9af7ff}article{border:1px solid #4c4165;border-radius:12px;padding:12px 18px;margin:14px 0;overflow-wrap:anywhere}h2{font-size:1.2rem}</style><main><a href="/admin">Volver a productos</a><h1>Pedidos y envíos</h1><p>Pagos aprobados con Flow y Mercado Pago. Los pedidos anteriores marcados como prueba vienen del Webpay de pruebas.</p>${cards || "<p>No hay pagos aprobados en esta página.</p>"}${next}</main></html>`);
 }
 
 const geoapifyBase = "https://api.geoapify.com/v1/geocode";
@@ -663,6 +787,9 @@ export default {
       if (pathname === "/api/flow/create") return await createFlow(request,env,url);
       if (pathname === "/flow/confirm") return await confirmFlow(request,env,url);
       if (pathname === "/flow/return") return await returnFlow(request,env,url);
+      if (pathname === "/api/mercadopago/create") return await createMercadoPago(request,env,url);
+      if (pathname === "/mercadopago/webhook") return await webhookMercadoPago(request,env,url);
+      if (pathname === "/mercadopago/return") return await returnMercadoPago(request,env,url);
       if (pathname === "/") {
         let products;
         try { products = await catalog(env); }
