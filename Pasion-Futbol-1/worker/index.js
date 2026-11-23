@@ -670,13 +670,26 @@ function geoCommune(p) {
   return String(p.city || p.town || p.village || p.municipality || p.suburb || "").trim();
 }
 
+// Caché corta en memoria: las mismas búsquedas (muy comunes al borrar y reescribir) no vuelven a Geoapify.
+const geoCache = new Map();
+const GEO_CACHE_MAX = 300;
+const GEO_CACHE_MS = 30 * 60 * 1000;
+
 async function geoapifyRequest(env, endpoint, params) {
   const target = new URL(`${geoapifyBase}/${endpoint}`);
   for (const [key, value] of Object.entries(params)) target.searchParams.set(key, value);
+  const cacheKey = target.href.toLowerCase();
+  const hit = geoCache.get(cacheKey);
+  if (hit && Date.now() - hit.at < GEO_CACHE_MS) return hit.result;
   target.searchParams.set("apiKey", env.GEOAPIFY_API_KEY);
-  const response = await fetch(target.href, {signal: AbortSignal.timeout(8000)});
+  const response = await fetch(target.href, {signal: AbortSignal.timeout(6000)});
   const data = await response.json().catch(() => ({}));
-  return {status: response.status, ok: response.ok, data};
+  const result = {status: response.status, ok: response.ok, data};
+  if (response.ok) {
+    if (geoCache.size >= GEO_CACHE_MAX) geoCache.delete(geoCache.keys().next().value);
+    geoCache.set(cacheKey, {at: Date.now(), result});
+  }
+  return result;
 }
 
 function geoFeatures(data) {
@@ -695,7 +708,7 @@ async function handleAddressAutocomplete(request, env, url) {
   try { body = JSON.parse(raw); } catch { return json({error:"Solicitud inválida."},400); }
   const input = typeof body?.input === "string" ? body.input.trim() : "";
   const communeName = typeof body?.communeName === "string" ? body.communeName.trim().slice(0,80) : "";
-  if (input.length < 5 || input.length > 180) return json({suggestions:[]});
+  if (input.length < 4 || input.length > 180) return json({suggestions:[]});
 
   const typed = typedStreetNumber(input);
   let query = input;
@@ -718,11 +731,16 @@ async function handleAddressAutocomplete(request, env, url) {
   for (const p of geoFeatures(result.data)) {
     const number = p.housenumber || typed;
     const mainText = number ? `${p.street} ${number}` : p.street;
-    const place = [geoCommune(p), p.state].filter(Boolean).join(", ");
+    const commune = geoCommune(p);
+    const region = String(p.state || "").trim();
+    const place = [commune, region].filter(Boolean).join(", ");
     const text = place ? `${mainText}, ${place}` : mainText;
     if (seen.has(text)) continue;
     seen.add(text);
-    suggestions.push({placeId:p.place_id, text, mainText, secondaryText:place, types:[p.result_type || "street"]});
+    // La sugerencia ya trae todo lo que entrega la verificación, así el navegador no tiene que volver a preguntar.
+    suggestions.push({placeId:p.place_id, text, mainText, secondaryText:place, types:[p.result_type || "street"],
+      commune, region, hasStreetNumber:Boolean(number), numberConfirmed:Boolean(p.housenumber),
+      streetLine:mainText, formattedAddress:[mainText, commune, region].filter(Boolean).join(", ")});
   }
   return json({suggestions});
 }

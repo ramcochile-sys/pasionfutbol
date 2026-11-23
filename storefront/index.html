@@ -566,6 +566,7 @@ body>footer p{color:#edf4ff}
 .address-suggestions button{width:100%;min-height:42px;display:grid;gap:.1rem;text-align:left;padding:.45rem .65rem;border:0;border-radius:.45rem;background:transparent;color:var(--ink)}
 .address-suggestions button:hover,.address-suggestions button:focus-visible,.address-suggestions button[aria-selected="true"]{background:#edf3ff;outline:none}
 .address-suggestions.is-locked button{opacity:.55;cursor:not-allowed}
+.address-suggestions.is-loading{opacity:.7;transition:opacity .15s}
 .address-hint{padding:.4rem .65rem;font-size:.78rem;font-weight:700;color:#1e3a8a;background:#edf3ff;border-radius:.45rem;margin-bottom:.2rem;list-style:none}
 .address-suggestions strong{font-size:.875rem;line-height:1.2}
 .address-suggestions small{font-size:.775rem;color:var(--muted)}
@@ -1953,17 +1954,31 @@ function applyMatchedLocation(regionText, communeText) {
   return match;
 }
 
+/* Solo vale la última búsqueda: las anteriores se cancelan y las repetidas salen de la caché, sin esperar. */
+let addressSearchController = null;
+const addressSuggestionCache = new Map();
 async function fetchAddressSuggestions(query) {
   if (!addressSessionToken) addressSessionToken = crypto.randomUUID();
   const regionName = chileCommunes[regionSelect.value]?.name || "";
   const communeName = chileCommunes[regionSelect.value]?.communes?.[communeSelect.value] || "";
+  const cacheKey = `${query.toLowerCase()}|${communeName}`;
+  addressSearchController?.abort();
+  if (addressSuggestionCache.has(cacheKey)) {
+    renderSuggestions(addressSuggestionCache.get(cacheKey));
+    return;
+  }
+  const controller = new AbortController();
+  addressSearchController = controller;
+  addressSuggestions.classList.add("is-loading");
   try {
     const res = await fetch("/api/address/autocomplete", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({input: query, regionName, communeName, sessionToken: addressSessionToken})
+      body: JSON.stringify({input: query, regionName, communeName, sessionToken: addressSessionToken}),
+      signal: controller.signal
     });
     const data = await res.json().catch(() => ({}));
+    if (controller.signal.aborted || addressInput.value.trim() !== query) return;
     if (res.status === 429 || data?.code === "RESOURCE_EXHAUSTED") {
       window.dispatchEvent(new CustomEvent("gmp-quota-exceeded"));
       hideSuggestions();
@@ -1973,10 +1988,41 @@ async function fetchAddressSuggestions(query) {
       hideSuggestions();
       return;
     }
-    renderSuggestions(Array.isArray(data?.suggestions) ? data.suggestions : []);
-  } catch {
-    hideSuggestions();
+    const list = Array.isArray(data?.suggestions) ? data.suggestions : [];
+    if (addressSuggestionCache.size > 60) addressSuggestionCache.delete(addressSuggestionCache.keys().next().value);
+    addressSuggestionCache.set(cacheKey, list);
+    renderSuggestions(list);
+  } catch (error) {
+    if (error?.name !== "AbortError") hideSuggestions();
+  } finally {
+    if (addressSearchController === controller) {
+      addressSearchController = null;
+      addressSuggestions.classList.remove("is-loading");
+    }
   }
+}
+
+function applyVerifiedAddress(data, placeId = "") {
+  if (data.streetLine) addressInput.value = data.streetLine;
+  const match = applyMatchedLocation(data.region, data.commune);
+  verifiedAddressState = {
+    status: "verified",
+    input: addressInput.value.trim(),
+    formattedAddress: data.formattedAddress || addressInput.value.trim(),
+    placeId: data.placeId || placeId || ""
+  };
+  const selectedCommuneName = chileCommunes[regionSelect.value]?.communes?.[communeSelect.value] || "";
+  if (match.communeCode && selectedCommuneName && normGeo(selectedCommuneName) !== normGeo(match.communeName)) {
+    setAddressStatus(
+      "warn",
+      `Dirección verificada (${escapeHtml(data.formattedAddress)}), pero pertenece a <strong>${escapeHtml(match.communeName)}</strong>. <button type="button" class="address-sync-btn" data-sync-region="${escapeHtml(match.regionCode)}" data-sync-commune="${escapeHtml(match.communeCode)}">Usar ${escapeHtml(match.communeName)}</button>`
+    );
+    return false;
+  }
+  setAddressStatus(data.numberConfirmed === false ? "warn" : "verified", data.numberConfirmed === false
+    ? `Calle encontrada: ${escapeHtml(data.formattedAddress)}. Revisa que el número sea correcto.`
+    : `Dirección verificada: ${escapeHtml(data.formattedAddress)}`);
+  return true;
 }
 
 async function verifyCurrentAddress({placeId = "", inputOverride = ""} = {}) {
@@ -2015,28 +2061,7 @@ async function verifyCurrentAddress({placeId = "", inputOverride = ""} = {}) {
       setAddressStatus("warn", "No pudimos conectar con el verificador. Verifica que la calle y número sean correctos.");
       return true;
     }
-    if (data.status === "verified" && data.exists) {
-      if (data.streetLine) addressInput.value = data.streetLine;
-      const match = applyMatchedLocation(data.region, data.commune);
-      verifiedAddressState = {
-        status: "verified",
-        input: addressInput.value.trim(),
-        formattedAddress: data.formattedAddress || addressInput.value.trim(),
-        placeId: data.placeId || placeId || ""
-      };
-      const selectedCommuneName = chileCommunes[regionSelect.value]?.communes?.[communeSelect.value] || "";
-      if (match.communeCode && selectedCommuneName && normGeo(selectedCommuneName) !== normGeo(match.communeName)) {
-        setAddressStatus(
-          "warn",
-          `Dirección verificada (${escapeHtml(data.formattedAddress)}), pero pertenece a <strong>${escapeHtml(match.communeName)}</strong>. <button type="button" class="address-sync-btn" data-sync-region="${escapeHtml(match.regionCode)}" data-sync-commune="${escapeHtml(match.communeCode)}">Usar ${escapeHtml(match.communeName)}</button>`
-        );
-        return false;
-      }
-      setAddressStatus(data.numberConfirmed === false ? "warn" : "verified", data.numberConfirmed === false
-        ? `Calle encontrada: ${escapeHtml(data.formattedAddress)}. Revisa que el número sea correcto.`
-        : `Dirección verificada: ${escapeHtml(data.formattedAddress)}`);
-      return true;
-    }
+    if (data.status === "verified" && data.exists) return applyVerifiedAddress(data, placeId);
     if (data.status === "route_only") {
       if (data.streetLine && !/\d+/.test(addressInput.value)) addressInput.value = data.streetLine + " ";
       applyMatchedLocation(data.region, data.commune);
@@ -2065,11 +2090,12 @@ addressInput.addEventListener("input", () => {
   invalidateAddressVerification();
   clearTimeout(addressDebounce);
   const q = addressInput.value.trim();
-  if (q.length < 5) {
+  if (q.length < 4) {
+    addressSearchController?.abort();
     hideSuggestions();
     return;
   }
-  addressDebounce = setTimeout(() => fetchAddressSuggestions(q), 350);
+  addressDebounce = setTimeout(() => fetchAddressSuggestions(q), 250);
 });
 
 addressInput.addEventListener("keydown", event => {
@@ -2101,8 +2127,21 @@ addressSuggestions.addEventListener("click", async event => {
   const item = currentSuggestions[Number(btn.dataset.suggestionIdx)];
   if (!item) return;
   hideSuggestions();
+  clearTimeout(addressDebounce);
   addressInput.value = item.mainText || item.text;
-  const ok = await verifyCurrentAddress({placeId: item.placeId, inputOverride: item.text || item.mainText});
+  let ok;
+  if (item.hasStreetNumber && item.streetLine) {
+    addressSessionToken = null;
+    ok = applyVerifiedAddress({...item, status: "verified", exists: true}, item.placeId);
+  } else if (item.hasStreetNumber === false) {
+    if (item.streetLine && !/\d+/.test(addressInput.value)) addressInput.value = item.streetLine + " ";
+    applyMatchedLocation(item.region, item.commune);
+    verifiedAddressState = {status: "route_only", input: addressInput.value.trim(), formattedAddress: "", placeId: item.placeId || ""};
+    setAddressStatus("warn", "Escribe el número de tu casa o edificio y elige tu dirección exacta de la lista.");
+    ok = false;
+  } else {
+    ok = await verifyCurrentAddress({placeId: item.placeId, inputOverride: item.text || item.mainText});
+  }
   if (!ok && verifiedAddressState.status === "route_only") {
     if (!/\d/.test(addressInput.value)) addressInput.value = addressInput.value.replace(/\s*$/, " ");
     addressInput.focus();
@@ -2122,7 +2161,7 @@ addressStatus.addEventListener("click", event => {
   }
 });
 
-/* La dirección se verifica sola: al elegir una sugerencia, al dejar de escribir o al salir del campo. */
+/* La dirección se verifica sola: al elegir una sugerencia o al salir del campo. */
 function autoVerifyAddress() {
   const value = addressInput.value.trim();
   if (addressVerifying || value.length < 5 || !/\d/.test(value)) return;
@@ -2130,14 +2169,11 @@ function autoVerifyAddress() {
   hideSuggestions();
   verifyCurrentAddress();
 }
-addressInput.addEventListener("input", () => {
-  clearTimeout(addressAutoTimer);
-  addressAutoTimer = setTimeout(autoVerifyAddress, 1400);
-});
 addressInput.addEventListener("blur", () => {
   clearTimeout(addressAutoTimer);
-  setTimeout(autoVerifyAddress, 350); /* da tiempo a que un toque en una sugerencia se procese primero */
+  addressAutoTimer = setTimeout(autoVerifyAddress, 350); /* da tiempo a que un toque en una sugerencia se procese primero */
 });
+addressInput.addEventListener("focus", () => clearTimeout(addressAutoTimer));
 
 document.addEventListener("click", event => {
   if (!event.target.closest(".address-lookup")) hideSuggestions();
