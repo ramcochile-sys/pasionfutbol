@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Pasión Fútbol</title>
 <link rel="icon" type="image/png" sizes="64x64" href="/pelota-corona.png">
-<link rel="preload" as="image" href="/hero-cam-madrid.webp" imagesrcset="/hero-cam-madrid-300.webp 300w, /hero-cam-madrid.webp 501w" imagesizes="(max-width: 640px) 44vw, 270px" fetchpriority="high">
+<link rel="preload" as="image" href="/chile-banner-frente.webp" fetchpriority="high">
 <link rel="preload" as="font" type="font/woff2" href="/dm-sans-latin-wght-normal.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/barlow-condensed-latin-800-normal.woff2" crossorigin>
 <meta name="description" content="Camisetas y ropa de entrenamiento para la cancha y la tribuna.">
@@ -630,55 +630,125 @@ body>footer p{color:#edf4ff}
 @media (prefers-reduced-motion:reduce){#order #pay,#shipping #checkout-continue,#shipping button[type="submit"]{transition:none}}
 
 
-/* Banner principal */
-.hb{position:relative;isolation:isolate;overflow:hidden;width:min(91%,1370px);margin:14px auto 0;border-radius:15px;background:#10151f;color:#fff;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:center;min-height:clamp(380px,34vw,470px)}
-.hb::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--accent)}
-.hb-mark{position:absolute;right:-2%;top:50%;z-index:-1;transform:translateY(-50%);font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:800;font-size:clamp(160px,22vw,300px);line-height:1;color:transparent;-webkit-text-stroke:2px #ffffff12;white-space:nowrap;pointer-events:none;user-select:none}
-.hb-copy{min-width:0;display:flex;flex-direction:column;gap:16px;padding:clamp(28px,4vw,56px) 0 clamp(28px,4vw,56px) clamp(28px,5vw,72px)}
-.hb-kicker{margin:0;display:flex;align-items:center;gap:10px;font-size:.8rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
-.hb-kicker span{width:28px;height:2px;background:currentColor}
-.hb .hb-title{margin:0;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:800;font-size:clamp(3rem,6.2vw,5.6rem);line-height:.9;letter-spacing:.01em;text-transform:uppercase}
-.hb-title span{color:transparent;-webkit-text-stroke:2px var(--accent)}
-@supports not (-webkit-text-stroke:1px #000){.hb-title span{color:var(--accent)}}
-.hb-sub{margin:0;font-size:clamp(1rem,1.4vw,1.15rem);line-height:1.45;color:var(--muted)}
-.hb-sub strong{color:#fff}
-.hb-cta{align-self:flex-start;display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 28px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:1.05rem;text-decoration:none;transition:background .2s,transform .2s}
-.hb-cta:hover{background:#ffd75c;transform:translateY(-1px)}
-.hb-cta:focus-visible{outline:3px solid #fff;outline-offset:3px}
-.hb-cta svg{width:20px;height:20px}
-.hb-perks{list-style:none;margin:8px 0 0;padding:16px 0 0;border-top:1px solid #ffffff1f;display:flex;flex-wrap:wrap;gap:10px 22px;font-size:.85rem;color:var(--muted)}
-.hb-perks li{display:flex;align-items:center;gap:7px}
-.hb-perks svg{flex:none;width:18px;height:18px;color:var(--accent)}
-.hb-art{position:relative;align-self:stretch;min-height:320px}
-.hb-glow{position:absolute;left:50%;top:50%;width:min(460px,90%);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,#ffcb3833 0%,#ffcb3800 65%)}
-.hb-floor{position:absolute;left:50%;bottom:13%;width:60%;height:28px;transform:translateX(-50%);border-radius:50%;background:#0009;filter:blur(14px)}
-.hb-art img{position:absolute;height:auto}
-.hb-main{z-index:2;left:50%;top:50%;width:min(44%,260px);transform:translate(-50%,-52%);filter:brightness(.94) drop-shadow(0 26px 30px #0009)}
-.hb-side{top:50%;width:min(34%,200px);filter:brightness(.78) saturate(.9) drop-shadow(0 18px 24px #0008)}
-.hb-l{left:9%;transform:translateY(-46%) rotate(-9deg)}
-.hb-r{right:9%;transform:translateY(-46%) rotate(9deg)}
-.hb-badge{position:absolute;z-index:3;right:10%;top:9%;width:92px;height:92px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(10deg);box-shadow:0 10px 24px #0006;font-size:.66rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
-.hb-badge b{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:1.9rem;line-height:1;letter-spacing:0}
-@media (max-width:900px){.hb-perks{gap:8px 16px;font-size:.8rem}.hb-badge{width:78px;height:78px;font-size:.58rem}.hb-badge b{font-size:1.55rem}}
+/* Banner carrusel promocional */
+.pc{--pc-accent:#22c7ff;position:relative;isolation:isolate;overflow:hidden;width:min(91%,1370px);margin:14px auto 0;aspect-ratio:2.4/1;max-height:540px;border-radius:15px;background:#070b14;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.pc-slide{position:absolute;inset:0;display:block;container-type:size;opacity:0;visibility:hidden;transition:opacity .9s cubic-bezier(.4,0,.2,1),visibility 0s .9s;-webkit-tap-highlight-color:transparent}
+.pc-slide.is-on{z-index:2;opacity:1;visibility:visible;transition:opacity .9s cubic-bezier(.4,0,.2,1),visibility 0s}
+.pc-slide.is-out{z-index:1;visibility:visible}
+.pc-slide:focus-visible{outline:3px solid var(--pc-accent);outline-offset:-3px}
+.pc-fill{position:absolute;inset:-8%;overflow:hidden}
+.pc-fill img{width:100%;height:100%;object-fit:cover;filter:blur(34px) brightness(.34) saturate(1.2);transform:scale(1.05)}
+.pc-fill::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 62% 90% at 50% 50%,transparent 40%,#070b14d9 100%)}
+.pc-stage{position:absolute;left:50%;top:50%;width:min(100cqw,calc(100cqh * var(--r)));height:min(100cqh,calc(100cqw / var(--r)));transform:translate(-50%,-50%);transition:transform 1.1s cubic-bezier(.4,0,.2,1),filter 1.1s;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%)}
+.pc-slide.is-out .pc-stage{transform:translate(-50%,-50%) scale(1.035);filter:brightness(.7)}
+.pc-l{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none}
+.pc-full{opacity:1}
+.pc-a{-webkit-mask-image:var(--ma);mask-image:var(--ma)}
+.pc-b{-webkit-mask-image:var(--mb);mask-image:var(--mb)}
+.pc-shine{position:absolute;inset:0;opacity:0;pointer-events:none;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.32) 50%,transparent 62%);mix-blend-mode:overlay}
+.pc-slide.is-wait .pc-full{opacity:0}
+.is-build .pc-bg{animation:pcBg 1.4s cubic-bezier(.2,.7,.2,1) both}
+.is-build .pc-a{animation:pcA 1.05s .35s cubic-bezier(.16,.84,.3,1) both}
+.is-build .pc-b{animation:pcB .85s .9s cubic-bezier(.16,.84,.3,1) both}
+.is-build .pc-full{animation:pcFull .75s 1.6s ease both}
+.is-build .pc-shine{animation:pcShine 1.3s 1.95s cubic-bezier(.45,0,.25,1) both}
+.is-enter .pc-full{animation:pcSettle 1.3s cubic-bezier(.2,.7,.2,1) both}
+@keyframes pcBg{from{opacity:0;transform:scale(1.12);filter:blur(16px) brightness(.3)}to{opacity:1;transform:none;filter:blur(7px) brightness(.5)}}
+@keyframes pcA{from{opacity:0;transform:translate(var(--ax),var(--ay)) scale(.9)}to{opacity:1;transform:none}}
+@keyframes pcB{from{opacity:0;transform:translate(var(--bx),var(--by));filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+@keyframes pcFull{from{opacity:0}to{opacity:1}}
+@keyframes pcShine{0%{opacity:1;transform:translateX(-110%)}100%{opacity:1;transform:translateX(110%)}}
+@keyframes pcSettle{from{transform:scale(1.05)}to{transform:none}}
+.pc-nav{position:absolute;z-index:5;top:50%;width:46px;height:46px;margin-top:-23px;border:1px solid #ffffff2e;border-radius:50%;background:#070b1480;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;display:grid;place-items:center;cursor:pointer;opacity:0;transition:opacity .25s,background .2s,transform .2s}
+.pc-nav svg{width:20px;height:20px}
+.pc-prev{left:16px}.pc-next{right:16px}
+.pc:hover .pc-nav,.pc-nav:focus-visible{opacity:1}
+.pc-nav:hover{background:#070b14cc;transform:scale(1.06)}
+.pc-nav:focus-visible,.pc-dot:focus-visible{outline:2px solid var(--pc-accent);outline-offset:2px}
+.pc-dots{position:absolute;z-index:5;right:14px;bottom:8px;display:flex;gap:2px}
+.pc-dot{width:44px;height:32px;padding:0 5px;border:0;background:none;cursor:pointer;display:flex;align-items:center}
+.pc-bar{position:relative;display:block;width:100%;height:4px;border-radius:4px;background:#ffffff40;overflow:hidden}
+.pc-bar i{position:absolute;inset:0;border-radius:inherit;background:#fff;transform:scaleX(0);transform-origin:left}
+.pc-dot.is-done .pc-bar i{transform:none;background:#ffffffa6}
+.pc-dot.is-on .pc-bar i{background:var(--pc-accent);animation:pcProg var(--dur,6s) linear forwards}
+.pc.is-paused .pc-dot.is-on .pc-bar i{animation-play-state:paused}
+@keyframes pcProg{from{transform:scaleX(0)}to{transform:none}}
+@media (hover:none){.pc-nav{display:none}}
 @media (max-width:640px){
-  .hb{grid-template-columns:1fr;min-height:0}
-  .hb::before{width:4px}
-  .hb-art{order:-1;min-height:0;height:250px}
-  .hb-mark{top:125px;right:auto;left:-4%;font-size:150px}
-  .hb-main{width:44%;max-width:190px}
-  .hb-side{width:34%;max-width:150px}
-  .hb-l{left:3%}.hb-r{right:3%}
-  .hb-badge{right:5%;top:6%;width:68px;height:68px;font-size:.52rem}
-  .hb-badge b{font-size:1.3rem}
-  .hb-copy{gap:12px;padding:4px 22px 24px}
-  .hb .hb-title{font-size:clamp(2.6rem,13.5vw,3.5rem)}
-  .hb-title span{-webkit-text-stroke-width:1.5px}
-  .hb-sub-more{display:none}
-  .hb-cta{align-self:stretch;justify-content:center}
-  .hb-perks{justify-content:center;margin:0;padding:0;border:0;gap:6px 14px;font-size:.76rem}
-  .hb-perks svg{width:15px;height:15px}
+  .pc{aspect-ratio:4/3;max-height:none;border-radius:13px}
+  .pc-stage{-webkit-mask-image:none;mask-image:none}
+  .pc-slide[data-wide] .pc-stage{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 93%,transparent 100%)}
+  .pc-nav{display:none}
+  .pc-dots{right:6px;top:0;bottom:auto}
+  .pc-dot{width:36px}
 }
-@media (prefers-reduced-motion:reduce){.hb-cta{transition:none}}
+/* Diapositiva camisetas chilenas con giro frente/espalda */
+.pc-cl{display:grid;grid-template-columns:minmax(0,36%) minmax(0,1fr);align-items:center;padding:0 3cqw 0 5.5cqw;box-sizing:border-box;color:#fff}
+.pc-cl-bg{position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse 46% 70% at 66% 55%,#d1112b66 0%,#d1112b00 70%),radial-gradient(ellipse 30% 60% at 98% 40%,#1747a344 0%,#1747a300 70%),linear-gradient(180deg,#0b1222 0%,#070b14 100%)}
+.pc-cl-bg::before{content:"CHILE";position:absolute;right:-1cqw;bottom:-6cqh;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:800;font-style:italic;font-size:44cqh;line-height:1;color:transparent;-webkit-text-stroke:1.5px #ffffff10;letter-spacing:.02em}
+.pc-cl-bg::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;background:linear-gradient(180deg,transparent,#0000008c)}
+.pc-cl-copy{display:flex;flex-direction:column;gap:2.4cqh;min-width:0}
+.pc-cl-kick{margin:0;display:flex;align-items:center;gap:10px;font-size:max(11px,2.4cqh);font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#ff4d5e}
+.pc-cl-kick::before{content:"";width:5cqh;height:2px;background:currentColor}
+.pc .pc-cl-title{margin:0;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:800;font-style:italic;font-size:13.5cqh;line-height:.9;text-transform:uppercase;letter-spacing:.005em}
+.pc-cl-title span{display:block;color:#ff3347}
+.pc-cl-sub{margin:0;font-size:max(12px,3.1cqh);line-height:1.4;color:#c7cfdd}
+.pc-cl-sub strong{color:#fff}
+.pc-cl-cta{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 3.4cqh;margin-top:.6cqh;border-radius:999px;background:#fff;color:#0b1222;font-weight:800;font-size:max(13px,3cqh);text-decoration:none;transition:background .2s,transform .2s}
+.pc-cl-cta:hover{background:#ffd5da;transform:translateY(-1px)}
+.pc-cl-cta svg{width:18px;height:18px}
+.pc-cl-cta:focus-visible,.pc-card:focus-visible{outline:3px solid var(--pc-accent);outline-offset:3px}
+.pc-cl-hint{margin:0;display:flex;align-items:center;gap:8px;font-size:max(11px,2.3cqh);color:#9aa6ba}
+.pc-cl-hint svg{width:16px;height:16px;flex:none;color:#ff4d5e}
+.pc-hint-touch{display:none}
+@media (hover:none){.pc-hint-mouse{display:none}.pc-hint-touch{display:inline}}
+.pc-cl-cards{position:relative;height:100cqh}
+.pc-card{--w:46cqh;position:absolute;top:47%;left:50%;width:var(--w);height:var(--w);margin:calc(var(--w) / -2) 0 0 calc(var(--w) / -2);padding:0;border:0;background:none;cursor:pointer;perspective:1100px;transform:translateX(var(--x)) rotate(var(--rot));-webkit-tap-highlight-color:transparent}
+.pc-card-c{--w:64cqh;--x:0;--rot:0deg;z-index:3}
+.pc-card-l{--w:46cqh;--x:-51cqh;--rot:-5deg;z-index:2}
+.pc-card-r{--w:46cqh;--x:51cqh;--rot:5deg;z-index:2}
+.pc-card-pop{position:absolute;inset:0;display:block}
+.pc-card-in{position:absolute;inset:0;display:block;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,.75,.2,1)}
+.pc-face{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:16px;-webkit-backface-visibility:hidden;backface-visibility:hidden;box-shadow:0 22px 44px #000000a6,0 0 0 1px #ffffff14}
+.pc-back{transform:rotateY(180deg)}
+.pc-card-l .pc-face,.pc-card-r .pc-face{filter:brightness(.9)}
+@media (hover:hover){.pc-card:hover .pc-card-in{transform:rotateY(180deg)}.pc-card:hover{z-index:4}}
+.pc-card[aria-pressed="true"] .pc-card-in{transform:rotateY(180deg)}
+.pc-card-tag{position:absolute;left:50%;bottom:-2.6cqh;z-index:2;transform:translate(-50%,50%);padding:.9cqh 2.2cqh;border-radius:999px;background:#0b1222e6;border:1px solid #ffffff26;font-size:max(10px,2.2cqh);font-weight:800;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;color:#fff}
+.pc-card-c .pc-card-tag{background:#d1112b;border-color:#ff6b78}
+.pc-cl.is-wait .pc-card-pop,.pc-cl.is-wait .pc-cl-copy>*{opacity:0}
+.pc-cl.is-build .pc-cl-bg{animation:pcBg2 1.2s ease both}
+.pc-cl.is-build .pc-card-pop{animation:pcRise 1s var(--d,0s) cubic-bezier(.16,.84,.3,1) both}
+.pc-card-c{--d:.25s}.pc-card-l{--d:.5s}.pc-card-r{--d:.65s}
+.pc-cl.is-build .pc-cl-copy>*{animation:pcB .75s var(--d,0s) cubic-bezier(.16,.84,.3,1) both}
+.pc-cl-copy>:nth-child(1){--d:.9s}.pc-cl-copy>:nth-child(2){--d:1s}.pc-cl-copy>:nth-child(3){--d:1.15s}.pc-cl-copy>:nth-child(4){--d:1.25s}.pc-cl-copy>:nth-child(5){--d:1.35s}
+.pc-cl.is-build .pc-card-c .pc-card-in{animation:pcPeek 2.4s 2.4s cubic-bezier(.45,0,.25,1) both}
+.pc-cl.is-enter .pc-card-pop{animation:pcSettle 1.2s cubic-bezier(.2,.7,.2,1) both}
+@keyframes pcBg2{from{opacity:0}to{opacity:1}}
+@keyframes pcRise{from{opacity:0;transform:translateY(16%) scale(.86)}to{opacity:1;transform:none}}
+@keyframes pcPeek{0%,100%{transform:none}30%,62%{transform:rotateY(180deg)}}
+@media (max-width:640px){
+  .pc-cl{grid-template-columns:1fr;grid-template-rows:auto 1fr auto;padding:3.5cqh 4cqw 4cqh;align-items:stretch}
+  .pc-cl-copy{display:contents}
+  .pc-cl-kick,.pc-cl-sub{display:none}
+  .pc .pc-cl-title{grid-row:1;font-size:11cqh;text-align:center}
+  .pc-cl-title span{display:inline}
+  .pc-cl-cards{grid-row:2;height:auto}
+  .pc-card{--w:38cqh;top:50%}
+  .pc-card-c{--w:48cqh}
+  .pc-card-l{--x:-30cqw}.pc-card-r{--x:30cqw}
+  .pc-card-tag{bottom:-1.5cqh;font-size:9px;padding:3px 8px}
+  .pc-cl-cta{grid-row:3;align-self:center;justify-self:center;min-height:40px;padding:0 18px;font-size:13px}
+  .pc-cl-hint{display:none}
+  .pc-face{border-radius:10px}
+  .pc-cl-bg::before{font-size:34cqh}
+}
+@media (prefers-reduced-motion:reduce){.pc-card-in{transition:none}.pc-cl.is-build *{animation:none!important}}
+@media (prefers-reduced-motion:reduce){
+  .pc-slide,.pc-slide.is-on,.pc-stage{transition-duration:.01s}
+  .is-build .pc-l,.is-build .pc-shine,.is-enter .pc-full{animation:none}
+  .is-build .pc-full{opacity:1}
+}
 /* Ficha del producto: Comprar ahora resaltado, Agregar al carrito sin amarillo */
 #detail .buy-actions .add-to-cart{background:#26364f;color:#f5f8ff;border:1px solid #3d5173}
 #detail .buy-actions .add-to-cart:hover{background:#2f4468;box-shadow:none}
@@ -796,7 +866,69 @@ body>footer p{color:#edf4ff}
 </header>
 <main>
   <h1 class="visually-hidden">Pasión Fútbol</h1>
-  <section class="hb" id="banner" aria-label="Camisetas de fútbol Pasión Fútbol"><span class="hb-mark" aria-hidden="true">FÚTBOL</span><div class="hb-copy"><p class="hb-kicker"><span aria-hidden="true"></span>Colección adultos y niños</p><h2 class="hb-title">Tu equipo.<br><span>Tu camiseta.</span></h2><p class="hb-sub">Desde <strong>$22.990</strong> · 20% OFF llevando 2<span class="hb-sub-more"> · 25% llevando 3</span></p><a class="hb-cta" href="#catalogo">Ver colección <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><ul class="hb-perks"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>Envío gratis en RM</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>Hasta 12 cuotas</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-5A8 8 0 1 1 21 12z"/></svg>Atención por WhatsApp</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h10a4 4 0 0 1 4 4v10H8a4 4 0 0 1-4-4z"/><path d="M8 9h6M8 13h6"/></svg>Revista de regalo</li></ul></div><div class="hb-art"><span class="hb-glow" aria-hidden="true"></span><span class="hb-floor" aria-hidden="true"></span><img class="hb-side hb-l" src="/hero-cam-arsenal.webp" srcset="/hero-cam-arsenal-300.webp 300w, /hero-cam-arsenal.webp 499w" sizes="(max-width: 640px) 34vw, 215px" width="499" height="597" decoding="async" alt="Camiseta Arsenal roja"><img class="hb-side hb-r" src="/hero-cam-turquesa.webp" srcset="/hero-cam-turquesa-300.webp 300w, /hero-cam-turquesa.webp 515w" sizes="(max-width: 640px) 34vw, 215px" width="515" height="612" decoding="async" alt="Camiseta Barcelona turquesa"><img class="hb-main" src="/hero-cam-madrid.webp" srcset="/hero-cam-madrid-300.webp 300w, /hero-cam-madrid.webp 501w" sizes="(max-width: 640px) 44vw, 270px" width="501" height="616" fetchpriority="high" decoding="async" alt="Camiseta Real Madrid blanca"><span class="hb-badge"><b>-25%</b>llevando 3</span></div></section>
+  <section class="pc" id="banner" aria-roledescription="carrusel" aria-label="Promociones"><div class="pc-slide pc-cl is-on" role="group" aria-roledescription="diapositiva" aria-label="Camisetas de Chile, U. de Chile y Colo-Colo"><span class="pc-cl-bg" aria-hidden="true"></span><div class="pc-cl-copy"><p class="pc-cl-kick">Lo nuestro</p><h2 class="pc-cl-title">Orgullo <span>chileno</span></h2><p class="pc-cl-sub">La Roja, la U y el Cacique · desde <strong>$22.990</strong></p><a class="pc-cl-cta" href="#catalogo">Ver camisetas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><p class="pc-cl-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg><span class="pc-hint-mouse">Pasa el mouse para ver la espalda</span><span class="pc-hint-touch">Toca una camiseta para ver la espalda</span></p></div><div class="pc-cl-cards"><button class="pc-card pc-card-l" type="button" aria-pressed="false" aria-label="Camiseta U. de Chile roja Aránguiz 20: ver espalda"><span class="pc-card-pop"><span class="pc-card-in"><img class="pc-face" src="/u-de-chile-aranguiz-roja-frente.webp" width="768" height="768" alt="" decoding="async" draggable="false"><img class="pc-face pc-back" src="/u-de-chile-aranguiz-roja-espalda.webp" width="768" height="768" alt="" decoding="async" loading="lazy" draggable="false"></span><span class="pc-card-tag">U. de Chile</span></span></button><button class="pc-card pc-card-r" type="button" aria-pressed="false" aria-label="Camiseta Colo-Colo rosada Vozinha 29: ver espalda"><span class="pc-card-pop"><span class="pc-card-in"><img class="pc-face" src="/colo-colo-vozinha-rosada-frente.webp" width="768" height="768" alt="" decoding="async" draggable="false"><img class="pc-face pc-back" src="/colo-colo-vozinha-rosada-espalda.webp" width="768" height="768" alt="" decoding="async" loading="lazy" draggable="false"></span><span class="pc-card-tag">Colo-Colo</span></span></button><button class="pc-card pc-card-c" type="button" aria-pressed="false" aria-label="Camiseta de la selección de Chile: ver espalda"><span class="pc-card-pop"><span class="pc-card-in"><img class="pc-face" src="/chile-banner-frente.webp" width="768" height="768" alt="" decoding="async" draggable="false"><img class="pc-face pc-back" src="/chile-banner-espalda.webp" width="768" height="768" alt="" decoding="async" loading="lazy" draggable="false"></span><span class="pc-card-tag">Chile</span></span></button></div></div><a class="pc-slide" tabindex="-1" aria-hidden="true" inert href="#catalogo" aria-label="Juega con corazón: 25% de descuento al llevar 3 camisetas. Ver camisetas" style="--r:1.3333;--ma:radial-gradient(ellipse 40% 34% at 50% 30%,#000 62%,transparent 100%);--mb:radial-gradient(ellipse 50% 22% at 50% 79%,#000 66%,transparent 100%);--ax:0;--ay:7%;--bx:0;--by:9%"><span class="pc-fill" aria-hidden="true"><img class="" src="/promo-1.webp" srcset="/promo-1-sm.webp 760w, /promo-1.webp 1448w" sizes="(max-width: 640px) 100vw, 724px" width="1448" height="1086" alt="" decoding="async" fetchpriority="high" draggable="false"></span><span class="pc-stage" aria-hidden="true"><img class="pc-l pc-bg" src="/promo-1.webp" srcset="/promo-1-sm.webp 760w, /promo-1.webp 1448w" sizes="(max-width: 640px) 100vw, 724px" width="1448" height="1086" alt="" decoding="async" fetchpriority="high" draggable="false"><img class="pc-l pc-a" src="/promo-1.webp" srcset="/promo-1-sm.webp 760w, /promo-1.webp 1448w" sizes="(max-width: 640px) 100vw, 724px" width="1448" height="1086" alt="" decoding="async" fetchpriority="high" draggable="false"><img class="pc-l pc-b" src="/promo-1.webp" srcset="/promo-1-sm.webp 760w, /promo-1.webp 1448w" sizes="(max-width: 640px) 100vw, 724px" width="1448" height="1086" alt="" decoding="async" fetchpriority="high" draggable="false"><img class="pc-l pc-full" src="/promo-1.webp" srcset="/promo-1-sm.webp 760w, /promo-1.webp 1448w" sizes="(max-width: 640px) 100vw, 724px" width="1448" height="1086" alt="" decoding="async" fetchpriority="high" draggable="false"><span class="pc-shine"></span></span></a><a class="pc-slide" href="#catalogo" aria-label="Lleva tus colores: arma tu dúo con 20% de descuento. Ver camisetas" style="--r:2;--ma:radial-gradient(ellipse 31% 56% at 72% 52%,#000 62%,transparent 100%);--mb:radial-gradient(ellipse 30% 46% at 25% 46%,#000 64%,transparent 100%);--ax:6%;--ay:0;--bx:-7%;--by:0" data-wide tabindex="-1" aria-hidden="true" inert><span class="pc-fill" aria-hidden="true"><img class="" src="/promo-2.webp" srcset="/promo-2-sm.webp 760w, /promo-2.webp 1774w" sizes="(max-width: 640px) 100vw, 1000px" width="1774" height="887" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"></span><span class="pc-stage" aria-hidden="true"><img class="pc-l pc-bg" src="/promo-2.webp" srcset="/promo-2-sm.webp 760w, /promo-2.webp 1774w" sizes="(max-width: 640px) 100vw, 1000px" width="1774" height="887" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><img class="pc-l pc-a" src="/promo-2.webp" srcset="/promo-2-sm.webp 760w, /promo-2.webp 1774w" sizes="(max-width: 640px) 100vw, 1000px" width="1774" height="887" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><img class="pc-l pc-b" src="/promo-2.webp" srcset="/promo-2-sm.webp 760w, /promo-2.webp 1774w" sizes="(max-width: 640px) 100vw, 1000px" width="1774" height="887" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><img class="pc-l pc-full" src="/promo-2.webp" srcset="/promo-2-sm.webp 760w, /promo-2.webp 1774w" sizes="(max-width: 640px) 100vw, 1000px" width="1774" height="887" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><span class="pc-shine"></span></span></a><a class="pc-slide" href="#catalogo" aria-label="Lleva tus colores: envío gratis en la Región Metropolitana. Ver camisetas" style="--r:1.3333;--ma:radial-gradient(ellipse 40% 38% at 50% 34%,#000 62%,transparent 100%);--mb:radial-gradient(ellipse 50% 20% at 50% 83%,#000 66%,transparent 100%);--ax:0;--ay:7%;--bx:0;--by:9%" tabindex="-1" aria-hidden="true" inert><span class="pc-fill" aria-hidden="true"><img class="" src="/promo-3.webp" srcset="/promo-3-sm.webp 760w, /promo-3.webp 1448w" sizes="(max-width: 640px) 100vw, 724px" width="1448" height="1086" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"></span><span class="pc-stage" aria-hidden="true"><img class="pc-l pc-bg" src="/promo-3.webp" srcset="/promo-3-sm.webp 760w, /promo-3.webp 1448w" sizes="(max-width: 640px) 100vw, 724px" width="1448" height="1086" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><img class="pc-l pc-a" src="/promo-3.webp" srcset="/promo-3-sm.webp 760w, /promo-3.webp 1448w" sizes="(max-width: 640px) 100vw, 724px" width="1448" height="1086" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><img class="pc-l pc-b" src="/promo-3.webp" srcset="/promo-3-sm.webp 760w, /promo-3.webp 1448w" sizes="(max-width: 640px) 100vw, 724px" width="1448" height="1086" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><img class="pc-l pc-full" src="/promo-3.webp" srcset="/promo-3-sm.webp 760w, /promo-3.webp 1448w" sizes="(max-width: 640px) 100vw, 724px" width="1448" height="1086" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><span class="pc-shine"></span></span></a><button class="pc-nav pc-prev" type="button" aria-label="Promoción anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button class="pc-nav pc-next" type="button" aria-label="Promoción siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><div class="pc-dots"><button class="pc-dot is-on" type="button" aria-label="Ver promoción 1 de 4" aria-current="true"><span class="pc-bar"><i></i></span></button><button class="pc-dot" type="button" aria-label="Ver promoción 2 de 4"><span class="pc-bar"><i></i></span></button><button class="pc-dot" type="button" aria-label="Ver promoción 3 de 4"><span class="pc-bar"><i></i></span></button><button class="pc-dot" type="button" aria-label="Ver promoción 4 de 4"><span class="pc-bar"><i></i></span></button></div></section><script>
+(function(){
+  var root=document.getElementById("banner"); if(!root||!root.classList.contains("pc")) return;
+  var slides=[].slice.call(root.querySelectorAll(".pc-slide")), dots=[].slice.call(root.querySelectorAll(".pc-dot"));
+  var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var built={}, cur=-1, hover=false, focus=false;
+  function setPaused(){ root.classList.toggle("is-paused", hover||focus||document.hidden); }
+  function ready(s){
+    var im=s.querySelector(".pc-full")||s.querySelector(".pc-card-c .pc-face");
+    if(im.loading==="lazy") im.loading="eager";
+    if(im.complete&&im.naturalWidth) return Promise.resolve();
+    return Promise.race([
+      new Promise(function(r){ im.addEventListener("load",r,{once:true}); im.addEventListener("error",r,{once:true}); }),
+      new Promise(function(r){ setTimeout(r,3500); })
+    ]);
+  }
+  function setHidden(s,h){ s.inert=h; if(h){ s.setAttribute("aria-hidden","true"); s.tabIndex=-1; } else { s.removeAttribute("aria-hidden"); s.removeAttribute("tabindex"); } }
+  function go(n){
+    n=(n+slides.length)%slides.length; if(n===cur) return;
+    var prev=slides[cur];
+    if(prev){
+      prev.classList.remove("is-on","is-build","is-enter","is-wait"); prev.classList.add("is-out"); setHidden(prev,true);
+      [].forEach.call(prev.querySelectorAll(".pc-card"),function(c){ c.setAttribute("aria-pressed","false"); });
+      setTimeout(function(){ prev.classList.remove("is-out"); },950);
+    }
+    cur=n; var s=slides[n], first=!built[n]&&!reduce;
+    setHidden(s,false); s.classList.remove("is-out");
+    s.classList.add("is-on", first?"is-wait":"is-enter");
+    if(!first){ setTimeout(function(){ s.classList.remove("is-enter"); },1400); }
+    dots.forEach(function(d,i){
+      d.classList.remove("is-on"); d.classList.toggle("is-done", i<n);
+      if(i===n){ d.setAttribute("aria-current","true"); } else { d.removeAttribute("aria-current"); }
+    });
+    var dot=dots[n]; var isCards=s.classList.contains("pc-cl"); dot.style.setProperty("--dur",(isCards?(first?10:8):(first?8.5:6.5))+"s"); void dot.offsetWidth; dot.classList.add("is-on");
+    if(first){
+      ready(s).then(function(){ if(cur!==n) return; s.classList.remove("is-wait"); void s.offsetWidth; s.classList.add("is-build"); built[n]=true; });
+    }
+    var nxt=slides[(n+1)%slides.length].querySelector(".pc-full"); if(nxt.loading==="lazy") nxt.loading="eager";
+  }
+  dots.forEach(function(d,i){
+    d.addEventListener("click",function(){ go(i); });
+    d.querySelector("i").addEventListener("animationend",function(){ if(i===cur) go(cur+1); });
+  });
+  root.querySelector(".pc-prev").addEventListener("click",function(){ go(cur-1); });
+  root.querySelector(".pc-next").addEventListener("click",function(){ go(cur+1); });
+  root.addEventListener("mouseenter",function(){ hover=true; setPaused(); });
+  root.addEventListener("mouseleave",function(){ hover=false; setPaused(); });
+  root.addEventListener("focusin",function(){ focus=true; setPaused(); });
+  root.addEventListener("focusout",function(e){ if(!root.contains(e.relatedTarget)){ focus=false; setPaused(); } });
+  document.addEventListener("visibilitychange",setPaused);
+  root.addEventListener("keydown",function(e){ if(e.key==="ArrowLeft"){ go(cur-1); e.preventDefault(); } else if(e.key==="ArrowRight"){ go(cur+1); e.preventDefault(); } });
+  var x0=null, y0=0, swiped=false;
+  root.addEventListener("pointerdown",function(e){ x0=e.clientX; y0=e.clientY; swiped=false; });
+  root.addEventListener("pointerup",function(e){ if(x0===null) return; var dx=e.clientX-x0, dy=e.clientY-y0; x0=null; if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)){ swiped=true; go(cur+(dx<0?1:-1)); } });
+  root.addEventListener("pointercancel",function(){ x0=null; });
+  root.addEventListener("click",function(e){ if(swiped){ e.preventDefault(); swiped=false; } },true);
+  root.addEventListener("dragstart",function(e){ e.preventDefault(); });
+  [].forEach.call(root.querySelectorAll(".pc-card"),function(c){
+    c.addEventListener("click",function(){ c.setAttribute("aria-pressed", c.getAttribute("aria-pressed")==="true"?"false":"true"); });
+  });
+  go(0);
+})();
+</script>
   
   <section class="catalog wrap" id="catalogo" aria-labelledby="catalog-title">
     <h2 class="visually-hidden" id="catalog-title">Colección de fútbol</h2>
