@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Pasión Fútbol</title>
 <link rel="icon" type="image/png" sizes="64x64" href="/pelota-corona.png">
-<link rel="preload" as="image" href="/banner-1.webp" imagesrcset="/banner-1-800.webp 800w, /banner-1.webp 1500w" imagesizes="(max-width: 640px) 100vw, 1200px" fetchpriority="high">
+<link rel="preload" as="image" href="/hero-cam-madrid.webp" imagesrcset="/hero-cam-madrid-300.webp 300w, /hero-cam-madrid.webp 501w" imagesizes="(max-width: 640px) 44vw, 270px" fetchpriority="high">
 <link rel="preload" as="font" type="font/woff2" href="/dm-sans-latin-wght-normal.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/barlow-condensed-latin-800-normal.woff2" crossorigin>
 <meta name="description" content="Camisetas y ropa de entrenamiento para la cancha y la tribuna.">
@@ -630,32 +630,55 @@ body>footer p{color:#edf4ff}
 @media (prefers-reduced-motion:reduce){#order #pay,#shipping #checkout-continue,#shipping button[type="submit"]{transition:none}}
 
 
-/* Banner rotativo */
-.bn{position:relative;width:min(91%,1370px);margin:14px auto 0;border-radius:15px;overflow:hidden;background:#0c203a;aspect-ratio:2.2/1;max-height:520px;min-height:220px;touch-action:pan-y;isolation:isolate}
-.bn-slide{position:absolute;inset:0;display:flex;align-items:center;padding:0 7%;opacity:0;visibility:hidden;transition:opacity .8s ease,visibility .8s;color:#fff}
-.bn-slide.on{opacity:1;visibility:visible;z-index:1}
-.bn-art{position:absolute;inset:0;z-index:-1;width:100%;height:100%}
-.bn-photo{position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:contain}
-.bn-bg{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;filter:blur(24px) brightness(.65);transform:scale(1.2)}
-.bn-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 55%,#050910cc 100%)}
-.bn-text{max-width:min(560px,62%)}
-.bn-kicker{display:inline-block;margin:0 0 8px;padding:4px 10px;border-radius:999px;background:#d52b1e;color:#fff;font-size:.78rem;font-weight:750;letter-spacing:.06em;text-transform:uppercase}
-.bn-title{margin:0 0 8px;font-size:clamp(1.35rem,4.2vw,2.8rem);line-height:1.05;font-weight:800;text-shadow:0 2px 12px #0008}
-.bn-title em{font-style:normal;color:#ffcb32}
-.bn-sub{margin:0;font-size:clamp(.85rem,1.9vw,1.1rem);color:#e6eefc;text-shadow:0 1px 8px #0009}
-.bn-dots{position:absolute;left:0;right:0;bottom:10px;z-index:3;display:flex;justify-content:center;gap:4px}
-.bn-dots button{width:44px;height:24px;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center}
-.bn-dots button::after{content:"";width:26px;height:6px;border-radius:3px;background:#ffffffb3;box-shadow:0 0 4px #000a;transition:background .3s,width .3s}
-.bn-dots button[aria-current="true"]::after{background:#ffcb32;width:38px}
-@media (max-width:640px){.bn{aspect-ratio:4/3;height:auto;max-height:none;padding:0}.bn-text{max-width:100%}.bn-slide{padding:0 6%}.bn-shade{background:linear-gradient(180deg,transparent 50%,#050910d9 100%)}.bn-slide{align-items:flex-end;padding-bottom:40px}}
-@media (prefers-reduced-motion:reduce){.bn-slide{transition:none}}
-
-.bn-slide{align-items:flex-end;justify-content:space-between;padding:0 3% 14px}
-.bn-brand{font-size:clamp(15px,2.2vw,26px);text-shadow:0 2px 10px #000a}
-.bn-brand .brand-ball{width:clamp(28px,4vw,44px)}
-.bn-tag{margin:0;font-size:clamp(.78rem,1.5vw,1.05rem);font-style:italic;letter-spacing:.04em;color:#ffffffd9;text-shadow:0 1px 8px #000b}
-.bn-dots{bottom:auto;top:6px}
-@media (max-width:640px){.bn-slide{padding:0 4% 12px}}
+/* Banner principal */
+.hb{position:relative;isolation:isolate;overflow:hidden;width:min(91%,1370px);margin:14px auto 0;border-radius:15px;background:#10151f;color:#fff;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:center;min-height:clamp(380px,34vw,470px)}
+.hb::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--accent)}
+.hb-mark{position:absolute;right:-2%;top:50%;z-index:-1;transform:translateY(-50%);font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:800;font-size:clamp(160px,22vw,300px);line-height:1;color:transparent;-webkit-text-stroke:2px #ffffff12;white-space:nowrap;pointer-events:none;user-select:none}
+.hb-copy{min-width:0;display:flex;flex-direction:column;gap:16px;padding:clamp(28px,4vw,56px) 0 clamp(28px,4vw,56px) clamp(28px,5vw,72px)}
+.hb-kicker{margin:0;display:flex;align-items:center;gap:10px;font-size:.8rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.hb-kicker span{width:28px;height:2px;background:currentColor}
+.hb .hb-title{margin:0;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:800;font-size:clamp(3rem,6.2vw,5.6rem);line-height:.9;letter-spacing:.01em;text-transform:uppercase}
+.hb-title span{color:transparent;-webkit-text-stroke:2px var(--accent)}
+@supports not (-webkit-text-stroke:1px #000){.hb-title span{color:var(--accent)}}
+.hb-sub{margin:0;font-size:clamp(1rem,1.4vw,1.15rem);line-height:1.45;color:var(--muted)}
+.hb-sub strong{color:#fff}
+.hb-cta{align-self:flex-start;display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 28px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:1.05rem;text-decoration:none;transition:background .2s,transform .2s}
+.hb-cta:hover{background:#ffd75c;transform:translateY(-1px)}
+.hb-cta:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.hb-cta svg{width:20px;height:20px}
+.hb-perks{list-style:none;margin:8px 0 0;padding:16px 0 0;border-top:1px solid #ffffff1f;display:flex;flex-wrap:wrap;gap:10px 22px;font-size:.85rem;color:var(--muted)}
+.hb-perks li{display:flex;align-items:center;gap:7px}
+.hb-perks svg{flex:none;width:18px;height:18px;color:var(--accent)}
+.hb-art{position:relative;align-self:stretch;min-height:320px}
+.hb-glow{position:absolute;left:50%;top:50%;width:min(460px,90%);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,#ffcb3833 0%,#ffcb3800 65%)}
+.hb-floor{position:absolute;left:50%;bottom:13%;width:60%;height:28px;transform:translateX(-50%);border-radius:50%;background:#0009;filter:blur(14px)}
+.hb-art img{position:absolute;height:auto}
+.hb-main{z-index:2;left:50%;top:50%;width:min(44%,260px);transform:translate(-50%,-52%);filter:brightness(.94) drop-shadow(0 26px 30px #0009)}
+.hb-side{top:50%;width:min(34%,200px);filter:brightness(.78) saturate(.9) drop-shadow(0 18px 24px #0008)}
+.hb-l{left:9%;transform:translateY(-46%) rotate(-9deg)}
+.hb-r{right:9%;transform:translateY(-46%) rotate(9deg)}
+.hb-badge{position:absolute;z-index:3;right:10%;top:9%;width:92px;height:92px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(10deg);box-shadow:0 10px 24px #0006;font-size:.66rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+.hb-badge b{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:1.9rem;line-height:1;letter-spacing:0}
+@media (max-width:900px){.hb-perks{gap:8px 16px;font-size:.8rem}.hb-badge{width:78px;height:78px;font-size:.58rem}.hb-badge b{font-size:1.55rem}}
+@media (max-width:640px){
+  .hb{grid-template-columns:1fr;min-height:0}
+  .hb::before{width:4px}
+  .hb-art{order:-1;min-height:0;height:250px}
+  .hb-mark{top:125px;right:auto;left:-4%;font-size:150px}
+  .hb-main{width:44%;max-width:190px}
+  .hb-side{width:34%;max-width:150px}
+  .hb-l{left:3%}.hb-r{right:3%}
+  .hb-badge{right:5%;top:6%;width:68px;height:68px;font-size:.52rem}
+  .hb-badge b{font-size:1.3rem}
+  .hb-copy{gap:12px;padding:4px 22px 24px}
+  .hb .hb-title{font-size:clamp(2.6rem,13.5vw,3.5rem)}
+  .hb-title span{-webkit-text-stroke-width:1.5px}
+  .hb-sub-more{display:none}
+  .hb-cta{align-self:stretch;justify-content:center}
+  .hb-perks{justify-content:center;margin:0;padding:0;border:0;gap:6px 14px;font-size:.76rem}
+  .hb-perks svg{width:15px;height:15px}
+}
+@media (prefers-reduced-motion:reduce){.hb-cta{transition:none}}
 /* Ficha del producto: Comprar ahora resaltado, Agregar al carrito sin amarillo */
 #detail .buy-actions .add-to-cart{background:#26364f;color:#f5f8ff;border:1px solid #3d5173}
 #detail .buy-actions .add-to-cart:hover{background:#2f4468;box-shadow:none}
@@ -773,7 +796,7 @@ body>footer p{color:#edf4ff}
 </header>
 <main>
   <h1 class="visually-hidden">Pasión Fútbol</h1>
-  <section class="bn" id="banner" aria-roledescription="carrusel" aria-label="Destacados de Pasión Fútbol"><div class="bn-slide on" role="group" aria-roledescription="diapositiva" aria-label="1 de 5"><img class="bn-photo" src="/banner-1.webp" srcset="/banner-1-800.webp 800w, /banner-1.webp 1500w" sizes="(max-width: 640px) 100vw, 1200px" width="1500" height="1002" fetchpriority="high" decoding="async" alt=""><div class="bn-shade"></div><span class="wordmark bn-brand" aria-label="Pasión Fútbol"><span class="brand-ball" aria-hidden="true"><img src="./pasion-futbol.jpg" alt="" width="828" height="1792"></span><span>Pasión <strong>Fútbol</strong></span></span><p class="bn-tag">Para hinchas de verdad</p></div><div class="bn-slide" role="group" aria-roledescription="diapositiva" aria-label="2 de 5"><img class="bn-photo" src="/banner-2.webp" srcset="/banner-2-800.webp 800w, /banner-2.webp 1470w" sizes="(max-width: 640px) 100vw, 1200px" width="1470" height="490" loading="lazy" decoding="async" alt=""><div class="bn-shade"></div><span class="wordmark bn-brand" aria-label="Pasión Fútbol"><span class="brand-ball" aria-hidden="true"><img src="./pasion-futbol.jpg" alt="" width="828" height="1792"></span><span>Pasión <strong>Fútbol</strong></span></span><p class="bn-tag">La pasión se viste</p></div><div class="bn-slide" role="group" aria-roledescription="diapositiva" aria-label="3 de 5"><img class="bn-photo" src="/banner-3.webp" srcset="/banner-3-800.webp 800w, /banner-3.webp 1472w" sizes="(max-width: 640px) 100vw, 1200px" width="1472" height="1178" loading="lazy" decoding="async" alt=""><div class="bn-shade"></div><span class="wordmark bn-brand" aria-label="Pasión Fútbol"><span class="brand-ball" aria-hidden="true"><img src="./pasion-futbol.jpg" alt="" width="828" height="1792"></span><span>Pasión <strong>Fútbol</strong></span></span><p class="bn-tag">Camisetas de colección</p></div><div class="bn-slide" role="group" aria-roledescription="diapositiva" aria-label="4 de 5"><img class="bn-photo" src="/banner-4.webp" srcset="/banner-4-800.webp 800w, /banner-4.webp 1224w" sizes="(max-width: 640px) 100vw, 1200px" width="1224" height="816" loading="lazy" decoding="async" alt=""><div class="bn-shade"></div><span class="wordmark bn-brand" aria-label="Pasión Fútbol"><span class="brand-ball" aria-hidden="true"><img src="./pasion-futbol.jpg" alt="" width="828" height="1792"></span><span>Pasión <strong>Fútbol</strong></span></span><p class="bn-tag">Fútbol que se siente</p></div><div class="bn-slide" role="group" aria-roledescription="diapositiva" aria-label="5 de 5"><img class="bn-photo" src="/banner-5.webp" srcset="/banner-5-800.webp 800w, /banner-5.webp 1470w" sizes="(max-width: 640px) 100vw, 1200px" width="1470" height="490" loading="lazy" decoding="async" alt=""><div class="bn-shade"></div><span class="wordmark bn-brand" aria-label="Pasión Fútbol"><span class="brand-ball" aria-hidden="true"><img src="./pasion-futbol.jpg" alt="" width="828" height="1792"></span><span>Pasión <strong>Fútbol</strong></span></span><p class="bn-tag">Tu equipo, tu camiseta</p></div><div class="bn-dots" id="bn-dots"><button type="button" aria-label="Ir a la diapositiva 1" aria-current="true"></button><button type="button" aria-label="Ir a la diapositiva 2"></button><button type="button" aria-label="Ir a la diapositiva 3"></button><button type="button" aria-label="Ir a la diapositiva 4"></button><button type="button" aria-label="Ir a la diapositiva 5"></button></div></section>
+  <section class="hb" id="banner" aria-label="Camisetas de fútbol Pasión Fútbol"><span class="hb-mark" aria-hidden="true">FÚTBOL</span><div class="hb-copy"><p class="hb-kicker"><span aria-hidden="true"></span>Colección adultos y niños</p><h2 class="hb-title">Tu equipo.<br><span>Tu camiseta.</span></h2><p class="hb-sub">Desde <strong>$22.990</strong> · 20% OFF llevando 2<span class="hb-sub-more"> · 25% llevando 3</span></p><a class="hb-cta" href="#catalogo">Ver colección <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><ul class="hb-perks"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>Envío gratis en RM</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>Hasta 12 cuotas</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-5A8 8 0 1 1 21 12z"/></svg>Atención por WhatsApp</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h10a4 4 0 0 1 4 4v10H8a4 4 0 0 1-4-4z"/><path d="M8 9h6M8 13h6"/></svg>Revista de regalo</li></ul></div><div class="hb-art"><span class="hb-glow" aria-hidden="true"></span><span class="hb-floor" aria-hidden="true"></span><img class="hb-side hb-l" src="/hero-cam-arsenal.webp" srcset="/hero-cam-arsenal-300.webp 300w, /hero-cam-arsenal.webp 499w" sizes="(max-width: 640px) 34vw, 215px" width="499" height="597" decoding="async" alt="Camiseta Arsenal roja"><img class="hb-side hb-r" src="/hero-cam-turquesa.webp" srcset="/hero-cam-turquesa-300.webp 300w, /hero-cam-turquesa.webp 515w" sizes="(max-width: 640px) 34vw, 215px" width="515" height="612" decoding="async" alt="Camiseta Barcelona turquesa"><img class="hb-main" src="/hero-cam-madrid.webp" srcset="/hero-cam-madrid-300.webp 300w, /hero-cam-madrid.webp 501w" sizes="(max-width: 640px) 44vw, 270px" width="501" height="616" fetchpriority="high" decoding="async" alt="Camiseta Real Madrid blanca"><span class="hb-badge"><b>-25%</b>llevando 3</span></div></section>
   
   <section class="catalog wrap" id="catalogo" aria-labelledby="catalog-title">
     <h2 class="visually-hidden" id="catalog-title">Colección de fútbol</h2>
@@ -2562,28 +2585,5 @@ initCatalogFilters();
 renderCatalog();
 </script>
 
-<script>
-(function(){
-  const box=document.getElementById("banner");if(!box)return;
-  box.querySelectorAll(".bn-photo").forEach(p=>{const bg=new Image();bg.className="bn-bg";bg.alt="";bg.decoding="async";if(p.loading)bg.loading=p.loading;bg.src=p.srcset?p.srcset.split(" ")[0]:p.getAttribute("src");/* el fondo va desenfocado: basta la versión liviana */p.before(bg)});
-  const slides=[...box.querySelectorAll(".bn-slide")],dots=[...box.querySelectorAll("#bn-dots button")];
-  let cur=0,timer=null;
-  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  function show(n){
-    cur=(n+slides.length)%slides.length;
-    slides.forEach((el,i)=>{el.classList.toggle("on",i===cur);el.setAttribute("aria-hidden",i===cur?"false":"true")});
-    dots.forEach((d,i)=>d.setAttribute("aria-current",i===cur?"true":"false"));
-  }
-  function start(){stop();if(!reduce)timer=setInterval(()=>show(cur+1),5000)}
-  function stop(){if(timer){clearInterval(timer);timer=null}}
-  dots.forEach((d,i)=>d.addEventListener("click",()=>{show(i);start()}));
-  box.addEventListener("mouseenter",stop);box.addEventListener("mouseleave",start);
-  let x0=null;
-  box.addEventListener("touchstart",e=>{x0=e.touches[0].clientX;stop()},{passive:true});
-  box.addEventListener("touchend",e=>{if(x0!==null){const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)show(cur+(dx<0?1:-1));x0=null}start()});
-  document.addEventListener("visibilitychange",()=>document.hidden?stop():start());
-  show(0);start();
-})();
-</script>
 </body>
 </html>
