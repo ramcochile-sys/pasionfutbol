@@ -1849,6 +1849,12 @@ if (location.hash === "#carrito" && selection.length) {
   history.replaceState(null, "", location.pathname);
   requestAnimationFrame(() => showOrder());
 }
+/* Link directo a una camiseta (lo envía el asistente de WhatsApp): /?producto=<id> abre su ficha. */
+{
+  const linked = new URLSearchParams(location.search).get("producto");
+  const linkedItem = linked && products.find(item => item.id === linked && !item.hidden);
+  if (linkedItem) requestAnimationFrame(() => openDetail(linkedItem));
+}
 
 const normGeo = s => String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
   .replace(/^region\s+(?:de(?:l)?\s+)?(?:la\s+|los\s+|las\s+)?/i, "")
