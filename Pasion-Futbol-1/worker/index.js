@@ -437,7 +437,10 @@ async function createFlow(request, env, url) {
   try { destination = new URL(result.url); } catch { throw new Error("Respuesta Flow inválida"); }
   if (destination.protocol !== "https:" || !flowHosts.includes(destination.hostname) || typeof result.token !== "string" || !/^[A-Za-z0-9_-]{10,256}$/.test(result.token)) throw new Error("Respuesta Flow inválida");
   const record = {provider:"flow",buy_order,session_id:buy_order,amount,subtotal,discount,items,shipping:cleanShipping,status:"pending",createdAt:Date.now()};
-  await env.BUCKET.put("webpay-orders/" + await hash(result.token),JSON.stringify(record),{httpMetadata:{contentType:"application/json"}});
+  const flowKey = "webpay-orders/" + await hash(result.token);
+  await env.BUCKET.put(flowKey,JSON.stringify(record),{httpMetadata:{contentType:"application/json"}});
+  // Índice para ubicar el pedido por su número (lo usa el asistente de WhatsApp).
+  await env.BUCKET.put("order-index/" + buy_order,flowKey,{httpMetadata:{contentType:"text/plain"}});
   return json({url:result.url + "?token=" + encodeURIComponent(result.token),token:result.token,provider:"flow"});
 }
 // Consulta a Flow el estado real del pago y lo guarda. Flow: 1 pendiente, 2 pagada, 3 rechazada, 4 anulada.
@@ -790,6 +793,92 @@ async function handleAddressVerify(request, env, url) {
     // Si el número no figura en el mapa, se acepta el que escribió el cliente y la calle sí se confirma.
     numberConfirmed: Boolean(p.housenumber),
     streetLine, formattedAddress: [streetLine, commune, region].filter(Boolean).join(", ")});
+}
+
+// ---------- Asistente de WhatsApp ----------
+// Funciones de solo lectura que usa lib/whatsapp-bot.js. No exponen datos personales de los clientes.
+
+export async function botCatalog(env) {
+  let products;
+  try { products = await catalog(env); }
+  catch (error) { console.error(error); products = initialProducts; }
+  const label = value => String(value || "").replace(/\bpoleras?\b/gi, word => (word[0] === "P" ? "Camiseta" : "camiseta") + (word.toLowerCase().endsWith("s") ? "s" : ""));
+  return products.filter(productWithPhoto).filter(item => !item.hidden).map(item => ({
+    id:item.id, name:label(item.name), price:item.price, sizes:item.sizes,
+    categories:item.categories, description:label(item.description), image:item.image
+  }));
+}
+
+export async function botIsAdmin(request, env) {
+  return isAdmin(request, env);
+}
+
+const botStatusLabels = {
+  pending:"Pago pendiente o no completado", paid:"Pagado", paid_test:"Pagado (prueba)", not_approved:"Pago rechazado"
+};
+
+export async function botOrder(env, code) {
+  const buyOrder = String(code || "").trim().toUpperCase();
+  if (!/^PF[A-F0-9]{24}$/i.test(buyOrder)) return {found:false, reason:"El número de pedido tiene la forma PF seguido de 24 letras y números."};
+  const normalized = "PF" + buyOrder.slice(2).toLowerCase();
+  const keys = [await mpOrderKey(normalized)];
+  const indexed = await env.BUCKET.get("order-index/" + normalized);
+  if (indexed) keys.unshift(await indexed.text());
+  let record = null;
+  for (const key of keys) {
+    const stored = await env.BUCKET.get(key);
+    if (!stored) continue;
+    const candidate = await stored.json();
+    if (candidate?.buy_order === normalized) { record = candidate; break; }
+  }
+  if (!record) {
+    // Pedidos de Flow anteriores al índice: se buscan entre los registros guardados.
+    let cursor;
+    for (let page = 0; page < 5 && !record; page++) {
+      const listing = await env.BUCKET.list({prefix:"webpay-orders/", limit:100, cursor});
+      for (const {key} of listing.objects) {
+        const stored = await env.BUCKET.get(key);
+        const candidate = stored && await stored.json();
+        if (candidate?.buy_order === normalized) { record = candidate; break; }
+      }
+      if (!listing.truncated) break;
+      cursor = listing.cursor;
+    }
+  }
+  if (!record) return {found:false, reason:"No encontramos un pedido con ese número."};
+  const shipping = record.shipping || {};
+  return {
+    found:true,
+    order:record.buy_order,
+    status:botStatusLabels[record.status] || record.status,
+    paymentProvider:record.provider === "mercadopago" ? "Mercado Pago" : record.provider === "flow" ? "Flow" : record.provider,
+    date:new Date(record.createdAt).toLocaleDateString("es-CL",{timeZone:"America/Santiago"}),
+    total:record.amount,
+    items:(record.items || []).map(item => ({name:item.name, size:item.size, quantity:item.quantity})),
+    destination:[shipping.commune, shipping.region].filter(Boolean).join(", "),
+    carrier:shipping.carrier || null,
+    note:"El sistema no registra el número de seguimiento del envío; para eso hay que pasar la conversación a una persona."
+  };
+}
+
+export function botShippingQuote(communeName, shirts = 1) {
+  const norm = value => String(value || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
+  const wanted = norm(communeName);
+  const matches = [];
+  for (const [regionCode, region] of Object.entries(chileCommunes)) {
+    for (const [communeCode, name] of Object.entries(region.communes)) {
+      if (norm(name) === wanted) matches.push({regionCode, communeCode});
+    }
+  }
+  if (!matches.length) return {found:false, reason:"No reconocí esa comuna. Pide al cliente que la escriba de nuevo."};
+  const quantity = Math.min(Math.max(Math.round(Number(shirts) || 1), 1), 30);
+  const items = [{name:"Camiseta", categories:["Poleras"], quantity, price:0}];
+  return {found:true, results:matches.map(({regionCode, communeCode}) => {
+    const quotes = Object.values(allShippingQuotes(items, regionCode, communeCode) || {});
+    return quotes.length
+      ? {commune:quotes[0].commune, region:quotes[0].region, options:quotes.map(quote => ({carrier:quote.carrier, price:quote.price, eta:quote.eta}))}
+      : {commune:chileCommunes[regionCode].communes[communeCode], region:chileCommunes[regionCode].name, options:[], note:"Sin tarifa automática para este destino: hay que cotizarlo a mano."};
+  })};
 }
 
 export default {
