@@ -13,9 +13,9 @@ function itemWeightGrams(item) {
   return 300;
 }
 
-// Packs de diciembre: 2 camisetas $24.990, 3 por $36.990 y 4 por $44.990, hasta el 31 de diciembre de 2026.
+// Combos de camisetas hasta el 31 de diciembre de 2026: 2 por $29.000 y 5 por $65.990 (1 suelta: $19.990).
 // Se cobra la combinación más barata de packs y precios individuales; el envío no entra.
-const SHIRT_PACKS = [[2, 24990], [3, 36990], [4, 44990]];
+const SHIRT_PACKS = [[2, 29000], [5, 65990]];
 function promotionActive(now = Date.now()) {
   return now < Date.parse("2027-01-01T00:00:00-03:00");
 }
