@@ -213,7 +213,7 @@ dialog{background:var(--surface);border-radius:18px;border-color:var(--line);box
 .promo-group li+li::before{content:"";display:inline-block;width:.3rem;height:.3rem;margin:0 .6rem .15rem 0;border-radius:50%;background:var(--blue)}
 .promo-group strong,.promo-discount{color:var(--green-text)}
 .promo-discount[hidden]{display:none}
-.promo-bar.is-moving .promo-track{animation:promo-scroll 29s linear infinite}
+.promo-bar.is-moving .promo-track{animation:promo-scroll 29s linear 1}
 .promo-bar.is-moving .promo-window:hover .promo-track{animation-play-state:paused}
 @keyframes promo-scroll{to{transform:translateX(-50%)}}
 .promo-bar:not(.is-moving) .promo-track{width:auto}
@@ -756,7 +756,6 @@ body>footer p{color:#edf4ff}
 .pb-slide.is-play .pb-fl{animation:pbFl 1.3s .25s steps(1,end) both}
 .pb-slide.is-play .pb-side{animation:pbSide 1s .5s cubic-bezier(.2,.7,.2,1) both}
 .pb-slide.is-play .pb-shirt img{animation:pbShirt 1.05s calc(.45s + var(--i) * .16s) cubic-bezier(.16,.84,.3,1) both}
-.pb-slide.is-play .pb-shirt{animation:pbFloat 5s calc(2.2s + var(--i) * .7s) ease-in-out infinite alternate}
 .pb-slide.is-play .pb-floor{animation:pbFade 1s .6s both}
 .pb-slide.is-play .pb-k{animation:pbTxt .85s 1.05s cubic-bezier(.16,.84,.3,1) both,pbGlint 1.1s 2.1s ease-in-out both}
 .pb-slide.is-play .pb-t{animation:pbTitle .95s 1.25s cubic-bezier(.16,.84,.3,1) both,pbGlint 1.2s 2.25s ease-in-out both}
@@ -887,6 +886,26 @@ body>footer p{color:#edf4ff}
   .cart-qty{grid-template-columns:40px 2.4ch 40px}
   .cart-qty button{min-height:40px}
 }
+
+.pb-featured .pb-shirts{inset:7% 14% auto;height:56%;transform:none;align-items:center;gap:2.5%;--shirt-card:25%}
+.pb-featured .pb-shirts[data-n="3"] .pb-shirt{flex:0 1 var(--shirt-card);min-width:0;height:auto;margin:0;aspect-ratio:1;border-radius:clamp(.35rem,1.3cqw,.95rem);overflow:hidden;border:1px solid #ffffff38;box-shadow:0 .7rem 2rem #02050bcc}
+.pb-featured .pb-shirts[data-n="3"] .pb-shirt:nth-child(2){flex-basis:31%}
+.pb-featured .pb-shirt img{width:100%;height:100%;object-fit:cover;filter:none}
+.pb-featured .pb-copy{bottom:6%;gap:.45rem}
+.pb-featured .pb-k{font-size:clamp(1rem,3.4cqw,2.5rem)}
+.pb-offers{width:min(82%,29rem);border-collapse:separate;border-spacing:0;color:#fff;background:#101b30e8;border:1px solid #ffffff34;border-radius:.7rem;overflow:hidden;font-size:clamp(.7rem,2.35cqw,1rem);font-variant-numeric:tabular-nums}
+.pb-offers :is(th,td){width:25%;padding:.14em .22em;white-space:nowrap}
+.pb-offers th{color:var(--accent);font-weight:800}
+.pb-offers td{padding-bottom:.36em;font-weight:850}
+.pb-offers :is(th,td)+:is(th,td){border-left:1px solid #ffffff24}
+.pb-featured .pb-buy{margin-top:0}
+.pb-dot.is-on .pb-bar i{animation:none;transform:none}
+@media(max-width:640px){
+  .pb-featured .pb-shirts{inset:10% 6% auto;height:45%;--shirt-card:29%}
+  .pb-featured .pb-shirts[data-n="3"] .pb-shirt:nth-child(2){flex-basis:34%}
+  .pb-featured .pb-copy{bottom:8%}
+  .pb-offers{width:94%;font-size:clamp(.7rem,3.75cqw,.95rem)}
+}
 </style>
 </head>
 <body>
@@ -943,9 +962,16 @@ body>footer p{color:#edf4ff}
   var root=document.getElementById("banner"); if(!root) return;
   var conf=/* BANNERS_DATA */ null;
   if(!conf){ root.hidden=true; return; }
-  var list=(conf.diapositivas||[]).filter(function(d){ return d&&(d.titulo||d.camisetas); }).slice(0,3);
-  if(!list.length){ root.hidden=true; return; }
-  var dur=Math.max(4,Math.min(20,+conf.segundosPorDiapositiva||7));
+  var featured = {
+    clubes: true, linea1: "Promociones de camisetas", color: "#ffcb32", luces: "#2f7bff",
+    camisetas: [
+      {id:"universidad-catolica-blanca", nombre:"Universidad Católica", imagen:"/universidad-catolica-blanca-frente.webp"},
+      {id:"colo-colo-roja", nombre:"Colo-Colo", imagen:"/colo-colo-roja-frente.webp"},
+      {id:"u-de-chile-aranguiz-roja", nombre:"Universidad de Chile", imagen:"/u-de-chile-aranguiz-roja-frente.webp"}
+    ],
+    boton:"Ver camisetas", enlace:"#catalogo"
+  };
+  var list=[featured].concat((conf.diapositivas||[]).filter(function(d){ return d&&(d.titulo||d.camisetas); }));
   var esc=function(v){ return String(v==null?"":v).replace(/[&<>"']/g,function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); };
   var color=function(v,d){ return /^#[0-9a-f]{3,8}$/i.test(String(v||""))?v:d; };
   var link=function(v){ v=String(v||"#catalogo"); return /^(#|\/(?!\/)|https:\/\/)/.test(v)?v:"#catalogo"; };
@@ -954,7 +980,7 @@ body>footer p{color:#edf4ff}
   var html=list.map(function(d,i){
     var shirts=(d.camisetas||[]).slice(0,3).map(function(s){ return typeof s==="string"?{id:s}:s; }).filter(function(s){ return s&&/^[\w-]+$/.test(s.id||""); });
     var label=[d.linea1,d.titulo,d.linea2].filter(Boolean).join(" · ");
-    return '<div class="pb-slide" style="--ac:'+color(d.color,"#22c7ff")+';--lu:'+color(d.luces,"#ff3b4f")+'" role="group" aria-roledescription="diapositiva" aria-label="'+esc(label)+'">'+
+    return '<div class="pb-slide'+(d.clubes?' pb-featured':'')+'" style="--ac:'+color(d.color,"#22c7ff")+';--lu:'+color(d.luces,"#ff3b4f")+'" role="group" aria-roledescription="diapositiva" aria-label="'+esc(label)+'">'+
       '<span class="pb-bg" aria-hidden="true"><span class="pb-crowd"></span><span class="pb-pitch"></span><span class="pb-fl l"></span><span class="pb-fl r"></span><span class="pb-side l"></span><span class="pb-side r"></span><span class="pb-vig"></span></span>'+
       '<span class="pb-floor" aria-hidden="true"></span>'+
       '<span class="pb-shirts" data-n="'+shirts.length+'">'+shirts.map(function(s,k){
@@ -963,6 +989,7 @@ body>footer p{color:#edf4ff}
         return '<span class="pb-shirt" style="--i:'+k+'"><img '+(i===0?'src':'data-src')+'="'+esc(src)+'" alt="'+esc(nm)+'" width="440" height="540" decoding="async" draggable="false"'+(i===0?' fetchpriority="high"':'')+'></span>';
       }).join("")+'</span>'+
       '<div class="pb-copy">'+(d.linea1?'<span class="pb-k">'+esc(d.linea1)+'</span>':'')+(d.titulo?'<span class="pb-t">'+esc(d.titulo)+'</span>':'')+(d.linea2?'<span class="pb-s">'+esc(d.linea2)+'</span>':'')+
+        (d.clubes?'<table class="pb-offers" aria-label="Totales por cantidad" hidden><thead><tr><th scope="col">2×</th><th scope="col">3×</th><th scope="col">4×</th><th scope="col">5×</th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td></tr></tbody></table>':'')+
         (d.boton===false?'':'<a class="pb-buy" href="'+esc(link(d.enlace))+'">'+esc(d.boton||"Comprar ahora")+'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>')+'</div>'+
       '<span class="pb-shine" aria-hidden="true"></span></div>';
   }).join("");
@@ -973,35 +1000,31 @@ body>footer p{color:#edf4ff}
   }
   root.innerHTML=html;
   var slides=[].slice.call(root.querySelectorAll(".pb-slide")), dots=[].slice.call(root.querySelectorAll(".pb-dot"));
-  var cur=-1, hover=false, focus=false;
-  function setPaused(){ root.classList.toggle("is-paused",hover||focus||document.hidden); }
+  var cur=-1;
   function setHidden(s,h){ s.inert=h; if(h) s.setAttribute("aria-hidden","true"); else s.removeAttribute("aria-hidden");
     [].forEach.call(s.querySelectorAll(".pb-buy"),function(x){ x.tabIndex=h?-1:0; }); }
   // Imágenes de las otras diapositivas: se piden recién cuando la primera ya se armó
   function load(s){ [].forEach.call(s.querySelectorAll("img[data-src]"),function(im){ im.src=im.getAttribute("data-src"); im.removeAttribute("data-src"); }); }
-  function go(n){
-    n=(n+slides.length)%slides.length; if(n===cur) return;
+  function go(n, replay){
+    n=(n+slides.length)%slides.length;
+    if(n===cur && !replay) return;
     var prev=slides[cur]; if(prev){ prev.classList.remove("is-on"); setHidden(prev,true); setTimeout(function(){ if(!prev.classList.contains("is-on")) prev.classList.remove("is-play"); },850); }
     cur=n; var s=slides[n];
-    s.classList.remove("is-play"); void s.offsetWidth; s.classList.add("is-on","is-play"); setHidden(s,false);
+    s.classList.remove("is-play");
+    if(replay){ void s.offsetWidth; s.classList.add("is-play"); }
+    s.classList.add("is-on"); setHidden(s,false);
     load(s); var nx=slides[(n+1)%slides.length], pr=slides[(n-1+slides.length)%slides.length];
     setTimeout(function(){ load(nx); load(pr); },cur===0&&!prev?2600:300);
     dots.forEach(function(d,i){ d.classList.remove("is-on"); d.classList.toggle("is-done",i<n); if(i===n) d.setAttribute("aria-current","true"); else d.removeAttribute("aria-current"); });
-    var dot=dots[n]; if(dot){ dot.style.setProperty("--dur",dur+"s"); void dot.offsetWidth; dot.classList.add("is-on"); }
+    var dot=dots[n]; if(dot) dot.classList.add("is-on");
   }
   slides.forEach(function(s,i){ if(i) setHidden(s,true); });
   dots.forEach(function(d,i){
     d.addEventListener("click",function(){ go(i); });
-    d.querySelector("i").addEventListener("animationend",function(){ if(i===cur) go(cur+1); });
   });
   var pv=root.querySelector(".pb-prev"), nv=root.querySelector(".pb-next");
   if(pv) pv.addEventListener("click",function(){ go(cur-1); });
   if(nv) nv.addEventListener("click",function(){ go(cur+1); });
-  root.addEventListener("mouseenter",function(){ hover=true; setPaused(); });
-  root.addEventListener("mouseleave",function(){ hover=false; setPaused(); });
-  root.addEventListener("focusin",function(){ focus=true; setPaused(); });
-  root.addEventListener("focusout",function(e){ if(!root.contains(e.relatedTarget)){ focus=false; setPaused(); } });
-  document.addEventListener("visibilitychange",setPaused);
   root.addEventListener("keydown",function(e){ if(e.key==="ArrowLeft"){ go(cur-1); e.preventDefault(); } else if(e.key==="ArrowRight"){ go(cur+1); e.preventDefault(); } });
   var x0=null,y0=0,swiped=false;
   root.addEventListener("pointerdown",function(e){ x0=e.clientX; y0=e.clientY; swiped=false; });
@@ -1009,7 +1032,8 @@ body>footer p{color:#edf4ff}
   root.addEventListener("pointercancel",function(){ x0=null; });
   root.addEventListener("click",function(e){ if(swiped){ e.preventDefault(); e.stopPropagation(); swiped=false; } },true);
   root.addEventListener("dragstart",function(e){ e.preventDefault(); });
-  go(0);
+  document.addEventListener("pf-home-entrance",function(){ go(0,true); });
+  go(0,true);
 })();
 </script>
   
@@ -1514,10 +1538,14 @@ function updateBuyBar(form) {
   if (current && size) current.textContent = ": " + size;
 }
 
+const animatedProductIds = new Set();
 const productObserver = "IntersectionObserver" in window
   ? new IntersectionObserver((entries, observer) => {
       entries.filter(entry => entry.isIntersecting).forEach(({target}, index) => {
         observer.unobserve(target);
+        const id = target.dataset.productId;
+        if (animatedProductIds.has(id) || !target.isConnected) return;
+        animatedProductIds.add(id);
         target.style.setProperty("--product-delay", `${Math.min(index, 4) * 95}ms`);
         target.classList.add("is-entering");
       });
@@ -1743,7 +1771,7 @@ function appendCatalogBatch() {
 }
 
 function productCardHtml(item, index) {
-  return `<article>
+  return `<article data-product-id="${escapeHtml(item.id)}">
     <button class="product-photo${item.studioGallery ? " studio-photo" : ""}" type="button" data-detail="${item.id}" aria-label="Ver ${escapeHtml(item.name)}">
       <img src="${item.image}" alt=""${index < 4 ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async" width="512" height="512">
     </button>
@@ -2656,6 +2684,7 @@ byId("shipping-form").addEventListener("submit", async event => {
     if (destination.protocol !== "https:" || !provider.hosts.includes(destination.hostname)) throw new Error("No pudimos validar el destino de pago.");
     track("AddPaymentInfo", {...cartTrackingData(), value: selectionPricing().amount + quote.price});
     // Flow y Mercado Pago devuelven la URL de pago; se redirige con GET. Pausa breve para que el pixel alcance a enviar.
+    try { sessionStorage.setItem("pf-returning-from-payment", "1"); } catch {}
     setTimeout(() => location.assign(destination.href), window.fbq ? 300 : 0);
     return;
   } catch (error) {
@@ -2893,6 +2922,40 @@ function teamForProduct(item) {
 
 byId("cart").addEventListener("click", () => { wizardReached = 0; showOrder(); });
 paintWizardSteps();
+
+const offerTable = document.querySelector(".pb-offers");
+if (offerTable && promotionActive()) {
+  const unitPrice = products.find(item => !item.hidden && isShirt(item))?.price;
+  if (unitPrice) {
+    offerTable.querySelectorAll("td").forEach((cell, index) => {
+      const quote = orderPricing([{categories:["Camisetas"], price:unitPrice, quantity:index + 2}]);
+      cell.textContent = money.format(quote.amount);
+    });
+    offerTable.hidden = false;
+  }
+} else if (offerTable) {
+  document.querySelector(".pb-featured .pb-k").textContent = "Camisetas del fútbol chileno";
+}
+
+function replayHomeEntrance() {
+  animatedProductIds.clear();
+  document.dispatchEvent(new Event("pf-home-entrance"));
+  const promo = byId("promo-bar");
+  promo.classList.remove("is-moving");
+  void promo.offsetWidth;
+  promo.classList.add("is-moving");
+  renderCatalog();
+}
+document.querySelectorAll(".wordmark, .sf-brand").forEach(link => {
+  link.addEventListener("click", replayHomeEntrance);
+});
+window.addEventListener("pageshow", event => {
+  try {
+    if (!sessionStorage.getItem("pf-returning-from-payment")) return;
+    sessionStorage.removeItem("pf-returning-from-payment");
+    if (event.persisted) replayHomeEntrance();
+  } catch {}
+});
 
 saveSelection();
 initCatalogFilters();
