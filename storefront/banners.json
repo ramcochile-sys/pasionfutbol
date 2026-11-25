@@ -1,36 +1,11 @@
 {
-  "_ayuda": "Carrusel principal: máximo 3 diapositivas, en bucle. Cada una tiene 'linea1' (texto de arriba), 'titulo' (texto grande), 'linea2' (texto de abajo), 'color' (color del título), 'luces' (color de las luces laterales), 'camisetas' (1 a 3, en orden izquierda-centro-derecha: un código de producto con foto '-colgada.webp', o {\"id\",\"nombre\",\"imagen\"} para usar otra imagen sin fondo), 'boton' (texto del botón amarillo; por defecto 'Comprar ahora') y 'enlace' (a dónde lleva el botón: '#catalogo' o '/?producto=codigo').",
+  "_ayuda": "Carrusel principal: máximo 3 diapositivas, en bucle. Cada una tiene 'linea1' (texto de arriba), 'titulo' (texto grande), 'linea2' (texto de abajo), 'color' (color del título), 'luces' (color de las luces laterales), 'camisetas' (1 a 4, en orden izquierda-centro-derecha: un código de producto con foto '-colgada.webp', o {\"id\",\"nombre\",\"imagen\"} para usar otra imagen sin fondo), 'boton' (texto del botón amarillo; por defecto 'Comprar ahora') y 'enlace' (a dónde lleva el botón: '#catalogo' o '/?producto=codigo').",
   "segundosPorDiapositiva": 7,
   "diapositivas": [
     {
-      "linea1": "Combo dúo",
-      "titulo": "2 × $29.000",
-      "linea2": "Sale a $14.500 cada una",
-      "color": "#22c7ff",
-      "luces": "#ff3b4f",
-      "camisetas": [
-        "barcelona-retro-cuello",
-        "arsenal-odegaard-roja"
-      ],
-      "enlace": "#catalogo"
-    },
-    {
-      "linea1": "Juega con corazón",
-      "titulo": "5 × $65.990",
-      "linea2": "Sale a $13.198 c/u · hasta el 31 de diciembre",
-      "color": "#ffcb38",
-      "luces": "#2f7bff",
-      "camisetas": [
-        "city-haaland-celeste-g5",
-        "boca-paredes-rayas",
-        "inter-miami-messi-gris"
-      ],
-      "enlace": "#catalogo"
-    },
-    {
-      "linea1": "Lleva tus colores",
-      "titulo": "Envío gratis",
-      "linea2": "En la Región Metropolitana",
+      "linea1": "Bienvenido a Pasión Fútbol",
+      "titulo": "Lleva tus colores",
+      "linea2": "Selecciones y clubes · Envío gratis en la RM",
       "color": "#22c7ff",
       "luces": "#ff3b4f",
       "camisetas": [
@@ -49,6 +24,38 @@
           "nombre": "Argentina",
           "imagen": "/seleccion-argentina-banner.webp"
         }
+      ],
+      "enlace": "#catalogo"
+    },
+    {
+      "linea1": "Juega con corazón",
+      "titulo": "5 × $65.990",
+      "linea2": "Sale a $13.198 c/u · hasta el 31 de diciembre",
+      "color": "#ffcb38",
+      "luces": "#2f7bff",
+      "camisetas": [
+        {
+          "id": "seleccion-brasil",
+          "nombre": "Brasil",
+          "imagen": "/seleccion-brasil-banner.webp"
+        },
+        {
+          "id": "seleccion-venezuela",
+          "nombre": "Venezuela",
+          "imagen": "/seleccion-venezuela-banner.webp"
+        }
+      ],
+      "enlace": "#catalogo"
+    },
+    {
+      "linea1": "Combo dúo",
+      "titulo": "2 × $29.000",
+      "linea2": "Sale a $14.500 c/u · hasta el 31 de diciembre",
+      "color": "#22c7ff",
+      "luces": "#ff3b4f",
+      "camisetas": [
+        "barcelona-retro-cuello",
+        "arsenal-odegaard-roja"
       ],
       "enlace": "#catalogo"
     }
