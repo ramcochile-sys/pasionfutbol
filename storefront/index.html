@@ -139,7 +139,6 @@ dialog{background:var(--surface);border-radius:18px;border-color:var(--line);box
 .gallery{display:flex;align-items:center;justify-content:center;gap:.5rem}
 .gallery > [aria-live]{flex:0 1 min(76%,35dvh);min-inline-size:0}
 .gallery-view{overflow:hidden;border-radius:.875rem;background:radial-gradient(ellipse,var(--photo) 0%,var(--hero) 78%)}
-.gallery-note{display:block;padding:.25rem .5rem;color:var(--muted);font-size:.75rem;text-align:center}
 .gallery-controls{display:grid;flex:0 0 clamp(2.75rem,12%,3.25rem);gap:.25rem}
 .gallery-controls button{inline-size:100%;min-block-size:2.75rem;aspect-ratio:1;padding:0;overflow:hidden}
 .gallery-controls img{display:block;inline-size:100%;block-size:100%;object-fit:contain}
@@ -652,14 +651,10 @@ body>footer p{color:#edf4ff}
 #detail .pd-gallery .gallery-controls button{flex:1;max-width:5rem;aspect-ratio:1;border-radius:.6rem;background:#2b2e34}
 .pd-flag{position:absolute;left:.6rem;top:.6rem;padding:.3rem .65rem;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:900;font-size:.75rem}
 .pd-head{display:flex;flex-direction:column;gap:.35rem}
-.pd-tags{display:flex;flex-wrap:wrap;gap:.35rem}
-.pd-tag{padding:.25rem .55rem;border-radius:999px;background:#16233a;color:#c9d5e6;font-size:.72rem;font-weight:800}
-.pd-tag.is-green{background:#0f2a1d;color:#3ddc84}
-#detail .pd-head #detail-title{margin:.15rem 0 0;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:800;font-size:clamp(1.6rem,7vw,2.1rem);line-height:1;text-transform:uppercase}
-.pd-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:.5rem;margin:.2rem 0 0}
-.pd-price strong{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:800;font-size:2.4rem;line-height:1}
+#detail .pd-head #detail-title{margin:.1rem 0 0;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:700;font-size:clamp(1.3rem,5vw,1.75rem);line-height:1.12;text-transform:none}
+.pd-price{display:flex;align-items:baseline;gap:.12rem;margin:.15rem 0 0}
+.pd-price strong{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:800;font-size:1.8rem;line-height:1}
 .pd-price small{color:var(--muted);font-size:.85rem}
-.pd-perks{margin:0;color:#3ddc84;font-weight:700;font-size:.85rem}
 #detail .pd-buy{display:flex;flex-direction:column;align-items:stretch;gap:1rem;margin:0}
 #detail .pd-buy .size-picker legend{text-align:left}
 #detail .pd-buy .size-options{justify-content:flex-start}
@@ -669,7 +664,7 @@ body>footer p{color:#edf4ff}
 .pack-card{position:relative;display:block;cursor:pointer}
 .pack-card input{position:absolute;opacity:0;inset:0;margin:0}
 .pack-card > span{position:relative;display:flex;flex-direction:column;align-items:center;gap:.15rem;min-height:5.2rem;padding:.8rem .3rem .6rem;border:1px solid #2c3d5a;border-radius:.9rem;background:#101a2b;text-align:center;transition:border-color .15s,box-shadow .15s,background .15s}
-.pack-card b{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:1.6rem;line-height:1}
+.pack-card b{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:1.35rem;line-height:1}
 .pack-card strong{font-size:.95rem}
 .pack-card small{color:var(--muted);font-size:.72rem}
 .pack-card input:checked + span{border:2px solid #22c7ff;background:#12243f;box-shadow:0 0 0 4px #22c7ff22}
@@ -683,9 +678,9 @@ body>footer p{color:#edf4ff}
 .pd-bar-total{color:var(--ink);font-size:1.15rem}
 #detail .pd-bar .pd-add{flex:1;min-height:52px;border:0;border-radius:999px;background:linear-gradient(180deg,#ffe27a,#ffcb32 45%,#f0b400);color:#1a1300;font-weight:900;font-size:.95rem;letter-spacing:.02em;text-transform:uppercase;box-shadow:0 .5rem 1.4rem #ffcb3240}
 #detail .pd-bar .pd-add svg{display:none}
-.pd-trust{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;text-align:center;font-size:.72rem;color:#c9d5e6}
-.pd-trust div{padding:.7rem .3rem;border-radius:.9rem;background:#101a2b}
-.pd-trust b{display:block;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:1.25rem;color:var(--accent)}
+.pd-trust{display:grid;gap:.45rem;margin:0;padding:.75rem;border-radius:.9rem;background:#101a2b;color:var(--accent);font-weight:700;font-size:.85rem}
+.pd-trust span{display:flex;align-items:center;gap:.45rem}
+.pd-trust svg{width:1.15rem;height:1.15rem;flex:none}
 .pd-acc{border-radius:.9rem;background:#101a2b;overflow:hidden}
 .pd-acc details+details{border-top:1px solid #1c2a42}
 .pd-acc summary{display:flex;align-items:center;justify-content:space-between;min-height:52px;padding:0 1rem;font-weight:700;cursor:pointer;list-style:none}
@@ -693,8 +688,12 @@ body>footer p{color:#edf4ff}
 .pd-acc summary svg{width:1.1rem;height:1.1rem;color:var(--accent);transition:transform .2s}
 .pd-acc details[open] summary svg{transform:rotate(180deg)}
 .pd-acc p{margin:0;padding:0 1rem 1rem;color:#c9d5e6;line-height:1.5;font-size:.9rem}
-.pd-pay{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;font-size:.75rem;color:var(--muted)}
-.pd-pay img{height:28px;width:auto;padding:.2rem .4rem;border-radius:.4rem;background:#fff}
+.pd-providers + .pd-providers{margin-top:.15rem}
+.pd-providers h3{margin:0 0 .45rem;font-size:.88rem;font-weight:700}
+.pd-logos{display:grid;grid-template-columns:repeat(auto-fit,minmax(75px,1fr));gap:.5rem;list-style:none;margin:0;padding:0}
+.pd-logos li{display:grid;justify-items:center;align-content:center;gap:.3rem;min-height:4rem;padding:.4rem .25rem;border:1px solid var(--line);border-radius:.55rem;background:#101a2b;text-align:center;font-size:.7rem}
+.pd-logos img{display:block;width:100%;max-width:76px;height:1.85rem;padding:.15rem .25rem;object-fit:contain;border-radius:.25rem;background:#fff}
+.pd-logos img[src$="/logo-blanco.svg"]{background:#024684}
 .pd-related h3{margin:0 0 .6rem;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:1.4rem;text-transform:uppercase}
 .pd-related-row{display:flex;gap:.6rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:.4rem;scrollbar-width:none}
 .pd-related-row::-webkit-scrollbar{display:none}
@@ -1452,7 +1451,7 @@ function buyForm(item) {
   const only = item.sizes.length === 1;
   const sizes = item.sizes.map(size => `<label class="size-chip"><input type="radio" name="size" value="${escapeHtml(size)}"${only ? " checked" : ""}><span>${escapeHtml(size)}</span></label>`).join("");
   const packs = packOptions(item);
-  const startQty = packs ? 2 : 1;
+  const startQty = 1;
   const quantityField = packs
     ? `<fieldset class="pack-picker"><legend>¿Cuántas llevas?</legend><div class="pack-options">${packs.map(p => `
         <label class="pack-card"><input type="radio" name="pack" value="${p.qty}"${p.qty === startQty ? " checked" : ""}>
@@ -1475,17 +1474,56 @@ function buyForm(item) {
   </form>`;
 }
 
+const detailPaymentLogos = [
+  ["Flow", "https://web.flow.cl/logo-blanco.svg"],
+  ["Mercado Pago", "https://http2.mlstatic.com/storage/cpp/static-files/306698cd-ff92-4cc0-801c-1ca35d06ed5a.png"],
+  ["Webpay", "/pay-webpay.png"], ["Webpay 3 cuotas", "/pay-webpay-3c.png"],
+  ["Webpay 6 cuotas", "/pay-webpay-6c.png"], ["Webpay 12 cuotas", "/pay-webpay-12c.png"],
+  ["Khipu", "/pay-khipu.png"], ["ETPay", "/pay-etpay.png"], ["Banca.me", "/pay-bancame.png"],
+  ["Onepay", "/pay-onepay.png"], ["Mach", "/pay-mach.png"]
+];
+const detailShippingLogos = [
+  ["Blue Express", "/blue-express.svg"], ["Starken", "/starken.webp"], ["Correos de Chile", "/correos-chile.svg"]
+];
+
+function detailProviders(title, logos) {
+  return `<section class="pd-providers"><h3>${title}</h3><ul class="pd-logos">${logos.map(([name, src]) =>
+    `<li><img src="${src}" alt="" loading="lazy" decoding="async"><span>${name}</span></li>`).join("")}</ul></section>`;
+}
+
+function detailProductName(item) {
+  const name = item.name.replace(/^camiseta\s+/i, "");
+  const variantNames = [
+    [/^Boca Juniors a rayas/, "Boca Juniors alternativa"],
+    [/^Manchester City (?:negra|celeste bordada)/, "Manchester City alternativa"],
+    [/^Inter Miami gris/, "Inter Miami alternativa"],
+    [/^Barcelona (?:turquesa|crema|azul oscuro)/, "Barcelona alternativa"],
+    [/^Jamaica negra/, "Jamaica alternativa"],
+    [/^Arsenal azul/, "Arsenal alternativa"],
+    [/^Bayern Múnich blanca/, "Bayern Múnich alternativa"],
+    [/^Chelsea negra/, "Chelsea alternativa"],
+    [/^Argentina negra bordada/, "Argentina alternativa"],
+    [/^Colo-Colo (?:rosada bordada|roja)/, "Colo-Colo alternativa"],
+    [/^Real Madrid (?:rosada bordada|verde)/, "Real Madrid alternativa"],
+    [/^U\. de Chile roja bordada/, "U. de Chile alternativa"],
+    [/^España blanca/, "España alternativa"],
+    [/^Portugal negra/, "Portugal alternativa"],
+    [/^Noruega negra/, "Noruega alternativa"]
+  ];
+  const variant = variantNames.find(([pattern]) => pattern.test(name));
+  return variant ? name.replace(variant[0], variant[1]) : name;
+}
+
 function pdDetails(item) {
   const chevron = svgIcon('<path d="M6 9l6 6 6-6"/>');
   const sizes = item.sizes.length ? item.sizes.join(" · ") : "Por confirmar";
-  return `<div class="pd-trust" aria-label="Compra protegida">
-      <div><b>10 días</b>de retracto</div><div><b>6 meses</b>de garantía legal</div><div><b>Flow · MP</b>pago seguro</div></div>
-    <div class="pd-acc">
+  return `<div class="pd-acc">
       <details open><summary>Descripción${chevron}</summary><p>${escapeHtml(item.description)}</p></details>
       <details><summary>Tallas${chevron}</summary><p>Tallas disponibles: ${escapeHtml(sizes)}.<br>¿Dudas con tu talla? <a href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hola, ¿qué talla me recomiendan para la " + item.name + "?")}" target="_blank" rel="noopener">Escríbenos por WhatsApp</a> y te ayudamos.</p></details>
       <details><summary>Envíos y cambios${chevron}</summary><p>Envío gratis en toda la Región Metropolitana. Santiago: 1 a 3 días hábiles; regiones: 1 a 8, con Blue Express, Starken o Correos de Chile.<br>Retracto de 10 días y garantía legal de 6 meses. <a href="#cambios" data-close-detail>Ver condiciones</a>.</p></details>
     </div>
-    <div class="pd-pay" aria-label="Medios de pago"><img src="/pay-webpay.png" alt="Webpay" width="75" height="25" loading="lazy"><img src="/pay-mach.png" alt="Mach" width="90" height="19" loading="lazy"><img src="/pay-khipu.png" alt="Khipu" width="50" height="32" loading="lazy"><span>y Mercado Pago, en hasta 12 cuotas</span></div>`;
+    ${detailProviders("Medios de pago", detailPaymentLogos)}
+    ${detailProviders("Medios de envío", detailShippingLogos)}`;
 }
 
 function pdRelated(item) {
@@ -1495,7 +1533,7 @@ function pdRelated(item) {
   const picks = [...same, ...pool.filter(p => !same.includes(p))].slice(0, 6);
   if (!picks.length) return "";
   return `<section class="pd-related" aria-labelledby="pd-related-title"><h3 id="pd-related-title">También te puede gustar</h3>
-    <div class="pd-related-row">${picks.map(p => `<button type="button" data-detail="${p.id}"><img src="${cartPhoto(p)}" alt="" width="120" height="120" loading="lazy" decoding="async"><span>${escapeHtml(p.name)}</span><b>${money.format(p.price)}</b></button>`).join("")}</div></section>`;
+    <div class="pd-related-row">${picks.map(p => `<button type="button" data-detail="${p.id}"><img src="${cartPhoto(p)}" alt="" width="120" height="120" loading="lazy" decoding="async"><span>${escapeHtml(detailProductName(p))}</span><b>${money.format(p.price)}</b></button>`).join("")}</div></section>`;
 }
 
 function updateBuyBar(form) {
@@ -1762,29 +1800,33 @@ function updateGallery(gallery, index) {
 
 function openDetail(item) {
   track("ViewContent", {content_ids: [item.id], content_name: item.name, value: item.price});
-  const images = item.gallery || [item.image];
-  const labels = item.galleryLabels || galleryLabels;
+  const gallery = (item.gallery || [item.image]).map((image, index) => ({
+    image, label: (item.galleryLabels || galleryLabels)[index] || "Foto del producto", illustrated: item.illustratedSlides?.includes(index)
+  }));
+  const photographed = gallery.filter(photo => !photo.illustrated);
+  const photos = photographed.length ? photographed : gallery;
   const team = teamForProduct(item);
   const promo = isShirt(item) && promotionActive();
   byId("detail-body").innerHTML = `<div class="dialog-top pd-top">${team ? `<div class="detail-team">${team.svg}<span>${escapeHtml(team.name)}</span></div>` : "<span></span>"}
     <button class="close" data-close aria-label="Cerrar">×</button></div>
-    <div class="gallery pd-gallery" role="group" aria-label="Imágenes de la camiseta">
-      <div aria-live="polite">${images.map((image, i) => `<div class="gallery-view" ${i ? "hidden" : ""}>
-        <img class="detail-image" src="${escapeHtml(image)}" alt="${escapeHtml(item.name)} · ${labels[i]}"${i ? ' loading="lazy"' : ' fetchpriority="high"'} decoding="async" width="480" height="480">
-        ${item.illustratedSlides?.includes(i) ? '<small class="gallery-note">Imagen ilustrativa generada con IA</small>' : ""}
+    <div class="gallery pd-gallery" role="group" aria-label="Fotos del producto">
+      <div aria-live="polite">${photos.map(({image, label}, i) => `<div class="gallery-view" ${i ? "hidden" : ""}>
+        <img class="detail-image" src="${escapeHtml(image)}" alt="${escapeHtml(detailProductName(item))} · ${escapeHtml(label)}"${i ? ' loading="lazy"' : ' fetchpriority="high"'} decoding="async" width="480" height="480">
       </div>`).join("")}${promo ? '<span class="pd-flag">Combo 2 × $29.000</span>' : ""}</div>
-      ${images.length > 1 ? `<div class="gallery-controls">${images.map((image, i) =>
-        `<button type="button" data-slide="${i}" aria-label="${labels[i]}" aria-pressed="${i === 0}">
+      ${photos.length > 1 ? `<div class="gallery-controls">${photos.map(({image, label}, i) =>
+        `<button type="button" data-slide="${i}" aria-label="${escapeHtml(label)}" aria-pressed="${i === 0}">
           <img src="${escapeHtml(image)}" alt="" loading="lazy" decoding="async" width="48" height="48">
         </button>`).join("")}</div>` : ""}
     </div>
     <div class="pd-head">
-      <div class="pd-tags"><span class="pd-tag is-green">Compra protegida</span><span class="pd-tag">Retracto 10 días</span><span class="pd-tag">Envío gratis RM</span></div>
-      <h2 id="detail-title">${escapeHtml(item.name)}</h2>
-      <p class="pd-price"><strong>${money.format(item.price)}</strong>${isShirt(item) ? "<small>por camiseta</small>" : ""}</p>
-      <p class="pd-perks">Hasta 12 cuotas con Webpay · Envío gratis en la RM</p>
+      <h2 id="detail-title">${escapeHtml(detailProductName(item))}</h2>
+      <p class="pd-price"><strong>${money.format(item.price)}</strong>${isShirt(item) ? "<small>c/u</small>" : ""}</p>
     </div>
     ${buyForm(item)}${pdDetails(item)}${pdRelated(item)}
+    <div class="pd-trust" aria-label="Información de compra">
+      <span><svg aria-hidden="true"><use href="#checkout-icon-shield"/></svg>Compra protegida</span>
+      <span><svg aria-hidden="true"><use href="#checkout-icon-truck"/></svg>Envío gratis (Región Metropolitana)</span>
+    </div>
     ${item.sizes.length ? `<div class="pd-bar"><span class="pd-bar-info"><span class="pd-bar-qty"></span><strong class="pd-bar-total"></strong></span>
       <button class="button add-to-cart pd-add" type="submit" form="pd-form" name="action" value="add-to-cart">Agregar al carrito</button></div>` : ""}`;
   detail.showModal();
