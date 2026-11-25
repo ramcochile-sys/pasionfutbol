@@ -669,6 +669,10 @@ body>footer p{color:#edf4ff}
 .pb-shirts[data-n="3"] .pb-shirt:nth-child(1){margin-right:-6cqw}
 .pb-shirts[data-n="3"] .pb-shirt:nth-child(3){margin-left:-6cqw}
 .pb-shirts[data-n="3"] .pb-shirt:nth-child(2){z-index:2}
+.pb-shirts[data-n="4"] .pb-shirt{height:82%;margin-top:6%}
+.pb-shirts[data-n="4"] .pb-shirt:nth-child(1),.pb-shirts[data-n="4"] .pb-shirt:nth-child(4){z-index:1;height:72%;margin-top:11%}
+.pb-shirts[data-n="4"] .pb-shirt:nth-child(2),.pb-shirts[data-n="4"] .pb-shirt:nth-child(3){z-index:2}
+.pb-shirts[data-n="4"] .pb-shirt+.pb-shirt{margin-left:-5cqw}
 .pb-floor{position:absolute;z-index:1;left:50%;bottom:20%;width:36cqw;height:3cqw;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,#000b,transparent 70%);filter:blur(.6cqw)}
 /* Textos (editables en banners.json) */
 .pb-copy{position:absolute;z-index:3;left:4%;right:4%;bottom:5%;margin:0;text-align:center;display:flex;flex-direction:column;align-items:center}
@@ -681,6 +685,7 @@ body>footer p{color:#edf4ff}
   background-image:linear-gradient(105deg,transparent 42%,#ffffffee 50%,transparent 58%),linear-gradient(180deg,#ffffff 0%,color-mix(in srgb,var(--ac) 35%,#fff) 22%,var(--ac) 44%,color-mix(in srgb,var(--ac) 55%,#000) 52%,var(--ac) 62%,color-mix(in srgb,var(--ac) 45%,#fff) 88%,#ffffff 100%);
   background-size:250% 100%,100% 100%;background-position:150% 0,0 0;
   -webkit-text-stroke:.05cqw #ffffff66;filter:drop-shadow(0 0 1.6cqw color-mix(in srgb,var(--ac) 40%,transparent)) drop-shadow(0 .3cqw .5cqw #000d)}
+.pb-t.is-long{font-size:5.8cqw}
 .pb-s{display:block;margin-top:.5cqw;font:700 1.75cqw/1.2 "DM Sans",system-ui,sans-serif;color:#fff;text-shadow:0 .2cqw .9cqw #000}
 .pb-buy{display:inline-flex;align-items:center;gap:.6em;margin-top:1.1cqw;min-height:44px;padding:0 1.6em;border-radius:999px;font:800 clamp(14px,1.45cqw,19px)/1 "DM Sans",system-ui,sans-serif;letter-spacing:.02em;text-transform:uppercase;text-decoration:none;color:#1a1300;
   background:linear-gradient(180deg,#ffe27a 0%,#ffcb32 45%,#f0b400 100%);box-shadow:inset 0 1px 0 #fff8,0 .5cqw 1.6cqw #ffcb3255,0 .3cqw .8cqw #0009;transition:transform .2s,box-shadow .2s,filter .2s;-webkit-tap-highlight-color:transparent}
@@ -732,6 +737,8 @@ body>footer p{color:#edf4ff}
   .pb-shirts{top:4%;height:56%}
   .pb-shirts[data-n="2"] .pb-shirt:nth-child(1){margin-right:-12cqw}
   .pb-shirts[data-n="3"]{height:47%;top:7%}
+  .pb-shirts[data-n="4"]{height:42%;top:9%}
+  .pb-shirts[data-n="4"] .pb-shirt+.pb-shirt{margin-left:-11cqw}
   .pb-shirts[data-n="3"] .pb-shirt:nth-child(1){margin-right:-13cqw}
   .pb-shirts[data-n="3"] .pb-shirt:nth-child(3){margin-left:-13cqw}
   .pb-fl{width:18cqw;height:7cqw;background-size:2.3cqw 2.3cqw}
@@ -742,6 +749,7 @@ body>footer p{color:#edf4ff}
   .pb-copy{bottom:5%}
   .pb-k{font-size:8cqw}
   .pb-t{font-size:13.2cqw}
+  .pb-t.is-long{font-size:10.4cqw;white-space:nowrap}
   .pb-s{font-size:3.9cqw}
   .pb-buy{margin-top:3cqw;min-height:48px;font-size:15px;padding:0 1.5em}
   .pb-dots{right:6px;top:0;bottom:auto}
@@ -898,7 +906,7 @@ body>footer p{color:#edf4ff}
   var nameOf=function(id){ return id.replace(/-/g," ").replace(/\b\w/g,function(c){ return c.toUpperCase(); }); };
   var chev=function(d){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+d+'"/></svg>'; };
   var html=list.map(function(d,i){
-    var shirts=(d.camisetas||[]).slice(0,3).map(function(s){ return typeof s==="string"?{id:s}:s; }).filter(function(s){ return s&&/^[\w-]+$/.test(s.id||""); });
+    var shirts=(d.camisetas||[]).slice(0,4).map(function(s){ return typeof s==="string"?{id:s}:s; }).filter(function(s){ return s&&/^[\w-]+$/.test(s.id||""); });
     var label=[d.linea1,d.titulo,d.linea2].filter(Boolean).join(" · ");
     return '<div class="pb-slide" style="--ac:'+color(d.color,"#22c7ff")+';--lu:'+color(d.luces,"#ff3b4f")+'" role="group" aria-roledescription="diapositiva" aria-label="'+esc(label)+'">'+
       '<span class="pb-bg" aria-hidden="true"><span class="pb-crowd"></span><span class="pb-pitch"></span><span class="pb-fl l"></span><span class="pb-fl r"></span><span class="pb-side l"></span><span class="pb-side r"></span><span class="pb-vig"></span></span>'+
@@ -908,7 +916,7 @@ body>footer p{color:#edf4ff}
         var nm=s.nombre||nameOf(s.id);
         return '<span class="pb-shirt" style="--i:'+k+'"><img '+(i===0?'src':'data-src')+'="'+esc(src)+'" alt="'+esc(nm)+'" width="440" height="540" decoding="async" draggable="false"'+(i===0?' fetchpriority="high"':'')+'></span>';
       }).join("")+'</span>'+
-      '<div class="pb-copy">'+(d.linea1?'<span class="pb-k">'+esc(d.linea1)+'</span>':'')+(d.titulo?'<span class="pb-t">'+esc(d.titulo)+'</span>':'')+(d.linea2?'<span class="pb-s">'+esc(d.linea2)+'</span>':'')+
+      '<div class="pb-copy">'+(d.linea1?'<span class="pb-k">'+esc(d.linea1)+'</span>':'')+(d.titulo?'<span class="pb-t'+(String(d.titulo).length>11?' is-long':'')+'">'+esc(d.titulo)+'</span>':'')+(d.linea2?'<span class="pb-s">'+esc(d.linea2)+'</span>':'')+
         (d.boton===false?'':'<a class="pb-buy" href="'+esc(link(d.enlace))+'">'+esc(d.boton||"Comprar ahora")+'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>')+'</div>'+
       '<span class="pb-shine" aria-hidden="true"></span></div>';
   }).join("");
