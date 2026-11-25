@@ -1442,10 +1442,7 @@ function packPrice(item, quantity) {
 
 function packOptions(item) {
   if (!isShirt(item) || !promotionActive()) return null;
-  return [1, 2, 5].map(qty => {
-    const total = packPrice(item, qty);
-    return {qty, total, each: Math.round(total / qty)};
-  });
+  return [1, 2, 5].map(qty => ({qty, total: packPrice(item, qty)}));
 }
 
 function buyForm(item) {
@@ -1459,7 +1456,7 @@ function buyForm(item) {
   const quantityField = packs
     ? `<fieldset class="pack-picker"><legend>¿Cuántas llevas?</legend><div class="pack-options">${packs.map(p => `
         <label class="pack-card"><input type="radio" name="pack" value="${p.qty}"${p.qty === startQty ? " checked" : ""}>
-          <span>${p.qty === 2 ? '<em class="pack-flag">Más conveniente</em>' : ""}<b>x${p.qty}</b><strong>${money.format(p.total)}</strong><small>${p.qty === 1 ? "precio normal" : money.format(p.each) + " c/u"}</small></span></label>`).join("")}
+          <span>${p.qty === 2 ? '<em class="pack-flag">Más conveniente</em>' : ""}<b>x${p.qty}</b><strong>${money.format(p.total)}</strong><small>${p.qty === 1 ? "Precio normal" : "Total del combo"}</small></span></label>`).join("")}
       </div><small class="pack-note">Puedes combinar camisetas distintas: el carrito aplica solo el mejor combo.</small>
       <input type="hidden" name="quantity" value="${startQty}"></fieldset>`
     : `<div class="quantity-field">
@@ -1511,12 +1508,6 @@ function updateBuyBar(form) {
   detail.querySelector(".pd-bar-total").textContent = money.format(total);
   const current = form.querySelector(".size-current");
   if (current && size) current.textContent = ": " + size;
-  const priceNow = byId("pd-price");
-  if (priceNow) {
-    const each = Math.round(total / quantity);
-    priceNow.querySelector("strong").textContent = money.format(each);
-    priceNow.querySelector("small").textContent = quantity > 1 && each < item.price ? `c/u · ${quantity} por ${money.format(total)}` : (isShirt(item) ? "por camiseta" : "");
-  }
 }
 
 const productObserver = "IntersectionObserver" in window
@@ -1790,7 +1781,7 @@ function openDetail(item) {
     <div class="pd-head">
       <div class="pd-tags"><span class="pd-tag is-green">Compra protegida</span><span class="pd-tag">Retracto 10 días</span><span class="pd-tag">Envío gratis RM</span></div>
       <h2 id="detail-title">${escapeHtml(item.name)}</h2>
-      <p class="pd-price" id="pd-price"><strong>${money.format(item.price)}</strong><small></small></p>
+      <p class="pd-price"><strong>${money.format(item.price)}</strong>${isShirt(item) ? "<small>por camiseta</small>" : ""}</p>
       <p class="pd-perks">Hasta 12 cuotas con Webpay · Envío gratis en la RM</p>
     </div>
     ${buyForm(item)}${pdDetails(item)}${pdRelated(item)}
