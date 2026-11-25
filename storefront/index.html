@@ -84,9 +84,9 @@ dialog h2{font-size:39px}
 #cart-thumbs{display:flex;gap:4px}
 #cart-thumbs img,.order-thumb{object-fit:contain;background:var(--photo)}
 #cart-thumbs img{width:28px;height:28px;border-radius:50%}
-#order{position:fixed;inset:0 0 0 auto;margin:0;padding:0;width:min(94%,32rem);height:100dvh;max-height:none;border-radius:1rem 0 0 1rem;background:var(--surface);overflow:hidden;opacity:0;translate:100% 0;transition:translate .27s ease,opacity .27s ease,display .27s allow-discrete,overlay .27s allow-discrete}
+#order{position:fixed;inset:auto 0 0;margin:0 auto;padding:0;width:min(95vw,600px);max-height:85dvh;border-radius:24px 24px 0 0;background:var(--surface);overflow:hidden;opacity:0;translate:0 100%;transition:translate .27s ease,opacity .27s ease,display .27s allow-discrete,overlay .27s allow-discrete}
 #order[open]{display:flex;flex-direction:column;opacity:1;translate:0 0}
-@starting-style{#order[open]{opacity:0;translate:100% 0}}
+@starting-style{#order[open]{opacity:0;translate:0 100%}}
 #order::backdrop{background:#0009;backdrop-filter:blur(3px)}
 #order .dialog-top,#order-lines,.order-footer{padding-inline:16px}
 #order .dialog-top{margin-bottom:0;padding-bottom:12px;border-bottom:1px solid var(--line)}
@@ -101,6 +101,8 @@ dialog h2{font-size:39px}
 .order-footer{border-top:1px solid var(--line);padding-bottom:calc(14px + env(safe-area-inset-bottom))}
 .order-actions{display:flex;gap:8px}
 .order-actions #pay{margin:0}
+.sheet-grip{display:grid;place-items:center;min-height:26px;touch-action:none;cursor:grab}
+.sheet-grip::after{content:"";width:44px;height:4px;border-radius:4px;background:var(--muted)}
 @media(max-width:360px){#cart-thumbs img:nth-child(2){display:none}.order-thumb{width:34px;height:34px}}
 @media(prefers-reduced-motion:reduce){#order{transition:none}}
 [hidden]{display:none!important}
@@ -452,8 +454,24 @@ body>footer p{color:#edf4ff}
   --summary-size:clamp(.875rem,2.45vw,1rem);
   box-sizing:border-box;color:var(--ink);background:var(--page);border:0;overflow:auto;overscroll-behavior:contain;
 }
-#order{padding-top:env(safe-area-inset-top)}
+#order{width:min(96vw,600px);max-height:92dvh}
+.sheet-grip{min-height:16px}
+.sheet-grip::after{height:3px;background:#c6cede}
 #order[open]{display:block}
+#order.is-side{inset:0 0 0 auto;width:60vw;max-width:none;height:100dvh;max-height:none;margin:0;padding-top:env(safe-area-inset-top);border-radius:1rem 0 0 1rem;translate:100% 0}
+#order.is-side[open]{translate:0 0}
+#order.is-side .sheet-grip{display:none}
+@starting-style{#order.is-side[open]{opacity:0;translate:100% 0}}
+@media(max-width:40rem){
+  #order.is-side :is(#order-lines,.order-footer){padding-inline:4%}
+  #order.is-side .order-row{grid-template-columns:2.4rem minmax(0,1fr);gap:.3rem .45rem}
+  #order.is-side .order-side{grid-column:2;display:flex;align-items:center;justify-content:space-between}
+  #order.is-side .cart-delivery{grid-template-columns:minmax(0,1fr) auto;gap:.35rem;padding:.45rem}
+  #order.is-side .cart-delivery .provider-logo{grid-column:1/-1}
+  #order.is-side .cart-delivery .shipping-note{grid-row:auto;grid-column:1/-1}
+  #order.is-side .order-totals{padding-inline:.35rem}
+  #order.is-side .order-grand{flex-wrap:wrap;gap:.2rem;font-size:1rem}
+}
 #shipping{width:min(96vw,49rem);border-radius:1rem}
 #order [hidden],#shipping [hidden]{display:none!important}
 .checkout-banner{
@@ -584,7 +602,7 @@ body>footer p{color:#edf4ff}
 .carrier-option input:focus-visible + .carrier-radio-mark{outline:2px solid #1354d4;outline-offset:3px}
 .carrier-option .provider-logo{width:auto;max-width:100%;height:2rem;max-height:2rem;object-fit:contain;flex:1 1 auto;min-width:0}
 @media(max-width:37rem){
-  #shipping{max-width:calc(100% - .75rem)}
+  #order,#shipping{max-width:calc(100% - .75rem)}
   #order .checkout-steps{padding-inline:.4rem}
   .cart-delivery>div{display:contents}
   .cart-delivery .shipping-note{grid-row:2;grid-column:1/-1;margin:0}
@@ -1177,6 +1195,7 @@ body>footer p{color:#edf4ff}
 </div>
 <dialog id="detail" aria-labelledby="detail-title"><div id="detail-body"></div></dialog>
 <dialog id="order" aria-labelledby="order-title">
+  <div class="sheet-grip" aria-hidden="true"></div>
     <div class="checkout-banner">
     <div class="checkout-brand">
       <img src="/pelota-corona.png" width="64" height="64" alt="">
@@ -1875,7 +1894,8 @@ function renderOrder() {
   byId("pay").hidden = selection.length === 0;
 }
 
-function showOrder() {
+function showOrder(side = false) {
+  order.classList.toggle("is-side", side);
   paintWizardSteps();
   renderOrder();
   order.showModal();
@@ -2005,7 +2025,7 @@ document.addEventListener("submit", event => {
   saveSelection();
   track("AddToCart", {content_ids: [item.id], content_name: item.name, contents: [{id: item.id, quantity, item_price: item.price}], value: item.price * quantity});
   detail.close();
-  if (event.submitter?.value === "buy-now") showOrder();
+  if (event.submitter?.value === "buy-now") showOrder(true);
   byId("cart-status").textContent = `${quantity} × ${escapeHtml(item.name)}, talla ${size}, en el carrito. Total de prendas: ${byId("count").textContent}.`;
 });
 
@@ -2923,6 +2943,31 @@ function teamForProduct(item) {
 byId("cart").addEventListener("click", () => { wizardReached = 0; showOrder(); });
 paintWizardSteps();
 
+const sheetGrip = order.querySelector(".sheet-grip");
+let dragStart;
+sheetGrip.addEventListener("pointerdown", event => {
+  if (event.button !== 0) return;
+  dragStart = event.clientY;
+  sheetGrip.setPointerCapture(event.pointerId);
+  order.style.transition = "none";
+});
+sheetGrip.addEventListener("pointermove", event => {
+  if (dragStart === undefined) return;
+  order.style.translate = `0 ${Math.max(0, event.clientY - dragStart)}px`;
+});
+sheetGrip.addEventListener("pointerup", event => {
+  if (dragStart === undefined) return;
+  const shouldClose = event.clientY - dragStart > 64;
+  dragStart = undefined;
+  order.style.transition = "";
+  order.style.translate = "";
+  if (shouldClose) order.close();
+});
+sheetGrip.addEventListener("lostpointercapture", () => {
+  dragStart = undefined;
+  order.style.transition = "";
+  order.style.translate = "";
+});
 saveSelection();
 initCatalogFilters();
 renderCatalog();
