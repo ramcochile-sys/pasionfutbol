@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Pasión Fútbol</title>
 <link rel="icon" type="image/png" sizes="64x64" href="/pelota-corona.png">
-<link rel="preload" as="image" href="/duo-sel-frente.webp" imagesrcset="/duo-sel-frente-sm.webp 800w, /duo-sel-frente.webp 1600w" imagesizes="(max-width: 640px) 100vw, 1100px" fetchpriority="high">
+<link rel="preload" as="image" href="/barcelona-retro-cuello-colgada.webp" fetchpriority="high">
 <link rel="preload" as="font" type="font/woff2" href="/dm-sans-latin-wght-normal.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/barlow-condensed-latin-800-normal.woff2" crossorigin>
 <meta name="description" content="Camisetas y ropa de entrenamiento para la cancha y la tribuna.">
@@ -630,108 +630,124 @@ body>footer p{color:#edf4ff}
 @media (prefers-reduced-motion:reduce){#order #pay,#shipping #checkout-continue,#shipping button[type="submit"]{transition:none}}
 
 
-/* Banner carrusel promocional */
-.pc{--pc-accent:#22c7ff;position:relative;isolation:isolate;overflow:hidden;width:min(91%,1370px);margin:14px auto 0;aspect-ratio:2.4/1;max-height:540px;border-radius:15px;background:#070b14;touch-action:pan-y;user-select:none;-webkit-user-select:none}
-.pc-slide{position:absolute;inset:0;display:block;container-type:size;opacity:0;visibility:hidden;transition:opacity .9s cubic-bezier(.4,0,.2,1),visibility 0s .9s;-webkit-tap-highlight-color:transparent}
-.pc-slide.is-on{z-index:2;opacity:1;visibility:visible;transition:opacity .9s cubic-bezier(.4,0,.2,1),visibility 0s}
-.pc-slide.is-out{z-index:1;visibility:visible}
-.pc-slide:focus-visible{outline:3px solid var(--pc-accent);outline-offset:-3px}
-.pc-fill{position:absolute;inset:-8%;overflow:hidden}
-.pc-fill img{width:100%;height:100%;object-fit:cover;filter:blur(34px) brightness(.34) saturate(1.2);transform:scale(1.05)}
-.pc-fill::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 62% 90% at 50% 50%,transparent 40%,#070b14d9 100%)}
-.pc-stage{position:absolute;left:50%;top:50%;width:min(100cqw,calc(100cqh * var(--r)));height:min(100cqh,calc(100cqw / var(--r)));transform:translate(-50%,-50%);transition:transform 1.1s cubic-bezier(.4,0,.2,1),filter 1.1s;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%)}
-.pc-slide.is-out .pc-stage{transform:translate(-50%,-50%) scale(1.035);filter:brightness(.7)}
-.pc-l{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none}
-.pc-full{opacity:1}
-.pc-a{-webkit-mask-image:var(--ma);mask-image:var(--ma)}
-.pc-b{-webkit-mask-image:var(--mb);mask-image:var(--mb)}
-.pc-shine{position:absolute;inset:0;opacity:0;pointer-events:none;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.32) 50%,transparent 62%);mix-blend-mode:overlay}
-.pc-slide.is-wait .pc-full{opacity:0}
-.is-build .pc-bg{animation:pcBg 1.4s cubic-bezier(.2,.7,.2,1) both}
-.is-build .pc-a{animation:pcA 1.05s .35s cubic-bezier(.16,.84,.3,1) both}
-.is-build .pc-b{animation:pcB .85s .9s cubic-bezier(.16,.84,.3,1) both}
-.is-build .pc-full{animation:pcFull .75s 1.6s ease both}
-.is-build .pc-shine{animation:pcShine 1.3s 1.95s cubic-bezier(.45,0,.25,1) both}
-.is-enter .pc-full{animation:pcSettle 1.3s cubic-bezier(.2,.7,.2,1) both}
-@keyframes pcBg{from{opacity:0;transform:scale(1.12);filter:blur(16px) brightness(.3)}to{opacity:1;transform:none;filter:blur(7px) brightness(.5)}}
-@keyframes pcA{from{opacity:0;transform:translate(var(--ax),var(--ay)) scale(.9)}to{opacity:1;transform:none}}
-@keyframes pcB{from{opacity:0;transform:translate(var(--bx),var(--by));filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
-@keyframes pcFull{from{opacity:0}to{opacity:1}}
-@keyframes pcShine{0%{opacity:1;transform:translateX(-110%)}100%{opacity:1;transform:translateX(110%)}}
-@keyframes pcSettle{from{transform:scale(1.05)}to{transform:none}}
-.pc-nav{position:absolute;z-index:5;top:50%;width:46px;height:46px;margin-top:-23px;border:1px solid #ffffff2e;border-radius:50%;background:#070b1480;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;display:grid;place-items:center;cursor:pointer;opacity:0;transition:opacity .25s,background .2s,transform .2s}
-.pc-nav svg{width:20px;height:20px}
-.pc-prev{left:16px}.pc-next{right:16px}
-.pc:hover .pc-nav,.pc-nav:focus-visible{opacity:1}
-.pc-nav:hover{background:#070b14cc;transform:scale(1.06)}
-.pc-nav:focus-visible,.pc-dot:focus-visible{outline:2px solid var(--pc-accent);outline-offset:2px}
-.pc-dots{position:absolute;z-index:5;right:14px;bottom:8px;display:flex;gap:2px}
-.pc-dot{width:44px;height:32px;padding:0 5px;border:0;background:none;cursor:pointer;display:flex;align-items:center}
-.pc-bar{position:relative;display:block;width:100%;height:4px;border-radius:4px;background:#ffffff40;overflow:hidden}
-.pc-bar i{position:absolute;inset:0;border-radius:inherit;background:#fff;transform:scaleX(0);transform-origin:left}
-.pc-dot.is-done .pc-bar i{transform:none;background:#ffffffa6}
-.pc-dot.is-on .pc-bar i{background:var(--pc-accent);animation:pcProg var(--dur,6s) linear forwards}
-.pc.is-paused .pc-dot.is-on .pc-bar i{animation-play-state:paused}
-@keyframes pcProg{from{transform:scaleX(0)}to{transform:none}}
-@media (hover:none){.pc-nav{display:none}}
+/* Carrusel principal: 3 diapositivas armadas desde storefront/banners.json */
+.pb{position:relative;isolation:isolate;overflow:hidden;width:min(91%,1370px);margin:14px auto 0;aspect-ratio:2.55/1;border-radius:15px;background:#040814;container-type:inline-size;-webkit-user-select:none;user-select:none}
+.pb-slide{--ac:#22c7ff;--lu:#ff3b4f;position:absolute;inset:0;display:block;color:#fff;text-decoration:none;opacity:0;visibility:hidden;transition:opacity .8s cubic-bezier(.4,0,.2,1),visibility 0s .8s}
+.pb-slide.is-on{z-index:2;opacity:1;visibility:visible;transition:opacity .8s cubic-bezier(.4,0,.2,1),visibility 0s}
+.pb-slide:focus-visible{outline:3px solid var(--ac);outline-offset:-3px}
+/* Estadio dibujado con CSS: nítido a cualquier resolución */
+.pb-bg{position:absolute;inset:-3%;overflow:hidden;background:linear-gradient(180deg,#02050d 0%,#06102a 30%,#0a1d4a 52%,#0b1c3c 63%,#06240f 74%,#031208 100%);background:
+  radial-gradient(ellipse 34% 46% at 50% 40%,color-mix(in srgb,var(--ac) 20%,transparent),transparent 72%),
+  radial-gradient(ellipse 70% 22% at 50% 84%,#1f8f4a40,transparent 70%),
+  linear-gradient(180deg,#02050d 0%,#06102a 30%,#0a1d4a 52%,#0b1c3c 63%,#06240f 74%,#031208 100%)}
+.pb-crowd{position:absolute;left:0;right:0;top:42%;height:25%;opacity:.42;filter:blur(.6px);background:
+  radial-gradient(circle,#fff 0 .06cqw,transparent .12cqw) .2cqw .1cqw/.73cqw .61cqw,
+  radial-gradient(circle,#cfe8ff 0 .07cqw,transparent .14cqw) .5cqw .3cqw/1.17cqw .97cqw,
+  radial-gradient(circle,#ffe7b8 0 .05cqw,transparent .11cqw) .9cqw .6cqw/1.61cqw 1.33cqw,
+  radial-gradient(circle,#9fd4ff 0 .08cqw,transparent .16cqw) 1.3cqw .2cqw/2.29cqw 1.87cqw,
+  repeating-linear-gradient(180deg,#ffffff07 0 .12cqw,transparent .12cqw 1.6cqw),
+  linear-gradient(180deg,transparent,#0d2350 40%,#08142d);-webkit-mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent),linear-gradient(90deg,#0008,#000 30%,#000 70%,#0008);mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent);-webkit-mask-composite:source-in}
+  radial-gradient(circle,#ffffff 0 .07cqw,transparent .13cqw) 0 0/1.1cqw .9cqw,
+  radial-gradient(circle,#9fd4ff 0 .06cqw,transparent .12cqw) .55cqw .45cqw/1.3cqw 1.05cqw,
+  linear-gradient(180deg,transparent,#0d2350 40%,#08142d);-webkit-mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent);mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent)}
+.pb-pitch{position:absolute;left:-30%;right:-30%;bottom:-6%;height:34%;transform:perspective(40cqw) rotateX(58deg);transform-origin:bottom;background:repeating-linear-gradient(90deg,#0c4a22 0 6cqw,#0e5628 6cqw 12cqw);-webkit-mask-image:linear-gradient(180deg,transparent,#000 45%);mask-image:linear-gradient(180deg,transparent,#000 45%);opacity:.75}
+.pb-fl{position:absolute;top:5%;width:11cqw;height:4.2cqw;border-radius:.4cqw;background:radial-gradient(circle,#fff 0 30%,#d6efff 42%,transparent 64%) 0 0/1.4cqw 1.4cqw;filter:drop-shadow(0 0 .9cqw #cfeaff) drop-shadow(0 0 2.4cqw #7cc4ff)}
+.pb-fl.l{left:23%;transform:rotate(-8deg)}
+.pb-fl.r{right:23%;transform:rotate(8deg)}
+.pb-fl::after{content:"";position:absolute;left:50%;top:60%;width:30cqw;height:40cqw;transform:translateX(-50%);background:conic-gradient(from 160deg at 50% 0,transparent 0deg,#bfe3ff1f 14deg,#bfe3ff10 26deg,transparent 40deg);filter:blur(1cqw);pointer-events:none}
+.pb-fl.l::after{transform:translateX(-50%) rotate(-14deg);transform-origin:50% 0}
+.pb-fl.r::after{transform:translateX(-50%) rotate(14deg);transform-origin:50% 0}
+.pb-side{position:absolute;top:12%;bottom:18%;width:.55cqw;border-radius:1cqw;background:var(--lu);box-shadow:0 0 1.2cqw var(--lu),0 0 4cqw var(--lu),0 0 9cqw color-mix(in srgb,var(--lu) 60%,transparent);opacity:.85}
+.pb-side.l{left:16%}.pb-side.r{right:16%}
+.pb-vig{position:absolute;inset:0;background:radial-gradient(ellipse 75% 95% at 50% 45%,transparent 45%,#02050dcc 100%),linear-gradient(180deg,transparent 52%,#030812e6 100%);pointer-events:none}
+/* Camisetas */
+.pb-shirts{position:absolute;z-index:2;left:50%;top:4%;height:72%;display:flex;align-items:flex-start;justify-content:center;transform:translateX(-50%)}
+.pb-shirt{position:relative;display:block;height:100%;flex:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.pb-shirt img{display:block;height:100%;width:auto;filter:drop-shadow(0 1.6cqw 1.6cqw #000c) drop-shadow(0 0 2.5cqw color-mix(in srgb,var(--ac) 22%,transparent));transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.pb-shirt:hover img,.pb-shirt:focus-visible img{transform:translateY(-2%) scale(1.03)}
+.pb-shirt:focus-visible{outline:2px solid var(--ac);outline-offset:4px;border-radius:12px}
+.pb-shirt-tag{position:absolute;left:50%;top:-1%;transform:translate(-50%,-60%);padding:.35cqw .9cqw;border-radius:999px;background:#040814d9;border:1px solid #ffffff33;font:800 clamp(10px,.95cqw,13px)/1.2 "DM Sans",system-ui,sans-serif;letter-spacing:.04em;white-space:nowrap;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none}
+.pb-shirt:hover .pb-shirt-tag,.pb-shirt:focus-visible .pb-shirt-tag{opacity:1;transform:translate(-50%,-100%)}
+.pb-shirts[data-n="2"] .pb-shirt:nth-child(1){z-index:2;margin-right:-6.5cqw;margin-top:1.5%}
+.pb-shirts[data-n="2"] .pb-shirt:nth-child(2){z-index:1;height:92%;margin-top:4%}
+.pb-shirts[data-n="3"] .pb-shirt:nth-child(1),.pb-shirts[data-n="3"] .pb-shirt:nth-child(3){z-index:1;height:84%;margin-top:7%}
+.pb-shirts[data-n="3"] .pb-shirt:nth-child(1){margin-right:-6cqw}
+.pb-shirts[data-n="3"] .pb-shirt:nth-child(3){margin-left:-6cqw}
+.pb-shirts[data-n="3"] .pb-shirt:nth-child(2){z-index:2}
+.pb-floor{position:absolute;z-index:1;left:50%;bottom:20%;width:36cqw;height:3cqw;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,#000b,transparent 70%);filter:blur(.6cqw)}
+/* Textos (editables en banners.json) */
+.pb-copy{position:absolute;z-index:3;left:4%;right:4%;bottom:5.5%;margin:0;text-align:center;pointer-events:none}
+.pb-copy span{display:block}
+.pb-k{font:italic 800 4.3cqw/.95 "Barlow Condensed","Arial Narrow",sans-serif;letter-spacing:-.005em;text-shadow:0 .3cqw 1.4cqw #000c}
+.pb-t{margin-top:-.2cqw;font:italic 800 7.4cqw/.9 "Barlow Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.005em;color:var(--ac);text-shadow:0 0 2.2cqw color-mix(in srgb,var(--ac) 45%,transparent),0 .35cqw 1.2cqw #000c}
+.pb-s{margin-top:.5cqw;font:700 2cqw/1.2 "DM Sans",system-ui,sans-serif;text-shadow:0 .2cqw .9cqw #000}
+.pb-shine{position:absolute;z-index:4;inset:0;opacity:0;pointer-events:none;background:linear-gradient(105deg,transparent 40%,#ffffff40 50%,transparent 60%);mix-blend-mode:overlay}
+/* Animación de entrada: fondo, luces, camisetas y textos por capas */
+.pb-slide.is-play .pb-bg{animation:pbBg 1.3s cubic-bezier(.2,.7,.2,1) both}
+.pb-slide.is-play .pb-fl{animation:pbFl 1.3s .25s steps(1,end) both}
+.pb-slide.is-play .pb-side{animation:pbSide 1s .5s cubic-bezier(.2,.7,.2,1) both}
+.pb-slide.is-play .pb-shirt img{animation:pbShirt 1.05s calc(.45s + var(--i) * .16s) cubic-bezier(.16,.84,.3,1) both,pbFloat 5s calc(2.2s + var(--i) * .7s) ease-in-out infinite alternate}
+.pb-slide.is-play .pb-floor{animation:pbFade 1s .6s both}
+.pb-slide.is-play .pb-k{animation:pbTxt .85s 1.05s cubic-bezier(.16,.84,.3,1) both}
+.pb-slide.is-play .pb-t{animation:pbTitle .95s 1.25s cubic-bezier(.16,.84,.3,1) both}
+.pb-slide.is-play .pb-s{animation:pbTxt .8s 1.55s cubic-bezier(.16,.84,.3,1) both}
+.pb-slide.is-play .pb-shine{animation:pbShine 1.2s 2s cubic-bezier(.45,0,.25,1) both}
+@keyframes pbBg{from{transform:scale(1.08);filter:blur(1.4cqw) brightness(.3)}to{transform:none;filter:none}}
+@keyframes pbFl{0%{opacity:0}18%{opacity:1}26%{opacity:.25}36%{opacity:1}44%{opacity:.5}52%,100%{opacity:1}}
+@keyframes pbSide{from{opacity:0;transform:scaleY(.2)}to{opacity:.85;transform:none}}
+@keyframes pbShirt{from{opacity:0;transform:translateY(7%) scale(.9);filter:blur(1.2cqw) brightness(.5)}to{opacity:1}}
+@keyframes pbFloat{from{transform:none}to{transform:translateY(-1.6%)}}
+@keyframes pbFade{from{opacity:0}to{opacity:1}}
+@keyframes pbTxt{from{opacity:0;transform:translateY(35%);filter:blur(.7cqw)}to{opacity:1;transform:none;filter:none}}
+@keyframes pbTitle{from{opacity:0;transform:scale(1.18);letter-spacing:.12em;filter:blur(1cqw)}to{opacity:1;transform:none;filter:none}}
+@keyframes pbShine{0%{opacity:1;transform:translateX(-100%)}100%{opacity:1;transform:translateX(100%)}}
+.pb-nav{position:absolute;z-index:5;top:50%;width:46px;height:46px;margin-top:-23px;border:1px solid #ffffff2e;border-radius:50%;background:#070b1499;color:#fff;display:grid;place-items:center;cursor:pointer;opacity:0;transition:opacity .25s,background .2s,transform .2s;backdrop-filter:blur(6px)}
+.pb-nav svg{width:20px;height:20px}
+.pb-prev{left:16px}.pb-next{right:16px}
+.pb:hover .pb-nav,.pb-nav:focus-visible{opacity:1}
+.pb-nav:hover{background:#070b14cc;transform:scale(1.06)}
+.pb-nav:focus-visible,.pb-dot:focus-visible{outline:2px solid #22c7ff;outline-offset:2px}
+.pb-dots{position:absolute;z-index:5;right:14px;bottom:8px;display:flex;gap:2px}
+.pb-dot{width:44px;height:32px;padding:0 5px;border:0;background:none;cursor:pointer;display:flex;align-items:center}
+.pb-bar{position:relative;display:block;width:100%;height:4px;border-radius:4px;background:#ffffff40;overflow:hidden}
+.pb-bar i{position:absolute;inset:0;border-radius:inherit;background:#fff;transform:scaleX(0);transform-origin:left}
+.pb-dot.is-done .pb-bar i{transform:none;background:#ffffffa6}
+.pb-dot.is-on .pb-bar i{background:#22c7ff;animation:pbProg var(--dur,7s) linear forwards}
+.pb.is-paused .pb-dot.is-on .pb-bar i{animation-play-state:paused}
+@keyframes pbProg{from{transform:scaleX(0)}to{transform:none}}
+@media (hover:none){.pb-nav{display:none}}
 @media (max-width:640px){
-  .pc{aspect-ratio:4/3;max-height:none;border-radius:13px}
-  .pc-stage{-webkit-mask-image:none;mask-image:none}
-  .pc-slide[data-wide] .pc-stage{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 93%,transparent 100%)}
-  .pc-nav{display:none}
-  .pc-dots{right:6px;top:0;bottom:auto}
-  .pc-dot{width:36px}
+  .pb{aspect-ratio:1/.95;border-radius:13px}
+  .pb-shirts{top:5%;height:62%}
+  .pb-shirts[data-n="2"] .pb-shirt:nth-child(1){margin-right:-12cqw}
+  .pb-shirts[data-n="3"]{height:52%;top:8%}
+  .pb-shirts[data-n="3"] .pb-shirt:nth-child(1){margin-right:-13cqw}
+  .pb-shirts[data-n="3"] .pb-shirt:nth-child(3){margin-left:-13cqw}
+  .pb-fl{width:18cqw;height:7cqw;background-size:2.3cqw 2.3cqw}
+  .pb-fl.l{left:4%}.pb-fl.r{right:4%}
+  .pb-side.l{left:5%}.pb-side.r{right:5%}
+  .pb-side{width:1cqw}
+  .pb-floor{width:70cqw;height:6cqw;bottom:25%}
+  .pb-copy{bottom:6%}
+  .pb-k{font-size:8.6cqw}
+  .pb-t{font-size:14cqw}
+  .pb-s{font-size:4.1cqw}
+  .pb-dots{right:6px;top:0;bottom:auto}
+  .pb-dot{width:36px}
+  .pb-shirt-tag{display:none}
 }
-/* Diapositivas frente/espalda: cada camiseta se da vuelta sola */
-.pc-duo .pc-fill img{filter:blur(34px) brightness(.28) saturate(.8)}
-.pc-duo .pc-stage{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 4%,#000 96%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 4%,#000 96%,transparent 100%)}
-.pc-bk{-webkit-mask-image:var(--mx),var(--my);mask-image:var(--mx),var(--my);-webkit-mask-composite:source-in;mask-composite:intersect;transform-origin:var(--o);transition:opacity .5s cubic-bezier(.4,0,.2,1)}
-.pc-bk.is-show{opacity:1;animation:pcTurnIn .6s cubic-bezier(.2,.7,.2,1)}
-@keyframes pcTurnIn{from{opacity:0}to{opacity:1}}
-.pc-hot{position:absolute;z-index:3;padding:0;border:0;border-radius:18px;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.pc-hot:focus-visible{outline:2px solid var(--pc-accent);outline-offset:2px}
-.pc-hot-tag{position:absolute;left:50%;top:0;transform:translate(-50%,-115%) scale(.9);padding:5px 12px;border-radius:999px;background:#070b14d9;border:1px solid #ffffff33;color:#fff;font-size:clamp(10px,1.1cqw,13px);font-weight:800;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none}
-.pc-hot.is-active .pc-hot-tag{opacity:1;transform:translate(-50%,-115%)}
-.pc-buy{position:absolute;z-index:4;transform:translateX(-50%);display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:0 14px;border-radius:999px;background:#fff;color:#0b1222;font-size:clamp(11px,1.15cqw,14px);font-weight:800;text-decoration:none;white-space:nowrap;box-shadow:0 8px 20px #0007;transition:background .2s,transform .2s}
-.pc-buy:hover{background:var(--pc-accent);transform:translateX(-50%) translateY(-1px)}
-.pc-buy:focus-visible{outline:2px solid var(--pc-accent);outline-offset:2px}
-.pc-buy svg{width:15px;height:15px}
-.pc-cap{position:absolute;z-index:4;left:max(16px,calc((100cqw - 200cqh) / 2 + 2.5cqh));bottom:3.5cqh;display:flex;align-items:center;gap:12px;pointer-events:none}
-.pc-cap b{padding:6px 14px;border-radius:999px;background:var(--pc-accent);color:#04121c;font-size:clamp(11px,1.15cqw,14px);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-.pc-cap>span{display:flex;align-items:center;gap:7px;color:#dfe6f2;font-size:clamp(11px,1.1cqw,13px);text-shadow:0 1px 6px #000}
-.pc-cap svg{width:15px;height:15px;flex:none;color:var(--pc-accent)}
-.pc-cap .pc-hint-touch{display:none}
-@media (hover:none){.pc-cap .pc-hint-mouse{display:none}.pc-cap .pc-hint-touch{display:inline}}
-.pc-duo.is-wait .pc-stage,.pc-duo.is-wait .pc-cap{opacity:0}
-.pc-duo.is-build .pc-stage{animation:pcStageIn 1.1s cubic-bezier(.2,.7,.2,1) both}
-.pc-duo.is-build .pc-bk{animation:pcTurnOut .8s var(--d) cubic-bezier(.45,0,.25,1) both}
-.pc-duo.is-build .pc-buy,.pc-duo.is-build .pc-cap{animation:pcB .7s 2.3s cubic-bezier(.16,.84,.3,1) both}
-.pc-duo.is-build .pc-shine{animation:pcShine 1.3s 2.4s cubic-bezier(.45,0,.25,1) both}
-@keyframes pcStageIn{from{opacity:0;filter:brightness(.25)}to{opacity:1;filter:none}}
-@keyframes pcTurnOut{0%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  .pb-slide,.pb-slide.is-on{transition-duration:.01s}
+  .pb-slide.is-play *,.pb-slide.is-play .pb-shirt img{animation:none!important}
+}
 .pc-promos{list-style:none;width:min(91%,1370px);margin:10px auto 0;padding:0;display:flex;flex-wrap:wrap;gap:8px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity}
 .pc-promos::-webkit-scrollbar{display:none}
 .pc-promos li{flex:1 0 auto;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:12px;background:#0d1424;border:1px solid #ffffff14;color:#dfe6f2;font-size:.86rem;white-space:nowrap}
 .pc-promos li strong{color:#fff}
 .pc-promos svg{width:18px;height:18px;flex:none;color:var(--accent)}
 @media (max-width:640px){
-  .pc-cap{left:10px;bottom:6px;gap:8px}
-  .pc-cap b{padding:4px 10px;font-size:10px}
-  .pc-cap span{font-size:10px}
-  .pc-buy{min-height:28px;padding:0 10px;font-size:10px}
-  .pc-buy svg{width:12px;height:12px}
-  .pc-buy[data-edge="l"]{left:2%!important;transform:none}
-  .pc-buy[data-edge="r"]{left:auto!important;right:2%;transform:none}
-  .pc-hot-tag{font-size:9px;padding:3px 8px}
-  .pc-duo .pc-stage{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 6%,#000 94%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
   .pc-promos{width:100%;padding:0 4.5%;box-sizing:border-box;flex-wrap:nowrap}
   .pc-promos li{flex:0 0 auto;font-size:.8rem;min-height:40px}
-}
-@media (prefers-reduced-motion:reduce){.pc-duo.is-build *,.pc-bk.is-show{animation:none!important}}
-@media (prefers-reduced-motion:reduce){
-  .pc-slide,.pc-slide.is-on,.pc-stage{transition-duration:.01s}
-  .is-build .pc-l,.is-build .pc-shine,.is-enter .pc-full{animation:none}
-  .is-build .pc-full{opacity:1}
 }
 /* Ficha del producto: Comprar ahora resaltado, Agregar al carrito sin amarillo */
 #detail .buy-actions .add-to-cart{background:#26364f;color:#f5f8ff;border:1px solid #3d5173}
@@ -850,86 +866,80 @@ body>footer p{color:#edf4ff}
 </header>
 <main>
   <h1 class="visually-hidden">Pasión Fútbol</h1>
-  <section class="pc" id="banner" aria-roledescription="carrusel" aria-label="Promociones"><div class="pc-slide pc-duo is-on" role="group" aria-roledescription="diapositiva" aria-label="Selecciones: Argentina, Perú, Chile y Brasil" style="--r:2" data-wide><span class="pc-fill" aria-hidden="true"><img class="" src="/duo-sel-frente.webp" srcset="/duo-sel-frente-sm.webp 800w, /duo-sel-frente.webp 1600w" sizes="(max-width: 640px) 100vw, 1100px" width="1600" height="800" alt="" decoding="async" fetchpriority="high" draggable="false"></span><span class="pc-stage"><img class="pc-l pc-full" src="/duo-sel-frente.webp" srcset="/duo-sel-frente-sm.webp 800w, /duo-sel-frente.webp 1600w" sizes="(max-width: 640px) 100vw, 1100px" width="1600" height="800" alt="" decoding="async" fetchpriority="high" draggable="false"><img data-k="0" style="--mx:linear-gradient(90deg,transparent 2.1%,#000 4.9%,#000 24.6%,transparent 27.4%);--my:linear-gradient(180deg,transparent 18.2%,#000 23.8%,#000 73.2%,transparent 78.8%);--o:14.8% 48.5%;--d:1.15s" class="pc-l pc-bk" src="/duo-sel-espalda.webp" srcset="/duo-sel-espalda-sm.webp 800w, /duo-sel-espalda.webp 1600w" sizes="(max-width: 640px) 100vw, 1100px" width="1600" height="800" alt="" decoding="async" fetchpriority="high" draggable="false"><img data-k="1" style="--mx:linear-gradient(90deg,transparent 22.1%,#000 24.9%,#000 41.6%,transparent 44.4%);--my:linear-gradient(180deg,transparent 23.2%,#000 28.8%,#000 70.2%,transparent 75.8%);--o:33.2% 49.5%;--d:1.45s" class="pc-l pc-bk" src="/duo-sel-espalda.webp" srcset="/duo-sel-espalda-sm.webp 800w, /duo-sel-espalda.webp 1600w" sizes="(max-width: 640px) 100vw, 1100px" width="1600" height="800" alt="" decoding="async" fetchpriority="high" draggable="false"><img data-k="2" style="--mx:linear-gradient(90deg,transparent 39.1%,#000 41.9%,#000 73.1%,transparent 75.9%);--my:linear-gradient(180deg,transparent 5.2%,#000 10.8%,#000 87.2%,transparent 92.8%);--o:57.5% 49.0%;--d:1.75s" class="pc-l pc-bk" src="/duo-sel-espalda.webp" srcset="/duo-sel-espalda-sm.webp 800w, /duo-sel-espalda.webp 1600w" sizes="(max-width: 640px) 100vw, 1100px" width="1600" height="800" alt="" decoding="async" fetchpriority="high" draggable="false"><img data-k="3" style="--mx:linear-gradient(90deg,transparent 71.1%,#000 73.9%,#000 94.6%,transparent 97.4%);--my:linear-gradient(180deg,transparent 18.2%,#000 23.8%,#000 74.2%,transparent 79.8%);--o:84.2% 49.0%;--d:2.05s" class="pc-l pc-bk" src="/duo-sel-espalda.webp" srcset="/duo-sel-espalda-sm.webp 800w, /duo-sel-espalda.webp 1600w" sizes="(max-width: 640px) 100vw, 1100px" width="1600" height="800" alt="" decoding="async" fetchpriority="high" draggable="false"><span class="pc-shine" aria-hidden="true"></span><button class="pc-hot" type="button" data-k="0" aria-pressed="false" aria-label="Camiseta Argentina: ver espalda" style="left:4.5%;top:22%;width:20.5%;height:53%"><span class="pc-hot-tag">Argentina</span></button><a class="pc-buy" href="/?producto=argentina-messi-titular" data-buy="argentina-messi-titular" style="left:14.8%;top:76.5%" data-edge="l" aria-label="Comprar ahora: camiseta Argentina"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7zM9 7a3 3 0 0 1 6 0"/></svg>Comprar ahora</a><button class="pc-hot" type="button" data-k="1" aria-pressed="false" aria-label="Camiseta Perú: ver espalda" style="left:24.5%;top:27%;width:17.5%;height:45%"><span class="pc-hot-tag">Perú</span></button><button class="pc-hot" type="button" data-k="2" aria-pressed="false" aria-label="Camiseta Chile: ver espalda" style="left:41.5%;top:9%;width:32.0%;height:80%"><span class="pc-hot-tag">Chile</span></button><button class="pc-hot" type="button" data-k="3" aria-pressed="false" aria-label="Camiseta Brasil: ver espalda" style="left:73.5%;top:22%;width:21.5%;height:54%"><span class="pc-hot-tag">Brasil</span></button></span><p class="pc-cap"><b>Selecciones</b><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg><span class="pc-hint-mouse">Pasa el mouse por una camiseta para ver la espalda</span><span class="pc-hint-touch">Toca una camiseta para ver la espalda</span></span></p></div><div class="pc-slide pc-duo" role="group" aria-roledescription="diapositiva" aria-label="Clubes de Chile: Colo-Colo, Universidad de Chile y Universidad Católica" style="--r:2" data-wide aria-hidden="true" inert><span class="pc-fill" aria-hidden="true"><img class="" src="/duo-chi-frente.webp" srcset="/duo-chi-frente-sm.webp 800w, /duo-chi-frente.webp 1600w" sizes="(max-width: 640px) 100vw, 1100px" width="1600" height="800" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"></span><span class="pc-stage"><img class="pc-l pc-full" src="/duo-chi-frente.webp" srcset="/duo-chi-frente-sm.webp 800w, /duo-chi-frente.webp 1600w" sizes="(max-width: 640px) 100vw, 1100px" width="1600" height="800" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><img data-k="0" style="--mx:linear-gradient(90deg,transparent 4.6%,#000 7.4%,#000 34.6%,transparent 37.4%);--my:linear-gradient(180deg,transparent 10.2%,#000 15.8%,#000 81.2%,transparent 86.8%);--o:21.0% 48.5%;--d:1.15s" class="pc-l pc-bk" src="/duo-chi-espalda.webp" srcset="/duo-chi-espalda-sm.webp 800w, /duo-chi-espalda.webp 1600w" sizes="(max-width: 640px) 100vw, 1100px" width="1600" height="800" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><img data-k="1" style="--mx:linear-gradient(90deg,transparent 33.6%,#000 36.4%,#000 64.1%,transparent 66.9%);--my:linear-gradient(180deg,transparent 9.2%,#000 14.8%,#000 82.2%,transparent 87.8%);--o:50.2% 48.5%;--d:1.45s" class="pc-l pc-bk" src="/duo-chi-espalda.webp" srcset="/duo-chi-espalda-sm.webp 800w, /duo-chi-espalda.webp 1600w" sizes="(max-width: 640px) 100vw, 1100px" width="1600" height="800" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><img data-k="2" style="--mx:linear-gradient(90deg,transparent 63.6%,#000 66.4%,#000 93.6%,transparent 96.4%);--my:linear-gradient(180deg,transparent 10.2%,#000 15.8%,#000 81.2%,transparent 86.8%);--o:80.0% 48.5%;--d:1.75s" class="pc-l pc-bk" src="/duo-chi-espalda.webp" srcset="/duo-chi-espalda-sm.webp 800w, /duo-chi-espalda.webp 1600w" sizes="(max-width: 640px) 100vw, 1100px" width="1600" height="800" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><span class="pc-shine" aria-hidden="true"></span><button class="pc-hot" type="button" data-k="0" aria-pressed="false" aria-label="Camiseta Colo-Colo: ver espalda" style="left:7%;top:14%;width:28%;height:69%"><span class="pc-hot-tag">Colo-Colo</span></button><button class="pc-hot" type="button" data-k="1" aria-pressed="false" aria-label="Camiseta U. de Chile: ver espalda" style="left:36%;top:13%;width:28.5%;height:71%"><span class="pc-hot-tag">U. de Chile</span></button><button class="pc-hot" type="button" data-k="2" aria-pressed="false" aria-label="Camiseta U. Católica: ver espalda" style="left:66%;top:14%;width:28%;height:69%"><span class="pc-hot-tag">U. Católica</span></button><a class="pc-buy" href="/?producto=universidad-catolica-blanca" data-buy="universidad-catolica-blanca" style="left:80.0%;top:84.5%" data-edge="r" aria-label="Comprar ahora: camiseta U. Católica"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7zM9 7a3 3 0 0 1 6 0"/></svg>Comprar ahora</a></span><p class="pc-cap"><b>Clubes de Chile</b><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg><span class="pc-hint-mouse">Pasa el mouse por una camiseta para ver la espalda</span><span class="pc-hint-touch">Toca una camiseta para ver la espalda</span></span></p></div><div class="pc-slide pc-duo" role="group" aria-roledescription="diapositiva" aria-label="Clubes de Argentina: Boca Juniors, River Plate e Independiente" style="--r:2" data-wide aria-hidden="true" inert><span class="pc-fill" aria-hidden="true"><img class="" src="/duo-arg-frente.webp" srcset="/duo-arg-frente-sm.webp 800w, /duo-arg-frente.webp 1600w" sizes="(max-width: 640px) 100vw, 1100px" width="1600" height="800" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"></span><span class="pc-stage"><img class="pc-l pc-full" src="/duo-arg-frente.webp" srcset="/duo-arg-frente-sm.webp 800w, /duo-arg-frente.webp 1600w" sizes="(max-width: 640px) 100vw, 1100px" width="1600" height="800" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><img data-k="0" style="--mx:linear-gradient(90deg,transparent 4.6%,#000 7.4%,#000 34.6%,transparent 37.4%);--my:linear-gradient(180deg,transparent 11.2%,#000 16.8%,#000 80.2%,transparent 85.8%);--o:21.0% 48.5%;--d:1.15s" class="pc-l pc-bk" src="/duo-arg-espalda.webp" srcset="/duo-arg-espalda-sm.webp 800w, /duo-arg-espalda.webp 1600w" sizes="(max-width: 640px) 100vw, 1100px" width="1600" height="800" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><img data-k="1" style="--mx:linear-gradient(90deg,transparent 34.1%,#000 36.9%,#000 63.1%,transparent 65.9%);--my:linear-gradient(180deg,transparent 11.2%,#000 16.8%,#000 82.2%,transparent 87.8%);--o:50.0% 49.5%;--d:1.45s" class="pc-l pc-bk" src="/duo-arg-espalda.webp" srcset="/duo-arg-espalda-sm.webp 800w, /duo-arg-espalda.webp 1600w" sizes="(max-width: 640px) 100vw, 1100px" width="1600" height="800" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><img data-k="2" style="--mx:linear-gradient(90deg,transparent 63.6%,#000 66.4%,#000 93.6%,transparent 96.4%);--my:linear-gradient(180deg,transparent 11.2%,#000 16.8%,#000 79.2%,transparent 84.8%);--o:80.0% 48.0%;--d:1.75s" class="pc-l pc-bk" src="/duo-arg-espalda.webp" srcset="/duo-arg-espalda-sm.webp 800w, /duo-arg-espalda.webp 1600w" sizes="(max-width: 640px) 100vw, 1100px" width="1600" height="800" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><span class="pc-shine" aria-hidden="true"></span><button class="pc-hot" type="button" data-k="0" aria-pressed="false" aria-label="Camiseta Boca Juniors: ver espalda" style="left:7%;top:15%;width:28%;height:67%"><span class="pc-hot-tag">Boca Juniors</span></button><button class="pc-hot" type="button" data-k="1" aria-pressed="false" aria-label="Camiseta River Plate: ver espalda" style="left:36.5%;top:15%;width:27.0%;height:69%"><span class="pc-hot-tag">River Plate</span></button><button class="pc-hot" type="button" data-k="2" aria-pressed="false" aria-label="Camiseta Independiente: ver espalda" style="left:66%;top:15%;width:28%;height:66%"><span class="pc-hot-tag">Independiente</span></button></span><p class="pc-cap"><b>Clubes de Argentina</b><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg><span class="pc-hint-mouse">Pasa el mouse por una camiseta para ver la espalda</span><span class="pc-hint-touch">Toca una camiseta para ver la espalda</span></span></p></div><a class="pc-slide" href="#catalogo" aria-label="Lleva tus colores: envío gratis en la Región Metropolitana. Ver camisetas" style="--r:1.3333;--ma:radial-gradient(ellipse 40% 38% at 50% 34%,#000 62%,transparent 100%);--mb:radial-gradient(ellipse 50% 20% at 50% 83%,#000 66%,transparent 100%);--ax:0;--ay:7%;--bx:0;--by:9%" tabindex="-1" aria-hidden="true" inert><span class="pc-fill" aria-hidden="true"><img class="" src="/promo-3.webp" srcset="/promo-3-sm.webp 760w, /promo-3.webp 1448w" sizes="(max-width: 640px) 100vw, 724px" width="1448" height="1086" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"></span><span class="pc-stage" aria-hidden="true"><img class="pc-l pc-bg" src="/promo-3.webp" srcset="/promo-3-sm.webp 760w, /promo-3.webp 1448w" sizes="(max-width: 640px) 100vw, 724px" width="1448" height="1086" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><img class="pc-l pc-a" src="/promo-3.webp" srcset="/promo-3-sm.webp 760w, /promo-3.webp 1448w" sizes="(max-width: 640px) 100vw, 724px" width="1448" height="1086" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><img class="pc-l pc-b" src="/promo-3.webp" srcset="/promo-3-sm.webp 760w, /promo-3.webp 1448w" sizes="(max-width: 640px) 100vw, 724px" width="1448" height="1086" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><img class="pc-l pc-full" src="/promo-3.webp" srcset="/promo-3-sm.webp 760w, /promo-3.webp 1448w" sizes="(max-width: 640px) 100vw, 724px" width="1448" height="1086" alt="" decoding="async" loading="lazy" fetchpriority="low" draggable="false"><span class="pc-shine"></span></span></a><button class="pc-nav pc-prev" type="button" aria-label="Promoción anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button class="pc-nav pc-next" type="button" aria-label="Promoción siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><div class="pc-dots"><button class="pc-dot is-on" type="button" aria-label="Ver diapositiva 1 de 4" aria-current="true"><span class="pc-bar"><i></i></span></button><button class="pc-dot" type="button" aria-label="Ver diapositiva 2 de 4"><span class="pc-bar"><i></i></span></button><button class="pc-dot" type="button" aria-label="Ver diapositiva 3 de 4"><span class="pc-bar"><i></i></span></button><button class="pc-dot" type="button" aria-label="Ver diapositiva 4 de 4"><span class="pc-bar"><i></i></span></button></div></section><ul class="pc-promos" aria-label="Promociones vigentes"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span><strong>2 camisetas</strong> por $24.990</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span><strong>3 por $36.990</strong> · 4 por $44.990</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><span><strong>Envío gratis</strong> en la RM</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg><span>Hasta <strong>12 cuotas</strong> con Webpay</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h10a4 4 0 0 1 4 4v10H8a4 4 0 0 1-4-4z"/><path d="M8 9h6M8 13h6"/></svg><span><strong>Revista</strong> de regalo</span></li></ul><script>
+  <section class="pb" id="banner" aria-roledescription="carrusel" aria-label="Promociones"></section><ul class="pc-promos" aria-label="Promociones vigentes"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span><strong>2 camisetas</strong> por $24.990</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span><strong>3 por $36.990</strong> · 4 por $44.990</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><span><strong>Envío gratis</strong> en la RM</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg><span>Hasta <strong>12 cuotas</strong> con Webpay</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h10a4 4 0 0 1 4 4v10H8a4 4 0 0 1-4-4z"/><path d="M8 9h6M8 13h6"/></svg><span><strong>Revista</strong> de regalo</span></li></ul><script>
 (function(){
-  var root=document.getElementById("banner"); if(!root||!root.classList.contains("pc")) return;
-  var slides=[].slice.call(root.querySelectorAll(".pc-slide")), dots=[].slice.call(root.querySelectorAll(".pc-dot"));
-  var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var built={}, cur=-1, hover=false, focus=false, buildTimer=0;
-  function setPaused(){ root.classList.toggle("is-paused", hover||focus||document.hidden); }
-  function waitImg(im){
-    if(im.loading==="lazy") im.loading="eager";
-    if(im.complete&&im.naturalWidth) return Promise.resolve();
-    return new Promise(function(r){ im.addEventListener("load",r,{once:true}); im.addEventListener("error",r,{once:true}); });
+  var root=document.getElementById("banner"); if(!root) return;
+  var conf=/* BANNERS_DATA */ null;
+  if(!conf){ root.hidden=true; return; }
+  var list=(conf.diapositivas||[]).filter(function(d){ return d&&(d.titulo||d.camisetas); }).slice(0,3);
+  if(!list.length){ root.hidden=true; return; }
+  var dur=Math.max(4,Math.min(20,+conf.segundosPorDiapositiva||7));
+  var esc=function(v){ return String(v==null?"":v).replace(/[&<>"']/g,function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); };
+  var color=function(v,d){ return /^#[0-9a-f]{3,8}$/i.test(String(v||""))?v:d; };
+  var link=function(v){ v=String(v||"#catalogo"); return /^(#|\/(?!\/)|https:\/\/)/.test(v)?v:"#catalogo"; };
+  var nameOf=function(id){ return id.replace(/-/g," ").replace(/\b\w/g,function(c){ return c.toUpperCase(); }); };
+  var chev=function(d){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+d+'"/></svg>'; };
+  var html=list.map(function(d,i){
+    var shirts=(d.camisetas||[]).slice(0,3).map(function(s){ return typeof s==="string"?{id:s}:s; }).filter(function(s){ return s&&/^[\w-]+$/.test(s.id||""); });
+    var label=[d.linea1,d.titulo,d.linea2].filter(Boolean).join(" · ");
+    return '<a class="pb-slide" href="'+esc(link(d.enlace))+'" style="--ac:'+color(d.color,"#22c7ff")+';--lu:'+color(d.luces,"#ff3b4f")+'" role="group" aria-roledescription="diapositiva" aria-label="'+esc(label)+'">'+
+      '<span class="pb-bg" aria-hidden="true"><span class="pb-crowd"></span><span class="pb-pitch"></span><span class="pb-fl l"></span><span class="pb-fl r"></span><span class="pb-side l"></span><span class="pb-side r"></span><span class="pb-vig"></span></span>'+
+      '<span class="pb-floor" aria-hidden="true"></span>'+
+      '<span class="pb-shirts" data-n="'+shirts.length+'">'+shirts.map(function(s,k){
+        var src=s.imagen&&/^\/[\w.\/-]+$/.test(s.imagen)?s.imagen:"/"+s.id+"-colgada.webp";
+        var nm=s.nombre||nameOf(s.id);
+        return '<span class="pb-shirt" role="button" tabindex="-1" data-id="'+esc(s.id)+'" style="--i:'+k+'" aria-label="Ver '+esc(nm)+'"><img src="'+esc(src)+'" alt="" decoding="async" draggable="false"'+(i===0?' fetchpriority="high"':' loading="lazy"')+'><span class="pb-shirt-tag">'+esc(nm)+'</span></span>';
+      }).join("")+'</span>'+
+      '<p class="pb-copy">'+(d.linea1?'<span class="pb-k">'+esc(d.linea1)+'</span>':'')+(d.titulo?'<span class="pb-t">'+esc(d.titulo)+'</span>':'')+(d.linea2?'<span class="pb-s">'+esc(d.linea2)+'</span>':'')+'</p>'+
+      '<span class="pb-shine" aria-hidden="true"></span></a>';
+  }).join("");
+  if(list.length>1){
+    html+='<button class="pb-nav pb-prev" type="button" aria-label="Promoción anterior">'+chev("M15 6l-6 6 6 6")+'</button>'+
+      '<button class="pb-nav pb-next" type="button" aria-label="Promoción siguiente">'+chev("M9 6l6 6-6 6")+'</button>'+
+      '<div class="pb-dots">'+list.map(function(_,i){ return '<button class="pb-dot" type="button" aria-label="Ver diapositiva '+(i+1)+' de '+list.length+'"><span class="pb-bar"><i></i></span></button>'; }).join("")+'</div>';
   }
-  function ready(s){
-    var ims=[].slice.call(s.querySelectorAll(".pc-full, .pc-bk")).slice(0,2);
-    return Promise.race([Promise.all(ims.map(waitImg)), new Promise(function(r){ setTimeout(r,3500); })]);
-  }
-  function setHidden(s,h){ s.inert=h; if(h){ s.setAttribute("aria-hidden","true"); if(s.tagName==="A") s.tabIndex=-1; } else { s.removeAttribute("aria-hidden"); if(s.tagName==="A") s.removeAttribute("tabindex"); } }
-  function showBack(s,k,on){
-    var bk=s.querySelector('.pc-bk[data-k="'+k+'"]'), hot=s.querySelector('.pc-hot[data-k="'+k+'"]');
-    if(!bk||!hot) return;
-    if(on&&!bk.classList.contains("is-show")){ bk.classList.add("is-show"); }
-    if(!on){ bk.classList.remove("is-show"); }
-    hot.classList.toggle("is-active",on);
-  }
-  function resetBacks(s){ [].forEach.call(s.querySelectorAll(".pc-hot"),function(h){ h.setAttribute("aria-pressed","false"); showBack(s,h.dataset.k,false); }); }
+  root.innerHTML=html;
+  var slides=[].slice.call(root.querySelectorAll(".pb-slide")), dots=[].slice.call(root.querySelectorAll(".pb-dot"));
+  var cur=-1, hover=false, focus=false;
+  function setPaused(){ root.classList.toggle("is-paused",hover||focus||document.hidden); }
+  function setHidden(s,h){ s.inert=h; if(h){ s.setAttribute("aria-hidden","true"); s.tabIndex=-1; } else { s.removeAttribute("aria-hidden"); s.removeAttribute("tabindex"); }
+    [].forEach.call(s.querySelectorAll(".pb-shirt"),function(x){ x.tabIndex=h?-1:0; }); }
   function go(n){
     n=(n+slides.length)%slides.length; if(n===cur) return;
-    var prev=slides[cur];
-    if(prev){
-      prev.classList.remove("is-on","is-build","is-enter","is-wait"); prev.classList.add("is-out"); setHidden(prev,true); resetBacks(prev);
-      setTimeout(function(){ prev.classList.remove("is-out"); },950);
-    }
-    clearTimeout(buildTimer);
-    cur=n; var s=slides[n], first=!built[n]&&!reduce, duo=s.classList.contains("pc-duo");
-    setHidden(s,false); s.classList.remove("is-out");
-    s.classList.add("is-on", first?"is-wait":"is-enter");
-    if(!first){ setTimeout(function(){ s.classList.remove("is-enter"); },1400); }
-    dots.forEach(function(d,i){
-      d.classList.remove("is-on"); d.classList.toggle("is-done", i<n);
-      if(i===n){ d.setAttribute("aria-current","true"); } else { d.removeAttribute("aria-current"); }
-    });
-    var dot=dots[n]; dot.style.setProperty("--dur",(duo?(first?10:8):(first?8.5:6.5))+"s"); void dot.offsetWidth; dot.classList.add("is-on");
-    if(first){
-      ready(s).then(function(){
-        if(cur!==n) return; s.classList.remove("is-wait"); void s.offsetWidth; s.classList.add("is-build"); built[n]=true;
-        buildTimer=setTimeout(function(){ if(cur===n) s.classList.remove("is-build"); },4000);
-      });
-    }
-    var nx=slides[(n+1)%slides.length]; [].forEach.call(nx.querySelectorAll(".pc-full, .pc-bk"),function(im){ if(im.loading==="lazy") im.loading="eager"; });
+    var prev=slides[cur]; if(prev){ prev.classList.remove("is-on"); setHidden(prev,true); setTimeout(function(){ if(!prev.classList.contains("is-on")) prev.classList.remove("is-play"); },850); }
+    cur=n; var s=slides[n];
+    s.classList.remove("is-play"); void s.offsetWidth; s.classList.add("is-on","is-play"); setHidden(s,false);
+    [].forEach.call(s.querySelectorAll("img[loading=lazy]"),function(im){ im.loading="eager"; });
+    var nx=slides[(n+1)%slides.length]; [].forEach.call(nx.querySelectorAll("img[loading=lazy]"),function(im){ im.loading="eager"; });
+    dots.forEach(function(d,i){ d.classList.remove("is-on"); d.classList.toggle("is-done",i<n); if(i===n) d.setAttribute("aria-current","true"); else d.removeAttribute("aria-current"); });
+    var dot=dots[n]; if(dot){ dot.style.setProperty("--dur",dur+"s"); void dot.offsetWidth; dot.classList.add("is-on"); }
   }
+  slides.forEach(function(s,i){ if(i) setHidden(s,true); });
   dots.forEach(function(d,i){
     d.addEventListener("click",function(){ go(i); });
     d.querySelector("i").addEventListener("animationend",function(){ if(i===cur) go(cur+1); });
   });
-  root.querySelector(".pc-prev").addEventListener("click",function(){ go(cur-1); });
-  root.querySelector(".pc-next").addEventListener("click",function(){ go(cur+1); });
-  [].forEach.call(root.querySelectorAll(".pc-hot"),function(h){
-    var s=h.closest(".pc-slide");
-    h.addEventListener("pointerenter",function(e){ if(e.pointerType==="mouse"&&!s.classList.contains("is-build")) showBack(s,h.dataset.k,true); });
-    h.addEventListener("pointerleave",function(e){ if(e.pointerType==="mouse"&&h.getAttribute("aria-pressed")!=="true") showBack(s,h.dataset.k,false); });
-    h.addEventListener("click",function(){
-      if(s.classList.contains("is-build")){ s.classList.remove("is-build"); clearTimeout(buildTimer); }
-      var on=h.getAttribute("aria-pressed")!=="true"; h.setAttribute("aria-pressed",String(on)); showBack(s,h.dataset.k,on);
-    });
-  });
-  [].forEach.call(root.querySelectorAll(".pc-buy"),function(a){
-    a.addEventListener("click",function(e){
-      var item=typeof productById!=="undefined"&&productById.get(a.dataset.buy);
-      if(item&&!item.hidden&&typeof openDetail==="function"){ e.preventDefault(); openDetail(item); }
-    });
+  var pv=root.querySelector(".pb-prev"), nv=root.querySelector(".pb-next");
+  if(pv) pv.addEventListener("click",function(){ go(cur-1); });
+  if(nv) nv.addEventListener("click",function(){ go(cur+1); });
+  function openShirt(el,e){
+    var item=typeof productById!=="undefined"&&productById.get(el.dataset.id);
+    e.preventDefault(); e.stopPropagation();
+    if(item&&!item.hidden&&typeof openDetail==="function") openDetail(item); else location.href="/?producto="+encodeURIComponent(el.dataset.id);
+  }
+  [].forEach.call(root.querySelectorAll(".pb-shirt"),function(el){
+    el.addEventListener("click",function(e){ openShirt(el,e); });
+    el.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" ") openShirt(el,e); });
   });
   root.addEventListener("mouseenter",function(){ hover=true; setPaused(); });
   root.addEventListener("mouseleave",function(){ hover=false; setPaused(); });
   root.addEventListener("focusin",function(){ focus=true; setPaused(); });
   root.addEventListener("focusout",function(e){ if(!root.contains(e.relatedTarget)){ focus=false; setPaused(); } });
   document.addEventListener("visibilitychange",setPaused);
-  root.addEventListener("keydown",function(e){ if(e.target.closest(".pc-hot")) return; if(e.key==="ArrowLeft"){ go(cur-1); e.preventDefault(); } else if(e.key==="ArrowRight"){ go(cur+1); e.preventDefault(); } });
-  var x0=null, y0=0, swiped=false;
+  root.addEventListener("keydown",function(e){ if(e.key==="ArrowLeft"){ go(cur-1); e.preventDefault(); } else if(e.key==="ArrowRight"){ go(cur+1); e.preventDefault(); } });
+  var x0=null,y0=0,swiped=false;
   root.addEventListener("pointerdown",function(e){ x0=e.clientX; y0=e.clientY; swiped=false; });
-  root.addEventListener("pointerup",function(e){ if(x0===null) return; var dx=e.clientX-x0, dy=e.clientY-y0; x0=null; if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)){ swiped=true; go(cur+(dx<0?1:-1)); } });
+  root.addEventListener("pointerup",function(e){ if(x0===null) return; var dx=e.clientX-x0,dy=e.clientY-y0; x0=null; if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)){ swiped=true; go(cur+(dx<0?1:-1)); } });
   root.addEventListener("pointercancel",function(){ x0=null; });
   root.addEventListener("click",function(e){ if(swiped){ e.preventDefault(); e.stopPropagation(); swiped=false; } },true);
   root.addEventListener("dragstart",function(e){ e.preventDefault(); });
