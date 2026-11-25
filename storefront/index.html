@@ -643,12 +643,12 @@ body>footer p{color:#edf4ff}
 #detail-body{display:flex;flex-direction:column;gap:.85rem;padding:0 1rem}
 #detail .pd-top{position:sticky;top:0;z-index:3;display:flex;align-items:center;justify-content:space-between;margin:0 -1rem;padding:.5rem 1rem;background:var(--surface);border-bottom:1px solid var(--line)}
 #detail .pd-top .detail-team{margin:0}
-#detail .pd-gallery{flex-direction:column;align-items:stretch;gap:.5rem}
-#detail .pd-gallery > [aria-live]{position:relative;flex:none;width:100%}
+#detail .pd-gallery{flex-direction:column;align-items:center;gap:.4rem}
+#detail .pd-gallery > [aria-live]{position:relative;flex:none;inline-size:min(74%,35dvh,19rem)}
 #detail .pd-gallery .gallery-view{background:#2b2e34;border-radius:1rem}
-#detail .pd-gallery .detail-image{max-height:min(48dvh,30rem);margin:0 auto}
-#detail .pd-gallery .gallery-controls{display:flex;gap:.5rem;flex:none}
-#detail .pd-gallery .gallery-controls button{flex:1;max-width:5rem;aspect-ratio:1;border-radius:.6rem;background:#2b2e34}
+#detail .pd-gallery .detail-image{margin:0 auto}
+#detail .pd-gallery .gallery-controls{display:flex;justify-content:center;gap:2%;flex:none;inline-size:100%}
+#detail .pd-gallery .gallery-controls button{flex:0 0 clamp(2.75rem,15%,3.65rem);aspect-ratio:1;border-radius:.6rem;background:#2b2e34}
 .pd-flag{position:absolute;left:.6rem;top:.6rem;padding:.3rem .65rem;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:900;font-size:.75rem}
 .pd-head{display:flex;flex-direction:column;gap:.35rem}
 #detail .pd-head #detail-title{margin:.1rem 0 0;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:700;font-size:clamp(1.3rem,5vw,1.75rem);line-height:1.12;text-transform:none}
