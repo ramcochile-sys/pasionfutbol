@@ -630,6 +630,80 @@ body>footer p{color:#edf4ff}
 @media (prefers-reduced-motion:reduce){#order #pay,#shipping #checkout-continue,#shipping button[type="submit"]{transition:none}}
 
 
+.combo-nudge{margin:.6rem 1rem .4rem;padding:.7rem .8rem;border-radius:.8rem;background:#12243f;border:1px solid #1f4a7a}
+.combo-nudge p{margin:0;font-size:.85rem;font-weight:700;line-height:1.35;color:#f5f8ff}
+.combo-nudge b{color:var(--accent)}
+.combo-track{height:8px;margin-top:.55rem;border-radius:4px;background:#22324e;overflow:hidden}
+.combo-track i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,#22c7ff,#3ddc84);transition:width .3s}
+.combo-steps{display:flex;justify-content:space-between;margin-top:.35rem;font-size:.68rem;color:#b9c6da}
+.order-savings{display:flex;flex-direction:column;gap:.25rem;padding:.2rem .65rem .4rem;font-size:.85rem;color:var(--muted)}
+.order-savings div{display:flex;justify-content:space-between}
+.order-savings .is-saving{color:#3ddc84;font-weight:800}
+/* Ficha de producto v2: lo que decide arriba, combos y barra fija (pensada para celular) */
+#detail{padding:0;max-width:34rem;overflow:auto;overscroll-behavior:contain}
+#detail-body{display:flex;flex-direction:column;gap:.85rem;padding:0 1rem}
+#detail .pd-top{position:sticky;top:0;z-index:3;display:flex;align-items:center;justify-content:space-between;margin:0 -1rem;padding:.5rem 1rem;background:var(--surface);border-bottom:1px solid var(--line)}
+#detail .pd-top .detail-team{margin:0}
+#detail .pd-gallery{flex-direction:column;align-items:stretch;gap:.5rem}
+#detail .pd-gallery > [aria-live]{position:relative;flex:none;width:100%}
+#detail .pd-gallery .gallery-view{background:#2b2e34;border-radius:1rem}
+#detail .pd-gallery .detail-image{max-height:min(48dvh,30rem);margin:0 auto}
+#detail .pd-gallery .gallery-controls{display:flex;gap:.5rem;flex:none}
+#detail .pd-gallery .gallery-controls button{flex:1;max-width:5rem;aspect-ratio:1;border-radius:.6rem;background:#2b2e34}
+.pd-flag{position:absolute;left:.6rem;top:.6rem;padding:.3rem .65rem;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:900;font-size:.75rem}
+.pd-head{display:flex;flex-direction:column;gap:.35rem}
+.pd-tags{display:flex;flex-wrap:wrap;gap:.35rem}
+.pd-tag{padding:.25rem .55rem;border-radius:999px;background:#16233a;color:#c9d5e6;font-size:.72rem;font-weight:800}
+.pd-tag.is-green{background:#0f2a1d;color:#3ddc84}
+#detail .pd-head #detail-title{margin:.15rem 0 0;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:800;font-size:clamp(1.6rem,7vw,2.1rem);line-height:1;text-transform:uppercase}
+.pd-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:.5rem;margin:.2rem 0 0}
+.pd-price strong{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:800;font-size:2.4rem;line-height:1}
+.pd-price small{color:var(--muted);font-size:.85rem}
+.pd-perks{margin:0;color:#3ddc84;font-weight:700;font-size:.85rem}
+#detail .pd-buy{display:flex;flex-direction:column;align-items:stretch;gap:1rem;margin:0}
+#detail .pd-buy .size-picker legend{text-align:left}
+#detail .pd-buy .size-options{justify-content:flex-start}
+.pack-picker{margin:0;padding:0;border:0;min-width:0}
+.pack-picker legend{padding:0;margin-bottom:.6rem;font-weight:700}
+.pack-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;padding-top:.35rem}
+.pack-card{position:relative;display:block;cursor:pointer}
+.pack-card input{position:absolute;opacity:0;inset:0;margin:0}
+.pack-card > span{position:relative;display:flex;flex-direction:column;align-items:center;gap:.15rem;min-height:5.2rem;padding:.8rem .3rem .6rem;border:1px solid #2c3d5a;border-radius:.9rem;background:#101a2b;text-align:center;transition:border-color .15s,box-shadow .15s,background .15s}
+.pack-card b{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:1.6rem;line-height:1}
+.pack-card strong{font-size:.95rem}
+.pack-card small{color:var(--muted);font-size:.72rem}
+.pack-card input:checked + span{border:2px solid #22c7ff;background:#12243f;box-shadow:0 0 0 4px #22c7ff22}
+.pack-card input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
+.pack-flag{position:absolute;top:-.65rem;left:50%;transform:translateX(-50%);white-space:nowrap;padding:.15rem .5rem;border-radius:999px;background:#22c7ff;color:#04121c;font-size:.6rem;font-style:normal;font-weight:900;text-transform:uppercase}
+.pack-note{display:block;margin-top:.5rem;color:var(--muted);font-size:.75rem}
+.pd-whatsapp{display:flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;border:1px solid #2c3d5a;border-radius:999px;color:var(--ink);font-weight:700;text-decoration:none}
+.pd-whatsapp svg{width:1.15rem;height:1.15rem;color:#3ddc84}
+.pd-bar{position:sticky;bottom:0;z-index:3;display:flex;align-items:center;gap:.75rem;margin:0 -1rem;padding:.65rem 1rem calc(.75rem + env(safe-area-inset-bottom));background:#0b1220f2;border-top:1px solid var(--line);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.pd-bar-info{display:flex;flex-direction:column;line-height:1.2;font-size:.75rem;color:var(--muted);min-width:0}
+.pd-bar-total{color:var(--ink);font-size:1.15rem}
+#detail .pd-bar .pd-add{flex:1;min-height:52px;border:0;border-radius:999px;background:linear-gradient(180deg,#ffe27a,#ffcb32 45%,#f0b400);color:#1a1300;font-weight:900;font-size:.95rem;letter-spacing:.02em;text-transform:uppercase;box-shadow:0 .5rem 1.4rem #ffcb3240}
+#detail .pd-bar .pd-add svg{display:none}
+.pd-trust{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;text-align:center;font-size:.72rem;color:#c9d5e6}
+.pd-trust div{padding:.7rem .3rem;border-radius:.9rem;background:#101a2b}
+.pd-trust b{display:block;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:1.25rem;color:var(--accent)}
+.pd-acc{border-radius:.9rem;background:#101a2b;overflow:hidden}
+.pd-acc details+details{border-top:1px solid #1c2a42}
+.pd-acc summary{display:flex;align-items:center;justify-content:space-between;min-height:52px;padding:0 1rem;font-weight:700;cursor:pointer;list-style:none}
+.pd-acc summary::-webkit-details-marker{display:none}
+.pd-acc summary svg{width:1.1rem;height:1.1rem;color:var(--accent);transition:transform .2s}
+.pd-acc details[open] summary svg{transform:rotate(180deg)}
+.pd-acc p{margin:0;padding:0 1rem 1rem;color:#c9d5e6;line-height:1.5;font-size:.9rem}
+.pd-pay{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;font-size:.75rem;color:var(--muted)}
+.pd-pay img{height:28px;width:auto;padding:.2rem .4rem;border-radius:.4rem;background:#fff}
+.pd-related h3{margin:0 0 .6rem;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:1.4rem;text-transform:uppercase}
+.pd-related-row{display:flex;gap:.6rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:.4rem;scrollbar-width:none}
+.pd-related-row::-webkit-scrollbar{display:none}
+.pd-related-row button{flex:0 0 8.5rem;scroll-snap-align:start;display:flex;flex-direction:column;gap:.3rem;padding:.4rem;border:1px solid var(--line);border-radius:.8rem;background:#101a2b;color:var(--ink);text-align:left;font-size:.78rem;line-height:1.2}
+.pd-related-row img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:.5rem;background:#2b2e34}
+.pd-related-row b{color:var(--accent)}
+@media(max-width:40rem){
+  #detail{width:100%;max-width:none;max-height:100dvh;height:100dvh;margin:0;border:0;border-radius:0}
+}
 /* Carrusel principal: 3 diapositivas armadas desde storefront/banners.json */
 .pb{position:relative;isolation:isolate;overflow:hidden;width:min(91%,1370px);margin:14px auto 0;aspect-ratio:2.55/1;border-radius:15px;background:#040814;container-type:inline-size;-webkit-user-select:none;user-select:none;touch-action:pan-y}
 .pb-slide{--ac:#22c7ff;--lu:#ff3b4f;position:absolute;inset:0;display:block;color:#fff;opacity:0;visibility:hidden;transition:opacity .8s cubic-bezier(.4,0,.2,1),visibility 0s .8s}
@@ -1126,6 +1200,7 @@ body>footer p{color:#edf4ff}
   <div id="order-lines"></div>
   <div class="order-footer">
     <div class="order-totals">
+      <div class="order-savings" id="order-savings" hidden><div><span>Precio normal</span><s id="order-normal"></s></div><div class="is-saving"><span>Ahorro por combo</span><strong id="order-saving"></strong></div></div>
       <div class="total order-grand"><span id="subtotal-label">Subtotal</span><strong id="subtotal"></strong></div>
     </div>
     <div class="order-actions">
@@ -1357,25 +1432,91 @@ function saveSelection() {
   ).join("") + (entries.length > 3 ? `<span class="cart-thumb cart-more">+${entries.length - 3}</span>` : "");
 }
 
+const WHATSAPP = "56934974132";
+const svgIcon = d => `<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+
+// Precio de N unidades de esta camiseta sola (combos incluidos)
+function packPrice(item, quantity) {
+  return orderPricing([{...item, quantity}]).amount;
+}
+
+function packOptions(item) {
+  if (!isShirt(item) || !promotionActive()) return null;
+  return [1, 2, 5].map(qty => {
+    const total = packPrice(item, qty);
+    return {qty, total, each: Math.round(total / qty)};
+  });
+}
+
 function buyForm(item) {
   if (!item.sizes.length) {
     return '<p class="muted">Disponibilidad de tallas pendiente</p>';
   }
   const only = item.sizes.length === 1;
   const sizes = item.sizes.map(size => `<label class="size-chip"><input type="radio" name="size" value="${escapeHtml(size)}"${only ? " checked" : ""}><span>${escapeHtml(size)}</span></label>`).join("");
-  return `<form class="buy" data-buy="${item.id}" novalidate>
-    <fieldset class="size-picker" aria-describedby="size-error"><legend>Talla</legend><div class="size-options">${sizes}</div>
-      <small class="field-error" id="size-error" hidden>Elige una talla para continuar.</small></fieldset>
-    <div class="quantity-field">
+  const packs = packOptions(item);
+  const startQty = packs ? 2 : 1;
+  const quantityField = packs
+    ? `<fieldset class="pack-picker"><legend>¿Cuántas llevas?</legend><div class="pack-options">${packs.map(p => `
+        <label class="pack-card"><input type="radio" name="pack" value="${p.qty}"${p.qty === startQty ? " checked" : ""}>
+          <span>${p.qty === 2 ? '<em class="pack-flag">Más conveniente</em>' : ""}<b>x${p.qty}</b><strong>${money.format(p.total)}</strong><small>${p.qty === 1 ? "precio normal" : money.format(p.each) + " c/u"}</small></span></label>`).join("")}
+      </div><small class="pack-note">Puedes combinar camisetas distintas: el carrito aplica solo el mejor combo.</small>
+      <input type="hidden" name="quantity" value="${startQty}"></fieldset>`
+    : `<div class="quantity-field">
       <span id="detail-quantity-label">Cantidad</span>
       <div class="quantity-stepper" role="group" aria-labelledby="detail-quantity-label">
         <button type="button" data-detail-step="-1" aria-label="Restar una unidad" aria-disabled="true">−</button>
         <output name="quantity" aria-label="Cantidad seleccionada">1</output>
         <button type="button" data-detail-step="1" aria-label="Sumar una unidad">+</button>
       </div>
-    </div>
-    <div class="buy-actions"><button class="button add-to-cart" type="submit" name="action" value="add-to-cart"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h3l3 12h11l3-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg><span>Agregar al carrito</span></button><button class="button buy-now" type="submit" name="action" value="buy-now">Comprar ahora</button></div>
+    </div>`;
+  return `<form class="buy pd-buy" id="pd-form" data-buy="${item.id}" novalidate>
+    <fieldset class="size-picker" aria-describedby="size-error"><legend>Talla<span class="size-current">${only ? ": " + escapeHtml(item.sizes[0]) : ""}</span></legend><div class="size-options">${sizes}</div>
+      <small class="field-error" id="size-error" hidden>Elige una talla para continuar.</small></fieldset>
+    ${quantityField}
+    <a class="pd-whatsapp" href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hola, tengo una consulta por la " + item.name)}" target="_blank" rel="noopener">${svgIcon('<path d="M20 12a8 8 0 0 1-11.7 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"/>')}Consultar por WhatsApp</a>
   </form>`;
+}
+
+function pdDetails(item) {
+  const chevron = svgIcon('<path d="M6 9l6 6 6-6"/>');
+  const sizes = item.sizes.length ? item.sizes.join(" · ") : "Por confirmar";
+  return `<div class="pd-trust" aria-label="Compra protegida">
+      <div><b>10 días</b>de retracto</div><div><b>6 meses</b>de garantía legal</div><div><b>Flow · MP</b>pago seguro</div></div>
+    <div class="pd-acc">
+      <details open><summary>Descripción${chevron}</summary><p>${escapeHtml(item.description)}</p></details>
+      <details><summary>Tallas${chevron}</summary><p>Tallas disponibles: ${escapeHtml(sizes)}.<br>¿Dudas con tu talla? <a href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hola, ¿qué talla me recomiendan para la " + item.name + "?")}" target="_blank" rel="noopener">Escríbenos por WhatsApp</a> y te ayudamos.</p></details>
+      <details><summary>Envíos y cambios${chevron}</summary><p>Envío gratis en toda la Región Metropolitana. Santiago: 1 a 3 días hábiles; regiones: 1 a 8, con Blue Express, Starken o Correos de Chile.<br>Retracto de 10 días y garantía legal de 6 meses. <a href="#cambios" data-close-detail>Ver condiciones</a>.</p></details>
+    </div>
+    <div class="pd-pay" aria-label="Medios de pago"><img src="/pay-webpay.png" alt="Webpay" width="75" height="25" loading="lazy"><img src="/pay-mach.png" alt="Mach" width="90" height="19" loading="lazy"><img src="/pay-khipu.png" alt="Khipu" width="50" height="32" loading="lazy"><span>y Mercado Pago, en hasta 12 cuotas</span></div>`;
+}
+
+function pdRelated(item) {
+  const team = teamForProduct(item);
+  const pool = products.filter(p => !p.hidden && p.id !== item.id && p.image && isShirt(p) && !/-ninos$/.test(p.id) && !/demostraci/i.test(p.description || ""));
+  const same = team ? pool.filter(p => teamForProduct(p)?.name === team.name) : [];
+  const picks = [...same, ...pool.filter(p => !same.includes(p))].slice(0, 6);
+  if (!picks.length) return "";
+  return `<section class="pd-related" aria-labelledby="pd-related-title"><h3 id="pd-related-title">También te puede gustar</h3>
+    <div class="pd-related-row">${picks.map(p => `<button type="button" data-detail="${p.id}"><img src="${cartPhoto(p)}" alt="" width="120" height="120" loading="lazy" decoding="async"><span>${escapeHtml(p.name)}</span><b>${money.format(p.price)}</b></button>`).join("")}</div></section>`;
+}
+
+function updateBuyBar(form) {
+  if (!form) return;
+  const item = productById.get(form.dataset.buy);
+  const quantity = Number(form.elements.quantity.value) || 1;
+  const size = form.querySelector('[name="size"]:checked')?.value;
+  const total = isShirt(item) ? packPrice(item, quantity) : item.price * quantity;
+  detail.querySelector(".pd-bar-qty").textContent = `${quantity} ${isShirt(item) ? (quantity === 1 ? "camiseta" : "camisetas") : (quantity === 1 ? "unidad" : "unidades")}${size ? " · talla " + size : ""}`;
+  detail.querySelector(".pd-bar-total").textContent = money.format(total);
+  const current = form.querySelector(".size-current");
+  if (current && size) current.textContent = ": " + size;
+  const priceNow = byId("pd-price");
+  if (priceNow) {
+    const each = Math.round(total / quantity);
+    priceNow.querySelector("strong").textContent = money.format(each);
+    priceNow.querySelector("small").textContent = quantity > 1 && each < item.price ? `c/u · ${quantity} por ${money.format(total)}` : (isShirt(item) ? "por camiseta" : "");
+  }
 }
 
 const productObserver = "IntersectionObserver" in window
@@ -1633,25 +1774,54 @@ function openDetail(item) {
   const images = item.gallery || [item.image];
   const labels = item.galleryLabels || galleryLabels;
   const team = teamForProduct(item);
-  byId("detail-body").innerHTML = `<div class="dialog-top"><h2 id="detail-title">${escapeHtml(item.name)}</h2>
+  const promo = isShirt(item) && promotionActive();
+  byId("detail-body").innerHTML = `<div class="dialog-top pd-top">${team ? `<div class="detail-team">${team.svg}<span>${escapeHtml(team.name)}</span></div>` : "<span></span>"}
     <button class="close" data-close aria-label="Cerrar">×</button></div>
-    ${team ? `<div class="detail-team">${team.svg}<span>${escapeHtml(team.name)}</span></div>` : ""}
-    <div class="gallery" role="group" aria-label="Imágenes de la camiseta">
+    <div class="gallery pd-gallery" role="group" aria-label="Imágenes de la camiseta">
       <div aria-live="polite">${images.map((image, i) => `<div class="gallery-view" ${i ? "hidden" : ""}>
-        <img class="detail-image" src="${escapeHtml(image)}" alt="${escapeHtml(item.name)} · ${labels[i]}"${i ? ' loading="lazy"' : ""} decoding="async" width="480" height="480">
+        <img class="detail-image" src="${escapeHtml(image)}" alt="${escapeHtml(item.name)} · ${labels[i]}"${i ? ' loading="lazy"' : ' fetchpriority="high"'} decoding="async" width="480" height="480">
         ${item.illustratedSlides?.includes(i) ? '<small class="gallery-note">Imagen ilustrativa generada con IA</small>' : ""}
-      </div>`).join("")}</div>
+      </div>`).join("")}${promo ? '<span class="pd-flag">Combo 2 × $29.000</span>' : ""}</div>
       ${images.length > 1 ? `<div class="gallery-controls">${images.map((image, i) =>
         `<button type="button" data-slide="${i}" aria-label="${labels[i]}" aria-pressed="${i === 0}">
           <img src="${escapeHtml(image)}" alt="" loading="lazy" decoding="async" width="48" height="48">
         </button>`).join("")}</div>` : ""}
     </div>
-    <p>${escapeHtml(item.description)}</p><strong>${money.format(item.price)}</strong>${buyForm(item)}`;
+    <div class="pd-head">
+      <div class="pd-tags"><span class="pd-tag is-green">Compra protegida</span><span class="pd-tag">Retracto 10 días</span><span class="pd-tag">Envío gratis RM</span></div>
+      <h2 id="detail-title">${escapeHtml(item.name)}</h2>
+      <p class="pd-price" id="pd-price"><strong>${money.format(item.price)}</strong><small></small></p>
+      <p class="pd-perks">Hasta 12 cuotas con Webpay · Envío gratis en la RM</p>
+    </div>
+    ${buyForm(item)}${pdDetails(item)}${pdRelated(item)}
+    ${item.sizes.length ? `<div class="pd-bar"><span class="pd-bar-info"><span class="pd-bar-qty"></span><strong class="pd-bar-total"></strong></span>
+      <button class="button add-to-cart pd-add" type="submit" form="pd-form" name="action" value="add-to-cart">Agregar al carrito</button></div>` : ""}`;
   detail.showModal();
+  detail.scrollTop = 0;
+  updateBuyBar(detail.querySelector("form[data-buy]"));
+}
+
+function comboNudge() {
+  const shirts = selection.map(line => ({item: productById.get(line.id), qty: line.quantity})).filter(x => x.item && isShirt(x.item));
+  const count = shirts.reduce((sum, x) => sum + x.qty, 0);
+  if (!count || !promotionActive()) return "";
+  const ref = shirts[0].item;
+  const price = n => packPrice(ref, n);
+  let text;
+  if (count === 1) text = `Agrega 1 camiseta más y llévate las 2 por <b>${money.format(price(2))}</b>`;
+  else if (count < 5) {
+    const extra = price(5) - price(count);
+    text = count === 4
+      ? `Agrega 1 más por solo <b>${money.format(extra)}</b> y llévate 5 por ${money.format(price(5))}`
+      : `Te faltan ${5 - count} para el combo de 5 por <b>${money.format(price(5))}</b> (${money.format(Math.round(price(5) / 5))} c/u)`;
+  } else text = "¡Combo de 5 aplicado! Tienes el mejor precio por camiseta.";
+  const pct = Math.min(100, count / 5 * 100);
+  return `<div class="combo-nudge" role="status"><p>${text}</p><div class="combo-track" aria-hidden="true"><i style="width:${pct}%"></i></div>
+    <div class="combo-steps" aria-hidden="true"><span>1</span><span>Combo 2 · ${money.format(price(2))}</span><span>Combo 5 · ${money.format(price(5))}</span></div></div>`;
 }
 
 function renderOrder() {
-  const {percent, amount} = selectionPricing();
+  const {subtotal: normal, discount, amount} = selectionPricing();
   const giftRow = selection.length
     ? `<div class="order-row order-gift-row"><svg class="order-thumb gift-icon-svg" aria-hidden="true"><use href="#checkout-icon-gift"/></svg><div class="order-copy"><strong>Revista oficial Pasión Fútbol</strong><small>Regalo incluido · Edición actual</small></div><strong class="cart-line-price">${money.format(0)} <small>CLP</small></strong></div>`
     : "";
@@ -1668,8 +1838,11 @@ function renderOrder() {
       <div class="order-side"><strong class="cart-line-price">${money.format(item.price * line.quantity)} <small>CLP</small></strong>
       <button class="cart-remove" type="button" data-remove-line="${index}" aria-label="Eliminar ${label}"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-trash"/></svg></button></div></div>`;
   }).join("");
-  byId("order-lines").innerHTML = shirtRows ? (shirtRows + giftRow) : '<p class="cart-empty">Tu carrito está vacío. Elige una camiseta para comenzar.</p>';
-  byId("subtotal-label").textContent = percent ? `Subtotal (${percent}% dcto. incluido)` : "Subtotal";
+  byId("order-lines").innerHTML = shirtRows ? (comboNudge() + shirtRows + giftRow) : '<p class="cart-empty">Tu carrito está vacío. Elige una camiseta para comenzar.</p>';
+  byId("order-savings").hidden = !discount;
+  byId("order-normal").textContent = money.format(normal);
+  byId("order-saving").textContent = "−" + money.format(discount);
+  byId("subtotal-label").textContent = discount ? "Total con combo" : "Subtotal";
   byId("subtotal").textContent = money.format(amount) + " CLP";
   byId("pay").hidden = selection.length === 0;
 }
@@ -1729,6 +1902,7 @@ document.addEventListener("click", event => {
     quantity.value = String(value);
     form.querySelector('[data-detail-step="-1"]').setAttribute("aria-disabled", String(value === 1));
     form.querySelector('[data-detail-step="1"]').setAttribute("aria-disabled", String(value === 99));
+    updateBuyBar(form);
   }
   if (button.hasAttribute("data-cart-step")) {
     const index = Number(button.dataset.line);
@@ -1756,10 +1930,20 @@ document.addEventListener("click", event => {
 });
 
 detail.addEventListener("change", event => {
-  if (event.target.name !== "size") return;
   const form = event.target.form;
+  if (event.target.name === "pack") {
+    form.elements.quantity.value = event.target.value;
+    updateBuyBar(form);
+    return;
+  }
+  if (event.target.name !== "size") return;
   form.querySelector("#size-error").hidden = true;
   form.querySelector(".size-picker").classList.remove("is-invalid");
+  updateBuyBar(form);
+});
+
+detail.addEventListener("click", event => {
+  if (event.target.closest("[data-close-detail]")) detail.close();
 });
 
 detail.addEventListener("keydown", event => {
@@ -1781,7 +1965,8 @@ document.addEventListener("submit", event => {
     const sizeError = form.querySelector("#size-error");
     sizeError.hidden = false;
     form.querySelector(".size-picker").classList.add("is-invalid");
-    form.querySelector('[name="size"]')?.focus();
+    form.querySelector(".size-picker").scrollIntoView({block: "center", behavior: "smooth"});
+    form.querySelector('[name="size"]')?.focus({preventScroll: true});
     return;
   }
   const quantity = Number(form.elements.quantity.value);
@@ -1923,7 +2108,7 @@ function updateShippingTotal() {
   const quote = selectedShippingQuote(carrierId);
   const hasDestination = Boolean(regionSelect.value && communeSelect.value);
   byId("checkout-quote-help").hidden = !hasDestination || Boolean(quote);
-  byId("checkout-subtotal-label").textContent = percent ? `Subtotal (${percent}% dcto. incluido)` : "Subtotal";
+  byId("checkout-subtotal-label").textContent = percent ? "Productos (combo incluido)" : "Subtotal";
   byId("checkout-products").textContent = money.format(productsTotal) + " CLP";
   for (const id of Object.keys(shippingCarriers)) {
     const slot = shippingForm.querySelector(`[data-carrier-price="${id}"]`);

@@ -1,7 +1,7 @@
 [
   {
     "id": "real-madrid",
-    "name": "Polera Real Madrid · Mbappé 10",
+    "name": "Camiseta Real Madrid · Mbappé 10",
     "price": 19990,
     "description": "Polera blanca del Real Madrid con insignia bordada y dorsal MBAPPÉ 10.",
     "sizes": [
@@ -19,7 +19,7 @@
   },
   {
     "id": "real-madrid-mbappe-ninos",
-    "name": "Polera Real Madrid · Mbappé 10 · Niños",
+    "name": "Camiseta Real Madrid · Mbappé 10 · Niños",
     "price": 19990,
     "description": "Polera blanca del Real Madrid con insignia bordada y dorsal MBAPPÉ 10.",
     "sizes": ["8"],
@@ -64,7 +64,7 @@
   },
   {
     "id": "liverpool",
-    "name": "Polera Liverpool · Wirtz 7",
+    "name": "Camiseta Liverpool · Wirtz 7",
     "price": 19990,
     "description": "Polera roja de Liverpool con insignia bordada y dorsal WIRTZ 7.",
     "sizes": [
@@ -167,7 +167,7 @@
   },
   {
     "id": "local",
-    "name": "Polera Local",
+    "name": "Camiseta Local",
     "price": 19990,
     "description": "Polera verde con ribetes claros y corte deportivo.",
     "sizes": [
