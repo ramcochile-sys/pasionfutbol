@@ -23,7 +23,7 @@ header .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
 .wordmark{display:inline-flex;align-items:center;gap:10px;white-space:nowrap;font-family:Helvetica, Arial, sans-serif;font-size:clamp(22px,4vw,36px);font-weight:900;font-style:italic;line-height:1;letter-spacing:-.02em;text-transform:uppercase}
 .wordmark strong{font-weight:inherit;color:var(--accent)}
 .brand-ball{position:relative;display:block;flex:none;width:clamp(34px,8vw,52px);aspect-ratio:1;overflow:hidden;border-radius:50%;box-shadow:0 0 12px #007dff60}
-.brand-ball img{position:absolute;width:286%;max-width:none;height:auto;top:-168%;left:-78%}
+.brand-ball img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 nav{display:flex;gap:30px;font-size:14px}
 nav a:hover{text-decoration:underline}
 button,.button,select,input{min-height:44px;border:1px solid var(--line);border-radius:3px;padding:0 14px;background:var(--page);color:var(--ink)}
@@ -631,10 +631,9 @@ body>footer p{color:#edf4ff}
 
 
 /* Carrusel principal: 3 diapositivas armadas desde storefront/banners.json */
-.pb{position:relative;isolation:isolate;overflow:hidden;width:min(91%,1370px);margin:14px auto 0;aspect-ratio:2.55/1;border-radius:15px;background:#040814;container-type:inline-size;-webkit-user-select:none;user-select:none}
-.pb-slide{--ac:#22c7ff;--lu:#ff3b4f;position:absolute;inset:0;display:block;color:#fff;text-decoration:none;opacity:0;visibility:hidden;transition:opacity .8s cubic-bezier(.4,0,.2,1),visibility 0s .8s}
+.pb{position:relative;isolation:isolate;overflow:hidden;width:min(91%,1370px);margin:14px auto 0;aspect-ratio:2.55/1;border-radius:15px;background:#040814;container-type:inline-size;-webkit-user-select:none;user-select:none;touch-action:pan-y}
+.pb-slide{--ac:#22c7ff;--lu:#ff3b4f;position:absolute;inset:0;display:block;color:#fff;opacity:0;visibility:hidden;transition:opacity .8s cubic-bezier(.4,0,.2,1),visibility 0s .8s}
 .pb-slide.is-on{z-index:2;opacity:1;visibility:visible;transition:opacity .8s cubic-bezier(.4,0,.2,1),visibility 0s}
-.pb-slide:focus-visible{outline:3px solid var(--ac);outline-offset:-3px}
 /* Estadio dibujado con CSS: nítido a cualquier resolución */
 .pb-bg{position:absolute;inset:-3%;overflow:hidden;background:linear-gradient(180deg,#02050d 0%,#06102a 30%,#0a1d4a 52%,#0b1c3c 63%,#06240f 74%,#031208 100%);background:
   radial-gradient(ellipse 34% 46% at 50% 40%,color-mix(in srgb,var(--ac) 20%,transparent),transparent 72%),
@@ -661,13 +660,9 @@ body>footer p{color:#edf4ff}
 .pb-side.l{left:16%}.pb-side.r{right:16%}
 .pb-vig{position:absolute;inset:0;background:radial-gradient(ellipse 75% 95% at 50% 45%,transparent 45%,#02050dcc 100%),linear-gradient(180deg,transparent 52%,#030812e6 100%);pointer-events:none}
 /* Camisetas */
-.pb-shirts{position:absolute;z-index:2;left:50%;top:4%;height:72%;display:flex;align-items:flex-start;justify-content:center;transform:translateX(-50%)}
-.pb-shirt{position:relative;display:block;height:100%;flex:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.pb-shirt img{display:block;height:100%;width:auto;filter:drop-shadow(0 1.6cqw 1.6cqw #000c) drop-shadow(0 0 2.5cqw color-mix(in srgb,var(--ac) 22%,transparent));transition:transform .35s cubic-bezier(.2,.7,.2,1)}
-.pb-shirt:hover img,.pb-shirt:focus-visible img{transform:translateY(-2%) scale(1.03)}
-.pb-shirt:focus-visible{outline:2px solid var(--ac);outline-offset:4px;border-radius:12px}
-.pb-shirt-tag{position:absolute;left:50%;top:-1%;transform:translate(-50%,-60%);padding:.35cqw .9cqw;border-radius:999px;background:#040814d9;border:1px solid #ffffff33;font:800 clamp(10px,.95cqw,13px)/1.2 "DM Sans",system-ui,sans-serif;letter-spacing:.04em;white-space:nowrap;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none}
-.pb-shirt:hover .pb-shirt-tag,.pb-shirt:focus-visible .pb-shirt-tag{opacity:1;transform:translate(-50%,-100%)}
+.pb-shirts{position:absolute;z-index:2;left:50%;top:3%;height:66%;pointer-events:none;display:flex;align-items:flex-start;justify-content:center;transform:translateX(-50%)}
+.pb-shirt{position:relative;display:block;height:100%;flex:none;pointer-events:none}
+.pb-shirt img{display:block;height:100%;width:auto;filter:drop-shadow(0 1.6cqw 1.6cqw #000c)}
 .pb-shirts[data-n="2"] .pb-shirt:nth-child(1){z-index:2;margin-right:-6.5cqw;margin-top:1.5%}
 .pb-shirts[data-n="2"] .pb-shirt:nth-child(2){z-index:1;height:92%;margin-top:4%}
 .pb-shirts[data-n="3"] .pb-shirt:nth-child(1),.pb-shirts[data-n="3"] .pb-shirt:nth-child(3){z-index:1;height:84%;margin-top:7%}
@@ -676,30 +671,46 @@ body>footer p{color:#edf4ff}
 .pb-shirts[data-n="3"] .pb-shirt:nth-child(2){z-index:2}
 .pb-floor{position:absolute;z-index:1;left:50%;bottom:20%;width:36cqw;height:3cqw;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,#000b,transparent 70%);filter:blur(.6cqw)}
 /* Textos (editables en banners.json) */
-.pb-copy{position:absolute;z-index:3;left:4%;right:4%;bottom:5.5%;margin:0;text-align:center;pointer-events:none}
-.pb-copy span{display:block}
-.pb-k{font:italic 800 4.3cqw/.95 "Barlow Condensed","Arial Narrow",sans-serif;letter-spacing:-.005em;text-shadow:0 .3cqw 1.4cqw #000c}
-.pb-t{margin-top:-.2cqw;font:italic 800 7.4cqw/.9 "Barlow Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.005em;color:var(--ac);text-shadow:0 0 2.2cqw color-mix(in srgb,var(--ac) 45%,transparent),0 .35cqw 1.2cqw #000c}
-.pb-s{margin-top:.5cqw;font:700 2cqw/1.2 "DM Sans",system-ui,sans-serif;text-shadow:0 .2cqw .9cqw #000}
+.pb-copy{position:absolute;z-index:3;left:4%;right:4%;bottom:5%;margin:0;text-align:center;display:flex;flex-direction:column;align-items:center}
+.pb-k,.pb-t{display:block;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;background-repeat:no-repeat}
+.pb-k{font:italic 800 3.7cqw/1 "Barlow Condensed","Arial Narrow",sans-serif;padding:0 .4em;
+  background-image:linear-gradient(105deg,transparent 42%,#ffffffee 50%,transparent 58%),linear-gradient(180deg,#ffffff 0%,#eef2f7 30%,#9aa4b2 48%,#5f6875 52%,#d9dee6 66%,#ffffff 100%);
+  background-size:250% 100%,100% 100%;background-position:150% 0,0 0;
+  -webkit-text-stroke:.04cqw #ffffff55;filter:drop-shadow(0 .25cqw .6cqw #000d)}
+.pb-t{margin-top:-.1cqw;font:italic 800 6.8cqw/.95 "Barlow Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.005em;padding:0 .3em .04em;
+  background-image:linear-gradient(105deg,transparent 42%,#ffffffee 50%,transparent 58%),linear-gradient(180deg,#ffffff 0%,color-mix(in srgb,var(--ac) 35%,#fff) 22%,var(--ac) 44%,color-mix(in srgb,var(--ac) 55%,#000) 52%,var(--ac) 62%,color-mix(in srgb,var(--ac) 45%,#fff) 88%,#ffffff 100%);
+  background-size:250% 100%,100% 100%;background-position:150% 0,0 0;
+  -webkit-text-stroke:.05cqw #ffffff66;filter:drop-shadow(0 0 1.6cqw color-mix(in srgb,var(--ac) 40%,transparent)) drop-shadow(0 .3cqw .5cqw #000d)}
+.pb-s{display:block;margin-top:.5cqw;font:700 1.75cqw/1.2 "DM Sans",system-ui,sans-serif;color:#fff;text-shadow:0 .2cqw .9cqw #000}
+.pb-buy{display:inline-flex;align-items:center;gap:.6em;margin-top:1.1cqw;min-height:44px;padding:0 1.6em;border-radius:999px;font:800 clamp(14px,1.45cqw,19px)/1 "DM Sans",system-ui,sans-serif;letter-spacing:.02em;text-transform:uppercase;text-decoration:none;color:#1a1300;
+  background:linear-gradient(180deg,#ffe27a 0%,#ffcb32 45%,#f0b400 100%);box-shadow:inset 0 1px 0 #fff8,0 .5cqw 1.6cqw #ffcb3255,0 .3cqw .8cqw #0009;transition:transform .2s,box-shadow .2s,filter .2s;-webkit-tap-highlight-color:transparent}
+.pb-buy svg{width:1.1em;height:1.1em;flex:none}
+.pb-buy:hover{transform:translateY(-1px);filter:brightness(1.06);box-shadow:inset 0 1px 0 #fff8,0 .6cqw 2.2cqw #ffcb3277,0 .3cqw .8cqw #0009}
+.pb-buy:active{transform:scale(.97)}
+.pb-buy:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .pb-shine{position:absolute;z-index:4;inset:0;opacity:0;pointer-events:none;background:linear-gradient(105deg,transparent 40%,#ffffff40 50%,transparent 60%);mix-blend-mode:overlay}
 /* Animación de entrada: fondo, luces, camisetas y textos por capas */
 .pb-slide.is-play .pb-bg{animation:pbBg 1.3s cubic-bezier(.2,.7,.2,1) both}
 .pb-slide.is-play .pb-fl{animation:pbFl 1.3s .25s steps(1,end) both}
 .pb-slide.is-play .pb-side{animation:pbSide 1s .5s cubic-bezier(.2,.7,.2,1) both}
-.pb-slide.is-play .pb-shirt img{animation:pbShirt 1.05s calc(.45s + var(--i) * .16s) cubic-bezier(.16,.84,.3,1) both,pbFloat 5s calc(2.2s + var(--i) * .7s) ease-in-out infinite alternate}
+.pb-slide.is-play .pb-shirt img{animation:pbShirt 1.05s calc(.45s + var(--i) * .16s) cubic-bezier(.16,.84,.3,1) both}
+.pb-slide.is-play .pb-shirt{animation:pbFloat 5s calc(2.2s + var(--i) * .7s) ease-in-out infinite alternate}
 .pb-slide.is-play .pb-floor{animation:pbFade 1s .6s both}
-.pb-slide.is-play .pb-k{animation:pbTxt .85s 1.05s cubic-bezier(.16,.84,.3,1) both}
-.pb-slide.is-play .pb-t{animation:pbTitle .95s 1.25s cubic-bezier(.16,.84,.3,1) both}
+.pb-slide.is-play .pb-k{animation:pbTxt .85s 1.05s cubic-bezier(.16,.84,.3,1) both,pbGlint 1.1s 2.1s ease-in-out both}
+.pb-slide.is-play .pb-t{animation:pbTitle .95s 1.25s cubic-bezier(.16,.84,.3,1) both,pbGlint 1.2s 2.25s ease-in-out both}
 .pb-slide.is-play .pb-s{animation:pbTxt .8s 1.55s cubic-bezier(.16,.84,.3,1) both}
+.pb-slide.is-play .pb-buy{animation:pbBtn .7s 1.8s cubic-bezier(.16,.84,.3,1) both}
 .pb-slide.is-play .pb-shine{animation:pbShine 1.2s 2s cubic-bezier(.45,0,.25,1) both}
 @keyframes pbBg{from{transform:scale(1.08);filter:blur(1.4cqw) brightness(.3)}to{transform:none;filter:none}}
 @keyframes pbFl{0%{opacity:0}18%{opacity:1}26%{opacity:.25}36%{opacity:1}44%{opacity:.5}52%,100%{opacity:1}}
 @keyframes pbSide{from{opacity:0;transform:scaleY(.2)}to{opacity:.85;transform:none}}
 @keyframes pbShirt{from{opacity:0;transform:translateY(7%) scale(.9);filter:blur(1.2cqw) brightness(.5)}to{opacity:1}}
 @keyframes pbFloat{from{transform:none}to{transform:translateY(-1.6%)}}
+@keyframes pbGlint{from{background-position:150% 0,0 0}to{background-position:-50% 0,0 0}}
+@keyframes pbBtn{from{opacity:0;transform:translateY(40%) scale(.9)}to{opacity:1;transform:none}}
 @keyframes pbFade{from{opacity:0}to{opacity:1}}
-@keyframes pbTxt{from{opacity:0;transform:translateY(35%);filter:blur(.7cqw)}to{opacity:1;transform:none;filter:none}}
-@keyframes pbTitle{from{opacity:0;transform:scale(1.18);letter-spacing:.12em;filter:blur(1cqw)}to{opacity:1;transform:none;filter:none}}
+@keyframes pbTxt{from{opacity:0;transform:translateY(35%)}to{opacity:1;transform:none}}
+@keyframes pbTitle{from{opacity:0;transform:scale(1.18);letter-spacing:.12em}to{opacity:1;transform:none}}
 @keyframes pbShine{0%{opacity:1;transform:translateX(-100%)}100%{opacity:1;transform:translateX(100%)}}
 .pb-nav{position:absolute;z-index:5;top:50%;width:46px;height:46px;margin-top:-23px;border:1px solid #ffffff2e;border-radius:50%;background:#070b1499;color:#fff;display:grid;place-items:center;cursor:pointer;opacity:0;transition:opacity .25s,background .2s,transform .2s;backdrop-filter:blur(6px)}
 .pb-nav svg{width:20px;height:20px}
@@ -717,24 +728,24 @@ body>footer p{color:#edf4ff}
 @keyframes pbProg{from{transform:scaleX(0)}to{transform:none}}
 @media (hover:none){.pb-nav{display:none}}
 @media (max-width:640px){
-  .pb{aspect-ratio:1/.95;border-radius:13px}
-  .pb-shirts{top:5%;height:62%}
+  .pb{aspect-ratio:1/1.08;border-radius:13px}
+  .pb-shirts{top:4%;height:56%}
   .pb-shirts[data-n="2"] .pb-shirt:nth-child(1){margin-right:-12cqw}
-  .pb-shirts[data-n="3"]{height:52%;top:8%}
+  .pb-shirts[data-n="3"]{height:47%;top:7%}
   .pb-shirts[data-n="3"] .pb-shirt:nth-child(1){margin-right:-13cqw}
   .pb-shirts[data-n="3"] .pb-shirt:nth-child(3){margin-left:-13cqw}
   .pb-fl{width:18cqw;height:7cqw;background-size:2.3cqw 2.3cqw}
   .pb-fl.l{left:4%}.pb-fl.r{right:4%}
   .pb-side.l{left:5%}.pb-side.r{right:5%}
   .pb-side{width:1cqw}
-  .pb-floor{width:70cqw;height:6cqw;bottom:25%}
-  .pb-copy{bottom:6%}
-  .pb-k{font-size:8.6cqw}
-  .pb-t{font-size:14cqw}
-  .pb-s{font-size:4.1cqw}
+  .pb-floor{width:70cqw;height:6cqw;bottom:40%}
+  .pb-copy{bottom:5%}
+  .pb-k{font-size:8cqw}
+  .pb-t{font-size:13.2cqw}
+  .pb-s{font-size:3.9cqw}
+  .pb-buy{margin-top:3cqw;min-height:48px;font-size:15px;padding:0 1.5em}
   .pb-dots{right:6px;top:0;bottom:auto}
   .pb-dot{width:36px}
-  .pb-shirt-tag{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   .pb-slide,.pb-slide.is-on{transition-duration:.01s}
@@ -836,7 +847,7 @@ body>footer p{color:#edf4ff}
 <symbol id="checkout-icon-gift" viewBox="0 0 48 48"><path d="M24 15.5c-1.6-4.8-6.4-8.3-9.6-6.6-2.6 1.4-1.4 5.6 2.4 6.4 2.2.5 4.7.4 7.2.2Z" fill="#ffcb32" stroke="#c48a00" stroke-width="1.2" stroke-linejoin="round"/><path d="M24 15.5c1.6-4.8 6.4-8.3 9.6-6.6 2.6 1.4 1.4 5.6-2.4 6.4-2.2.5-4.7.4-7.2.2Z" fill="#ffcb32" stroke="#c48a00" stroke-width="1.2" stroke-linejoin="round"/><rect x="9" y="22" width="30" height="19" rx="2.5" fill="#16a34a"/><rect x="9" y="22" width="30" height="3" fill="#0f7a37"/><rect x="7" y="15" width="34" height="8" rx="2" fill="#22c55e"/><rect x="21.25" y="15" width="5.5" height="26" fill="#ffcb32"/><rect x="21.25" y="22" width="5.5" height="3" fill="#e0a800"/><circle cx="24" cy="15.6" r="2.4" fill="#ffd94d" stroke="#c48a00" stroke-width="1.2"/><path d="M38.5 5.5l.9 2 2 .9-2 .9-.9 2-.9-2-2-.9 2-.9Z" fill="#76c8ff"/><path d="M8.5 9l.6 1.3 1.3.6-1.3.6-.6 1.3-.6-1.3-1.3-.6 1.3-.6Z" fill="#76c8ff"/></symbol><symbol id="checkout-icon-magazine" viewBox="0 0 48 48"><rect x="7" y="5" width="32" height="38" rx="3" fill="#031636" stroke="#1e3a6e" stroke-width="1.5"/><rect x="37" y="8" width="4" height="32" rx="1" fill="#dce5f5"/><rect x="11" y="9" width="24" height="6" rx="1.5" fill="#ffcb32"/><rect x="13" y="11" width="14" height="2" rx="1" fill="#031636"/><circle cx="23" cy="24.5" r="6.5" fill="#102954" stroke="#76c8ff" stroke-width="1.5"/><path d="M23 19.8l1.4 2.9 3.2.5-2.3 2.2.5 3.1-2.8-1.5-2.8 1.5.5-3.1-2.3-2.2 3.2-.5Z" fill="#ffcb32"/><rect x="12" y="34" width="22" height="2.2" rx="1.1" fill="#76c8ff"/><rect x="15" y="38" width="16" height="2" rx="1" fill="#b9c6da"/></symbol></svg>
 <header>
   <div class="wrap">
-    <a class="wordmark" href="#"><span class="brand-ball" aria-hidden="true"><img src="./pasion-futbol.jpg" alt="" width="828" height="1792"></span><span>Pasión <strong>Fútbol</strong></span></a>
+    <a class="wordmark" href="#"><span class="brand-ball" aria-hidden="true"><img src="/logo-balon.webp" alt="" width="256" height="256" decoding="async"></span><span>Pasión <strong>Fútbol</strong></span></a>
     <nav class="header-contact" aria-label="Contacto">
       <span class="contact-label">Contáctanos:</span>
       <a href="https://wa.me/56934974132" aria-label="WhatsApp">
@@ -847,13 +858,20 @@ body>footer p{color:#edf4ff}
       </a>
     </nav>
   </div>
-  <div class="promo-bar" id="promo-bar" aria-label="Envíos y promociones">
+  <div class="promo-bar is-moving" id="promo-bar" aria-label="Envíos y promociones">
     <a href="#envios" aria-label="Ver métodos de envío">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5h13v11H2zM15 9h4l3 4v3h-7"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
     </a>
     <div class="promo-window">
       <div class="promo-track" id="promo-track">
         <ul class="promo-group">
+          <li><strong>Envío gratis en la Región Metropolitana</strong></li>
+          <li>Regiones: el costo se calcula según el peso de tu pedido y la comuna</li>
+          <li><strong>Packs de diciembre:</strong> 2 camisetas por <strong>$24.990</strong></li>
+          <li><strong>3 por $36.990</strong> · <strong>4 por $44.990</strong>, hasta el 31 de diciembre</li>
+          <li>Junto a tu compra llevas de regalo nuestra <strong>revista oficial</strong> con toda la información actual del fútbol que tanto amamos</li>
+        </ul>
+        <ul class="promo-group" aria-hidden="true">
           <li><strong>Envío gratis en la Región Metropolitana</strong></li>
           <li>Regiones: el costo se calcula según el peso de tu pedido y la comuna</li>
           <li><strong>Packs de diciembre:</strong> 2 camisetas por <strong>$24.990</strong></li>
@@ -882,16 +900,17 @@ body>footer p{color:#edf4ff}
   var html=list.map(function(d,i){
     var shirts=(d.camisetas||[]).slice(0,3).map(function(s){ return typeof s==="string"?{id:s}:s; }).filter(function(s){ return s&&/^[\w-]+$/.test(s.id||""); });
     var label=[d.linea1,d.titulo,d.linea2].filter(Boolean).join(" · ");
-    return '<a class="pb-slide" href="'+esc(link(d.enlace))+'" style="--ac:'+color(d.color,"#22c7ff")+';--lu:'+color(d.luces,"#ff3b4f")+'" role="group" aria-roledescription="diapositiva" aria-label="'+esc(label)+'">'+
+    return '<div class="pb-slide" style="--ac:'+color(d.color,"#22c7ff")+';--lu:'+color(d.luces,"#ff3b4f")+'" role="group" aria-roledescription="diapositiva" aria-label="'+esc(label)+'">'+
       '<span class="pb-bg" aria-hidden="true"><span class="pb-crowd"></span><span class="pb-pitch"></span><span class="pb-fl l"></span><span class="pb-fl r"></span><span class="pb-side l"></span><span class="pb-side r"></span><span class="pb-vig"></span></span>'+
       '<span class="pb-floor" aria-hidden="true"></span>'+
       '<span class="pb-shirts" data-n="'+shirts.length+'">'+shirts.map(function(s,k){
         var src=s.imagen&&/^\/[\w.\/-]+$/.test(s.imagen)?s.imagen:"/"+s.id+"-colgada.webp";
         var nm=s.nombre||nameOf(s.id);
-        return '<span class="pb-shirt" role="button" tabindex="-1" data-id="'+esc(s.id)+'" style="--i:'+k+'" aria-label="Ver '+esc(nm)+'"><img src="'+esc(src)+'" alt="" decoding="async" draggable="false"'+(i===0?' fetchpriority="high"':' loading="lazy"')+'><span class="pb-shirt-tag">'+esc(nm)+'</span></span>';
+        return '<span class="pb-shirt" style="--i:'+k+'"><img '+(i===0?'src':'data-src')+'="'+esc(src)+'" alt="'+esc(nm)+'" width="440" height="540" decoding="async" draggable="false"'+(i===0?' fetchpriority="high"':'')+'></span>';
       }).join("")+'</span>'+
-      '<p class="pb-copy">'+(d.linea1?'<span class="pb-k">'+esc(d.linea1)+'</span>':'')+(d.titulo?'<span class="pb-t">'+esc(d.titulo)+'</span>':'')+(d.linea2?'<span class="pb-s">'+esc(d.linea2)+'</span>':'')+'</p>'+
-      '<span class="pb-shine" aria-hidden="true"></span></a>';
+      '<div class="pb-copy">'+(d.linea1?'<span class="pb-k">'+esc(d.linea1)+'</span>':'')+(d.titulo?'<span class="pb-t">'+esc(d.titulo)+'</span>':'')+(d.linea2?'<span class="pb-s">'+esc(d.linea2)+'</span>':'')+
+        (d.boton===false?'':'<a class="pb-buy" href="'+esc(link(d.enlace))+'">'+esc(d.boton||"Comprar ahora")+'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>')+'</div>'+
+      '<span class="pb-shine" aria-hidden="true"></span></div>';
   }).join("");
   if(list.length>1){
     html+='<button class="pb-nav pb-prev" type="button" aria-label="Promoción anterior">'+chev("M15 6l-6 6 6 6")+'</button>'+
@@ -902,15 +921,17 @@ body>footer p{color:#edf4ff}
   var slides=[].slice.call(root.querySelectorAll(".pb-slide")), dots=[].slice.call(root.querySelectorAll(".pb-dot"));
   var cur=-1, hover=false, focus=false;
   function setPaused(){ root.classList.toggle("is-paused",hover||focus||document.hidden); }
-  function setHidden(s,h){ s.inert=h; if(h){ s.setAttribute("aria-hidden","true"); s.tabIndex=-1; } else { s.removeAttribute("aria-hidden"); s.removeAttribute("tabindex"); }
-    [].forEach.call(s.querySelectorAll(".pb-shirt"),function(x){ x.tabIndex=h?-1:0; }); }
+  function setHidden(s,h){ s.inert=h; if(h) s.setAttribute("aria-hidden","true"); else s.removeAttribute("aria-hidden");
+    [].forEach.call(s.querySelectorAll(".pb-buy"),function(x){ x.tabIndex=h?-1:0; }); }
+  // Imágenes de las otras diapositivas: se piden recién cuando la primera ya se armó
+  function load(s){ [].forEach.call(s.querySelectorAll("img[data-src]"),function(im){ im.src=im.getAttribute("data-src"); im.removeAttribute("data-src"); }); }
   function go(n){
     n=(n+slides.length)%slides.length; if(n===cur) return;
     var prev=slides[cur]; if(prev){ prev.classList.remove("is-on"); setHidden(prev,true); setTimeout(function(){ if(!prev.classList.contains("is-on")) prev.classList.remove("is-play"); },850); }
     cur=n; var s=slides[n];
     s.classList.remove("is-play"); void s.offsetWidth; s.classList.add("is-on","is-play"); setHidden(s,false);
-    [].forEach.call(s.querySelectorAll("img[loading=lazy]"),function(im){ im.loading="eager"; });
-    var nx=slides[(n+1)%slides.length]; [].forEach.call(nx.querySelectorAll("img[loading=lazy]"),function(im){ im.loading="eager"; });
+    load(s); var nx=slides[(n+1)%slides.length], pr=slides[(n-1+slides.length)%slides.length];
+    setTimeout(function(){ load(nx); load(pr); },cur===0&&!prev?2600:300);
     dots.forEach(function(d,i){ d.classList.remove("is-on"); d.classList.toggle("is-done",i<n); if(i===n) d.setAttribute("aria-current","true"); else d.removeAttribute("aria-current"); });
     var dot=dots[n]; if(dot){ dot.style.setProperty("--dur",dur+"s"); void dot.offsetWidth; dot.classList.add("is-on"); }
   }
@@ -922,15 +943,6 @@ body>footer p{color:#edf4ff}
   var pv=root.querySelector(".pb-prev"), nv=root.querySelector(".pb-next");
   if(pv) pv.addEventListener("click",function(){ go(cur-1); });
   if(nv) nv.addEventListener("click",function(){ go(cur+1); });
-  function openShirt(el,e){
-    var item=typeof productById!=="undefined"&&productById.get(el.dataset.id);
-    e.preventDefault(); e.stopPropagation();
-    if(item&&!item.hidden&&typeof openDetail==="function") openDetail(item); else location.href="/?producto="+encodeURIComponent(el.dataset.id);
-  }
-  [].forEach.call(root.querySelectorAll(".pb-shirt"),function(el){
-    el.addEventListener("click",function(e){ openShirt(el,e); });
-    el.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" ") openShirt(el,e); });
-  });
   root.addEventListener("mouseenter",function(){ hover=true; setPaused(); });
   root.addEventListener("mouseleave",function(){ hover=false; setPaused(); });
   root.addEventListener("focusin",function(){ focus=true; setPaused(); });
@@ -1043,7 +1055,7 @@ body>footer p{color:#edf4ff}
   <div class="sf-panel">
     <div class="sf-inner">
       <a class="sf-brand" href="#" aria-label="Pasión Fútbol, ir al inicio">
-        <span class="brand-ball" aria-hidden="true"><img src="./pasion-futbol.jpg" alt="" width="828" height="1792"></span>
+        <span class="brand-ball" aria-hidden="true"><img src="/logo-balon.webp" alt="" width="256" height="256" decoding="async"></span>
         <span class="sf-brand-text"><span class="sf-name">Pasión <strong>Fútbol</strong></span><span class="sf-tagline">Vive tu pasión. Viste tus colores.</span></span>
       </a>
       <div class="sf-cols">
@@ -2695,11 +2707,8 @@ function teamForProduct(item) {
 
 
 
-const promoTrack = byId("promo-track");
-const promoCopy = promoTrack.firstElementChild.cloneNode(true);
-promoCopy.setAttribute("aria-hidden", "true");
-promoTrack.append(promoCopy);
-byId("promo-bar").classList.add("is-moving");
+// La cinta de promociones ya viene duplicada y en movimiento desde el HTML,
+// así no cambia de alto al cargar la página.
 
 byId("cart").addEventListener("click", () => { wizardReached = 0; showOrder(); });
 paintWizardSteps();
