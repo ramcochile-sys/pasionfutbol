@@ -13,12 +13,11 @@ function itemWeightGrams(item) {
   return 300;
 }
 
-// Combos de camisetas: 2 por $29.000 y 5 por $65.990 (1 camiseta suelta: su precio, $19.990).
+// Combos de camisetas hasta el 31 de diciembre de 2026: 2 por $29.000 y 5 por $65.990 (1 suelta: $19.990).
 // Se cobra la combinación más barata de packs y precios individuales; el envío no entra.
 const SHIRT_PACKS = [[2, 29000], [5, 65990]];
-// Sin fecha de término: para fijar una, devuelve now < Date.parse("AAAA-MM-DDT00:00:00-03:00").
 function promotionActive(now = Date.now()) {
-  return Boolean(now);
+  return now < Date.parse("2027-01-01T00:00:00-03:00");
 }
 
 function orderPricing(items, now = Date.now()) {
