@@ -71,7 +71,7 @@ function paymentPage(title, message, status = 200, giftId = "", label = "FLOW", 
   const kind = paymentKind(title, status, giftId);
   const provider = /MERCADO/i.test(label) ? "Mercado Pago" : "Flow";
   const actions = {
-    ok:`<a class="pf-button pf-ghost" href="/">Seguir comprando</a>`,
+    ok:`<a class="pf-button pf-ghost" href="/">Volver a Pasión Fútbol</a>`,
     pending:`<button class="pf-button" type="button" onclick="location.reload()">Actualizar el estado</button><a class="pf-button pf-ghost" href="/">Volver a la tienda</a>`,
     fail:`<a class="pf-button" href="/#carrito">Volver a intentarlo</a><a class="pf-button pf-ghost" href="https://wa.me/56934974132">Escríbenos por WhatsApp</a>`,
     error:`<button class="pf-button" type="button" onclick="location.reload()">Volver a consultar</button><a class="pf-button pf-ghost" href="https://wa.me/56934974132">Escríbenos por WhatsApp</a>`
@@ -111,6 +111,15 @@ h1{margin:0;font:800 clamp(40px,7vw,64px)/.92 "Barlow Condensed","Arial Narrow",
 .pf-lines{list-style:none;margin:0;padding:0}.pf-lines li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
 .pf-lines small{display:block;color:var(--muted);font-size:13px}.pf-totals{margin:10px 0 0}.pf-totals div{display:flex;justify-content:space-between;padding:4px 0;color:var(--muted)}.pf-totals dd{margin:0;color:var(--ink)}
 .pf-totals .pf-total{margin-top:6px;padding-top:10px;border-top:1px solid var(--line);color:var(--ink);font-weight:700}.pf-total dd{font:800 26px/1 "Barlow Condensed",sans-serif;color:var(--accent)}
+.pf-success{isolation:isolate;text-align:center;display:grid;justify-items:center;gap:.8rem;margin:1.5rem 0;padding:clamp(1.6rem,6vw,4rem) 6%;border:1px solid #4e6b83;border-radius:1.25rem;overflow:hidden;background:radial-gradient(ellipse at top,#28535e77,transparent 62%),linear-gradient(#0913268a,#081224f2),url("/estadio-champions.webp") center 38% / cover}
+.pf-success .pf-icon{width:4rem;height:4rem;background:#c1f2cf;color:#0a552c;box-shadow:0 0 0 .4rem #82e9a723}
+.pf-success .pf-provider{color:#c1f2cf;font-weight:800;margin:.3rem 0 0}
+.pf-success h1{text-transform:none;line-height:.96;font-size:clamp(2.4rem,7vw,4.5rem);max-width:17ch;text-wrap:balance}
+.pf-success .pf-lede{font-size:clamp(.9rem,2.8vw,1.05rem);max-width:47ch;text-wrap:pretty}
+.pf-success .pf-button{border-radius:2rem}
+.ok .pf-card{border-radius:1rem;padding:clamp(1rem,4vw,1.5rem)}
+.ok .pf-return{justify-content:center;margin:1.5rem 0 0}
+
 .pf-ship{margin:14px 0 0;font-size:14px;color:#dbe4f3}.pf-ship b{display:block;color:var(--muted);font-weight:500;font-size:13px}
 .pf-gift{display:grid;grid-template-columns:minmax(150px,220px) 1fr;gap:26px;align-items:center;background:linear-gradient(135deg,#132a52,#0d1a30 60%);overflow:hidden}
 .pf-gift p{color:#dbe4f3;margin:0 0 18px}.pf-gift .pf-actions{margin:0}
@@ -124,9 +133,18 @@ footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px;paddin
 </style></head><body class="${kind}">
 <header><div class="pf-wrap">${brandMark}<small>Compra segura</small></div></header>
 <main class="pf-wrap"><ol class="pf-steps" aria-label="Pasos de compra">${steps}</ol>
-<div class="pf-hero"><span class="pf-icon">${statusIcons[kind]}</span><div><p class="pf-provider">Pago con ${provider}</p><h1>${escapeHtml(title)}</h1></div><p class="pf-lede">${escapeHtml(message)}</p></div>
-${hint}<div class="pf-actions">${actions}</div>
-<div class="pf-grid">${kind === "ok" ? magazineCard(giftId) : ""}${kind === "ok" ? orderSummary(record) : ""}</div>
+${kind === "ok" ? `
+  <section class="pf-success" aria-labelledby="pf-confirmation">
+    <span class="pf-icon">${statusIcons.ok}</span>
+    <p class="pf-provider">Pago aprobado · ${provider}</p>
+    <h1 id="pf-confirmation">¡Felicidades, tu pedido está confirmado!</h1>
+    <p class="pf-lede">Gracias por confiar en Pasión Fútbol. Te contactaremos para coordinar el envío de tu pedido.</p>
+    <a class="pf-button" href="#pf-order-title">Ver resumen del pedido</a>
+  </section>
+  <div class="pf-grid">${orderSummary(record)}${magazineCard(giftId)}</div>
+  <div class="pf-actions pf-return">${actions}</div>` : `
+  <div class="pf-hero"><span class="pf-icon">${statusIcons[kind]}</span><div><p class="pf-provider">Pago con ${provider}</p><h1>${escapeHtml(title)}</h1></div><p class="pf-lede">${escapeHtml(message)}</p></div>
+${hint}<div class="pf-actions">${actions}</div>` }
 </main><footer><div class="pf-wrap">¿Dudas con tu compra? WhatsApp <a href="https://wa.me/56934974132">+56 9 3497 4132</a> · pasionfutbol.lat</div></footer>
 <script>
 document.querySelectorAll(".pf-book-cover").forEach(box => { const fit = () => { const rv = box.querySelector(".rv"); const page = rv && rv.querySelector(".page"); if (page) rv.style.transform = "scale(" + box.clientWidth / page.offsetWidth + ")"; }; fit(); addEventListener("resize", fit); });
