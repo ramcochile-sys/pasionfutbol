@@ -43,6 +43,13 @@
       "when": 1795071660002,
       "tag": "0005_admin_users",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1795071720002,
+      "tag": "0006_shirt_prices_19990",
+      "breakpoints": true
     }
   ]
 }
