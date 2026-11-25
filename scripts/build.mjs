@@ -21,6 +21,7 @@ for (const name of await readdir("storefront")) {
 }
 
 const read = path => readFile(path, "utf8");
+const banners = await read("storefront/banners.json");
 const pricing = await read("Pasion-Futbol-1/shared/order-pricing.js");
 const shipping =
   "const chileCommunes = " +
@@ -35,10 +36,10 @@ const constants = {
   revista: await read("Pasion-Futbol-1/worker/revista.html"),
   assets: files,
   initialProducts: JSON.parse(await read("storefront/products.json")),
-  storefront: (await read("storefront/index.html")).replace(
-    "/* ORDER_PRICING */",
-    () => pricing + "\n" + shipping
-  ),
+  storefront: (await read("storefront/index.html"))
+    .replace("/* ORDER_PRICING */", () => pricing + "\n" + shipping)
+    // Carrusel principal: textos y camisetas desde storefront/banners.json
+    .replace("/* BANNERS_DATA */ null", () => JSON.stringify(JSON.parse(banners)).replace(/</g, "\\u003c")),
   admin: await read("Pasion-Futbol-1/worker/admin.html"),
   login: await read("Pasion-Futbol-1/worker/login.html")
 };
