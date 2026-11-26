@@ -1,1499 +1,2565 @@
 [
-  {
-    "id": "real-madrid",
-    "name": "Camiseta Real Madrid · Mbappé 10",
-    "price": 19990,
-    "description": "Polera blanca del Real Madrid con insignia bordada y dorsal MBAPPÉ 10.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "image": "/mbappe-hd-frente.png",
-    "legacyImages": ["/mbappe-estudio-frente.png", "/mbappe-10-frente.png", "/real-madrid.webp", "/media/e03a29cc-2798-49cc-aad1-5280457ad62a"],
-    "position": 10,
-    "categories": [
-      "Poleras"
-    ]
-  },
-  {
-    "id": "real-madrid-mbappe-ninos",
-    "name": "Camiseta Real Madrid · Mbappé 10 · Niños",
-    "price": 19990,
-    "description": "Polera blanca del Real Madrid con insignia bordada y dorsal MBAPPÉ 10.",
-    "sizes": ["8"],
-    "image": "/mbappe-hd-frente.png",
-    "legacyImages": ["/mbappe-estudio-frente.png", "/mbappe-10-frente.png", "/mbappe-frente.png"],
-    "position": 10,
-    "categories": ["Niños", "Poleras"]
-  },
-  {
-    "id": "barcelona",
-    "name": "Camiseta Barcelona",
-    "price": 19990,
-    "description": "Camiseta azulgrana a rayas verticales, inspirada en Barcelona.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "image": "/barcelona.webp",
-    "position": 20,
-    "categories": [
-      "Poleras"
-    ]
-  },
-  {
-    "id": "villarreal",
-    "name": "Camiseta Villarreal",
-    "price": 19990,
-    "description": "Camiseta amarilla con cuello oscuro, inspirada en Villarreal.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "image": "/villarreal.webp",
-    "position": 30,
-    "categories": [
-      "Poleras"
-    ]
-  },
-  {
-    "id": "liverpool",
-    "name": "Camiseta Liverpool · Wirtz 7",
-    "price": 19990,
-    "description": "Polera roja de Liverpool con insignia bordada y dorsal WIRTZ 7.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "image": "/liverpool-hd-frente.png",
-    "legacyImages": ["/liverpool-estudio-frente.png", "/liverpool-wirtz-frente.png", "/liverpool.webp", "/media/b3a9040a-c0c3-4531-98aa-ffdbff35de86"],
-    "position": 40,
-    "categories": [
-      "Poleras"
-    ]
-  },
-  {
-    "id": "manchester-city",
-    "name": "Camiseta Manchester City",
-    "price": 19990,
-    "description": "Camiseta celeste con detalles blancos, inspirada en Manchester City.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "image": "/manchester-city.webp",
-    "position": 50,
-    "categories": [
-      "Poleras"
-    ]
-  },
-  {
-    "id": "arsenal",
-    "name": "Camiseta Arsenal",
-    "price": 19990,
-    "description": "Camiseta roja con mangas blancas, inspirada en Arsenal.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "image": "/arsenal.webp",
-    "position": 60,
-    "categories": [
-      "Poleras"
-    ]
-  },
-  {
-    "id": "juventus",
-    "name": "Camiseta Juventus",
-    "price": 19990,
-    "description": "Camiseta blanca y negra a rayas, inspirada en Juventus.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "image": "/juventus.webp",
-    "position": 70,
-    "categories": [
-      "Poleras"
-    ]
-  },
-  {
-    "id": "ac-milan",
-    "name": "Camiseta AC Milan",
-    "price": 19990,
-    "description": "Camiseta rojinegra a rayas, inspirada en AC Milan.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "image": "/ac-milan.webp",
-    "position": 80,
-    "categories": [
-      "Poleras"
-    ]
-  },
-  {
-    "id": "inter-milan",
-    "name": "Camiseta Inter de Milán",
-    "price": 19990,
-    "description": "Camiseta azul y negra a rayas, inspirada en Inter de Milán.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "image": "/inter-milan.webp",
-    "position": 90,
-    "categories": [
-      "Poleras"
-    ]
-  },
-  {
-    "id": "local",
-    "name": "Camiseta Local",
-    "price": 19990,
-    "description": "Polera verde con ribetes claros y corte deportivo.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "image": "/local.webp",
-    "position": 100,
-    "categories": [
-      "Poleras"
-    ]
-  },
-  {
-    "id": "entrada",
-    "name": "Chaqueta Prepartido",
-    "price": 44990,
-    "description": "Chaqueta marfil de entrenamiento con cuello verde.",
-    "sizes": [
-      "S",
-      "M",
-      "L"
-    ],
-    "image": "/entrada.webp",
-    "position": 110,
-    "categories": [
-      "Entrenamiento"
-    ]
-  },
-  {
-    "id": "seleccion-chile-adultos",
-    "name": "Camiseta Chile · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Chile, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-chile.svg",
-    "position": 120,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-chile-ninos",
-    "name": "Camiseta Chile · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Chile, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-chile.svg",
-    "position": 130,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-argentina-adultos",
-    "name": "Camiseta Argentina · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Argentina, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-argentina.svg",
-    "position": 140,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-argentina-ninos",
-    "name": "Camiseta Argentina · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Argentina, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-argentina.svg",
-    "position": 150,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-brasil-adultos",
-    "name": "Camiseta Brasil · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Brasil, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-brasil.svg",
-    "position": 160,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-brasil-ninos",
-    "name": "Camiseta Brasil · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Brasil, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-brasil.svg",
-    "position": 170,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-uruguay-adultos",
-    "name": "Camiseta Uruguay · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Uruguay, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-uruguay.svg",
-    "position": 180,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-uruguay-ninos",
-    "name": "Camiseta Uruguay · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Uruguay, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-uruguay.svg",
-    "position": 190,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-colombia-adultos",
-    "name": "Camiseta Colombia · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Colombia, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-colombia.svg",
-    "position": 200,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-colombia-ninos",
-    "name": "Camiseta Colombia · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Colombia, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-colombia.svg",
-    "position": 210,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-peru-adultos",
-    "name": "Camiseta Perú · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Perú, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-peru.svg",
-    "position": 220,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-peru-ninos",
-    "name": "Camiseta Perú · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Perú, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-peru.svg",
-    "position": 230,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-mexico-adultos",
-    "name": "Camiseta México · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de México, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-mexico.svg",
-    "position": 240,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-mexico-ninos",
-    "name": "Camiseta México · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de México, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-mexico.svg",
-    "position": 250,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-ecuador-adultos",
-    "name": "Camiseta Ecuador · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Ecuador, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-ecuador.svg",
-    "position": 260,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-ecuador-ninos",
-    "name": "Camiseta Ecuador · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Ecuador, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-ecuador.svg",
-    "position": 270,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-espana-adultos",
-    "name": "Camiseta España · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de España, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-espana.svg",
-    "position": 280,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-espana-ninos",
-    "name": "Camiseta España · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de España, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-espana.svg",
-    "position": 290,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-francia-adultos",
-    "name": "Camiseta Francia · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Francia, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-francia.svg",
-    "position": 300,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-francia-ninos",
-    "name": "Camiseta Francia · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Francia, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-francia.svg",
-    "position": 310,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-italia-adultos",
-    "name": "Camiseta Italia · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Italia, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-italia.svg",
-    "position": 320,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-italia-ninos",
-    "name": "Camiseta Italia · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Italia, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-italia.svg",
-    "position": 330,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-alemania-adultos",
-    "name": "Camiseta Alemania · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Alemania, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-alemania.svg",
-    "position": 340,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-alemania-ninos",
-    "name": "Camiseta Alemania · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Alemania, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-alemania.svg",
-    "position": 350,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-portugal-adultos",
-    "name": "Camiseta Portugal · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Portugal, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-portugal.svg",
-    "position": 360,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-portugal-ninos",
-    "name": "Camiseta Portugal · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Portugal, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-portugal.svg",
-    "position": 370,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-paises-bajos-adultos",
-    "name": "Camiseta Países Bajos · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Países Bajos, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-paises-bajos.svg",
-    "position": 380,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-paises-bajos-ninos",
-    "name": "Camiseta Países Bajos · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Países Bajos, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-paises-bajos.svg",
-    "position": 390,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-inglaterra-adultos",
-    "name": "Camiseta Inglaterra · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Inglaterra, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-inglaterra.svg",
-    "position": 400,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-inglaterra-ninos",
-    "name": "Camiseta Inglaterra · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Inglaterra, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-inglaterra.svg",
-    "position": 410,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-japon-adultos",
-    "name": "Camiseta Japón · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Japón, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-japon.svg",
-    "position": 420,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-japon-ninos",
-    "name": "Camiseta Japón · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Japón, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-japon.svg",
-    "position": 430,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-corea-del-sur-adultos",
-    "name": "Camiseta Corea del Sur · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Corea del Sur, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-corea-del-sur.svg",
-    "position": 440,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-corea-del-sur-ninos",
-    "name": "Camiseta Corea del Sur · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Corea del Sur, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-corea-del-sur.svg",
-    "position": 450,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-marruecos-adultos",
-    "name": "Camiseta Marruecos · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Marruecos, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-marruecos.svg",
-    "position": 460,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-marruecos-ninos",
-    "name": "Camiseta Marruecos · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Marruecos, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-marruecos.svg",
-    "position": 470,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-senegal-adultos",
-    "name": "Camiseta Senegal · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Senegal, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-senegal.svg",
-    "position": 480,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-senegal-ninos",
-    "name": "Camiseta Senegal · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Senegal, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-senegal.svg",
-    "position": 490,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-ghana-adultos",
-    "name": "Camiseta Ghana · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Ghana, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-ghana.svg",
-    "position": 500,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-ghana-ninos",
-    "name": "Camiseta Ghana · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Ghana, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-ghana.svg",
-    "position": 510,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-croacia-adultos",
-    "name": "Camiseta Croacia · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Croacia, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-croacia.svg",
-    "position": 520,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-croacia-ninos",
-    "name": "Camiseta Croacia · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Croacia, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-croacia.svg",
-    "position": 530,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-belgica-adultos",
-    "name": "Camiseta Bélgica · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Bélgica, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-belgica.svg",
-    "position": 540,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-belgica-ninos",
-    "name": "Camiseta Bélgica · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Bélgica, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-belgica.svg",
-    "position": 550,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-suiza-adultos",
-    "name": "Camiseta Suiza · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Suiza, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-suiza.svg",
-    "position": 560,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-suiza-ninos",
-    "name": "Camiseta Suiza · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Suiza, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-suiza.svg",
-    "position": 570,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-dinamarca-adultos",
-    "name": "Camiseta Dinamarca · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Dinamarca, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-dinamarca.svg",
-    "position": 580,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-dinamarca-ninos",
-    "name": "Camiseta Dinamarca · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Dinamarca, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-dinamarca.svg",
-    "position": 590,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-suecia-adultos",
-    "name": "Camiseta Suecia · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Suecia, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-suecia.svg",
-    "position": 600,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-suecia-ninos",
-    "name": "Camiseta Suecia · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Suecia, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-suecia.svg",
-    "position": 610,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-noruega-adultos",
-    "name": "Camiseta Noruega · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Noruega, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-noruega.svg",
-    "position": 620,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-noruega-ninos",
-    "name": "Camiseta Noruega · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Noruega, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-noruega.svg",
-    "position": 630,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-escocia-adultos",
-    "name": "Camiseta Escocia · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Escocia, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-escocia.svg",
-    "position": 640,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-escocia-ninos",
-    "name": "Camiseta Escocia · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Escocia, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-escocia.svg",
-    "position": 650,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-irlanda-adultos",
-    "name": "Camiseta Irlanda · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Irlanda, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-irlanda.svg",
-    "position": 660,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-irlanda-ninos",
-    "name": "Camiseta Irlanda · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Irlanda, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-irlanda.svg",
-    "position": 670,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-australia-adultos",
-    "name": "Camiseta Australia · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Australia, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-australia.svg",
-    "position": 680,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-australia-ninos",
-    "name": "Camiseta Australia · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Australia, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-australia.svg",
-    "position": 690,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-canada-adultos",
-    "name": "Camiseta Canadá · Adultos",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Canadá, para adultos. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "image": "/seleccion-canada.svg",
-    "position": 700,
-    "categories": [
-      "Adultos",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {
-    "id": "seleccion-canada-ninos",
-    "name": "Camiseta Canadá · Niños",
-    "price": 19990,
-    "description": "Camiseta de demostración inspirada en los colores de Canadá, para niños. Imagen ilustrativa; precio y tallas referenciales.",
-    "sizes": [
-      "4",
-      "6",
-      "8",
-      "10",
-      "12",
-      "14",
-      "16"
-    ],
-    "image": "/seleccion-canada.svg",
-    "position": 710,
-    "categories": [
-      "Niños",
-      "Poleras",
-      "Selecciones"
-    ]
-  },
-  {"id": "boca-paredes-rayas", "name": "Camiseta Boca Juniors a rayas · Paredes 5", "price": 19990, "description": "Blanca con rayas azules.", "sizes": ["S", "M", "L", "XL"], "image": "/boca-paredes-rayas-frente.webp", "position": 11, "categories": ["Poleras", "Adultos"], "gallery": ["/boca-paredes-rayas-frente.webp", "/boca-paredes-rayas-espalda.webp", "/boca-paredes-rayas-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
-  {"id": "city-haaland-negra", "name": "Camiseta Manchester City negra · Haaland 9", "price": 19990, "description": "Negra con detalles amarillos.", "sizes": ["S", "M", "L", "XL"], "image": "/city-haaland-negra-frente.webp", "position": 12, "categories": ["Poleras", "Adultos"], "gallery": ["/city-haaland-negra-frente.webp", "/city-haaland-negra-espalda.webp", "/city-haaland-negra-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
-  {"id": "barcelona-retro-cuello", "name": "Camiseta Barcelona retro azulgrana", "price": 19990, "description": "Azulgrana con cuello blanco.", "sizes": ["S", "M", "L", "XL"], "image": "/barcelona-retro-cuello-frente.webp", "position": 13, "categories": ["Poleras", "Adultos"], "gallery": ["/barcelona-retro-cuello-frente.webp", "/barcelona-retro-cuello-espalda.webp", "/barcelona-retro-cuello-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
-  {"id": "inter-miami-messi-gris", "name": "Camiseta Inter Miami gris · Messi 10", "price": 19990, "description": "Gris con detalles rosados y turquesa.", "sizes": ["S", "M", "L", "XL"], "image": "/inter-miami-messi-gris-frente.webp", "position": 14, "categories": ["Poleras", "Adultos"], "gallery": ["/inter-miami-messi-gris-frente.webp", "/inter-miami-messi-gris-espalda.webp", "/inter-miami-messi-gris-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
-  {"id": "barcelona-pedri-turquesa", "name": "Camiseta Barcelona turquesa · Pedri 8", "price": 19990, "description": "Turquesa con cuello azul.", "sizes": ["S", "M", "L", "XL"], "image": "/barcelona-pedri-turquesa-frente.webp", "position": 15, "categories": ["Poleras", "Adultos"], "gallery": ["/barcelona-pedri-turquesa-frente.webp", "/barcelona-pedri-turquesa-espalda.webp", "/barcelona-pedri-turquesa-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
-  {"id": "barcelona-pedri-cruz", "name": "Camiseta Barcelona crema · Pedri 8", "price": 19990, "description": "Crema con cruz roja.", "sizes": ["S", "M", "L", "XL"], "image": "/barcelona-pedri-cruz-frente.webp", "position": 16, "categories": ["Poleras", "Adultos"], "gallery": ["/barcelona-pedri-cruz-frente.webp", "/barcelona-pedri-cruz-espalda.webp", "/barcelona-pedri-cruz-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
-  {"id": "jamaica-marley-negra", "name": "Camiseta Jamaica negra · Marley 10", "price": 19990, "description": "Negra con motivos rojos, verdes y amarillos.", "sizes": ["S", "M", "L", "XL"], "image": "/jamaica-marley-negra-frente.webp", "position": 17, "categories": ["Poleras", "Adultos"], "gallery": ["/jamaica-marley-negra-frente.webp", "/jamaica-marley-negra-espalda.webp", "/jamaica-marley-negra-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
-  {"id": "arsenal-odegaard-roja", "name": "Camiseta Arsenal roja · Ødegaard 8", "price": 19990, "description": "Roja con mangas blancas.", "sizes": ["S", "M", "L", "XL"], "image": "/arsenal-odegaard-roja-frente.webp", "position": 18, "categories": ["Poleras", "Adultos"], "gallery": ["/arsenal-odegaard-roja-frente.webp", "/arsenal-odegaard-roja-espalda.webp", "/arsenal-odegaard-roja-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
-  {"id": "barcelona-rodrigo-azul", "name": "Camiseta Barcelona azul oscuro · Rodrigo 16", "price": 19990, "description": "Azul oscuro con detalles amarillos.", "sizes": ["S", "M", "L", "XL"], "image": "/barcelona-rodrigo-azul-frente.webp", "position": 19, "categories": ["Poleras", "Adultos"], "gallery": ["/barcelona-rodrigo-azul-frente.webp", "/barcelona-rodrigo-azul-espalda.webp", "/barcelona-rodrigo-azul-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
-  {"id": "arsenal-saka-azul", "name": "Camiseta Arsenal azul · Saka 7", "price": 19990, "description": "Azul con detalles amarillos y rojos.", "sizes": ["S", "M", "L", "XL"], "image": "/arsenal-saka-azul-frente.webp", "position": 20, "categories": ["Poleras", "Adultos"], "gallery": ["/arsenal-saka-azul-frente.webp", "/arsenal-saka-azul-espalda.webp", "/arsenal-saka-azul-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
-  {"id": "chelsea-caicedo-azul", "name": "Camiseta Chelsea azul · Caicedo 25", "price": 19990, "description": "Azul con detalles amarillos.", "sizes": ["S", "M", "L", "XL"], "image": "/chelsea-caicedo-azul-frente.webp", "position": 21, "categories": ["Poleras", "Adultos"], "gallery": ["/chelsea-caicedo-azul-frente.webp", "/chelsea-caicedo-azul-espalda.webp", "/chelsea-caicedo-azul-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
-  {"id": "city-haaland-celeste-g5", "name": "Camiseta Manchester City celeste · Haaland 9", "price": 19990, "description": "Celeste con detalles blancos e insignia termosellada.", "sizes": ["S", "M", "L", "XL"], "image": "/city-haaland-celeste-g5-frente.webp", "position": 22, "categories": ["Poleras", "Adultos"], "gallery": ["/city-haaland-celeste-g5-frente.webp", "/city-haaland-celeste-g5-espalda.webp", "/city-haaland-celeste-g5-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
-  {"id": "bayern-kane-blanca", "name": "Camiseta Bayern Múnich blanca · Kane 9", "price": 19990, "description": "Blanca con cuello azul y vivos rojos.", "sizes": ["S", "M", "L", "XL"], "image": "/bayern-kane-blanca-frente.webp", "position": 23, "categories": ["Poleras", "Adultos"], "gallery": ["/bayern-kane-blanca-frente.webp", "/bayern-kane-blanca-espalda.webp", "/bayern-kane-blanca-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
-  {"id": "chelsea-palmer-negra", "name": "Camiseta Chelsea negra · Palmer 10", "price": 19990, "description": "Negra con detalles amarillos.", "sizes": ["S", "M", "L", "XL"], "image": "/chelsea-palmer-negra-frente.webp", "position": 24, "categories": ["Poleras", "Adultos"], "gallery": ["/chelsea-palmer-negra-frente.webp", "/chelsea-palmer-negra-espalda.webp", "/chelsea-palmer-negra-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [2]},
-  {"id": "arsenal-saka-ninos", "name": "Camiseta Arsenal roja · Saka 7 · Niños", "price": 19990, "description": "Roja con mangas blancas e insignia bordada.", "sizes": ["10", "12", "14"], "image": "/arsenal-saka-ninos-frente.webp", "position": 25, "categories": ["Poleras", "Niños"], "gallery": ["/arsenal-saka-ninos-frente.webp", "/arsenal-saka-ninos-espalda.webp", "/arsenal-saka-ninos-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [0, 1, 2]},
-  {"id": "city-haaland-celeste-bordada", "name": "Camiseta Manchester City celeste bordada · Haaland 9", "price": 19990, "description": "Celeste con detalles blancos e insignia bordada.", "sizes": ["S", "M"], "image": "/city-haaland-celeste-bordada-frente.webp", "position": 26, "categories": ["Poleras", "Adultos"], "gallery": ["/city-haaland-celeste-bordada-frente.webp", "/city-haaland-celeste-bordada-espalda.webp", "/city-haaland-celeste-bordada-modelo.webp"], "galleryLabels": ["Frente", "Espalda", "Camiseta puesta"], "illustratedSlides": [0, 1, 2]},
-  {"id": "argentina-messi-negra", "name": "Camiseta Argentina negra bordada · Messi 10", "sizes": ["S", "M", "L", "XL"], "position": 27, "categories": ["Poleras", "Selecciones", "Adultos"], "price": 19990, "description": "Negra con arabescos azules y escudo bordado.", "image": "/argentina-messi-negra-frente.webp", "gallery": ["/argentina-messi-negra-frente.webp", "/argentina-messi-negra-espalda.webp"], "galleryLabels": ["Frente", "Espalda"], "illustratedSlides": []},
-  {"id": "argentina-messi-negra-ninos", "name": "Camiseta Argentina negra bordada · Messi 10 · Niños", "sizes": ["10", "12", "14"], "position": 28, "categories": ["Poleras", "Selecciones", "Niños"], "price": 19990, "description": "Negra con arabescos azules y escudo bordado.", "image": "/argentina-messi-negra-frente.webp", "gallery": ["/argentina-messi-negra-frente.webp", "/argentina-messi-negra-espalda.webp"], "galleryLabels": ["Frente", "Espalda"], "illustratedSlides": []},
-  {"id": "colo-colo-vozinha-rosada", "name": "Camiseta Colo-Colo rosada bordada · Vozinha 29", "sizes": ["S", "M", "L", "XL"], "position": 29, "categories": ["Poleras", "Adultos"], "price": 19990, "description": "Rosada con detalles blancos y escudo bordado.", "image": "/colo-colo-vozinha-rosada-frente.webp", "gallery": ["/colo-colo-vozinha-rosada-frente.webp", "/colo-colo-vozinha-rosada-espalda.webp"], "galleryLabels": ["Frente", "Espalda"], "illustratedSlides": []},
-  {"id": "colo-colo-vozinha-rosada-ninos", "name": "Camiseta Colo-Colo rosada bordada · Vozinha 29 · Niños", "sizes": ["10", "12", "14"], "position": 30, "categories": ["Poleras", "Niños"], "price": 19990, "description": "Rosada con detalles blancos y escudo bordado.", "image": "/colo-colo-vozinha-rosada-frente.webp", "gallery": ["/colo-colo-vozinha-rosada-frente.webp", "/colo-colo-vozinha-rosada-espalda.webp"], "galleryLabels": ["Frente", "Espalda"], "illustratedSlides": []},
-  {"id": "real-madrid-mbappe-rosada", "name": "Camiseta Real Madrid rosada bordada · Mbappé 10", "sizes": ["S", "M", "L", "XL"], "position": 31, "categories": ["Poleras", "Adultos"], "price": 19990, "description": "Rosada con detalles crema y escudo bordado.", "image": "/real-madrid-mbappe-rosada-frente.webp", "gallery": ["/real-madrid-mbappe-rosada-frente.webp", "/real-madrid-mbappe-rosada-espalda.webp"], "galleryLabels": ["Frente", "Espalda"], "illustratedSlides": []},
-  {"id": "real-madrid-mbappe-rosada-ninos", "name": "Camiseta Real Madrid rosada bordada · Mbappé 10 · Niños", "sizes": ["10", "12", "14"], "position": 32, "categories": ["Poleras", "Niños"], "price": 19990, "description": "Rosada con detalles crema y escudo bordado.", "image": "/real-madrid-mbappe-rosada-frente.webp", "gallery": ["/real-madrid-mbappe-rosada-frente.webp", "/real-madrid-mbappe-rosada-espalda.webp"], "galleryLabels": ["Frente", "Espalda"], "illustratedSlides": []},
-  {"id": "u-de-chile-aranguiz-roja", "name": "Camiseta U. de Chile roja bordada · Aránguiz 20", "sizes": ["S", "M", "L", "XL"], "position": 33, "categories": ["Poleras", "Adultos"], "price": 19990, "description": "Roja con detalles blancos y escudo bordado.", "image": "/u-de-chile-aranguiz-roja-frente.webp", "gallery": ["/u-de-chile-aranguiz-roja-frente.webp", "/u-de-chile-aranguiz-roja-espalda.webp"], "galleryLabels": ["Frente", "Espalda"], "illustratedSlides": []},
-  {"id": "argentina-messi-titular", "name": "Camiseta Argentina titular · Messi 10", "sizes": ["S", "M", "L", "XL"], "position": 34, "categories": ["Poleras", "Selecciones", "Adultos"], "price": 19990, "description": "Celeste y blanca a rayas con escudo de campeón.", "image": "/argentina-messi-titular-frente.webp", "gallery": ["/argentina-messi-titular-frente.webp", "/argentina-messi-titular-espalda.webp"], "galleryLabels": ["Frente", "Espalda"], "illustratedSlides": []},
-  {"id": "colo-colo-roja", "name": "Camiseta Colo-Colo roja", "sizes": ["S", "M", "L", "XL"], "position": 35, "categories": ["Poleras", "Adultos"], "price": 19990, "description": "Roja con diseño de inspiración mapuche y mangas negras.", "image": "/colo-colo-roja-frente.webp", "gallery": ["/colo-colo-roja-frente.webp", "/colo-colo-roja-espalda.webp"], "galleryLabels": ["Frente", "Espalda"], "illustratedSlides": []},
-  {"id": "espana-lamine-yamal-blanca", "name": "Camiseta España blanca · Lamine Yamal 19", "sizes": ["S", "M", "L", "XL"], "position": 36, "categories": ["Poleras", "Selecciones", "Adultos"], "price": 19990, "description": "Blanca con detalles granate y escudo de campeón.", "image": "/espana-lamine-yamal-blanca-frente.webp", "gallery": ["/espana-lamine-yamal-blanca-frente.webp", "/espana-lamine-yamal-blanca-espalda.webp"], "galleryLabels": ["Frente", "Espalda"], "illustratedSlides": []},
-  {"id": "espana-lamine-yamal-blanca-ninos", "name": "Camiseta España blanca · Lamine Yamal 19 · Niños", "sizes": ["10", "12", "14"], "position": 37, "categories": ["Poleras", "Selecciones", "Niños"], "price": 19990, "description": "Blanca con detalles granate y escudo de campeón.", "image": "/espana-lamine-yamal-blanca-frente.webp", "gallery": ["/espana-lamine-yamal-blanca-frente.webp", "/espana-lamine-yamal-blanca-espalda.webp"], "galleryLabels": ["Frente", "Espalda"], "illustratedSlides": []},
-  {"id": "portugal-ronaldo-negra", "name": "Camiseta Portugal negra · Ronaldo 7", "sizes": ["S", "M", "L", "XL"], "position": 38, "categories": ["Poleras", "Selecciones", "Adultos"], "price": 19990, "description": "Negra con cuello polo y detalles dorados.", "image": "/portugal-ronaldo-negra-frente.webp", "gallery": ["/portugal-ronaldo-negra-frente.webp", "/portugal-ronaldo-negra-espalda.webp"], "galleryLabels": ["Frente", "Espalda"], "illustratedSlides": []},
-  {"id": "portugal-ronaldo-negra-ninos", "name": "Camiseta Portugal negra · Ronaldo 7 · Niños", "sizes": ["10", "12", "14"], "position": 39, "categories": ["Poleras", "Selecciones", "Niños"], "price": 19990, "description": "Negra con cuello polo y detalles dorados.", "image": "/portugal-ronaldo-negra-frente.webp", "gallery": ["/portugal-ronaldo-negra-frente.webp", "/portugal-ronaldo-negra-espalda.webp"], "galleryLabels": ["Frente", "Espalda"], "illustratedSlides": []},
-  {"id": "real-madrid-mbappe-verde", "name": "Camiseta Real Madrid verde · Mbappé 10", "sizes": ["S", "M", "L", "XL"], "position": 40, "categories": ["Poleras", "Adultos"], "price": 19990, "description": "Verde oscuro con detalles blancos.", "image": "/real-madrid-mbappe-verde-frente.webp", "gallery": ["/real-madrid-mbappe-verde-frente.webp", "/real-madrid-mbappe-verde-espalda.webp"], "galleryLabels": ["Frente", "Espalda"], "illustratedSlides": []},
-  {"id": "real-madrid-mbappe-verde-ninos", "name": "Camiseta Real Madrid verde · Mbappé 10 · Niños", "sizes": ["10", "12", "14"], "position": 41, "categories": ["Poleras", "Niños"], "price": 19990, "description": "Verde oscuro con detalles blancos.", "image": "/real-madrid-mbappe-verde-frente.webp", "gallery": ["/real-madrid-mbappe-verde-frente.webp", "/real-madrid-mbappe-verde-espalda.webp"], "galleryLabels": ["Frente", "Espalda"], "illustratedSlides": []},
-  {"id": "noruega-haaland-negra-ninos", "name": "Camiseta Noruega negra · Haaland 9 · Niños", "sizes": ["10", "12", "14"], "position": 42, "categories": ["Poleras", "Selecciones", "Niños"], "price": 19990, "description": "Negra con escudo gris.", "image": "/noruega-haaland-negra-ninos-frente.webp", "gallery": ["/noruega-haaland-negra-ninos-frente.webp", "/noruega-haaland-negra-ninos-espalda.webp"], "galleryLabels": ["Frente", "Espalda"], "illustratedSlides": []},
-  {"id": "noruega-haaland-roja-ninos", "name": "Camiseta Noruega roja · Haaland 9 · Niños", "sizes": ["10", "12", "14"], "position": 43, "categories": ["Poleras", "Selecciones", "Niños"], "price": 19990, "description": "Roja con la cruz nórdica azul.", "image": "/noruega-haaland-roja-ninos-frente.webp", "gallery": ["/noruega-haaland-roja-ninos-frente.webp", "/noruega-haaland-roja-ninos-espalda.webp"], "galleryLabels": ["Frente", "Espalda"], "illustratedSlides": []},
-  {"id": "portugal-ronaldo-roja-ninos", "name": "Camiseta Portugal roja · Ronaldo 7 · Niños", "sizes": ["10", "12", "14"], "position": 44, "categories": ["Poleras", "Selecciones", "Niños"], "price": 19990, "description": "Roja con detalles verdes.", "image": "/portugal-ronaldo-roja-ninos-frente.webp", "gallery": ["/portugal-ronaldo-roja-ninos-frente.webp", "/portugal-ronaldo-roja-ninos-espalda.webp"], "galleryLabels": ["Frente", "Espalda"], "illustratedSlides": []},
-  {"id": "venezuela-vinotinto-ninos", "name": "Camiseta Venezuela vinotinto · Niños", "sizes": ["10", "12", "14"], "position": 45, "categories": ["Poleras", "Selecciones", "Niños"], "price": 19990, "description": "Vinotinto con detalles amarillos y azules.", "image": "/venezuela-vinotinto-ninos-frente.webp", "gallery": ["/venezuela-vinotinto-ninos-frente.webp", "/venezuela-vinotinto-ninos-espalda.webp"], "galleryLabels": ["Frente", "Espalda"], "illustratedSlides": []},
-  {"id": "espana-conjunto-ninos", "name": "Conjunto España · Lamine Yamal 19 · Niños", "sizes": ["10", "12", "14"], "position": 46, "categories": ["Conjuntos", "Selecciones", "Niños"], "price": 22990, "description": "Camiseta y short rojos con dorsal 19.", "image": "/espana-conjunto-ninos-frente.webp", "gallery": ["/espana-conjunto-ninos-frente.webp"], "galleryLabels": ["Frente"], "illustratedSlides": []},
-  {"id": "noruega-conjunto-ninos", "name": "Conjunto Noruega · Haaland 9 · Niños", "sizes": ["10", "12", "14"], "position": 47, "categories": ["Conjuntos", "Selecciones", "Niños"], "price": 22990, "description": "Camiseta y short rojos con la cruz nórdica, dorsal 9.", "image": "/noruega-conjunto-ninos-frente.webp", "gallery": ["/noruega-conjunto-ninos-frente.webp"], "galleryLabels": ["Frente"], "illustratedSlides": []},
-  {"id": "universidad-catolica-blanca", "name": "Camiseta Universidad Católica blanca", "sizes": ["S", "M", "L", "XL"], "position": 36, "categories": ["Poleras", "Adultos"], "price": 19990, "description": "Blanca con franja azul y cuello azul.", "image": "/universidad-catolica-blanca-frente.webp", "gallery": ["/universidad-catolica-blanca-frente.webp", "/universidad-catolica-blanca-espalda.webp", "/universidad-catolica-blanca-detalle.webp"], "galleryLabels": ["Frente", "Espalda", "Detalle del escudo"], "illustratedSlides": []}
+ {
+  "id": "pf-247762",
+  "name": "Camiseta Alemania azul marino y menta · Musiala 10",
+  "price": 19990,
+  "description": "Camiseta azul marino y menta de Alemania con insignia termosellada y dorsal MUSIALA 10.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247762-frente.webp",
+  "position": 1,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247762-frente.webp",
+   "/pf-247762-espalda.webp",
+   "/pf-247762-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Alemania",
+   "country": "Alemania",
+   "league": "Selecciones",
+   "colors": [
+    "Azul",
+    "Menta"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247802",
+  "name": "Camiseta Argelia verde · Mahrez 7",
+  "price": 19990,
+  "description": "Camiseta verde de Argelia con insignia termosellada y dorsal MAHREZ 7 y tela microperforada.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247802-frente.webp",
+  "position": 2,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247802-frente.webp",
+   "/pf-247802-espalda.webp",
+   "/pf-247802-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Argelia",
+   "country": "Argelia",
+   "league": "Selecciones",
+   "colors": [
+    "Verde"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247764",
+  "name": "Camiseta Argentina celeste y blanca termosellada · Messi 10",
+  "price": 19990,
+  "description": "Camiseta celeste y blanca de Argentina con insignia termosellada y dorsal MESSI 10.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247764-frente.webp",
+  "position": 3,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247764-frente.webp",
+   "/pf-247764-espalda.webp",
+   "/pf-247764-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Argentina",
+   "country": "Argentina",
+   "league": "Selecciones",
+   "colors": [
+    "Blanco",
+    "Celeste"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247854",
+  "name": "Camiseta Argentina celeste y blanca bordada · Messi 10",
+  "price": 19990,
+  "description": "Camiseta celeste y blanca de Argentina con insignia bordada y dorsal MESSI 10.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247854-frente.webp",
+  "position": 4,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247854-frente.webp",
+   "/pf-247854-espalda.webp",
+   "/pf-247854-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "illustratedSlides": [
+   2
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Argentina",
+   "country": "Argentina",
+   "league": "Selecciones",
+   "colors": [
+    "Blanco",
+    "Celeste"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247744",
+  "name": "Camiseta Argentina negra con ondas azules · Messi 10",
+  "price": 19990,
+  "description": "Camiseta negra con ondas azules de Argentina con insignia termosellada y dorsal MESSI 10.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247744-frente.webp",
+  "position": 5,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247744-frente.webp",
+   "/pf-247744-espalda.webp",
+   "/pf-247744-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Argentina",
+   "country": "Argentina",
+   "league": "Selecciones",
+   "colors": [
+    "Azul",
+    "Negro"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247864",
+  "name": "Camiseta Argentina negra y azul · Messi 10",
+  "price": 19990,
+  "description": "Camiseta negra y azul de Argentina con insignia bordada y dorsal MESSI 10.",
+  "sizes": [
+   "8",
+   "10",
+   "12",
+   "14",
+   "16",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247864-frente.webp",
+  "position": 6,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Niños",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247864-frente.webp",
+   "/pf-247864-espalda.webp",
+   "/pf-247864-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Argentina",
+   "country": "Argentina",
+   "league": "Selecciones",
+   "colors": [
+    "Azul",
+    "Negro"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247818",
+  "name": "Camiseta Arsenal azul marino · Saka 7",
+  "price": 19990,
+  "description": "Camiseta azul marino de Arsenal con insignia termosellada y dorsal SAKA 7.",
+  "sizes": [
+   "M"
+  ],
+  "image": "/pf-247818-frente.webp",
+  "position": 7,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247818-frente.webp",
+   "/pf-247818-espalda.webp",
+   "/pf-247818-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Arsenal",
+   "country": "Inglaterra",
+   "league": "Premier League",
+   "colors": [
+    "Azul"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247816",
+  "name": "Camiseta Arsenal roja y blanca termosellada · Ødegaard 8",
+  "price": 19990,
+  "description": "Camiseta roja y blanca de Arsenal con insignia termosellada y dorsal ØDEGAARD 8.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247816-frente.webp",
+  "position": 8,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247816-frente.webp",
+   "/pf-247816-espalda.webp",
+   "/pf-247816-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Arsenal",
+   "country": "Inglaterra",
+   "league": "Premier League",
+   "colors": [
+    "Blanco",
+    "Rojo"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247870",
+  "name": "Camiseta Arsenal roja y blanca bordada · Saka 7 · Niños",
+  "price": 19990,
+  "description": "Camiseta roja y blanca de Arsenal con insignia bordada y dorsal SAKA 7.",
+  "sizes": [
+   "10",
+   "12"
+  ],
+  "image": "/pf-247870-frente.webp",
+  "position": 9,
+  "categories": [
+   "Poleras",
+   "Niños"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247870-frente.webp",
+   "/pf-247870-espalda.webp",
+   "/pf-247870-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Arsenal",
+   "country": "Inglaterra",
+   "league": "Premier League",
+   "colors": [
+    "Blanco",
+    "Rojo"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247730",
+  "name": "Camiseta Bayern Múnich blanca con cuello azul marino · Kane 9",
+  "price": 19990,
+  "description": "Camiseta blanca con cuello azul marino de Bayern Múnich con insignia termosellada y dorsal KANE 9.",
+  "sizes": [
+   "S",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247730-frente.webp",
+  "position": 10,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247730-frente.webp",
+   "/pf-247730-espalda.webp",
+   "/pf-247730-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Bayern Múnich",
+   "country": "Alemania",
+   "league": "Bundesliga",
+   "colors": [
+    "Blanco",
+    "Azul"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247798",
+  "name": "Camiseta Bayern Múnich roja termosellada · Kane 9",
+  "price": 19990,
+  "description": "Camiseta roja de Bayern Múnich con insignia termosellada y dorsal KANE 9 y tela microperforada.",
+  "sizes": [
+   "XL"
+  ],
+  "image": "/pf-247798-frente.webp",
+  "position": 11,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247798-frente.webp",
+   "/pf-247798-espalda.webp",
+   "/pf-247798-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Bayern Múnich",
+   "country": "Alemania",
+   "league": "Bundesliga",
+   "colors": [
+    "Rojo"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247844",
+  "name": "Camiseta Bayern Múnich roja bordada · Díaz 14",
+  "price": 19990,
+  "description": "Camiseta roja de Bayern Múnich con insignia bordada y dorsal DÍAZ 14.",
+  "sizes": [
+   "XL"
+  ],
+  "image": "/pf-247844-frente.webp",
+  "position": 12,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247844-frente.webp",
+   "/pf-247844-espalda.webp",
+   "/pf-247844-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Bayern Múnich",
+   "country": "Alemania",
+   "league": "Bundesliga",
+   "colors": [
+    "Rojo"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247846",
+  "name": "Camiseta Brasil amarilla · Neymar 10",
+  "price": 19990,
+  "description": "Camiseta amarilla de Brasil con insignia bordada y dorsal NEYMAR 10.",
+  "sizes": [
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247846-frente.webp",
+  "position": 13,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247846-frente.webp",
+   "/pf-247846-espalda.webp",
+   "/pf-247846-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Brasil",
+   "country": "Brasil",
+   "league": "Selecciones",
+   "colors": [
+    "Amarillo"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247852",
+  "name": "Camiseta Brasil negra y azul · Neymar 10 · Niños",
+  "price": 19990,
+  "description": "Camiseta negra y azul de Brasil con insignia bordada y dorsal NEYMAR 10.",
+  "sizes": [
+   "12",
+   "14",
+   "16"
+  ],
+  "image": "/pf-247852-frente.webp",
+  "position": 14,
+  "categories": [
+   "Poleras",
+   "Niños",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247852-frente.webp",
+   "/pf-247852-espalda.webp",
+   "/pf-247852-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Brasil",
+   "country": "Brasil",
+   "league": "Selecciones",
+   "colors": [
+    "Azul",
+    "Negro"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247766",
+  "name": "Camiseta Bélgica roja · Doku 11",
+  "price": 19990,
+  "description": "Camiseta roja de Bélgica con insignia termosellada y dorsal DOKU 11.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247766-frente.webp",
+  "position": 15,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247766-frente.webp",
+   "/pf-247766-espalda.webp",
+   "/pf-247766-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Bélgica",
+   "country": "Bélgica",
+   "league": "Selecciones",
+   "colors": [
+    "Rojo"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247788",
+  "name": "Camiseta Bélgica rosa y turquesa · De Bruyne 7",
+  "price": 19990,
+  "description": "Camiseta rosa y turquesa de Bélgica con insignia termosellada y dorsal DE BRUYNE 7 y tela microperforada.",
+  "sizes": [
+   "S",
+   "M"
+  ],
+  "image": "/pf-247788-frente.webp",
+  "position": 16,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247788-frente.webp",
+   "/pf-247788-espalda.webp",
+   "/pf-247788-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Bélgica",
+   "country": "Bélgica",
+   "league": "Selecciones",
+   "colors": [
+    "Turquesa",
+    "Rosado"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247812",
+  "name": "Camiseta Chelsea azul · Caicedo 25",
+  "price": 19990,
+  "description": "Camiseta azul de Chelsea con insignia termosellada y dorsal CAICEDO 25.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL",
+   "XXL"
+  ],
+  "image": "/pf-247812-frente.webp",
+  "position": 17,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247812-frente.webp",
+   "/pf-247812-espalda.webp",
+   "/pf-247812-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Chelsea",
+   "country": "Inglaterra",
+   "league": "Premier League",
+   "colors": [
+    "Azul"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247732",
+  "name": "Camiseta Chelsea negra con detalles amarillos · Palmer 10",
+  "price": 19990,
+  "description": "Camiseta negra con detalles amarillos de Chelsea con insignia termosellada y dorsal PALMER 10.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247732-frente.webp",
+  "position": 18,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247732-frente.webp",
+   "/pf-247732-espalda.webp",
+   "/pf-247732-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Chelsea",
+   "country": "Inglaterra",
+   "league": "Premier League",
+   "colors": [
+    "Negro",
+    "Amarillo"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247780",
+  "name": "Camiseta Chile roja",
+  "price": 19990,
+  "description": "Camiseta roja de Chile con insignia termosellada.",
+  "sizes": [
+   "M"
+  ],
+  "image": "/pf-247780-frente.webp",
+  "position": 19,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247780-frente.webp",
+   "/pf-247780-espalda.webp",
+   "/pf-247780-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Chile",
+   "country": "Chile",
+   "league": "Selecciones",
+   "colors": [
+    "Rojo"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247826",
+  "name": "Camiseta Chile roja infantil · Sánchez 10",
+  "price": 19990,
+  "description": "Camiseta roja infantil de Chile con insignia bordada y dorsal SÁNCHEZ 10.",
+  "sizes": [
+   "4",
+   "14"
+  ],
+  "image": "/pf-247826-frente.webp",
+  "position": 20,
+  "categories": [
+   "Poleras",
+   "Niños",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247826-frente.webp",
+   "/pf-247826-espalda.webp",
+   "/pf-247826-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Chile",
+   "country": "Chile",
+   "league": "Selecciones",
+   "colors": [
+    "Rojo"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247774",
+  "name": "Camiseta Colo-Colo blanca termosellada",
+  "price": 19990,
+  "description": "Camiseta blanca de Colo-Colo con insignia termosellada.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247774-frente.webp",
+  "position": 21,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247774-frente.webp",
+   "/pf-247774-espalda.webp",
+   "/pf-247774-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Colo-Colo",
+   "country": "Chile",
+   "league": "Primera División",
+   "colors": [
+    "Blanco"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247820",
+  "name": "Camiseta Colo-Colo blanca bordada · Vidal 23 · Niños",
+  "price": 19990,
+  "description": "Camiseta blanca de Colo-Colo con insignia bordada y dorsal VIDAL 23.",
+  "sizes": [
+   "12",
+   "14"
+  ],
+  "image": "/pf-247820-frente.webp",
+  "position": 22,
+  "categories": [
+   "Poleras",
+   "Niños"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247820-frente.webp",
+   "/pf-247820-espalda.webp",
+   "/pf-247820-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Colo-Colo",
+   "country": "Chile",
+   "league": "Primera División",
+   "colors": [
+    "Blanco"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247752",
+  "name": "Camiseta Colo-Colo entrenamiento roja termosellada",
+  "price": 19990,
+  "description": "Camiseta entrenamiento roja de Colo-Colo con insignia termosellada.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247752-frente.webp",
+  "position": 23,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247752-frente.webp",
+   "/pf-247752-espalda.webp",
+   "/pf-247752-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Colo-Colo",
+   "country": "Chile",
+   "league": "Primera División",
+   "colors": [
+    "Rojo"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247834",
+  "name": "Camiseta Colo-Colo entrenamiento roja bordada",
+  "price": 19990,
+  "description": "Camiseta entrenamiento roja de Colo-Colo con insignia bordada.",
+  "sizes": [
+   "S",
+   "M"
+  ],
+  "image": "/pf-247834-frente.webp",
+  "position": 24,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247834-frente.webp",
+   "/pf-247834-espalda.webp",
+   "/pf-247834-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "illustratedSlides": [
+   2
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Colo-Colo",
+   "country": "Chile",
+   "league": "Primera División",
+   "colors": [
+    "Rojo"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247866",
+  "name": "Camiseta Colo-Colo fucsia · Vozinha 29",
+  "price": 19990,
+  "description": "Camiseta fucsia de Colo-Colo con insignia bordada y dorsal VOZINHA 29.",
+  "sizes": [
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247866-frente.webp",
+  "position": 25,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247866-frente.webp",
+   "/pf-247866-espalda.webp",
+   "/pf-247866-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "illustratedSlides": [
+   2
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Colo-Colo",
+   "country": "Chile",
+   "league": "Primera División",
+   "colors": [
+    "Fucsia"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247838",
+  "name": "Camiseta Colo-Colo negra",
+  "price": 19990,
+  "description": "Camiseta negra de Colo-Colo con insignia bordada.",
+  "sizes": [
+   "M"
+  ],
+  "image": "/pf-247838-frente.webp",
+  "position": 26,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247838-frente.webp",
+   "/pf-247838-espalda.webp",
+   "/pf-247838-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "illustratedSlides": [
+   2
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Colo-Colo",
+   "country": "Chile",
+   "league": "Primera División",
+   "colors": [
+    "Negro"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247770",
+  "name": "Camiseta Colo-Colo negra con detalles rojos",
+  "price": 19990,
+  "description": "Camiseta negra con detalles rojos de Colo-Colo con insignia termosellada.",
+  "sizes": [
+   "S",
+   "XL"
+  ],
+  "image": "/pf-247770-frente.webp",
+  "position": 27,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247770-frente.webp",
+   "/pf-247770-espalda.webp",
+   "/pf-247770-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Colo-Colo",
+   "country": "Chile",
+   "league": "Primera División",
+   "colors": [
+    "Rojo",
+    "Negro"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247850",
+  "name": "Camiseta Colo-Colo roja estampada",
+  "price": 19990,
+  "description": "Camiseta roja estampada de Colo-Colo con insignia bordada.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247850-frente.webp",
+  "position": 28,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247850-frente.webp",
+   "/pf-247850-espalda.webp",
+   "/pf-247850-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "illustratedSlides": [
+   2
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Colo-Colo",
+   "country": "Chile",
+   "league": "Primera División",
+   "colors": [
+    "Rojo"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247754",
+  "name": "Camiseta Colo-Colo roja y negra estampada",
+  "price": 19990,
+  "description": "Camiseta roja y negra estampada de Colo-Colo con insignia termosellada.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247754-frente.webp",
+  "position": 29,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247754-frente.webp",
+   "/pf-247754-espalda.webp",
+   "/pf-247754-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Colo-Colo",
+   "country": "Chile",
+   "league": "Primera División",
+   "colors": [
+    "Rojo",
+    "Negro"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247786",
+  "name": "Camiseta Colombia amarilla · James 10",
+  "price": 19990,
+  "description": "Camiseta amarilla de Colombia con insignia termosellada y dorsal JAMES 10 y tela microperforada.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247786-frente.webp",
+  "position": 30,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247786-frente.webp",
+   "/pf-247786-espalda.webp",
+   "/pf-247786-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Colombia",
+   "country": "Colombia",
+   "league": "Selecciones",
+   "colors": [
+    "Amarillo"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247792",
+  "name": "Camiseta España marfil y burdeos · Yamal 19",
+  "price": 19990,
+  "description": "Camiseta marfil y burdeos de España con insignia termosellada y dorsal YAMAL 19 y tela microperforada.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247792-frente.webp",
+  "position": 31,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247792-frente.webp",
+   "/pf-247792-espalda.webp",
+   "/pf-247792-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "España",
+   "country": "España",
+   "league": "Selecciones",
+   "colors": [
+    "Marfil",
+    "Burdeos"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247790",
+  "name": "Camiseta FC Barcelona azulgrana termosellada · Yamal 10",
+  "price": 19990,
+  "description": "Camiseta azulgrana de FC Barcelona con insignia termosellada y dorsal YAMAL 10 y tela microperforada.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247790-frente.webp",
+  "position": 32,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247790-frente.webp",
+   "/pf-247790-espalda.webp",
+   "/pf-247790-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "FC Barcelona",
+   "country": "España",
+   "league": "LaLiga",
+   "colors": [
+    "Azulgrana"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247858",
+  "name": "Camiseta FC Barcelona azulgrana bordada · Yamal 10",
+  "price": 19990,
+  "description": "Camiseta azulgrana de FC Barcelona con insignia bordada y dorsal YAMAL 10.",
+  "sizes": [
+   "XL"
+  ],
+  "image": "/pf-247858-frente.webp",
+  "position": 33,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247858-frente.webp",
+   "/pf-247858-espalda.webp",
+   "/pf-247858-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "FC Barcelona",
+   "country": "España",
+   "league": "LaLiga",
+   "colors": [
+    "Azulgrana"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247734",
+  "name": "Camiseta FC Barcelona azulgrana con cuello blanco",
+  "price": 19990,
+  "description": "Camiseta azulgrana con cuello blanco de FC Barcelona con insignia termosellada.",
+  "sizes": [
+   "S",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247734-frente.webp",
+  "position": 34,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247734-frente.webp",
+   "/pf-247734-espalda.webp",
+   "/pf-247734-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "FC Barcelona",
+   "country": "España",
+   "league": "LaLiga",
+   "colors": [
+    "Blanco",
+    "Azulgrana"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247742",
+  "name": "Camiseta FC Barcelona marfil con cruz roja · Pedri 8",
+  "price": 19990,
+  "description": "Camiseta marfil con cruz roja de FC Barcelona con insignia termosellada y dorsal PEDRI 8.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247742-frente.webp",
+  "position": 35,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247742-frente.webp",
+   "/pf-247742-espalda.webp",
+   "/pf-247742-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "FC Barcelona",
+   "country": "España",
+   "league": "LaLiga",
+   "colors": [
+    "Rojo",
+    "Marfil"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247738",
+  "name": "Camiseta FC Barcelona negra y violeta · Rodrigo 16",
+  "price": 19990,
+  "description": "Camiseta negra y violeta de FC Barcelona con insignia termosellada y dorsal RODRIGO 16.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247738-frente.webp",
+  "position": 36,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247738-frente.webp",
+   "/pf-247738-espalda.webp",
+   "/pf-247738-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "FC Barcelona",
+   "country": "España",
+   "league": "LaLiga",
+   "colors": [
+    "Negro",
+    "Violeta"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247740",
+  "name": "Camiseta FC Barcelona turquesa · Pedri 8",
+  "price": 19990,
+  "description": "Camiseta turquesa de FC Barcelona con insignia termosellada y dorsal PEDRI 8.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247740-frente.webp",
+  "position": 37,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247740-frente.webp",
+   "/pf-247740-espalda.webp",
+   "/pf-247740-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "FC Barcelona",
+   "country": "España",
+   "league": "LaLiga",
+   "colors": [
+    "Turquesa"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247796",
+  "name": "Camiseta Francia azul con cuello blanco · Dembélé 7",
+  "price": 19990,
+  "description": "Camiseta azul con cuello blanco de Francia con insignia termosellada y dorsal DEMBÉLÉ 7 y tela microperforada.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247796-frente.webp",
+  "position": 38,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247796-frente.webp",
+   "/pf-247796-espalda.webp",
+   "/pf-247796-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Francia",
+   "country": "Francia",
+   "league": "Selecciones",
+   "colors": [
+    "Blanco",
+    "Azul"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247782",
+  "name": "Camiseta Francia blanca con detalles menta · Mbappé 10",
+  "price": 19990,
+  "description": "Camiseta blanca con detalles menta de Francia con insignia termosellada y dorsal MBAPPÉ 10.",
+  "sizes": [
+   "S",
+   "M",
+   "L"
+  ],
+  "image": "/pf-247782-frente.webp",
+  "position": 39,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247782-frente.webp",
+   "/pf-247782-espalda.webp",
+   "/pf-247782-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Francia",
+   "country": "Francia",
+   "league": "Selecciones",
+   "colors": [
+    "Blanco",
+    "Menta"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247836",
+  "name": "Camiseta Francia turquesa · Mbappé 10",
+  "price": 19990,
+  "description": "Camiseta turquesa de Francia con insignia bordada y dorsal MBAPPÉ 10.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247836-frente.webp",
+  "position": 40,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247836-frente.webp",
+   "/pf-247836-espalda.webp",
+   "/pf-247836-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Francia",
+   "country": "Francia",
+   "league": "Selecciones",
+   "colors": [
+    "Turquesa"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247736",
+  "name": "Camiseta Inter Miami gris con rosa y turquesa · Messi 10",
+  "price": 19990,
+  "description": "Camiseta gris con rosa y turquesa de Inter Miami con insignia termosellada y dorsal MESSI 10.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247736-frente.webp",
+  "position": 41,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247736-frente.webp",
+   "/pf-247736-espalda.webp",
+   "/pf-247736-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Inter Miami",
+   "country": "Estados Unidos",
+   "league": "MLS",
+   "colors": [
+    "Turquesa",
+    "Rosado",
+    "Gris"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247750",
+  "name": "Camiseta Jamaica negra con detalles multicolores · Marley 10",
+  "price": 19990,
+  "description": "Camiseta negra con detalles multicolores de Jamaica con insignia termosellada y dorsal MARLEY 10.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247750-frente.webp",
+  "position": 42,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247750-frente.webp",
+   "/pf-247750-espalda.webp",
+   "/pf-247750-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Jamaica",
+   "country": "Jamaica",
+   "league": "Selecciones",
+   "colors": [
+    "Negro"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247784",
+  "name": "Camiseta Japón blanca con líneas multicolor · Kubo 20",
+  "price": 19990,
+  "description": "Camiseta blanca con líneas multicolor de Japón con insignia termosellada y dorsal KUBO 20 y tela microperforada.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247784-frente.webp",
+  "position": 43,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247784-frente.webp",
+   "/pf-247784-espalda.webp",
+   "/pf-247784-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Japón",
+   "country": "Japón",
+   "league": "Selecciones",
+   "colors": [
+    "Blanco"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247814",
+  "name": "Camiseta Manchester City celeste · Haaland 9",
+  "price": 19990,
+  "description": "Camiseta celeste de Manchester City con insignia termosellada y dorsal HAALAND 9.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247814-frente.webp",
+  "position": 44,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247814-frente.webp",
+   "/pf-247814-espalda.webp",
+   "/pf-247814-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Manchester City",
+   "country": "Inglaterra",
+   "league": "Premier League",
+   "colors": [
+    "Celeste"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247748",
+  "name": "Camiseta Portugal blanca y turquesa estampada · Ronaldo 7",
+  "price": 19990,
+  "description": "Camiseta blanca y turquesa estampada de Portugal con insignia termosellada y dorsal RONALDO 7.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247748-frente.webp",
+  "position": 45,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247748-frente.webp",
+   "/pf-247748-espalda.webp",
+   "/pf-247748-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Portugal",
+   "country": "Portugal",
+   "league": "Selecciones",
+   "colors": [
+    "Blanco",
+    "Turquesa"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247848",
+  "name": "Camiseta Portugal negra pantera negra · Ronaldo 7",
+  "price": 19990,
+  "description": "Camiseta negra pantera negra de Portugal con insignia bordada y dorsal RONALDO 7.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247848-frente.webp",
+  "position": 46,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247848-frente.webp",
+   "/pf-247848-espalda.webp",
+   "/pf-247848-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Portugal",
+   "country": "Portugal",
+   "league": "Selecciones",
+   "colors": [
+    "Negro"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247760",
+  "name": "Camiseta Portugal negra y dorada · Ronaldo 7",
+  "price": 19990,
+  "description": "Camiseta negra y dorada de Portugal con insignia termosellada y dorsal RONALDO 7.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247760-frente.webp",
+  "position": 47,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247760-frente.webp",
+   "/pf-247760-espalda.webp",
+   "/pf-247760-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Portugal",
+   "country": "Portugal",
+   "league": "Selecciones",
+   "colors": [
+    "Negro",
+    "Dorado"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247756",
+  "name": "Camiseta Portugal roja termosellada · Ronaldo 7",
+  "price": 19990,
+  "description": "Camiseta roja de Portugal con insignia termosellada y dorsal RONALDO 7.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247756-frente.webp",
+  "position": 48,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247756-frente.webp",
+   "/pf-247756-espalda.webp",
+   "/pf-247756-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Portugal",
+   "country": "Portugal",
+   "league": "Selecciones",
+   "colors": [
+    "Rojo"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247856",
+  "name": "Camiseta Portugal roja bordada · Ronaldo 7 · Niños",
+  "price": 19990,
+  "description": "Camiseta roja de Portugal con insignia bordada y dorsal RONALDO 7.",
+  "sizes": [
+   "16"
+  ],
+  "image": "/pf-247856-frente.webp",
+  "position": 49,
+  "categories": [
+   "Poleras",
+   "Niños",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247856-frente.webp",
+   "/pf-247856-espalda.webp",
+   "/pf-247856-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Portugal",
+   "country": "Portugal",
+   "league": "Selecciones",
+   "colors": [
+    "Rojo"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247872",
+  "name": "Camiseta Real Madrid blanca · Mbappé 10",
+  "price": 19990,
+  "description": "Camiseta blanca de Real Madrid con insignia bordada y dorsal MBAPPÉ 10.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247872-frente.webp",
+  "position": 50,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247872-frente.webp",
+   "/pf-247872-espalda.webp",
+   "/pf-247872-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Real Madrid",
+   "country": "España",
+   "league": "LaLiga",
+   "colors": [
+    "Blanco"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247794",
+  "name": "Camiseta Real Madrid blanca con franjas rosas · Mbappé 10",
+  "price": 19990,
+  "description": "Camiseta blanca con franjas rosas de Real Madrid con insignia termosellada y dorsal MBAPPÉ 10 y tela microperforada.",
+  "sizes": [
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247794-frente.webp",
+  "position": 51,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247794-frente.webp",
+   "/pf-247794-espalda.webp",
+   "/pf-247794-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Real Madrid",
+   "country": "España",
+   "league": "LaLiga",
+   "colors": [
+    "Blanco",
+    "Rosado"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247810",
+  "name": "Camiseta Real Madrid burdeos · Mbappé 10",
+  "price": 19990,
+  "description": "Camiseta burdeos de Real Madrid con insignia termosellada y dorsal MBAPPÉ 10.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247810-frente.webp",
+  "position": 52,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247810-frente.webp",
+   "/pf-247810-espalda.webp",
+   "/pf-247810-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Real Madrid",
+   "country": "España",
+   "league": "LaLiga",
+   "colors": [
+    "Burdeos"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247868",
+  "name": "Camiseta Real Madrid rosada · Mbappé 10",
+  "price": 19990,
+  "description": "Camiseta rosada de Real Madrid con insignia bordada y dorsal MBAPPÉ 10.",
+  "sizes": [
+   "12",
+   "16",
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247868-frente.webp",
+  "position": 53,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Niños"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247868-frente.webp",
+   "/pf-247868-espalda.webp",
+   "/pf-247868-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Real Madrid",
+   "country": "España",
+   "league": "LaLiga",
+   "colors": [
+    "Rosado"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247806",
+  "name": "Camiseta Real Madrid verde petróleo termosellada · Mbappé 10",
+  "price": 19990,
+  "description": "Camiseta verde petróleo de Real Madrid con insignia termosellada y dorsal MBAPPÉ 10.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247806-frente.webp",
+  "position": 54,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247806-frente.webp",
+   "/pf-247806-espalda.webp",
+   "/pf-247806-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Real Madrid",
+   "country": "España",
+   "league": "LaLiga",
+   "colors": [
+    "Verde"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247860",
+  "name": "Camiseta Real Madrid verde petróleo bordada · Mbappé 10",
+  "price": 19990,
+  "description": "Camiseta verde petróleo de Real Madrid con insignia bordada y dorsal MBAPPÉ 10.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247860-frente.webp",
+  "position": 55,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247860-frente.webp",
+   "/pf-247860-espalda.webp",
+   "/pf-247860-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Real Madrid",
+   "country": "España",
+   "league": "LaLiga",
+   "colors": [
+    "Verde"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247768",
+  "name": "Camiseta Universidad Católica blanca con franjas azules",
+  "price": 19990,
+  "description": "Camiseta blanca con franjas azules de Universidad Católica con insignia termosellada.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247768-frente.webp",
+  "position": 56,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247768-frente.webp",
+   "/pf-247768-espalda.webp",
+   "/pf-247768-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Universidad Católica",
+   "country": "Chile",
+   "league": "Primera División",
+   "colors": [
+    "Blanco",
+    "Azul"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247832",
+  "name": "Camiseta Universidad de Chile azul",
+  "price": 19990,
+  "description": "Camiseta azul de Universidad de Chile con insignia bordada.",
+  "sizes": [
+   "S"
+  ],
+  "image": "/pf-247832-frente.webp",
+  "position": 57,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247832-frente.webp",
+   "/pf-247832-espalda.webp",
+   "/pf-247832-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "illustratedSlides": [
+   2
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Universidad de Chile",
+   "country": "Chile",
+   "league": "Primera División",
+   "colors": [
+    "Azul"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247758",
+  "name": "Camiseta Universidad de Chile azul con detalles rojos",
+  "price": 19990,
+  "description": "Camiseta azul con detalles rojos de Universidad de Chile con insignia termosellada.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247758-frente.webp",
+  "position": 58,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247758-frente.webp",
+   "/pf-247758-espalda.webp",
+   "/pf-247758-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Universidad de Chile",
+   "country": "Chile",
+   "league": "Primera División",
+   "colors": [
+    "Azul",
+    "Rojo"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247778",
+  "name": "Camiseta Universidad de Chile blanca y azul termosellada",
+  "price": 19990,
+  "description": "Camiseta blanca y azul de Universidad de Chile con insignia termosellada.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247778-frente.webp",
+  "position": 59,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247778-frente.webp",
+   "/pf-247778-espalda.webp",
+   "/pf-247778-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Universidad de Chile",
+   "country": "Chile",
+   "league": "Primera División",
+   "colors": [
+    "Blanco",
+    "Azul"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247830",
+  "name": "Camiseta Universidad de Chile blanca y azul bordada",
+  "price": 19990,
+  "description": "Camiseta blanca y azul de Universidad de Chile con insignia bordada.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247830-frente.webp",
+  "position": 60,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247830-frente.webp",
+   "/pf-247830-espalda.webp",
+   "/pf-247830-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "illustratedSlides": [
+   2
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Universidad de Chile",
+   "country": "Chile",
+   "league": "Primera División",
+   "colors": [
+    "Blanco",
+    "Azul"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247772",
+  "name": "Camiseta Universidad de Chile lila con detalles naranjos",
+  "price": 19990,
+  "description": "Camiseta lila con detalles naranjos de Universidad de Chile con insignia termosellada.",
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247772-frente.webp",
+  "position": 61,
+  "categories": [
+   "Poleras",
+   "Adultos"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247772-frente.webp",
+   "/pf-247772-espalda.webp",
+   "/pf-247772-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "club",
+   "team": "Universidad de Chile",
+   "country": "Chile",
+   "league": "Primera División",
+   "colors": [
+    "Lila",
+    "Naranja"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247800",
+  "name": "Camiseta Venezuela blanca · Segovia 10",
+  "price": 19990,
+  "description": "Camiseta blanca de Venezuela con insignia termosellada y dorsal SEGOVIA 10 y tela microperforada.",
+  "sizes": [
+   "S",
+   "L",
+   "XL"
+  ],
+  "image": "/pf-247800-frente.webp",
+  "position": 62,
+  "categories": [
+   "Poleras",
+   "Adultos",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247800-frente.webp",
+   "/pf-247800-espalda.webp",
+   "/pf-247800-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Venezuela",
+   "country": "Venezuela",
+   "league": "Selecciones",
+   "colors": [
+    "Blanco"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "pf-247862",
+  "name": "Camiseta Venezuela vinotinto · Niños",
+  "price": 19990,
+  "description": "Camiseta vinotinto de Venezuela con insignia bordada.",
+  "sizes": [
+   "10",
+   "12",
+   "14",
+   "16"
+  ],
+  "image": "/pf-247862-frente.webp",
+  "position": 63,
+  "categories": [
+   "Poleras",
+   "Niños",
+   "Selecciones"
+  ],
+  "studioGallery": true,
+  "gallery": [
+   "/pf-247862-frente.webp",
+   "/pf-247862-espalda.webp",
+   "/pf-247862-modelo.webp"
+  ],
+  "galleryLabels": [
+   "Frente",
+   "Espalda",
+   "Camiseta puesta"
+  ],
+  "illustratedSlides": [
+   2
+  ],
+  "meta": {
+   "kind": "pais",
+   "team": "Venezuela",
+   "country": "Venezuela",
+   "league": "Selecciones",
+   "colors": [
+    "Vinotinto"
+   ]
+  },
+  "listPrice": 24990
+ },
+ {
+  "id": "entrada",
+  "name": "Chaqueta Prepartido",
+  "price": 44990,
+  "description": "Chaqueta marfil de entrenamiento con cuello verde.",
+  "sizes": [
+   "S",
+   "M",
+   "L"
+  ],
+  "image": "/entrada.webp",
+  "position": 100,
+  "categories": [
+   "Entrenamiento"
+  ]
+ },
+ {
+  "id": "espana-conjunto-ninos",
+  "name": "Conjunto España · Lamine Yamal 19 · Niños",
+  "sizes": [
+   "10",
+   "12",
+   "14"
+  ],
+  "position": 101,
+  "categories": [
+   "Conjuntos",
+   "Selecciones",
+   "Niños"
+  ],
+  "price": 22990,
+  "description": "Camiseta y short rojos con dorsal 19.",
+  "image": "/espana-conjunto-ninos-frente.webp",
+  "gallery": [
+   "/espana-conjunto-ninos-frente.webp"
+  ],
+  "galleryLabels": [
+   "Frente"
+  ],
+  "illustratedSlides": []
+ },
+ {
+  "id": "noruega-conjunto-ninos",
+  "name": "Conjunto Noruega · Haaland 9 · Niños",
+  "sizes": [
+   "10",
+   "12",
+   "14"
+  ],
+  "position": 102,
+  "categories": [
+   "Conjuntos",
+   "Selecciones",
+   "Niños"
+  ],
+  "price": 22990,
+  "description": "Camiseta y short rojos con la cruz nórdica, dorsal 9.",
+  "image": "/noruega-conjunto-ninos-frente.webp",
+  "gallery": [
+   "/noruega-conjunto-ninos-frente.webp"
+  ],
+  "galleryLabels": [
+   "Frente"
+  ],
+  "illustratedSlides": []
+ }
 ]
