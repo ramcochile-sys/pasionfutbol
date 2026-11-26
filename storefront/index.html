@@ -641,7 +641,7 @@ body>footer p{color:#edf4ff}
 .pd-flag{position:absolute;left:.6rem;top:.6rem;padding:.3rem .65rem;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:900;font-size:.75rem}
 .pd-head{display:flex;flex-direction:column;gap:.35rem}
 #detail .pd-head #detail-title{margin:.1rem 0 0;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:700;font-size:clamp(1.3rem,5vw,1.75rem);line-height:1.12;text-transform:none}
-.pd-price{display:flex;align-items:baseline;gap:.12rem;margin:.15rem 0 0}
+.pd-price{display:flex;flex-wrap:wrap;align-items:baseline;gap:.12rem;margin:.15rem 0 0}.pd-was{flex-basis:100%;color:var(--muted);font-size:1rem;text-decoration:line-through}
 .pd-price strong{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:800;font-size:1.8rem;line-height:1}
 .pd-price small{color:var(--muted);font-size:.85rem}
 #detail .pd-buy{display:flex;flex-direction:column;align-items:stretch;gap:1rem;margin:0}
@@ -1045,7 +1045,6 @@ body>footer p{color:#edf4ff}
       <img src="/pelota-corona.png" width="64" height="64" alt="">
       <div><strong>Pasión <em>Fútbol</em></strong><p>Vive el fútbol</p></div>
     </div>
-    <div class="checkout-banner-security"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-shield"/></svg><span>Compra<br>100% segura</span></div>
     <button class="close" type="button" data-close aria-label="Cerrar carrito"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-close"/></svg></button>
   </div>
   <div class="dialog-top"><h2 id="order-title"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-cart"/></svg>Tu carrito de compras</h2></div>
@@ -1069,7 +1068,6 @@ body>footer p{color:#edf4ff}
     <span><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-shield"/></svg>Compra segura</span>
     <span><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-card"/></svg>Pagos confiables</span>
     <span><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-truck"/></svg>Envíos a todo Chile</span>
-    <span class="trust-ssl"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-shield"/></svg>Página segura con SSL</span>
   </div>
   <div class="checkout-footer">
     <svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-heart"/></svg><span>Gracias por confiar en Pasión Fútbol</span><span class="footer-crown" aria-hidden="true">♛</span>
@@ -1084,7 +1082,6 @@ body>footer p{color:#edf4ff}
       <img src="/pelota-corona.png" width="64" height="64" alt="">
       <div><strong id="shipping-title">Pasión <em>Fútbol</em></strong><p>Vive el fútbol</p></div>
     </div>
-    <div class="checkout-banner-security"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-shield"/></svg><span>Compra<br>100% segura</span></div>
     <button class="close" type="button" data-close aria-label="Cerrar checkout"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-close"/></svg></button>
   </div>
   <div class="checkout-content">
@@ -1198,7 +1195,6 @@ body>footer p{color:#edf4ff}
     <span><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-shield"/></svg>Compra segura</span>
     <span><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-card"/></svg>Tus datos protegidos</span>
     <span><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-truck"/></svg>Envíos a todo Chile</span>
-    <span class="trust-ssl"><svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-shield"/></svg>Página segura con SSL</span>
   </div>
   <div class="checkout-footer">
     <svg class="checkout-icon" aria-hidden="true"><use href="#checkout-icon-heart"/></svg><span>Gracias por confiar en Pasión Fútbol</span><span class="footer-crown" aria-hidden="true">♛</span>
@@ -1521,6 +1517,7 @@ function getProductMeta(item) {
 }
 function computeProductMeta(item) {
   const id = item.id || "";
+  if (item.meta) return {...item.meta};
   if (id.startsWith("seleccion-") || id === "jamaica-marley-negra") {
     const slug = id === "jamaica-marley-negra" ? "jamaica" : id.replace(/^seleccion-/, "").replace(/-(adultos|ninos)$/, "");
     const country = COUNTRY_NAMES[slug] || slug;
@@ -1675,7 +1672,7 @@ function openDetail(item) {
     </div>
     <div class="pd-head">
       <h2 id="detail-title">${escapeHtml(detailProductName(item))}</h2>
-      <p class="pd-price"><strong>${money.format(item.price)}</strong>${isShirt(item) ? "<small>c/u</small>" : ""}</p>
+      <p class="pd-price">${item.listPrice > item.price ? `<s class="pd-was">${money.format(item.listPrice)}</s>` : ""}<strong>${money.format(item.price)}</strong>${isShirt(item) ? "<small>c/u</small>" : ""}</p>
     </div>
     ${buyForm(item)}${pdDetails(item)}${pdRelated(item)}
     <div class="pd-trust" aria-label="Información de compra">
