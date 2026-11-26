@@ -790,6 +790,14 @@ body>footer p{color:#edf4ff}
   .cart-qty button{min-height:40px}
 }
 
+
+/* Selector Adultos / Niños: píldora de vidrio con transición deslizante */
+.audience-sections{position:relative;isolation:isolate;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;padding:4px;margin-bottom:20px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%)}
+.audience-sections::before{content:"";position:absolute;z-index:-1;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:999px;background:rgba(255,255,255,.9);box-shadow:inset 0 1px 0 #fff,0 4px 12px rgba(0,0,0,.25);transition:transform .38s cubic-bezier(.2,.8,.2,1)}
+.audience-sections:has(button[data-audience="Niños"][aria-pressed="true"])::before{transform:translateX(100%)}
+.audience-sections button{min-height:52px;border-radius:999px;background:transparent!important;color:#fff!important;border:1px solid transparent!important;box-shadow:none!important;text-decoration:none!important;outline-offset:3px;transition:color .3s ease}
+.audience-sections button[aria-pressed="true"]{color:#0b1f5c!important}
+@media(prefers-reduced-motion:reduce){.audience-sections::before,.audience-sections button{transition:none}}
 </style>
 </head>
 <body>
